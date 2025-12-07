@@ -35,9 +35,10 @@
         trackEvents: true,
         trackUserTiming: true,
         
-        // App URLs (encoded for security)
+        // App URLs - ĐÃ CẬP NHẬT: URL trực tiếp, không mã hóa
         apiEndpoints: {
-            dataService: atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5Xy1NbHVNaDZmaDdqbDBBaTJpeTZvanpYNFVoamhqeFJXajhSVjh3UmdOUFVKSGQ2VHBoS3dtNnlQdFlQbTloc0N3Zy9leGVj'),
+            // URL Google Apps Script của bạn - ĐÃ SỬA LẠI
+            dataService: 'https://script.google.com/macros/s/AKfycby_-MluMh6fh7jl0Ai2iy6ojqX4UhjhjxRWj8RV8wRgNPUJHd6TphKwm6yPtYPm8hsCwg/exec',
             qrService: 'https://img.vietqr.io/image/mbbank-311435-compact2.png',
             cdnBase: 'https://cdn.xspacestore.com'
         },
@@ -136,4 +137,5 @@
                 APP_CONFIG.version.major + '.' + 
                 APP_CONFIG.version.minor + '.' + 
                 APP_CONFIG.version.patch);
+    console.log('🔗 API Endpoint:', APP_CONFIG.apiEndpoints.dataService);
 })();
