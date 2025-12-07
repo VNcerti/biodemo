@@ -68,7 +68,7 @@ function isVIPActive(vipExpiry) {
 }
 
 function formatDate(dateString) {
-    if (!dateString) return 'Không xác định';
+    if (!dateString) return 'Chưa cập nhật';
     
     if (dateString.includes('T')) {
         const date = new Date(dateString);
