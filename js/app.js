@@ -24,21 +24,34 @@ class AppManager {
         this.closeSearch = document.getElementById('closeSearch');
         this.searchResults = document.getElementById('searchResults');
         this.searchNavItem = document.getElementById('searchNavItem');
+        
+        // Thêm debounce cho search
+        this.searchDebounceTimeout = null;
     }
 
     bindEvents() {
-        // Search events
+        // Search events với debounce
         if (this.searchInput) {
             this.searchInput.addEventListener('input', (e) => {
                 this.searchTerm = e.target.value.toLowerCase().trim();
-                this.renderApps();
+                
+                // Debounce để tránh tìm kiếm quá nhiều
+                clearTimeout(this.searchDebounceTimeout);
+                this.searchDebounceTimeout = setTimeout(() => {
+                    this.renderApps();
+                }, 300);
             });
         }
 
         if (this.searchModalInput) {
             this.searchModalInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value.trim();
-                this.searchApps(searchTerm);
+                
+                // Debounce cho modal search
+                clearTimeout(this.searchDebounceTimeout);
+                this.searchDebounceTimeout = setTimeout(() => {
+                    this.searchApps(searchTerm);
+                }, 300);
             });
         }
 
@@ -92,36 +105,46 @@ class AppManager {
     }
 
     init() {
+        console.log('🔄 Khởi tạo AppManager...');
         this.loadAppsFromSheets();
     }
 
     async loadAppsFromSheets() {
         try {
+            console.log('📥 Đang tải ứng dụng từ Google Sheets...');
+            
+            // Hiển thị skeleton loading
             if (this.appsGrid) {
                 AppUtils.showSkeletonLoading(this.appsGrid);
             }
             
+            // Kiểm tra cache trước
             if (AppUtils.isCacheValid()) {
                 const cachedApps = AppUtils.getFromCache();
                 if (cachedApps && cachedApps.length > 0) {
-                    console.log('✅ Đang tải từ cache...');
+                    console.log('✅ Đang tải từ cache...', cachedApps.length, 'apps');
                     this.allApps = cachedApps;
                     this.renderApps();
+                    // Vẫn fetch dữ liệu mới ở background
                     this.fetchFreshData();
                     return;
                 }
             }
             
+            // Nếu không có cache hoặc cache hết hạn, fetch mới
             await this.fetchFreshData();
             
         } catch (error) {
-            console.error('Lỗi khi tải ứng dụng:', error);
+            console.error('❌ Lỗi khi tải ứng dụng:', error);
+            
+            // Thử load từ cache nếu có
             const cachedApps = AppUtils.getFromCache();
             if (cachedApps && cachedApps.length > 0) {
+                console.log('⚠️ Lỗi fetch, đang dùng cache...');
                 this.allApps = cachedApps;
                 this.renderApps();
             } else if (this.appsGrid) {
-                this.appsGrid.innerHTML = '<div class="loading"><p>Lỗi khi tải ứng dụng. Vui lòng thử lại sau.</p></div>';
+                AppUtils.showError(this.appsGrid, 'Không thể tải dữ liệu ứng dụng. Vui lòng kiểm tra kết nối mạng.');
             }
         }
     }
@@ -129,28 +152,68 @@ class AppManager {
     async fetchFreshData() {
         try {
             console.log('🔄 Đang tải dữ liệu mới từ server...');
-            const response = await fetch(`${CONFIG.GOOGLE_SCRIPT_URL}?action=getApps&t=${Date.now()}`);
-            const result = await response.json();
             
-            if (result.success) {
+            // Thêm timestamp để tránh cache
+            const timestamp = Date.now();
+            const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getApps&t=${timestamp}&nocache=true`;
+            console.log('📡 Fetch URL:', url);
+            
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Cache-Control': 'no-cache'
+                }
+            });
+            
+            console.log('📦 Response status:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            console.log('📊 Server response success:', result.success);
+            
+            if (result.success && result.data) {
+                console.log('📱 Data received:', result.data.length, 'apps');
+                
                 // Xử lý dữ liệu để đảm bảo cấu trúc đúng
-                this.allApps = result.data.map(app => {
-                    // Đảm bảo app có categories
-                    if (!app.categories) {
-                        app.categories = 'other'; // Mặc định nếu không có categories
-                    }
-                    return app;
+                this.allApps = result.data.map((app, index) => {
+                    // Đảm bảo app có các trường cần thiết
+                    return {
+                        id: app.id || index + 1,
+                        name: app.name || `Ứng dụng ${index + 1}`,
+                        description: app.description || 'Chưa có mô tả',
+                        image: app.image || 'https://via.placeholder.com/70/2563eb/FFFFFF?text=App',
+                        categories: app.categories || 'other',
+                        updatedate: app.updatedate || new Date().toISOString(),
+                        developer: app.developer || 'Nhà phát triển',
+                        version: app.version || '1.0.0',
+                        downloadlink: app.downloadlink || '#',
+                        viplink1: app.viplink1 || '',
+                        screenshot1: app.screenshot1 || '',
+                        screenshot2: app.screenshot2 || '',
+                        screenshot3: app.screenshot3 || ''
+                    };
                 });
                 
+                console.log('✅ Dữ liệu đã được xử lý:', this.allApps.length, 'apps');
+                console.log('📱 App đầu tiên:', this.allApps[0]);
+                
+                // Lưu vào cache
                 AppUtils.saveToCache(this.allApps);
+                
+                // Render apps
                 this.renderApps();
+                
                 console.log('✅ Dữ liệu mới đã được tải và cache');
-                console.log('📊 Cấu trúc dữ liệu app đầu tiên:', this.allApps[0]);
             } else {
-                throw new Error('Không thể tải dữ liệu');
+                throw new Error(result.message || 'Dữ liệu không hợp lệ từ server');
             }
         } catch (error) {
-            console.error('Lỗi khi fetch dữ liệu mới:', error);
+            console.error('💥 Lỗi khi fetch dữ liệu mới:', error);
+            throw error;
         }
     }
 
@@ -214,7 +277,8 @@ class AppManager {
             if (this.currentView === 'home' && this.currentCategory === 'all' && !this.searchTerm) {
                 this.gamesSection.style.display = 'block';
                 const games = this.allApps.filter(app => 
-                    app.categories && app.categories.includes('game')
+                    app.categories && (app.categories.includes('game') || 
+                                      (typeof app.categories === 'string' && app.categories.includes('game')))
                 );
                 this.displayApps(games, this.gamesGrid);
             } else {
@@ -227,30 +291,50 @@ class AppManager {
     filterApps() {
         let filteredApps = this.allApps;
         
+        // Lọc theo view
         switch(this.currentView) {
             case 'today':
                 const today = new Date().toLocaleDateString('vi-VN');
                 filteredApps = this.allApps.filter(app => {
                     if (!app.updatedate) return false;
-                    const appDate = new Date(app.updatedate).toLocaleDateString('vi-VN');
-                    return appDate === today;
+                    try {
+                        const appDate = new Date(app.updatedate).toLocaleDateString('vi-VN');
+                        return appDate === today;
+                    } catch (e) {
+                        return false;
+                    }
                 });
                 break;
+                
             case 'games':
-                filteredApps = this.allApps.filter(app => 
-                    app.categories && app.categories.includes('game')
-                );
+                filteredApps = this.allApps.filter(app => {
+                    if (!app.categories) return false;
+                    if (Array.isArray(app.categories)) {
+                        return app.categories.includes('game');
+                    } else if (typeof app.categories === 'string') {
+                        return app.categories.includes('game');
+                    }
+                    return false;
+                });
                 break;
+                
             case 'home':
             default:
                 if (this.currentCategory !== 'all') {
-                    filteredApps = this.allApps.filter(app => 
-                        app.categories && app.categories.includes(this.currentCategory)
-                    );
+                    filteredApps = this.allApps.filter(app => {
+                        if (!app.categories) return false;
+                        if (Array.isArray(app.categories)) {
+                            return app.categories.includes(this.currentCategory);
+                        } else if (typeof app.categories === 'string') {
+                            return app.categories.includes(this.currentCategory);
+                        }
+                        return false;
+                    });
                 }
                 break;
         }
         
+        // Lọc theo search term
         if (this.searchTerm) {
             filteredApps = filteredApps.filter(app => 
                 app.name.toLowerCase().includes(this.searchTerm) ||
@@ -258,12 +342,14 @@ class AppManager {
             );
         }
         
+        // Sắp xếp theo ID giảm dần (mới nhất lên đầu)
         filteredApps.sort((a, b) => {
             const idA = parseInt(a.id) || 0;
             const idB = parseInt(b.id) || 0;
             return idB - idA;
         });
         
+        console.log('🔍 Filtered apps:', filteredApps.length);
         return filteredApps;
     }
 
@@ -298,11 +384,15 @@ class AppManager {
             } else if (this.currentView === 'today') {
                 const today = new Date().toLocaleDateString('vi-VN');
                 message = `Không có ứng dụng nào được đăng vào ${today}`;
+            } else if (this.currentCategory !== 'all') {
+                message = `Không có ứng dụng nào trong thể loại "${CONFIG.CATEGORY_LABELS[this.currentCategory] || this.currentCategory}"`;
             }
             
             AppUtils.showNoResults(container, message);
             return;
         }
+        
+        console.log('🎨 Hiển thị', apps.length, 'apps');
         
         apps.forEach(app => {
             const appCard = this.createAppCard(app);
@@ -313,17 +403,18 @@ class AppManager {
     createAppCard(app) {
         const appCard = document.createElement('div');
         appCard.className = 'app-card';
+        appCard.dataset.appId = app.id;
         
         const tagsHTML = AppUtils.createTagsHTML(app.categories);
         const formattedDate = AppUtils.formatDate(app.updatedate);
-        
-        // THAY ĐỔI QUAN TRỌNG: Sử dụng createShortDescriptionHTML thay vì createDescriptionHTML
         const descriptionHTML = AppUtils.createShortDescriptionHTML(app.description);
         
         appCard.innerHTML = `
-            <img src="${app.image}" alt="${app.name}" class="app-logo" 
+            <img src="${app.image}" 
+                 alt="${app.name}" 
+                 class="app-logo" 
                  loading="lazy"
-                 onerror="this.src='https://via.placeholder.com/70/2563eb/FFFFFF?text=App'">
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/70/2563eb/FFFFFF?text=App';">
             <div class="app-content">
                 <div class="app-header">
                     <div class="app-info">
@@ -353,9 +444,37 @@ class AppManager {
 
 // Khởi tạo ứng dụng khi trang được tải
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 DOM loaded, khởi tạo AppManager...');
+    
+    // Áp dụng theme
+    applyThemeFromStorage();
+    
     // Kiểm tra xem có các phần tử cần thiết cho trang chính không
     const appsGrid = document.getElementById('appsGrid');
     if (appsGrid) {
         window.appManager = new AppManager();
+    } else {
+        console.log('⚠️ Không tìm thấy appsGrid, có thể đang ở trang khác');
     }
 });
+
+// Thêm hàm global để debug
+window.debugAppManager = function() {
+    if (window.appManager) {
+        console.log('🔍 AppManager debug info:');
+        console.log('- Total apps:', window.appManager.allApps.length);
+        console.log('- Current category:', window.appManager.currentCategory);
+        console.log('- Current view:', window.appManager.currentView);
+        console.log('- Search term:', window.appManager.searchTerm);
+        console.log('- First 3 apps:', window.appManager.allApps.slice(0, 3));
+    } else {
+        console.log('❌ AppManager not initialized');
+    }
+};
+
+// Clear cache function
+window.clearAppCache = function() {
+    AppUtils.clearCache();
+    alert('✅ Đã xoá cache. Tải lại trang để tải dữ liệu mới.');
+    window.location.reload();
+};
