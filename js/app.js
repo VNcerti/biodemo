@@ -28,15 +28,19 @@ class AppManager {
 
     bindEvents() {
         // Search events
-        this.searchInput.addEventListener('input', (e) => {
-            this.searchTerm = e.target.value.toLowerCase().trim();
-            this.renderApps();
-        });
+        if (this.searchInput) {
+            this.searchInput.addEventListener('input', (e) => {
+                this.searchTerm = e.target.value.toLowerCase().trim();
+                this.renderApps();
+            });
+        }
 
-        this.searchModalInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.trim();
-            this.searchApps(searchTerm);
-        });
+        if (this.searchModalInput) {
+            this.searchModalInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.trim();
+                this.searchApps(searchTerm);
+            });
+        }
 
         // Category events
         this.categoryCards.forEach(card => {
@@ -72,15 +76,19 @@ class AppManager {
         });
 
         // Modal events
-        this.searchModal.addEventListener('click', (e) => {
-            if (e.target === this.searchModal) {
-                this.closeSearchModal();
-            }
-        });
+        if (this.searchModal) {
+            this.searchModal.addEventListener('click', (e) => {
+                if (e.target === this.searchModal) {
+                    this.closeSearchModal();
+                }
+            });
+        }
 
-        this.closeSearch.addEventListener('click', () => {
-            this.closeSearchModal();
-        });
+        if (this.closeSearch) {
+            this.closeSearch.addEventListener('click', () => {
+                this.closeSearchModal();
+            });
+        }
     }
 
     init() {
@@ -89,7 +97,9 @@ class AppManager {
 
     async loadAppsFromSheets() {
         try {
-            AppUtils.showSkeletonLoading(this.appsGrid);
+            if (this.appsGrid) {
+                AppUtils.showSkeletonLoading(this.appsGrid);
+            }
             
             if (AppUtils.isCacheValid()) {
                 const cachedApps = AppUtils.getFromCache();
@@ -110,7 +120,7 @@ class AppManager {
             if (cachedApps && cachedApps.length > 0) {
                 this.allApps = cachedApps;
                 this.renderApps();
-            } else {
+            } else if (this.appsGrid) {
                 this.appsGrid.innerHTML = '<div class="loading"><p>Lỗi khi tải ứng dụng. Vui lòng thử lại sau.</p></div>';
             }
         }
@@ -145,19 +155,31 @@ class AppManager {
     }
 
     openSearchModal() {
-        this.searchModal.style.display = 'block';
-        setTimeout(() => {
-            this.searchModalInput.focus();
-        }, 100);
+        if (this.searchModal) {
+            this.searchModal.style.display = 'block';
+            setTimeout(() => {
+                if (this.searchModalInput) {
+                    this.searchModalInput.focus();
+                }
+            }, 100);
+        }
     }
 
     closeSearchModal() {
-        this.searchModal.style.display = 'none';
-        this.searchModalInput.value = '';
-        this.searchResults.innerHTML = '';
+        if (this.searchModal) {
+            this.searchModal.style.display = 'none';
+            if (this.searchModalInput) {
+                this.searchModalInput.value = '';
+            }
+            if (this.searchResults) {
+                this.searchResults.innerHTML = '';
+            }
+        }
     }
 
     searchApps(searchTerm) {
+        if (!this.searchResults) return;
+        
         if (!searchTerm.trim()) {
             this.searchResults.innerHTML = '<div class="no-results"><p>Nhập từ khóa để tìm kiếm</p></div>';
             return;
@@ -183,17 +205,22 @@ class AppManager {
     renderApps() {
         let filteredApps = this.filterApps();
         this.updateSectionTitle();
-        this.displayApps(filteredApps, this.appsGrid);
         
-        if (this.currentView === 'home' && this.currentCategory === 'all' && !this.searchTerm) {
-            this.gamesSection.style.display = 'block';
-            const games = this.allApps.filter(app => 
-                app.categories && app.categories.includes('game')
-            );
-            this.displayApps(games, this.gamesGrid);
-        } else {
-            this.gamesSection.style.display = 'none';
-            this.gamesGrid.innerHTML = '';
+        if (this.appsGrid) {
+            this.displayApps(filteredApps, this.appsGrid);
+        }
+        
+        if (this.gamesSection && this.gamesGrid) {
+            if (this.currentView === 'home' && this.currentCategory === 'all' && !this.searchTerm) {
+                this.gamesSection.style.display = 'block';
+                const games = this.allApps.filter(app => 
+                    app.categories && app.categories.includes('game')
+                );
+                this.displayApps(games, this.gamesGrid);
+            } else {
+                this.gamesSection.style.display = 'none';
+                this.gamesGrid.innerHTML = '';
+            }
         }
     }
 
@@ -241,6 +268,8 @@ class AppManager {
     }
 
     updateSectionTitle() {
+        if (!this.sectionTitle) return;
+        
         let title = 'Ứng dụng mới';
         
         if (this.searchTerm) {
@@ -257,6 +286,8 @@ class AppManager {
     }
 
     displayApps(apps, container) {
+        if (!container) return;
+        
         container.innerHTML = '';
         
         if (apps.length === 0) {
@@ -322,5 +353,9 @@ class AppManager {
 
 // Khởi tạo ứng dụng khi trang được tải
 document.addEventListener('DOMContentLoaded', function() {
-    window.appManager = new AppManager();
+    // Kiểm tra xem có các phần tử cần thiết cho trang chính không
+    const appsGrid = document.getElementById('appsGrid');
+    if (appsGrid) {
+        window.appManager = new AppManager();
+    }
 });
