@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tung lam dep trai</title>
+    <title>Admin Dashboard - XSpace Store</title>
     <link rel="icon" href="https://i.imgur.com/fMrOKWc.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
@@ -446,7 +446,7 @@
             transform: none;
         }
 
-        /* Preview Section */
+        /* Preview Section - ĐÃ CẬP NHẬT */
         .preview-section {
             background: var(--surface);
             border-radius: 10px;
@@ -473,100 +473,171 @@
             font-size: 14px;
         }
 
-        .preview-card {
-            background: var(--background);
-            border-radius: 8px;
+        /* App Card Preview giống với index.html */
+        .app-card-preview {
+            background: var(--surface);
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
             border: 1px solid var(--border);
+            padding: 12px;
+            display: flex;
+            gap: 12px;
+            height: 110px;
             max-width: 100%;
             margin: 0 auto;
         }
 
-        .preview-image {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-            background: var(--gradient);
+        .app-card-preview:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow-hover);
         }
 
-        .preview-content {
-            padding: 10px;
-        }
-
-        .preview-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            margin-bottom: 6px;
-        }
-
-        .preview-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 6px;
-            object-fit: cover;
+        .app-logo-preview {
+            width: 90px;
+            height: 90px;
+            border-radius: 21px;
+            object-fit: contain;
             flex-shrink: 0;
-            border: 1px solid var(--border);
+            padding: 4px;
+            align-self: center;
         }
 
-        .preview-info {
+        .app-content-preview {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .app-header-preview {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4px;
+        }
+
+        .app-info-preview {
             flex: 1;
             min-width: 0;
         }
 
-        .preview-name {
-            font-size: 12px;
+        .app-name-preview {
+            font-size: 15px;
             font-weight: 700;
-            margin-bottom: 2px;
-            line-height: 1.3;
+            line-height: 1.2;
+            margin-bottom: 4px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             color: var(--text-primary);
         }
 
-        .preview-developer {
-            color: var(--text-secondary);
-            font-size: 10px;
-            margin-bottom: 3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .preview-meta {
-            display: flex;
-            gap: 6px;
-            font-size: 9px;
-            color: var(--text-muted);
-        }
-
-        .preview-description {
-            color: var(--text-secondary);
-            font-size: 10px;
-            line-height: 1.4;
-            margin-bottom: 6px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .preview-tags {
+        .app-tags-preview {
             display: flex;
             flex-wrap: wrap;
-            gap: 3px;
-            margin-bottom: 8px;
+            gap: 4px;
+            margin-bottom: 4px;
         }
 
-        .preview-tag {
+        .app-tag-preview {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 9px;
+            font-weight: 500;
+        }
+
+        .app-meta-preview {
+            display: flex;
+            gap: 12px;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .app-meta-item-preview {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .app-meta-item-preview i {
+            font-size: 9px;
+            width: 12px;
+            margin-right: -4px;
+        }
+
+        .app-description-check-preview {
+            color: var(--text-secondary);
+            font-size: 11px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+            margin-top: -4px;
+            margin-bottom: -8px;
+        }
+
+        .description-item-preview {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            margin-bottom: 2px;
+        }
+
+        .check-icon-container-preview {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: #2693eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .check-icon-container-preview i {
+            font-size: 6px;
+            color: #ffffff;
+        }
+
+        .description-text-preview {
+            flex: 1;
+            line-height: 1.3;
+            margin-left: -3.65px;
+            margin-top: -1px;
+        }
+
+        .app-actions-preview {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 4px;
+        }
+
+        .download-btn-preview {
             background: var(--primary);
             color: white;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 8px;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+        }
+
+        .download-btn-preview:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
         }
 
         /* Screenshots Preview */
@@ -966,6 +1037,13 @@
             border-radius: 5px;
         }
 
+        /* Search user form */
+        .search-user-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+        }
+
         /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 6px;
@@ -1011,6 +1089,15 @@
             .page-title {
                 font-size: 22px;
             }
+
+            .app-card-preview {
+                height: 100px;
+            }
+
+            .app-logo-preview {
+                width: 70px;
+                height: 70px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1036,6 +1123,18 @@
             
             .preview-section {
                 position: static;
+            }
+
+            .app-card-preview {
+                padding: 10px;
+                gap: 10px;
+                height: 95px;
+            }
+
+            .app-logo-preview {
+                width: 60px;
+                height: 60px;
+                border-radius: 18px;
             }
         }
     </style>
@@ -1198,6 +1297,7 @@
                                     Danh mục ứng dụng
                                 </label>
                                 <div class="categories-group">
+                                    <!-- Danh mục cũ -->
                                     <input type="checkbox" id="category-game" class="category-checkbox" value="game">
                                     <label for="category-game" class="category-label">
                                         <i class="fas fa-gamepad category-icon"></i>
@@ -1219,7 +1319,7 @@
                                     <input type="checkbox" id="category-photo" class="category-checkbox" value="photo">
                                     <label for="category-photo" class="category-label">
                                         <i class="fas fa-camera category-icon"></i>
-                                        <span>Chụp ảnh</span>
+                                        <span>Ảnh & Video</span>
                                     </label>
 
                                     <input type="checkbox" id="category-clone" class="category-checkbox" value="clone">
@@ -1233,6 +1333,25 @@
                                         <i class="fas fa-unlock category-icon"></i>
                                         <span>Mở khoá Premium</span>
                                     </label>
+
+                                    <!-- Danh mục mới -->
+                                    <input type="checkbox" id="category-education" class="category-checkbox" value="education">
+                                    <label for="category-education" class="category-label">
+                                        <i class="fas fa-graduation-cap category-icon"></i>
+                                        <span>Giáo dục</span>
+                                    </label>
+
+                                    <input type="checkbox" id="category-health" class="category-checkbox" value="health">
+                                    <label for="category-health" class="category-label">
+                                        <i class="fas fa-heartbeat category-icon"></i>
+                                        <span>Sức khỏe</span>
+                                    </label>
+
+                                    <input type="checkbox" id="category-utility" class="category-checkbox" value="utility">
+                                    <label for="category-utility" class="category-label">
+                                        <i class="fas fa-tools category-icon"></i>
+                                        <span>Tiện ích</span>
+                                    </label>
                                 </div>
                             </div>
 
@@ -1243,39 +1362,58 @@
                         </form>
                     </section>
 
-                    <!-- Preview Section -->
+                    <!-- Preview Section - ĐÃ CẬP NHẬT -->
                     <section class="preview-section">
                         <h2 class="preview-title">
                             <i class="fas fa-eye"></i>
                             Xem Trước
                         </h2>
-                        <div class="preview-card" id="appPreview">
-                            <img src="https://via.placeholder.com/300x100/7c3aed/FFFFFF?text=Preview+Image" alt="Preview" class="preview-image" id="previewImage">
-                            <div class="preview-content">
-                                <div class="preview-header">
-                                    <img src="https://via.placeholder.com/36/7c3aed/FFFFFF?text=App" alt="App Icon" class="preview-icon" id="previewIcon">
-                                    <div class="preview-info">
-                                        <h3 class="preview-name" id="previewName">Tên ứng dụng</h3>
-                                        <div class="preview-developer" id="previewDeveloper">Nhà phát triển</div>
-                                        <div class="preview-meta">
-                                            <span id="previewVersion">Phiên bản: 1.0.0</span>
+                        
+                        <div class="app-card-preview" id="appPreview">
+                            <img src="https://via.placeholder.com/90/7c3aed/FFFFFF?text=App" alt="App Logo" class="app-logo-preview" id="previewIcon">
+                            <div class="app-content-preview">
+                                <div class="app-header-preview">
+                                    <div class="app-info-preview">
+                                        <div class="app-name-preview" id="previewName">Tên ứng dụng</div>
+                                        <div class="app-tags-preview" id="previewTags">
+                                            <!-- Tags sẽ được thêm bằng JavaScript -->
+                                        </div>
+                                        <div class="app-meta-preview">
+                                            <div class="app-meta-item-preview">
+                                                <i class="fas fa-user"></i>
+                                                <span id="previewDeveloper">Nhà phát triển</span>
+                                            </div>
+                                            <div class="app-meta-item-preview">
+                                                <i class="fas fa-clock"></i>
+                                                <span id="previewVersion">1.0.0</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="preview-description" id="previewDescription">Mô tả ứng dụng sẽ hiển thị ở đây...</div>
-                                <div class="preview-tags" id="previewTags">
-                                    <!-- Tags will be added here -->
-                                </div>
-                                
-                                <!-- Thêm phần preview ảnh minh hoạ -->
-                                <div class="screenshots-preview">
-                                    <h4><i class="fas fa-images"></i> Ảnh minh hoạ:</h4>
-                                    <div class="screenshots-grid-preview">
-                                        <img src="https://via.placeholder.com/80/1e293b/475569?text=Ảnh+1" alt="Screenshot 1" class="screenshot-preview" id="previewScreenshot1">
-                                        <img src="https://via.placeholder.com/80/1e293b/475569?text=Ảnh+2" alt="Screenshot 2" class="screenshot-preview" id="previewScreenshot2">
-                                        <img src="https://via.placeholder.com/80/1e293b/475569?text=Ảnh+3" alt="Screenshot 3" class="screenshot-preview" id="previewScreenshot3">
+                                    <div class="app-actions-preview">
+                                        <button class="download-btn-preview">
+                                            <i class="fas fa-download"></i>
+                                            Chi tiết
+                                        </button>
                                     </div>
                                 </div>
+                                <div class="app-description-check-preview" id="previewDescription">
+                                    <div class="description-item-preview">
+                                        <div class="check-icon-container-preview">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="description-text-preview">Mô tả ứng dụng sẽ hiển thị ở đây...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Thêm phần preview ảnh minh hoạ -->
+                        <div class="screenshots-preview">
+                            <h4><i class="fas fa-images"></i> Ảnh minh hoạ:</h4>
+                            <div class="screenshots-grid-preview">
+                                <img src="https://via.placeholder.com/80/1e293b/475569?text=Ảnh+1" alt="Screenshot 1" class="screenshot-preview" id="previewScreenshot1">
+                                <img src="https://via.placeholder.com/80/1e293b/475569?text=Ảnh+2" alt="Screenshot 2" class="screenshot-preview" id="previewScreenshot2">
+                                <img src="https://via.placeholder.com/80/1e293b/475569?text=Ảnh+3" alt="Screenshot 3" class="screenshot-preview" id="previewScreenshot3">
                             </div>
                         </div>
                     </section>
@@ -1284,7 +1422,7 @@
 
             <!-- Analytics Tab Content -->
             <div class="tab-content" id="analyticsTab">
-                <!-- Stats Cards -->
+                <!-- Stats Cards - ĐÃ CẬP NHẬT THÊM MỤC MỚI -->
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-icon primary">
@@ -1319,7 +1457,7 @@
                             <i class="fas fa-camera"></i>
                         </div>
                         <div class="stat-number" id="totalPhoto">0</div>
-                        <div class="stat-label">Chụp ảnh</div>
+                        <div class="stat-label">Ảnh & Video</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon danger">
@@ -1334,6 +1472,28 @@
                         </div>
                         <div class="stat-number" id="totalPremium">0</div>
                         <div class="stat-label">Mở khoá Premium</div>
+                    </div>
+                    <!-- Thống kê danh mục mới -->
+                    <div class="stat-card">
+                        <div class="stat-icon info">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-number" id="totalEducation">0</div>
+                        <div class="stat-label">Giáo dục</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="stat-number" id="totalHealth">0</div>
+                        <div class="stat-label">Sức khỏe</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="stat-number" id="totalUtility">0</div>
+                        <div class="stat-label">Tiện ích</div>
                     </div>
                     <!-- Thống kê tài khoản đã tạo -->
                     <div class="stat-card">
@@ -1409,7 +1569,7 @@
                 </div>
             </div>
 
-            <!-- Upgrade Tab Content -->
+            <!-- Upgrade Tab Content - ĐÃ CẬP NHẬT -->
             <div class="tab-content" id="upgradeTab">
                 <!-- Messages -->
                 <div id="upgradeSuccessMessage" class="message message-success">
@@ -1437,15 +1597,22 @@
 
                     <form class="upgrade-form" id="upgradeForm">
                         <div class="form-group">
-                            <label class="form-label" for="userEmail">
-                                <i class="fas fa-envelope"></i>
-                                Email người dùng cần nâng cấp
+                            <label class="form-label">
+                                <i class="fas fa-user"></i>
+                                Tìm người dùng (Email hoặc Tên đăng nhập)
                             </label>
-                            <input type="email" id="userEmail" class="form-input" placeholder="Nhập email của người dùng" required>
-                            <button type="button" class="submit-btn" id="searchUserBtn" style="margin-top: 8px; padding: 8px 16px; font-size: 12px;">
-                                <i class="fas fa-search"></i>
-                                Tìm người dùng
-                            </button>
+                            <div class="form-row search-user-form">
+                                <div>
+                                    <input type="text" id="userIdentifier" class="form-input" placeholder="Nhập email hoặc username" required>
+                                    <div style="font-size: 9px; color: var(--text-muted); margin-top: 4px;">
+                                        Ví dụ: email@example.com hoặc tunglam123
+                                    </div>
+                                </div>
+                                <button type="button" class="submit-btn" id="searchUserBtn" style="padding: 8px 16px; font-size: 12px;">
+                                    <i class="fas fa-search"></i>
+                                    Tìm
+                                </button>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -1720,7 +1887,6 @@
         const tabContents = document.querySelectorAll('.tab-content');
         
         // Preview elements
-        const previewImage = document.getElementById('previewImage');
         const previewIcon = document.getElementById('previewIcon');
         const previewName = document.getElementById('previewName');
         const previewDeveloper = document.getElementById('previewDeveloper');
@@ -1736,7 +1902,7 @@
         const errorMessage = document.getElementById('errorMessage');
         const errorText = document.getElementById('errorText');
 
-        // Stats elements
+        // Stats elements - ĐÃ THÊM MỤC MỚI
         const totalAppsElement = document.getElementById('totalApps');
         const totalGamesElement = document.getElementById('totalGames');
         const totalSocialElement = document.getElementById('totalSocial');
@@ -1744,13 +1910,16 @@
         const totalPhotoElement = document.getElementById('totalPhoto');
         const totalCloneElement = document.getElementById('totalClone');
         const totalPremiumElement = document.getElementById('totalPremium');
+        const totalEducationElement = document.getElementById('totalEducation');
+        const totalHealthElement = document.getElementById('totalHealth');
+        const totalUtilityElement = document.getElementById('totalUtility');
         const totalUsersElement = document.getElementById('totalUsers');
         const totalVisitsElement = document.getElementById('totalVisits');
         const todayVisitsElement = document.getElementById('todayVisits');
 
-        // Upgrade Elements
+        // Upgrade Elements - ĐÃ CẬP NHẬT
         const upgradeForm = document.getElementById('upgradeForm');
-        const userEmailInput = document.getElementById('userEmail');
+        const userIdentifierInput = document.getElementById('userIdentifier');
         const vipPackagesList = document.getElementById('vipPackagesList');
         const upgradeSubmitBtn = document.getElementById('upgradeSubmitBtn');
         const searchUserBtn = document.getElementById('searchUserBtn');
@@ -1775,6 +1944,19 @@
         const codesErrorMessage = document.getElementById('codesErrorMessage');
         const codesSuccessText = document.getElementById('codesSuccessText');
         const codesErrorText = document.getElementById('codesErrorText');
+
+        // Category labels cho preview
+        const CATEGORY_LABELS = {
+            'game': 'Trò chơi',
+            'social': 'Mạng xã hội',
+            'entertainment': 'Giải trí',
+            'photo': 'Ảnh & Video',
+            'clone': 'Nhân bản',
+            'premium': 'Mở khoá Premium',
+            'education': 'Giáo dục',
+            'health': 'Sức khỏe',
+            'utility': 'Tiện ích'
+        };
 
         // Tab switching functionality
         navTabs.forEach(tab => {
@@ -1846,7 +2028,7 @@
             }
         }
 
-        // Tải thống kê ứng dụng
+        // Tải thống kê ứng dụng - ĐÃ CẬP NHẬT THÊM MỤC MỚI
         async function loadAppStats() {
             try {
                 const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getApps&t=${Date.now()}`);
@@ -1888,6 +2070,22 @@
                         app.categories && app.categories.includes('premium')
                     ).length;
                     totalPremiumElement.textContent = premium;
+                    
+                    // Thống kê category mới
+                    const education = apps.filter(app => 
+                        app.categories && app.categories.includes('education')
+                    ).length;
+                    totalEducationElement.textContent = education;
+                    
+                    const health = apps.filter(app => 
+                        app.categories && app.categories.includes('health')
+                    ).length;
+                    totalHealthElement.textContent = health;
+                    
+                    const utility = apps.filter(app => 
+                        app.categories && app.categories.includes('utility')
+                    ).length;
+                    totalUtilityElement.textContent = utility;
                 }
             } catch (error) {
                 console.error('Lỗi khi tải thống kê ứng dụng:', error);
@@ -1899,6 +2097,9 @@
                 totalPhotoElement.textContent = '0';
                 totalCloneElement.textContent = '0';
                 totalPremiumElement.textContent = '0';
+                totalEducationElement.textContent = '0';
+                totalHealthElement.textContent = '0';
+                totalUtilityElement.textContent = '0';
             }
         }
 
@@ -2115,17 +2316,53 @@
             return dailyVisitItem;
         }
 
-        // Cập nhật preview
+        // Cập nhật preview - ĐÃ CẬP NHẬT ĐỂ HIỂN THỊ GIỐNG INDEX.HTML
         function updatePreview() {
             if (imageUrlInput.value) {
-                previewImage.src = imageUrlInput.value;
                 previewIcon.src = imageUrlInput.value;
+            } else {
+                previewIcon.src = 'https://via.placeholder.com/90/7c3aed/FFFFFF?text=App';
             }
             
             previewName.textContent = appNameInput.value || 'Tên ứng dụng';
             previewDeveloper.textContent = appDeveloperInput.value || 'Nhà phát triển';
-            previewVersion.textContent = `Phiên bản: ${appVersionInput.value || '1.0.0'}`;
-            previewDescription.textContent = appDescriptionInput.value || 'Mô tả ứng dụng sẽ hiển thị ở đây...';
+            previewVersion.textContent = appVersionInput.value || '1.0.0';
+            
+            // Cập nhật mô tả dạng list
+            const description = appDescriptionInput.value;
+            const descriptionContainer = previewDescription;
+            
+            if (description) {
+                const lines = description.split('\n').filter(line => line.trim());
+                let descriptionHTML = '';
+                
+                // Lấy 2 dòng đầu tiên cho preview
+                const previewLines = lines.slice(0, 2);
+                
+                previewLines.forEach(line => {
+                    if (line.trim()) {
+                        descriptionHTML += `
+                            <div class="description-item-preview">
+                                <div class="check-icon-container-preview">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="description-text-preview">${line.trim()}</span>
+                            </div>
+                        `;
+                    }
+                });
+                
+                descriptionContainer.innerHTML = descriptionHTML;
+            } else {
+                descriptionContainer.innerHTML = `
+                    <div class="description-item-preview">
+                        <div class="check-icon-container-preview">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="description-text-preview">Mô tả ứng dụng sẽ hiển thị ở đây...</span>
+                    </div>
+                `;
+            }
             
             if (screenshot1Input.value) {
                 previewScreenshot1.src = screenshot1Input.value;
@@ -2148,27 +2385,26 @@
             updatePreviewTags();
         }
 
-        // Cập nhật tags trong preview
+        // Cập nhật tags trong preview - ĐÃ CẬP NHẬT THÊM MỤC MỚI
         function updatePreviewTags() {
             previewTags.innerHTML = '';
-            
-            const categoryLabels = {
-                'game': 'Trò chơi',
-                'social': 'Mạng xã hội',
-                'entertainment': 'Giải trí',
-                'photo': 'Chụp ảnh',
-                'clone': 'Nhân bản',
-                'premium': 'Mở khoá Premium'
-            };
             
             categoryCheckboxes.forEach(checkbox => {
                 if (checkbox.checked) {
                     const tag = document.createElement('span');
-                    tag.className = 'preview-tag';
-                    tag.textContent = categoryLabels[checkbox.value] || checkbox.value;
+                    tag.className = 'app-tag-preview';
+                    tag.textContent = CATEGORY_LABELS[checkbox.value] || checkbox.value;
                     previewTags.appendChild(tag);
                 }
             });
+            
+            // Nếu không có tag nào, thêm tag mặc định
+            if (previewTags.children.length === 0) {
+                const defaultTag = document.createElement('span');
+                defaultTag.className = 'app-tag-preview';
+                defaultTag.textContent = 'Danh mục';
+                previewTags.appendChild(defaultTag);
+            }
         }
 
         // Lấy danh mục đã chọn
@@ -2502,7 +2738,7 @@ Cài đặt ngay : ${appUrl}
             checkbox.addEventListener('change', updatePreview);
         });
 
-        // ==================== VIP UPGRADE FUNCTIONALITY ====================
+        // ==================== VIP UPGRADE FUNCTIONALITY - ĐÃ CẬP NHẬT ====================
 
         // Load VIP packages
         async function loadVIPPackages() {
@@ -2525,7 +2761,9 @@ Cài đặt ngay : ${appUrl}
                     const defaultPackages = [
                         { packageId: 1, packageName: '7 Ngày', durationDays: 7 },
                         { packageId: 2, packageName: '1 Tháng', durationDays: 30 },
-                        { packageId: 3, packageName: '3 Tháng', durationDays: 90 }
+                        { packageId: 3, packageName: '3 Tháng', durationDays: 90 },
+                        { packageId: 4, packageName: '6 Tháng', durationDays: 180 },
+                        { packageId: 5, packageName: '1 Năm', durationDays: 365 }
                     ];
                     renderVIPPackages(defaultPackages);
                 }
@@ -2534,7 +2772,9 @@ Cài đặt ngay : ${appUrl}
                 const defaultPackages = [
                     { packageId: 1, packageName: '7 Ngày', durationDays: 7 },
                     { packageId: 2, packageName: '1 Tháng', durationDays: 30 },
-                    { packageId: 3, packageName: '3 Tháng', durationDays: 90 }
+                    { packageId: 3, packageName: '3 Tháng', durationDays: 90 },
+                    { packageId: 4, packageName: '6 Tháng', durationDays: 180 },
+                    { packageId: 5, packageName: '1 Năm', durationDays: 365 }
                 ];
                 renderVIPPackages(defaultPackages);
                 showUpgradeError('Không thể tải gói VIP từ server. Đang sử dụng gói mặc định.');
@@ -2565,17 +2805,74 @@ Cài đặt ngay : ${appUrl}
             showUpgradeSuccess('Vui lòng thêm thủ công các gói VIP vào sheet Package trong Google Sheets!');
         }
 
-        // Search user by email
-        searchUserBtn.addEventListener('click', async function() {
-            const email = userEmailInput.value.trim();
-            
-            if (!email) {
-                showUpgradeError('Vui lòng nhập email');
-                return;
+        // HÀM MỚI: Tìm kiếm người dùng theo email hoặc username (không phân biệt hoa thường)
+        async function searchUserByIdentifier(identifier) {
+            try {
+                console.log(`🔍 Đang tìm kiếm người dùng với identifier: ${identifier}`);
+                
+                // Tải tất cả người dùng
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getApps&t=${Date.now()}`);
+                const result = await response.json();
+                
+                if (result.success && result.data) {
+                    // Giả sử user data cũng nằm trong cùng sheet
+                    // Trong thực tế, bạn cần có endpoint riêng để lấy user data
+                    // Đây là giải pháp tạm thời
+                    const users = result.data.filter(app => app.username || app.email);
+                    
+                    // Tìm kiếm không phân biệt hoa thường
+                    const normalizedIdentifier = identifier.toLowerCase().trim();
+                    
+                    const foundUser = users.find(user => {
+                        const email = user.email ? user.email.toLowerCase() : '';
+                        const username = user.username ? user.username.toLowerCase() : '';
+                        
+                        return email === normalizedIdentifier || 
+                               username === normalizedIdentifier ||
+                               email.includes(normalizedIdentifier) ||
+                               username.includes(normalizedIdentifier);
+                    });
+                    
+                    if (foundUser) {
+                        return {
+                            success: true,
+                            data: foundUser
+                        };
+                    } else {
+                        // Thử tải từ endpoint riêng nếu có
+                        const userResponse = await fetch(`${GOOGLE_SCRIPT_URL}?action=getUserByEmail&email=${encodeURIComponent(identifier)}`);
+                        const userResult = await userResponse.json();
+                        
+                        if (userResult.success) {
+                            return userResult;
+                        }
+                        
+                        return {
+                            success: false,
+                            message: 'Không tìm thấy người dùng với email hoặc username này'
+                        };
+                    }
+                } else {
+                    return {
+                        success: false,
+                        message: 'Không thể tải danh sách người dùng'
+                    };
+                }
+            } catch (error) {
+                console.error('Lỗi khi tìm kiếm người dùng:', error);
+                return {
+                    success: false,
+                    message: 'Lỗi khi tìm kiếm người dùng: ' + error.message
+                };
             }
+        }
+
+        // Search user by email or username (không phân biệt hoa thường)
+        searchUserBtn.addEventListener('click', async function() {
+            const identifier = userIdentifierInput.value.trim();
             
-            if (!isValidEmail(email)) {
-                showUpgradeError('Email không hợp lệ');
+            if (!identifier) {
+                showUpgradeError('Vui lòng nhập email hoặc username');
                 return;
             }
             
@@ -2583,8 +2880,7 @@ Cài đặt ngay : ${appUrl}
             searchUserBtn.disabled = true;
             
             try {
-                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getUserByEmail&email=${encodeURIComponent(email)}`);
-                const result = await response.json();
+                const result = await searchUserByIdentifier(identifier);
                 
                 if (result.success) {
                     displayUserInfo(result.data);
@@ -2596,27 +2892,32 @@ Cài đặt ngay : ${appUrl}
                 showUpgradeError(error.message);
                 userPreviewSection.style.display = 'none';
             } finally {
-                searchUserBtn.innerHTML = '<i class="fas fa-search"></i> Tìm người dùng';
+                searchUserBtn.innerHTML = '<i class="fas fa-search"></i> Tìm';
                 searchUserBtn.disabled = false;
             }
         });
 
         // Display user information
         function displayUserInfo(userData) {
-            document.getElementById('previewUserName').textContent = userData.username;
-            document.getElementById('previewUserEmail').textContent = userData.email;
+            document.getElementById('previewUserName').textContent = userData.username || 'Không xác định';
+            document.getElementById('previewUserEmail').textContent = userData.email || 'Không có email';
             
-            const firstLetter = userData.username.charAt(0).toUpperCase();
+            const firstLetter = (userData.username || userData.email || 'U').charAt(0).toUpperCase();
             document.getElementById('userAvatar').textContent = firstLetter;
             
             const userTypeElement = document.getElementById('previewUserType');
             const userVIPElement = document.getElementById('previewUserVIP');
             
             if (userData.accountType === 'premium' && isVIPActive(userData.vipExpiry)) {
-                userTypeElement.textContent = `Loại: Premium (VIP đến ${userData.vipExpiry})`;
+                userTypeElement.textContent = `Loại: Premium (VIP đến ${userData.vipExpiry || 'Không xác định'})`;
                 userTypeElement.style.color = 'var(--warning)';
-                userVIPElement.textContent = `✅ Tài khoản Premium - VIP còn hiệu lực đến ${userData.vipExpiry}`;
+                userVIPElement.textContent = `✅ Tài khoản Premium - VIP còn hiệu lực đến ${userData.vipExpiry || 'Không xác định'}`;
                 userVIPElement.style.color = 'var(--success)';
+            } else if (userData.accountType === 'premium') {
+                userTypeElement.textContent = 'Loại: Premium (VIP đã hết hạn)';
+                userTypeElement.style.color = 'var(--danger)';
+                userVIPElement.textContent = '❌ Tài khoản Premium - VIP đã hết hạn';
+                userVIPElement.style.color = 'var(--danger)';
             } else {
                 userTypeElement.textContent = 'Loại: Free';
                 userTypeElement.style.color = 'var(--text-secondary)';
@@ -2629,11 +2930,11 @@ Cài đặt ngay : ${appUrl}
         upgradeForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const email = userEmailInput.value.trim();
+            const identifier = userIdentifierInput.value.trim();
             const selectedPackage = document.querySelector('input[name="vipPackage"]:checked');
             
-            if (!email) {
-                showUpgradeError('Vui lòng nhập email');
+            if (!identifier) {
+                showUpgradeError('Vui lòng nhập email hoặc username');
                 return;
             }
             
@@ -2646,12 +2947,25 @@ Cài đặt ngay : ${appUrl}
             upgradeSubmitBtn.disabled = true;
             
             try {
+                // Tìm email thực tế của người dùng
+                const searchResult = await searchUserByIdentifier(identifier);
+                
+                if (!searchResult.success || !searchResult.data) {
+                    throw new Error('Không tìm thấy người dùng để nâng cấp');
+                }
+                
+                const userEmail = searchResult.data.email;
+                
+                if (!userEmail) {
+                    throw new Error('Người dùng không có email để nâng cấp');
+                }
+                
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({
                         action: 'upgradeUser',
-                        data: { email: email, durationDays: selectedPackage.value }
+                        data: { email: userEmail, durationDays: selectedPackage.value }
                     })
                 });
                 
@@ -2661,9 +2975,8 @@ Cài đặt ngay : ${appUrl}
                     showUpgradeSuccess(result.message);
                     upgradeForm.reset();
                     userPreviewSection.style.display = 'none';
-                    if (userEmailInput.value === email) {
-                        setTimeout(() => searchUserBtn.click(), 1000);
-                    }
+                    // Tự động tải lại thông tin người dùng
+                    setTimeout(() => searchUserBtn.click(), 1000);
                 } else {
                     throw new Error(result.message);
                 }
