@@ -1,4 +1,4 @@
-// Configuration variables
+// Configuration variables - KHÔNG CHIA SẺ FILE NÀY
 const CONFIG = {
     GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbywHM36jEQpXFXzBTdG-EcbdbKWbtMyKeOSjNwUt-XahtstAmm1F_R2fr8JWUms_A1jsQ/exec',
     CACHE_KEY: 'xspace_apps_cache',
@@ -16,7 +16,7 @@ const CONFIG = {
     // Thêm các URL khác vào đây
     VIETQR_BASE_URL: 'https://img.vietqr.io/image/mbbank-311435-compact2.png',
     
-    // Firebase Configuration - THÊM VÀO ĐÂY
+    // Firebase Configuration
     FIREBASE_CONFIG: {
         apiKey: "AIzaSyC9VMDowjZ05A-ZqycaFYI5CtRcjazdZm4",
         authDomain: "ioscert-appstore.firebaseapp.com",
