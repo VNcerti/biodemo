@@ -29,10 +29,8 @@
             --text-muted: #94a3b8;
             --border: #475569;
             --success: #10b981;
-            --success-dark: #059669;
             --danger: #ef4444;
             --warning: #f59e0b;
-            --warning-dark: #d97706;
             --info: #3b82f6;
             --gradient: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
             --gradient-hover: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
@@ -204,6 +202,79 @@
             display: block;
         }
 
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: var(--card-shadow);
+            transition: all 0.2s ease;
+            min-width: 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .stat-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 6px;
+            font-size: 12px;
+        }
+
+        .stat-icon.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .stat-icon.success {
+            background: var(--success);
+            color: white;
+        }
+
+        .stat-icon.warning {
+            background: var(--warning);
+            color: white;
+        }
+
+        .stat-icon.info {
+            background: var(--info);
+            color: white;
+        }
+
+        .stat-icon.danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 3px;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 10px;
+            font-weight: 600;
+        }
+
         /* Upload Form Layout */
         .upload-grid {
             display: grid;
@@ -298,19 +369,22 @@
             }
         }
 
-        /* VIP Packages Selection - MÀU XANH LÁ KHI CHƯA CHỌN, VÀNG KHI CHỌN */
-        .vip-packages-group {
+        .categories-group {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             gap: 6px;
             margin-top: 6px;
         }
 
-        .vip-package-checkbox {
+        .category-checkbox {
             display: none;
         }
 
-        .vip-package-label {
+        .category-radio {
+            display: none;
+        }
+
+        .category-label {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -320,38 +394,72 @@
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.2s ease;
-            background: var(--success);
+            background: var(--background);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .category-label:hover {
+            border-color: var(--primary);
+        }
+
+        .category-checkbox:checked + .category-label,
+        .category-radio:checked + .category-label {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .category-icon {
+            font-size: 10px;
+            width: 12px;
+        }
+
+        /* Thêm style cho VIP permissions */
+        .vip-permissions-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .vip-permission-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 6px 8px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #10b981;
+            border-color: #10b981;
             color: white;
             font-weight: 600;
             font-size: 10px;
             text-align: center;
-            border-color: var(--success);
         }
 
-        .vip-package-label:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
+        .vip-permission-label:hover {
+            border-color: var(--primary);
         }
 
-        .vip-package-checkbox:checked + .vip-package-label {
+        .vip-permission-label.selected {
             background: var(--warning);
             border-color: var(--warning);
             color: white;
         }
 
-        .vip-package-icon {
+        .permission-info {
             font-size: 10px;
-        }
-
-        /* "Tất cả" label đặc biệt */
-        .vip-package-label.all {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .vip-package-checkbox:checked + .vip-package-label.all {
-            background: var(--warning);
-            border-color: var(--warning);
+            color: var(--text-muted);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .submit-btn {
@@ -383,50 +491,6 @@
             transform: none;
         }
 
-        /* Categories Group */
-        .categories-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 6px;
-            margin-top: 6px;
-        }
-
-        .category-checkbox {
-            display: none;
-        }
-
-        .category-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            padding: 6px 8px;
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            background: var(--background);
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 10px;
-            text-align: center;
-        }
-
-        .category-label:hover {
-            border-color: var(--primary);
-        }
-
-        .category-checkbox:checked + .category-label {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: white;
-        }
-
-        .category-icon {
-            font-size: 10px;
-            width: 12px;
-        }
-
         /* Preview Section */
         .preview-section {
             background: var(--surface);
@@ -454,7 +518,7 @@
             font-size: 14px;
         }
 
-        /* App Card Preview */
+        /* App Card Preview giống với index.html */
         .app-card-preview {
             background: var(--surface);
             border-radius: 12px;
@@ -529,21 +593,6 @@
             border-radius: 6px;
             font-size: 9px;
             font-weight: 500;
-        }
-
-        /* VIP package badge trong preview */
-        .vip-package-badge-preview {
-            background: var(--warning);
-            color: white;
-            padding: 2px 6px;
-            border-radius: 6px;
-            font-size: 8px;
-            font-weight: 500;
-            margin: 1px;
-        }
-
-        .vip-package-badge-preview.all {
-            background: var(--primary);
         }
 
         .app-meta-preview {
@@ -672,6 +721,177 @@
             background: var(--background);
         }
 
+        /* Analytics Grid */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Analytics Section */
+        .analytics-section {
+            background: var(--surface);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+
+        .analytics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .recent-visits {
+            background: var(--background);
+            border-radius: 6px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .visit-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 11px;
+        }
+
+        .visit-item:last-child {
+            border-bottom: none;
+        }
+
+        .visit-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 5px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+
+        .visit-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .visit-time {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 3px;
+            font-size: 10px;
+        }
+
+        .visit-details {
+            display: flex;
+            gap: 10px;
+            font-size: 9px;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .visit-ip {
+            background: var(--surface-light);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        /* Daily Visits Section */
+        .daily-visits-section {
+            background: var(--surface);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border);
+        }
+
+        .daily-visits-list {
+            background: var(--background);
+            border-radius: 6px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .daily-visit-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .daily-visit-item:last-child {
+            border-bottom: none;
+        }
+
+        .daily-visit-date {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 11px;
+        }
+
+        .daily-visit-count {
+            background: var(--primary);
+            color: white;
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 10px;
+            min-width: 35px;
+            text-align: center;
+        }
+
+        .daily-visit-count.high {
+            background: var(--success);
+        }
+
+        .daily-visit-count.medium {
+            background: var(--warning);
+        }
+
+        .daily-visit-count.low {
+            background: var(--info);
+        }
+
         /* Messages */
         .message {
             padding: 10px 12px;
@@ -725,7 +945,290 @@
             font-size: 10px;
         }
 
-        /* Scrollbar */
+        /* Code Management Styles */
+        .codes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .codes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .codes-list {
+            background: var(--background);
+            border-radius: 6px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .code-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 11px;
+        }
+
+        .code-item:last-child {
+            border-bottom: none;
+        }
+
+        .code-info {
+            flex: 1;
+        }
+
+        .code-value {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+            font-size: 11px;
+        }
+
+        .code-details {
+            display: flex;
+            gap: 10px;
+            font-size: 9px;
+            color: var(--text-secondary);
+        }
+
+        .code-status {
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: var(--success);
+            color: white;
+        }
+
+        .status-inactive {
+            background: var(--danger);
+            color: white;
+        }
+
+        .status-used {
+            background: var(--warning);
+            color: white;
+        }
+
+        /* Upgrade VIP Section */
+        .user-preview {
+            background: var(--background);
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+
+        .user-info-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .user-avatar {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .user-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .user-name {
+            margin: 0 0 4px 0;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .user-email {
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .user-type {
+            color: var(--text-muted);
+            font-size: 11px;
+        }
+
+        .user-vip-info {
+            color: var(--text-secondary);
+            font-size: 12px;
+            padding: 8px;
+            background: var(--surface);
+            border-radius: 5px;
+        }
+
+        /* Search user form */
+        .search-user-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+        }
+
+        /* Style cho Custom Alert */
+        .custom-alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .custom-alert {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 25px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: alertSlideIn 0.3s ease-out;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        @keyframes alertSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .custom-alert-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .alert-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .alert-icon.success {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .alert-icon.warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        .alert-icon.error {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+        }
+
+        .alert-icon.info {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--primary);
+        }
+
+        .alert-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .alert-message {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .alert-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .alert-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .alert-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .alert-btn.primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .alert-btn.secondary {
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .alert-btn.secondary:hover {
+            background: var(--border);
+        }
+
+        .alert-btn.warning {
+            background: var(--warning);
+            color: white;
+        }
+
+        .alert-btn.warning:hover {
+            background: #d97706;
+            transform: translateY(-1px);
+        }
+
+        /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -745,32 +1248,110 @@
             background: var(--text-muted);
         }
 
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
-            .upload-grid {
+            .header-content {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .nav-container {
+                width: 100%;
+            }
+            
+            .nav-tabs {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .page-title {
+                font-size: 22px;
+            }
+
+            .app-card-preview {
+                height: 100px;
+            }
+
+            .app-logo-preview {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .vip-permissions-group {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 8px;
+            }
+            
+            .main-content {
+                padding: 10px 0;
+            }
+            
+            .categories-group {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .form-row {
                 grid-template-columns: 1fr;
             }
             
-            .vip-packages-group {
-                grid-template-columns: repeat(3, 1fr);
+            .screenshots-grid-preview {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .preview-section {
                 position: static;
             }
-        }
 
-        @media (max-width: 480px) {
-            .vip-packages-group {
-                grid-template-columns: repeat(2, 1fr);
+            .app-card-preview {
+                padding: 10px;
+                gap: 10px;
+                height: 95px;
+            }
+
+            .app-logo-preview {
+                width: 60px;
+                height: 60px;
+                border-radius: 18px;
             }
             
-            .categories-group {
+            .vip-permissions-group {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
+    <!-- Thêm Custom Alert -->
+    <div class="custom-alert-overlay" id="customAlertOverlay">
+        <div class="custom-alert" id="customAlert">
+            <div class="custom-alert-header">
+                <div class="alert-icon info" id="alertIcon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3 class="alert-title" id="alertTitle">Thông báo</h3>
+            </div>
+            <div class="alert-message" id="alertMessage">
+                Nội dung thông báo sẽ hiển thị ở đây...
+            </div>
+            <div class="alert-buttons" id="alertButtons">
+                <button class="alert-btn primary" id="alertPrimaryBtn">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -886,9 +1467,13 @@
                                 <div class="form-group">
                                     <label class="form-label" for="downloadLink">
                                         <i class="fas fa-download"></i>
-                                        Liên kết tải miễn phí (Không bắt buộc)
+                                        Liên kết tải miễn phí
                                     </label>
                                     <input type="url" id="downloadLink" class="form-input" placeholder="https://example.com/download">
+                                    <div class="permission-info">
+                                        <i class="fas fa-info-circle"></i>
+                                        Có thể để trống - Không bắt buộc
+                                    </div>
                                 </div>
                             </div>
 
@@ -905,47 +1490,21 @@
                                     <i class="fas fa-crown"></i>
                                     Liên kết tải VIP #1
                                 </label>
-                                <input type="url" id="vipLink1" class="form-input" placeholder="https://example.com/vip-download">
-                                
-                                <div style="margin-top: 6px;">
-                                    <label class="form-label">
-                                        <i class="fas fa-star"></i>
-                                        Gói có thể tải:
-                                    </label>
-                                    <div class="vip-packages-group" id="vipPackagesSelection">
-                                        <input type="checkbox" id="vipPackageTrial" class="vip-package-checkbox" value="trial">
-                                        <label for="vipPackageTrial" class="vip-package-label">
-                                            <i class="fas fa-star vip-package-icon"></i>
-                                            <span>Trial</span>
-                                        </label>
+                                <input type="url" id="vipLink1" class="form-input" placeholder="https://example.com/vip-download" required>
+                            </div>
 
-                                        <input type="checkbox" id="vipPackageBasic" class="vip-package-checkbox" value="basic">
-                                        <label for="vipPackageBasic" class="vip-package-label">
-                                            <i class="fas fa-star vip-package-icon"></i>
-                                            <span>Basic</span>
-                                        </label>
-
-                                        <input type="checkbox" id="vipPackagePlus" class="vip-package-checkbox" value="plus">
-                                        <label for="vipPackagePlus" class="vip-package-label">
-                                            <i class="fas fa-star vip-package-icon"></i>
-                                            <span>Plus</span>
-                                        </label>
-
-                                        <input type="checkbox" id="vipPackagePremium" class="vip-package-checkbox" value="premium">
-                                        <label for="vipPackagePremium" class="vip-package-label">
-                                            <i class="fas fa-crown vip-package-icon"></i>
-                                            <span>Premium</span>
-                                        </label>
-
-                                        <input type="checkbox" id="vipPackageAll" class="vip-package-checkbox" value="all">
-                                        <label for="vipPackageAll" class="vip-package-label all">
-                                            <i class="fas fa-check-circle vip-package-icon"></i>
-                                            <span>Tất cả</span>
-                                        </label>
-                                    </div>
-                                    <div style="font-size: 9px; color: var(--text-muted); margin-top: 4px;">
-                                        Chọn ít nhất một gói để người dùng có thể tải
-                                    </div>
+                            <!-- THÊM PHẦN CHỌN GÓI VIP -->
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-layer-group"></i>
+                                    Chọn gói được phép tải VIP #1
+                                </label>
+                                <div class="vip-permissions-group" id="vipPermissionsGroup">
+                                    <!-- Các option sẽ được thêm bằng JavaScript -->
+                                </div>
+                                <div class="permission-info">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Chọn ít nhất 1 gói. Các ứng dụng cũ giữ nguyên "Tất cả các gói"
                                 </div>
                             </div>
 
@@ -969,6 +1528,7 @@
                                     Danh mục ứng dụng
                                 </label>
                                 <div class="categories-group">
+                                    <!-- Danh mục cũ -->
                                     <input type="checkbox" id="category-game" class="category-checkbox" value="game">
                                     <label for="category-game" class="category-label">
                                         <i class="fas fa-gamepad category-icon"></i>
@@ -1005,6 +1565,7 @@
                                         <span>Mở khoá Premium</span>
                                     </label>
 
+                                    <!-- Danh mục mới -->
                                     <input type="checkbox" id="category-education" class="category-checkbox" value="education">
                                     <label for="category-education" class="category-label">
                                         <i class="fas fa-graduation-cap category-icon"></i>
@@ -1077,15 +1638,7 @@
                             </div>
                         </div>
                         
-                        <!-- Preview VIP Packages -->
-                        <div class="screenshots-preview">
-                            <h4><i class="fas fa-crown"></i> Gói được phép tải:</h4>
-                            <div id="previewVipPackages" style="display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px;">
-                                <span class="vip-package-badge-preview all" style="font-size: 8px; padding: 2px 4px;">Tất cả các gói</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Preview Screenshots -->
+                        <!-- Thêm phần preview ảnh minh hoạ -->
                         <div class="screenshots-preview">
                             <h4><i class="fas fa-images"></i> Ảnh minh hoạ:</h4>
                             <div class="screenshots-grid-preview">
@@ -1094,23 +1647,424 @@
                                 <img src="https://via.placeholder.com/80/1e293b/475569?text=Ảnh+3" alt="Screenshot 3" class="screenshot-preview" id="previewScreenshot3">
                             </div>
                         </div>
+                        
+                        <!-- Thêm phần hiển thị VIP Permissions trong preview -->
+                        <div class="screenshots-preview" id="vipPermissionsPreview" style="display: none;">
+                            <h4><i class="fas fa-layer-group"></i> Gói được phép tải:</h4>
+                            <div class="app-tags-preview" id="previewVipPermissions">
+                                <!-- VIP permissions sẽ được thêm bằng JavaScript -->
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>
 
             <!-- Analytics Tab Content -->
             <div class="tab-content" id="analyticsTab">
-                <!-- Analytics content... -->
+                <!-- Stats Cards - ĐÃ CẬP NHẬT THÊM MỤC MỚI -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="stat-number" id="totalApps">0</div>
+                        <div class="stat-label">Tổng ứng dụng</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon success">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="stat-number" id="totalGames">0</div>
+                        <div class="stat-label">Trò chơi</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number" id="totalSocial">0</div>
+                        <div class="stat-label">Mạng xã hội</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="stat-number" id="totalEntertainment">0</div>
+                        <div class="stat-label">Giải trí</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon info">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="stat-number" id="totalPhoto">0</div>
+                        <div class="stat-label">Ảnh & Video</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-copy"></i>
+                        </div>
+                        <div class="stat-number" id="totalClone">0</div>
+                        <div class="stat-label">Nhân bản</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon success">
+                            <i class="fas fa-unlock"></i>
+                        </div>
+                        <div class="stat-number" id="totalPremium">0</div>
+                        <div class="stat-label">Mở khoá Premium</div>
+                    </div>
+                    <!-- Thống kê danh mục mới -->
+                    <div class="stat-card">
+                        <div class="stat-icon info">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-number" id="totalEducation">0</div>
+                        <div class="stat-label">Giáo dục</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="stat-number" id="totalHealth">0</div>
+                        <div class="stat-label">Sức khỏe</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="stat-number" id="totalUtility">0</div>
+                        <div class="stat-label">Tiện ích</div>
+                    </div>
+                    <!-- Thống kê tài khoản đã tạo -->
+                    <div class="stat-card">
+                        <div class="stat-icon info">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number" id="totalUsers">0</div>
+                        <div class="stat-label">Tổng tài khoản</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-number" id="totalVisits">0</div>
+                        <div class="stat-label">Tổng lượt truy cập</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon success">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-number" id="todayVisits">0</div>
+                        <div class="stat-label">Hôm nay</div>
+                    </div>
+                </div>
+
+                <!-- Analytics Grid -->
+                <div class="analytics-grid">
+                    <!-- Lượt truy cập gần đây -->
+                    <section class="analytics-section">
+                        <div class="analytics-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-chart-bar"></i>
+                                Lượt truy cập gần đây
+                            </h2>
+                            <button class="refresh-btn" id="refreshAnalytics">
+                                <i class="fas fa-sync-alt"></i>
+                                Làm mới
+                            </button>
+                        </div>
+                        
+                        <div class="recent-visits">
+                            <div id="recentVisitsList">
+                                <div class="visit-item">
+                                    <div class="visit-info">
+                                        <div class="visit-time">Đang tải dữ liệu...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Lượng truy cập chi tiết theo ngày -->
+                    <section class="daily-visits-section">
+                        <div class="analytics-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-calendar-alt"></i>
+                                Lượng truy cập chi tiết
+                            </h2>
+                            <button class="refresh-btn" id="refreshDailyVisits">
+                                <i class="fas fa-sync-alt"></i>
+                                Làm mới
+                            </button>
+                        </div>
+                        
+                        <div class="daily-visits-list">
+                            <div id="dailyVisitsList">
+                                <div class="daily-visit-item">
+                                    <div class="daily-visit-date">Đang tải dữ liệu...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
 
             <!-- Upgrade Tab Content -->
             <div class="tab-content" id="upgradeTab">
-                <!-- Upgrade content... -->
+                <!-- Messages -->
+                <div id="upgradeSuccessMessage" class="message message-success">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Thành công!</strong>
+                        <div id="upgradeSuccessText">Đã nâng cấp tài khoản!</div>
+                    </div>
+                </div>
+                
+                <div id="upgradeErrorMessage" class="message message-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div>
+                        <strong>Lỗi!</strong>
+                        <div id="upgradeErrorText">Đã xảy ra lỗi khi nâng cấp.</div>
+                    </div>
+                </div>
+
+                <!-- Upgrade Form -->
+                <section class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-crown"></i>
+                        Nâng cấp Tài khoản VIP
+                    </h2>
+
+                    <form class="upgrade-form" id="upgradeForm">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-user"></i>
+                                Tìm người dùng (Email hoặc Tên đăng nhập)
+                            </label>
+                            <div class="form-row search-user-form">
+                                <div>
+                                    <input type="text" id="userIdentifier" class="form-input" placeholder="Nhập email hoặc username" required>
+                                    <div style="font-size: 9px; color: var(--text-muted); margin-top: 4px;">
+                                        Ví dụ: email@example.com hoặc tunglam123
+                                    </div>
+                                </div>
+                                <button type="button" class="submit-btn" id="searchUserBtn" style="padding: 8px 16px; font-size: 12px;">
+                                    <i class="fas fa-search"></i>
+                                    Tìm
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-calendar"></i>
+                                Gói thời gian
+                            </label>
+                            <div class="categories-group" id="vipPackagesList">
+                                <div style="color: var(--text-muted); text-align: center; padding: 10px; font-size: 11px;">
+                                    <div class="loading"></div> Đang tải gói VIP...
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="upgradeSubmitBtn">
+                            <i class="fas fa-crown"></i>
+                            Nâng cấp VIP
+                        </button>
+                    </form>
+
+                    <!-- Nút tạo gói mặc định -->
+                    <div style="text-align: center; margin-top: 10px;">
+                        <button type="button" class="submit-btn" onclick="createDefaultPackages()" style="background: var(--info); max-width: 200px; margin: 0 auto; padding: 8px 12px; font-size: 11px;">
+                            <i class="fas fa-plus"></i>
+                            Tạo Gói VIP Mặc Định
+                        </button>
+                    </div>
+                </section>
+
+                <!-- User Search Results -->
+                <section class="form-section" id="userPreviewSection" style="display: none;">
+                    <h2 class="section-title">
+                        <i class="fas fa-user"></i>
+                        Thông tin người dùng
+                    </h2>
+                    <div class="user-preview">
+                        <div class="user-info-header">
+                            <div class="user-avatar" id="userAvatar">
+                                U
+                            </div>
+                            <div class="user-details">
+                                <h3 class="user-name" id="previewUserName">Tên người dùng</h3>
+                                <div class="user-email" id="previewUserEmail">email@example.com</div>
+                                <div class="user-type" id="previewUserType">Loại: Free</div>
+                            </div>
+                        </div>
+                        <div class="user-vip-info" id="previewUserVIP">
+                            Chưa có thông tin VIP
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <!-- Codes Tab Content -->
             <div class="tab-content" id="codesTab">
-                <!-- Codes content... -->
+                <!-- Messages -->
+                <div id="codesSuccessMessage" class="message message-success">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Thành công!</strong>
+                        <div id="codesSuccessText">Đã tạo mã thành công!</div>
+                    </div>
+                </div>
+                
+                <div id="codesErrorMessage" class="message message-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div>
+                        <strong>Lỗi!</strong>
+                        <div id="codesErrorText">Đã xảy ra lỗi khi tạo mã.</div>
+                    </div>
+                </div>
+
+                <!-- Create Codes Section -->
+                <section class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-tags"></i>
+                        Tạo Mã Giảm Giá & Kích Hoạt
+                    </h2>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-percentage"></i>
+                            Loại mã
+                        </label>
+                        <div class="categories-group">
+                            <input type="radio" id="codeTypeDiscount" name="codeType" class="category-radio" value="discount" checked>
+                            <label for="codeTypeDiscount" class="category-label">
+                                <i class="fas fa-tag"></i>
+                                <span>Mã giảm giá</span>
+                            </label>
+
+                            <input type="radio" id="codeTypeActivation" name="codeType" class="category-radio" value="activation">
+                            <label for="codeTypeActivation" class="category-label">
+                                <i class="fas fa-key"></i>
+                                <span>Mã kích hoạt</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Form tạo mã giảm giá -->
+                    <div id="discountForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="discountPercent">
+                                    <i class="fas fa-percent"></i>
+                                    Phần trăm giảm
+                                </label>
+                                <input type="number" id="discountPercent" class="form-input" placeholder="20" min="1" max="100">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="discountLimit">
+                                    <i class="fas fa-users"></i>
+                                    Số lượt sử dụng
+                                </label>
+                                <input type="number" id="discountLimit" class="form-input" placeholder="100" min="1">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="discountExpiry">
+                                <i class="fas fa-calendar-times"></i>
+                                Ngày hết hạn
+                            </label>
+                            <input type="date" id="discountExpiry" class="form-input">
+                        </div>
+                    </div>
+
+                    <!-- Form tạo mã kích hoạt -->
+                    <div id="activationForm" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label" for="activationPackage">
+                                <i class="fas fa-crown"></i>
+                                Gói kích hoạt
+                            </label>
+                            <select id="activationPackage" class="form-input">
+                                <option value="trial">Gói Trial (30 ngày)</option>
+                                <option value="basic">Gói Basic (90 ngày)</option>
+                                <option value="plus">Gói Plus (180 ngày)</option>
+                                <option value="premium">Gói Premium (365 ngày)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="codeCount">
+                            <i class="fas fa-hashtag"></i>
+                            Số lượng mã cần tạo
+                        </label>
+                        <input type="number" id="codeCount" class="form-input" placeholder="10" min="1" max="100">
+                    </div>
+
+                    <button class="submit-btn" id="createCodesBtn">
+                        <i class="fas fa-plus"></i>
+                        Tạo Mã
+                    </button>
+
+                    <div id="createdCodesResult" style="margin-top: 12px; display: none;">
+                        <h4 style="margin-bottom: 8px; font-size: 13px;">Mã đã tạo:</h4>
+                        <div id="codesList" style="background: var(--background); padding: 8px; border-radius: 5px; border: 1px solid var(--border); max-height: 150px; overflow-y: auto; font-size: 11px;"></div>
+                    </div>
+                </section>
+
+                <!-- Codes Grid -->
+                <div class="codes-grid">
+                    <!-- Discount Codes List -->
+                    <section class="analytics-section">
+                        <div class="analytics-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-tag"></i>
+                                Mã Giảm Giá
+                            </h2>
+                            <button class="refresh-btn" id="refreshDiscountCodes">
+                                <i class="fas fa-sync-alt"></i>
+                                Làm mới
+                            </button>
+                        </div>
+                        
+                        <div class="codes-list">
+                            <div id="discountCodesList">
+                                <div class="code-item">
+                                    <div class="code-info">
+                                        <div class="code-value">Đang tải dữ liệu...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Activation Codes List -->
+                    <section class="analytics-section">
+                        <div class="analytics-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-key"></i>
+                                Mã Kích Hoạt
+                            </h2>
+                            <button class="refresh-btn" id="refreshActivationCodes">
+                                <i class="fas fa-sync-alt"></i>
+                                Làm mới
+                            </button>
+                        </div>
+                        
+                        <div class="codes-list">
+                            <div id="activationCodesList">
+                                <div class="code-item">
+                                    <div class="code-info">
+                                        <div class="code-value">Đang tải dữ liệu...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
     </main>
@@ -1125,8 +2079,33 @@
     </footer>
 
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxM3PxX1dThc8fvGxYkjKUw6BFKXKVEHxFy8Pnn7UHv86i6pkopy5x-Riv_5BYMH72uYA/exec';
-        
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztYtZ2D2b-8jku7SlzSxBqmkww-A1MgQ9LVqx1d7CMpKafIp-YJyi18Vzm8DQR4Hc16Q/exec';
+        const TELEGRAM_BOT_TOKEN = '8255020775:AAH7Z777Pl9F5E0N-E_hCkb_mjPU1LCAdoE';
+        const TELEGRAM_CHAT_ID = '@xspace_ipa';
+        const BASE_APP_URL = 'https://modos.site/app-detail.html?id=';
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC9VMDowjZ05A-ZqycaFYI5CtRcjazdZm4",
+            authDomain: "ioscert-appstore.firebaseapp.com",
+            databaseURL: "https://ioscert-appstore-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "ioscert-appstore",
+            storageBucket: "ioscert-appstore.firebasestorage.app",
+            messagingSenderId: "798453453536",
+            appId: "1:798453453536:web:965eeebcbf3b043ea1b685",
+            measurementId: "G-EP3FHT2B4B"
+        };
+
+        // Initialize Firebase
+        let database;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            database = firebase.database();
+            console.log('Firebase initialized successfully');
+        } catch (error) {
+            console.error('Firebase initialization error:', error);
+        }
+
         // DOM Elements
         const uploadForm = document.getElementById('uploadForm');
         const imageUrlInput = document.getElementById('imageUrl');
@@ -1139,9 +2118,12 @@
         const screenshot1Input = document.getElementById('screenshot1');
         const screenshot2Input = document.getElementById('screenshot2');
         const screenshot3Input = document.getElementById('screenshot3');
-        const vipPackageCheckboxes = document.querySelectorAll('.vip-package-checkbox');
         const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
         const submitBtn = document.getElementById('submitBtn');
+        const refreshAnalyticsBtn = document.getElementById('refreshAnalytics');
+        const refreshDailyVisitsBtn = document.getElementById('refreshDailyVisits');
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
         
         // Preview elements
         const previewIcon = document.getElementById('previewIcon');
@@ -1150,26 +2132,83 @@
         const previewVersion = document.getElementById('previewVersion');
         const previewDescription = document.getElementById('previewDescription');
         const previewTags = document.getElementById('previewTags');
-        const previewVipPackages = document.getElementById('previewVipPackages');
         const previewScreenshot1 = document.getElementById('previewScreenshot1');
         const previewScreenshot2 = document.getElementById('previewScreenshot2');
         const previewScreenshot3 = document.getElementById('previewScreenshot3');
+        const vipPermissionsPreview = document.getElementById('vipPermissionsPreview');
+        const previewVipPermissions = document.getElementById('previewVipPermissions');
         
         // Message elements
         const successMessage = document.getElementById('successMessage');
         const errorMessage = document.getElementById('errorMessage');
         const errorText = document.getElementById('errorText');
 
-        // VIP Package labels
-        const VIP_PACKAGE_LABELS = {
-            'trial': 'Trial',
-            'basic': 'Basic',
-            'plus': 'Plus',
-            'premium': 'Premium',
-            'all': 'Tất cả các gói'
-        };
+        // VIP Permissions elements
+        const vipPermissionsGroup = document.getElementById('vipPermissionsGroup');
+        const selectedVipPermissions = new Set(); // Lưu các gói đã chọn
 
-        // Category labels
+        // Custom Alert elements
+        const customAlertOverlay = document.getElementById('customAlertOverlay');
+        const customAlert = document.getElementById('customAlert');
+        const alertIcon = document.getElementById('alertIcon');
+        const alertTitle = document.getElementById('alertTitle');
+        const alertMessage = document.getElementById('alertMessage');
+        const alertButtons = document.getElementById('alertButtons');
+        const alertPrimaryBtn = document.getElementById('alertPrimaryBtn');
+
+        // Stats elements
+        const totalAppsElement = document.getElementById('totalApps');
+        const totalGamesElement = document.getElementById('totalGames');
+        const totalSocialElement = document.getElementById('totalSocial');
+        const totalEntertainmentElement = document.getElementById('totalEntertainment');
+        const totalPhotoElement = document.getElementById('totalPhoto');
+        const totalCloneElement = document.getElementById('totalClone');
+        const totalPremiumElement = document.getElementById('totalPremium');
+        const totalEducationElement = document.getElementById('totalEducation');
+        const totalHealthElement = document.getElementById('totalHealth');
+        const totalUtilityElement = document.getElementById('totalUtility');
+        const totalUsersElement = document.getElementById('totalUsers');
+        const totalVisitsElement = document.getElementById('totalVisits');
+        const todayVisitsElement = document.getElementById('todayVisits');
+
+        // Upgrade Elements
+        const upgradeForm = document.getElementById('upgradeForm');
+        const userIdentifierInput = document.getElementById('userIdentifier');
+        const vipPackagesList = document.getElementById('vipPackagesList');
+        const upgradeSubmitBtn = document.getElementById('upgradeSubmitBtn');
+        const searchUserBtn = document.getElementById('searchUserBtn');
+        const userPreviewSection = document.getElementById('userPreviewSection');
+        const upgradeSuccessMessage = document.getElementById('upgradeSuccessMessage');
+        const upgradeErrorMessage = document.getElementById('upgradeErrorMessage');
+        const upgradeSuccessText = document.getElementById('upgradeSuccessText');
+        const upgradeErrorText = document.getElementById('upgradeErrorText');
+
+        // Code Management Elements
+        const codeTypeRadios = document.querySelectorAll('input[name="codeType"]');
+        const discountForm = document.getElementById('discountForm');
+        const activationForm = document.getElementById('activationForm');
+        const createCodesBtn = document.getElementById('createCodesBtn');
+        const createdCodesResult = document.getElementById('createdCodesResult');
+        const codesList = document.getElementById('codesList');
+        const refreshDiscountCodesBtn = document.getElementById('refreshDiscountCodes');
+        const refreshActivationCodesBtn = document.getElementById('refreshActivationCodes');
+        const discountCodesList = document.getElementById('discountCodesList');
+        const activationCodesList = document.getElementById('activationCodesList');
+        const codesSuccessMessage = document.getElementById('codesSuccessMessage');
+        const codesErrorMessage = document.getElementById('codesErrorMessage');
+        const codesSuccessText = document.getElementById('codesSuccessText');
+        const codesErrorText = document.getElementById('codesErrorText');
+
+        // VIP Permissions Options
+        const VIP_PERMISSIONS = [
+            { id: 'trial', name: 'Trial', icon: 'fas fa-star' },
+            { id: 'basic', name: 'Basic', icon: 'fas fa-crown' },
+            { id: 'plus', name: 'Plus', icon: 'fas fa-crown' },
+            { id: 'premium', name: 'Premium', icon: 'fas fa-crown' },
+            { id: 'all', name: 'Tất cả gói', icon: 'fas fa-layer-group' }
+        ];
+
+        // Category labels cho preview
         const CATEGORY_LABELS = {
             'game': 'Trò chơi',
             'social': 'Mạng xã hội',
@@ -1181,6 +2220,535 @@
             'health': 'Sức khỏe',
             'utility': 'Tiện ích'
         };
+
+        // Custom Alert System
+        function showCustomAlert(type, title, message, buttons) {
+            // Set icon based on type
+            alertIcon.className = 'alert-icon ' + type;
+            const iconMap = {
+                'success': 'fas fa-check-circle',
+                'warning': 'fas fa-exclamation-triangle',
+                'error': 'fas fa-times-circle',
+                'info': 'fas fa-info-circle'
+            };
+            alertIcon.innerHTML = `<i class="${iconMap[type] || 'fas fa-info-circle'}"></i>`;
+            
+            // Set title and message
+            alertTitle.textContent = title;
+            alertMessage.innerHTML = message;
+            
+            // Clear existing buttons
+            alertButtons.innerHTML = '';
+            
+            // Add buttons
+            if (buttons && buttons.length > 0) {
+                buttons.forEach(button => {
+                    const btn = document.createElement('button');
+                    btn.className = `alert-btn ${button.type || 'primary'}`;
+                    btn.textContent = button.text;
+                    if (button.icon) {
+                        btn.innerHTML = `<i class="${button.icon}"></i> ${button.text}`;
+                    }
+                    if (button.onClick) {
+                        btn.onclick = () => {
+                            button.onClick();
+                            customAlertOverlay.style.display = 'none';
+                        };
+                    } else {
+                        btn.onclick = () => {
+                            customAlertOverlay.style.display = 'none';
+                        };
+                    }
+                    alertButtons.appendChild(btn);
+                });
+            } else {
+                // Default OK button
+                const okBtn = document.createElement('button');
+                okBtn.className = 'alert-btn primary';
+                okBtn.innerHTML = '<i class="fas fa-check"></i> OK';
+                okBtn.onclick = () => {
+                    customAlertOverlay.style.display = 'none';
+                };
+                alertButtons.appendChild(okBtn);
+            }
+            
+            // Show alert
+            customAlertOverlay.style.display = 'flex';
+        }
+
+        // Initialize VIP Permissions
+        function initializeVipPermissions() {
+            vipPermissionsGroup.innerHTML = '';
+            
+            VIP_PERMISSIONS.forEach(permission => {
+                const permissionElement = document.createElement('div');
+                permissionElement.innerHTML = `
+                    <div class="vip-permission-label" data-permission="${permission.id}">
+                        <i class="${permission.icon}"></i>
+                        <span>${permission.name}</span>
+                    </div>
+                `;
+                
+                const label = permissionElement.querySelector('.vip-permission-label');
+                label.addEventListener('click', () => {
+                    toggleVipPermission(permission.id, label);
+                });
+                
+                // Mặc định chọn "Tất cả các gói"
+                if (permission.id === 'all') {
+                    selectedVipPermissions.add('all');
+                    label.classList.add('selected');
+                }
+                
+                vipPermissionsGroup.appendChild(permissionElement);
+            });
+            
+            updateVipPermissionsPreview();
+        }
+
+        // Toggle VIP Permission
+        function toggleVipPermission(permissionId, label) {
+            if (permissionId === 'all') {
+                // Nếu chọn "Tất cả các gói", bỏ chọn các gói khác
+                if (selectedVipPermissions.has('all')) {
+                    selectedVipPermissions.delete('all');
+                    label.classList.remove('selected');
+                } else {
+                    // Xóa tất cả các lựa chọn khác
+                    selectedVipPermissions.clear();
+                    // Xóa selected class từ tất cả labels
+                    document.querySelectorAll('.vip-permission-label').forEach(l => {
+                        l.classList.remove('selected');
+                    });
+                    // Chọn "Tất cả các gói"
+                    selectedVipPermissions.add('all');
+                    label.classList.add('selected');
+                }
+            } else {
+                // Nếu chọn một gói cụ thể
+                if (selectedVipPermissions.has('all')) {
+                    selectedVipPermissions.delete('all');
+                    // Xóa selected class từ "Tất cả các gói"
+                    document.querySelector('[data-permission="all"]').classList.remove('selected');
+                }
+                
+                if (selectedVipPermissions.has(permissionId)) {
+                    selectedVipPermissions.delete(permissionId);
+                    label.classList.remove('selected');
+                } else {
+                    selectedVipPermissions.add(permissionId);
+                    label.classList.add('selected');
+                }
+            }
+            
+            updateVipPermissionsPreview();
+        }
+
+        // Update VIP Permissions Preview
+        function updateVipPermissionsPreview() {
+            previewVipPermissions.innerHTML = '';
+            
+            if (selectedVipPermissions.size === 0) {
+                vipPermissionsPreview.style.display = 'none';
+                return;
+            }
+            
+            vipPermissionsPreview.style.display = 'block';
+            
+            // Hiển thị các gói đã chọn
+            VIP_PERMISSIONS.forEach(permission => {
+                if (selectedVipPermissions.has(permission.id)) {
+                    const tag = document.createElement('span');
+                    tag.className = 'app-tag-preview';
+                    tag.innerHTML = `<i class="${permission.icon}"></i> ${permission.name}`;
+                    previewVipPermissions.appendChild(tag);
+                }
+            });
+        }
+
+        // Get selected VIP permissions as string
+        function getVipPermissionsString() {
+            if (selectedVipPermissions.size === 0) {
+                return 'all'; // Mặc định nếu không chọn gì
+            }
+            
+            // Nếu chọn "Tất cả các gói", trả về "all"
+            if (selectedVipPermissions.has('all')) {
+                return 'all';
+            }
+            
+            // Trả về danh sách các gói đã chọn, phân cách bằng dấu phẩy
+            return Array.from(selectedVipPermissions).join(',');
+        }
+
+        // Validate VIP permissions before submit
+        function validateVipPermissions() {
+            if (selectedVipPermissions.size === 0) {
+                showCustomAlert('warning', 'Thiếu thông tin', 
+                    'Vui lòng chọn ít nhất một gói được phép tải VIP #1.', 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                return false;
+            }
+            return true;
+        }
+
+        // Tab switching functionality
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                navTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show target tab content
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${targetTab}Tab`) {
+                        content.classList.add('active');
+                    }
+                });
+                
+                // Load data when switching tabs
+                if (targetTab === 'analytics') {
+                    loadAppStats();
+                    loadUserCount();
+                    loadVisitStats();
+                    loadDailyVisits();
+                } else if (targetTab === 'upgrade') {
+                    loadVIPPackages();
+                } else if (targetTab === 'codes') {
+                    loadDiscountCodes();
+                    loadActivationCodes();
+                }
+            });
+        });
+
+        // Code Management - Switch between discount and activation forms
+        codeTypeRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'discount') {
+                    discountForm.style.display = 'block';
+                    activationForm.style.display = 'none';
+                } else {
+                    discountForm.style.display = 'none';
+                    activationForm.style.display = 'block';
+                }
+            });
+        });
+
+        // Tải số lượng người dùng
+        async function loadUserCount() {
+            try {
+                console.log('👥 Đang tải số lượng người dùng...');
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getUserCount&t=${Date.now()}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    totalUsersElement.textContent = result.count || '0';
+                    console.log(`✅ Đã tải số lượng người dùng: ${result.count}`);
+                } else {
+                    console.error('❌ Lỗi khi tải số lượng người dùng:', result.message);
+                    totalUsersElement.textContent = '0';
+                }
+            } catch (error) {
+                console.error('❌ Lỗi kết nối khi tải số lượng người dùng:', error);
+                totalUsersElement.textContent = '0';
+            }
+        }
+
+        // Tải thống kê ứng dụng
+        async function loadAppStats() {
+            try {
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getApps&t=${Date.now()}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    const apps = result.data;
+                    
+                    // Cập nhật thống kê ứng dụng
+                    totalAppsElement.textContent = apps.length;
+                    
+                    // Thống kê theo từng category
+                    const games = apps.filter(app => 
+                        app.categories && app.categories.includes('game')
+                    ).length;
+                    totalGamesElement.textContent = games;
+                    
+                    const social = apps.filter(app => 
+                        app.categories && app.categories.includes('social')
+                    ).length;
+                    totalSocialElement.textContent = social;
+                    
+                    const entertainment = apps.filter(app => 
+                        app.categories && app.categories.includes('entertainment')
+                    ).length;
+                    totalEntertainmentElement.textContent = entertainment;
+                    
+                    const photo = apps.filter(app => 
+                        app.categories && app.categories.includes('photo')
+                    ).length;
+                    totalPhotoElement.textContent = photo;
+                    
+                    const clone = apps.filter(app => 
+                        app.categories && app.categories.includes('clone')
+                    ).length;
+                    totalCloneElement.textContent = clone;
+                    
+                    const premium = apps.filter(app => 
+                        app.categories && app.categories.includes('premium')
+                    ).length;
+                    totalPremiumElement.textContent = premium;
+                    
+                    // Thống kê category mới
+                    const education = apps.filter(app => 
+                        app.categories && app.categories.includes('education')
+                    ).length;
+                    totalEducationElement.textContent = education;
+                    
+                    const health = apps.filter(app => 
+                        app.categories && app.categories.includes('health')
+                    ).length;
+                    totalHealthElement.textContent = health;
+                    
+                    const utility = apps.filter(app => 
+                        app.categories && app.categories.includes('utility')
+                    ).length;
+                    totalUtilityElement.textContent = utility;
+                }
+            } catch (error) {
+                console.error('Lỗi khi tải thống kê ứng dụng:', error);
+                // Reset tất cả về 0 khi có lỗi
+                totalAppsElement.textContent = '0';
+                totalGamesElement.textContent = '0';
+                totalSocialElement.textContent = '0';
+                totalEntertainmentElement.textContent = '0';
+                totalPhotoElement.textContent = '0';
+                totalCloneElement.textContent = '0';
+                totalPremiumElement.textContent = '0';
+                totalEducationElement.textContent = '0';
+                totalHealthElement.textContent = '0';
+                totalUtilityElement.textContent = '0';
+            }
+        }
+
+        // Tải thống kê lượt truy cập từ Realtime Database
+        async function loadVisitStats() {
+            try {
+                console.log('Đang tải thống kê lượt truy cập...');
+                
+                if (!database) {
+                    console.error('Firebase Database chưa được khởi tạo');
+                    return;
+                }
+
+                // Lấy tổng lượt truy cập
+                const totalVisitsSnapshot = await database.ref('analytics/totalVisits').once('value');
+                const totalVisits = totalVisitsSnapshot.val() || 0;
+                totalVisitsElement.textContent = totalVisits.toLocaleString();
+                
+                // Lấy lượt truy cập hôm nay
+                const todayVisits = await getTodayVisits();
+                todayVisitsElement.textContent = todayVisits.toLocaleString();
+                
+                // Tải lượt truy cập gần đây
+                await loadRecentVisits();
+                
+            } catch (error) {
+                console.error('Lỗi khi tải thống kê lượt truy cập:', error);
+                totalVisitsElement.textContent = '0';
+                todayVisitsElement.textContent = '0';
+            }
+        }
+
+        // Tải lượt truy cập chi tiết theo ngày
+        async function loadDailyVisits() {
+            try {
+                if (!database) {
+                    console.error('Firebase Database chưa được khởi tạo');
+                    return;
+                }
+                
+                const visitsSnapshot = await database.ref('analytics/visits').once('value');
+                const visits = visitsSnapshot.val() || {};
+                
+                const dailyVisitsList = document.getElementById('dailyVisitsList');
+                dailyVisitsList.innerHTML = '';
+                
+                if (Object.keys(visits).length === 0) {
+                    dailyVisitsList.innerHTML = '<div class="daily-visit-item"><div class="daily-visit-date">Chưa có dữ liệu truy cập</div></div>';
+                    return;
+                }
+                
+                // Nhóm lượt truy cập theo ngày
+                const visitsByDate = {};
+                Object.values(visits).forEach(visit => {
+                    if (visit.timestamp) {
+                        const date = new Date(visit.timestamp);
+                        const dateString = date.toLocaleDateString('vi-VN');
+                        visitsByDate[dateString] = (visitsByDate[dateString] || 0) + 1;
+                    }
+                });
+                
+                // Sắp xếp theo ngày giảm dần
+                const sortedDates = Object.entries(visitsByDate)
+                    .sort(([dateA], [dateB]) => {
+                        const convertToDate = (dateStr) => {
+                            const [day, month, year] = dateStr.split('/');
+                            return new Date(year, month - 1, day).getTime();
+                        };
+                        
+                        const timestampA = convertToDate(dateA);
+                        const timestampB = convertToDate(dateB);
+                        return timestampB - timestampA;
+                    })
+                    .slice(0, 10);
+                
+                if (sortedDates.length === 0) {
+                    dailyVisitsList.innerHTML = '<div class="daily-visit-item"><div class="daily-visit-date">Chưa có dữ liệu truy cập</div></div>';
+                    return;
+                }
+                
+                // Tìm lượt truy cập cao nhất
+                const maxVisits = Math.max(...Object.values(visitsByDate));
+                
+                sortedDates.forEach(([date, count]) => {
+                    const dailyVisitItem = createDailyVisitItem(date, count, maxVisits);
+                    dailyVisitsList.appendChild(dailyVisitItem);
+                });
+                
+            } catch (error) {
+                console.error('Error loading daily visits:', error);
+                const dailyVisitsList = document.getElementById('dailyVisitsList');
+                dailyVisitsList.innerHTML = '<div class="daily-visit-item"><div class="daily-visit-date">Lỗi khi tải dữ liệu</div></div>';
+            }
+        }
+
+        // Lấy lượt truy cập hôm nay
+        async function getTodayVisits() {
+            try {
+                if (!database) {
+                    return 0;
+                }
+                
+                const today = new Date();
+                const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
+                const todayEnd = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59);
+                
+                const visitsSnapshot = await database.ref('analytics/visits').once('value');
+                const visits = visitsSnapshot.val() || {};
+                
+                let todayCount = 0;
+                Object.values(visits).forEach(visit => {
+                    if (visit.timestamp && visit.timestamp >= todayStart.getTime() && visit.timestamp <= todayEnd.getTime()) {
+                        todayCount++;
+                    }
+                });
+                
+                return todayCount;
+            } catch (error) {
+                console.error('Error getting today visits:', error);
+                return 0;
+            }
+        }
+
+        // Tải lượt truy cập gần đây
+        async function loadRecentVisits() {
+            try {
+                if (!database) {
+                    console.error('Firebase Database chưa được khởi tạo');
+                    return;
+                }
+                
+                const visitsSnapshot = await database.ref('analytics/visits').once('value');
+                const visits = visitsSnapshot.val() || {};
+                
+                const recentVisitsList = document.getElementById('recentVisitsList');
+                recentVisitsList.innerHTML = '';
+                
+                if (Object.keys(visits).length === 0) {
+                    recentVisitsList.innerHTML = '<div class="visit-item"><div class="visit-info">Chưa có lượt truy cập nào</div></div>';
+                    return;
+                }
+                
+                // Sắp xếp visits theo thời gian giảm dần
+                const sortedVisits = Object.entries(visits)
+                    .sort(([,a], [,b]) => (b.timestamp || 0) - (a.timestamp || 0))
+                    .slice(0, 10);
+                
+                sortedVisits.forEach(([key, visit]) => {
+                    const visitItem = createVisitItem(visit);
+                    recentVisitsList.appendChild(visitItem);
+                });
+                
+            } catch (error) {
+                console.error('Error loading recent visits:', error);
+                const recentVisitsList = document.getElementById('recentVisitsList');
+                recentVisitsList.innerHTML = '<div class="visit-item"><div class="visit-info">Lỗi khi tải dữ liệu</div></div>';
+            }
+        }
+
+        // Tạo item lượt truy cập
+        function createVisitItem(visitData) {
+            const visitItem = document.createElement('div');
+            visitItem.className = 'visit-item';
+            
+            const time = visitData.timestamp ? new Date(visitData.timestamp) : new Date();
+            const timeString = time.toLocaleString('vi-VN');
+            
+            let platformIcon = 'fas fa-desktop';
+            if (visitData.userAgent) {
+                if (visitData.userAgent.includes('Mobile')) {
+                    platformIcon = 'fas fa-mobile-alt';
+                } else if (visitData.userAgent.includes('Tablet')) {
+                    platformIcon = 'fas fa-tablet-alt';
+                }
+            } else if (visitData.platform) {
+                if (visitData.platform.includes('iPhone') || visitData.platform.includes('Android')) {
+                    platformIcon = 'fas fa-mobile-alt';
+                }
+            }
+            
+            visitItem.innerHTML = `
+                <div class="visit-icon">
+                    <i class="${platformIcon}"></i>
+                </div>
+                <div class="visit-info">
+                    <div class="visit-time">${timeString}</div>
+                    <div class="visit-details">
+                        <span class="visit-ip">IP: ${visitData.ip || 'N/A'}</span>
+                        <span>${visitData.platform || 'Unknown Platform'}</span>
+                    </div>
+                </div>
+            `;
+            
+            return visitItem;
+        }
+
+        // Tạo item lượt truy cập theo ngày
+        function createDailyVisitItem(date, count, maxVisits) {
+            const dailyVisitItem = document.createElement('div');
+            dailyVisitItem.className = 'daily-visit-item';
+            
+            let countClass = 'low';
+            if (count >= maxVisits * 0.7) {
+                countClass = 'high';
+            } else if (count >= maxVisits * 0.4) {
+                countClass = 'medium';
+            }
+            
+            dailyVisitItem.innerHTML = `
+                <div class="daily-visit-date">${date}</div>
+                <div class="daily-visit-count ${countClass}">${count}</div>
+            `;
+            
+            return dailyVisitItem;
+        }
 
         // Cập nhật preview
         function updatePreview() {
@@ -1194,7 +2762,7 @@
             previewDeveloper.textContent = appDeveloperInput.value || 'Nhà phát triển';
             previewVersion.textContent = appVersionInput.value || '1.0.0';
             
-            // Cập nhật mô tả
+            // Cập nhật mô tả dạng list
             const description = appDescriptionInput.value;
             const descriptionContainer = previewDescription;
             
@@ -1230,13 +2798,6 @@
                 `;
             }
             
-            // Cập nhật tags
-            updatePreviewTags();
-            
-            // Cập nhật VIP packages
-            updatePreviewVipPackages();
-            
-            // Cập nhật screenshots
             if (screenshot1Input.value) {
                 previewScreenshot1.src = screenshot1Input.value;
             } else {
@@ -1254,6 +2815,9 @@
             } else {
                 previewScreenshot3.src = 'https://via.placeholder.com/80/1e293b/475569?text=Ảnh+3';
             }
+            
+            updatePreviewTags();
+            updateVipPermissionsPreview();
         }
 
         // Cập nhật tags trong preview
@@ -1278,55 +2842,6 @@
             }
         }
 
-        // Cập nhật VIP packages trong preview
-        function updatePreviewVipPackages() {
-            previewVipPackages.innerHTML = '';
-            
-            const selectedPackages = getSelectedVipPackages();
-            
-            if (selectedPackages.length === 0) {
-                const defaultTag = document.createElement('span');
-                defaultTag.className = 'vip-package-badge-preview all';
-                defaultTag.style.fontSize = '8px';
-                defaultTag.style.padding = '2px 4px';
-                defaultTag.textContent = 'Chưa chọn gói';
-                previewVipPackages.appendChild(defaultTag);
-                return;
-            }
-            
-            // Nếu chọn "Tất cả các gói"
-            if (selectedPackages.includes('all')) {
-                const allTag = document.createElement('span');
-                allTag.className = 'vip-package-badge-preview all';
-                allTag.style.fontSize = '8px';
-                allTag.style.padding = '2px 4px';
-                allTag.textContent = 'Tất cả các gói';
-                previewVipPackages.appendChild(allTag);
-                return;
-            }
-            
-            // Hiển thị các gói đã chọn
-            selectedPackages.forEach(packageValue => {
-                const packageTag = document.createElement('span');
-                packageTag.className = 'vip-package-badge-preview';
-                packageTag.style.fontSize = '8px';
-                packageTag.style.padding = '2px 4px';
-                packageTag.textContent = VIP_PACKAGE_LABELS[packageValue] || packageValue;
-                previewVipPackages.appendChild(packageTag);
-            });
-        }
-
-        // Lấy các gói VIP đã chọn
-        function getSelectedVipPackages() {
-            const selectedPackages = [];
-            vipPackageCheckboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    selectedPackages.push(checkbox.value);
-                }
-            });
-            return selectedPackages;
-        }
-
         // Lấy danh mục đã chọn
         function getSelectedCategories() {
             const selectedCategories = [];
@@ -1338,102 +2853,209 @@
             return selectedCategories;
         }
 
-        // Xử lý "Tất cả" checkbox
-        function handleAllCheckbox() {
-            const allCheckbox = document.getElementById('vipPackageAll');
-            const otherCheckboxes = document.querySelectorAll('.vip-package-checkbox:not(#vipPackageAll)');
-            
-            if (allCheckbox.checked) {
-                // Nếu chọn "Tất cả", bỏ chọn các checkbox khác
-                otherCheckboxes.forEach(cb => cb.checked = false);
-            } else {
-                // Nếu bỏ chọn "Tất cả", kiểm tra xem có checkbox nào được chọn không
-                let hasSelected = false;
-                otherCheckboxes.forEach(cb => {
-                    if (cb.checked) hasSelected = true;
-                });
+        // Lấy ID chính xác từ Google Sheets sau khi upload
+        async function getAppIdAfterUpload(appData) {
+            try {
+                console.log('🚀 Đang lấy ID chính xác...');
                 
-                if (!hasSelected) {
-                    // Nếu không có checkbox nào được chọn, tự động chọn "Tất cả"
-                    allCheckbox.checked = true;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getApps&t=${Date.now()}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    const apps = result.data;
+                    const sortedApps = [...apps].sort((a, b) => (b.id || 0) - (a.id || 0));
+                    
+                    const uploadedApp = sortedApps.find(app => 
+                        app.name === appData.name &&
+                        app.developer === appData.developer &&
+                        app.version === appData.version &&
+                        app.description === appData.description
+                    );
+                    
+                    if (uploadedApp && uploadedApp.id) {
+                        console.log('✅ Tìm thấy ID chính xác:', uploadedApp.id);
+                        return uploadedApp.id;
+                    } else {
+                        const latestApp = sortedApps[0];
+                        if (latestApp && latestApp.id) {
+                            console.log('✅ Sử dụng ID của app mới nhất:', latestApp.id);
+                            return latestApp.id;
+                        }
+                    }
                 }
+                
+                console.error('❌ Không thể lấy ID chính xác');
+                return null;
+            } catch (error) {
+                console.error('Lỗi khi lấy ID chính xác:', error);
+                return null;
             }
-            
-            updatePreview();
         }
 
-        // Xử lý các checkbox khác
-        function handleOtherCheckboxes() {
-            const allCheckbox = document.getElementById('vipPackageAll');
-            const otherCheckboxes = document.querySelectorAll('.vip-package-checkbox:not(#vipPackageAll)');
-            
-            // Kiểm tra xem có checkbox nào được chọn không
-            let hasSelected = false;
-            otherCheckboxes.forEach(cb => {
-                if (cb.checked) hasSelected = true;
-            });
-            
-            if (hasSelected) {
-                // Nếu có checkbox được chọn, bỏ chọn "Tất cả"
-                allCheckbox.checked = false;
-            } else {
-                // Nếu không có checkbox nào được chọn, chọn "Tất cả"
-                allCheckbox.checked = true;
+        // Gửi thông báo đến Telegram với ảnh
+        async function sendTelegramNotification(appData, appId) {
+            try {
+                const appUrl = `${BASE_APP_URL}${appId}`;
+                
+                let version = appData.version;
+                if (version && version.startsWith("'")) {
+                    version = version.substring(1);
+                }
+                
+                const formattedDescription = appData.description
+                    .split('\n')
+                    .filter(line => line.trim())
+                    .map(line => `+ ${line.trim()}`)
+                    .join('\n');
+
+                const message = `
+Ứng dụng : ${appData.name}
+
+Phiên bản : ${version}
+
+Chức năng : 
+${formattedDescription}
+
+Cài đặt ngay : ${appUrl}
+                `.trim();
+
+                console.log('📤 Đang gửi thông báo Telegram...');
+                
+                const photoUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
+                
+                const response = await fetch(photoUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        photo: appData.image,
+                        caption: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.ok) {
+                    console.log('✅ Thông báo Telegram thành công!');
+                    return true;
+                } else {
+                    console.error('❌ Lỗi khi gửi ảnh Telegram:', result);
+                    
+                    const retryResponse = await fetch(photoUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            chat_id: TELEGRAM_CHAT_ID,
+                            photo: appData.image,
+                            caption: message,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+                    
+                    const retryResult = await retryResponse.json();
+                    if (retryResult.ok) {
+                        console.log('✅ Thông báo Telegram thành công sau lần thử 2!');
+                        return true;
+                    }
+                    
+                    await sendSeparateImageAndMessage(appData, appId);
+                    return true;
+                }
+            } catch (error) {
+                console.error('💥 Lỗi kết nối Telegram:', error);
+                await sendSeparateImageAndMessage(appData, appId);
+                return true;
             }
-            
-            updatePreview();
         }
 
-        // Hiển thị thông báo thành công
-        function showSuccess(message = 'Ứng dụng đã được upload!') {
-            successMessage.querySelector('div div').textContent = message;
-            successMessage.style.display = 'flex';
-            errorMessage.style.display = 'none';
-            
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 5000);
-        }
+        // Gửi ảnh và tin nhắn riêng biệt
+        async function sendSeparateImageAndMessage(appData, appId) {
+            try {
+                const appUrl = `${BASE_APP_URL}${appId}`;
+                
+                let version = appData.version;
+                if (version && version.startsWith("'")) {
+                    version = version.substring(1);
+                }
+                
+                const formattedDescription = appData.description
+                    .split('\n')
+                    .filter(line => line.trim())
+                    .map(line => `+ ${line.trim()}`)
+                    .join('\n');
 
-        // Hiển thị thông báo lỗi
-        function showError(message) {
-            errorText.textContent = message;
-            errorMessage.style.display = 'flex';
-            successMessage.style.display = 'none';
-            
-            setTimeout(() => {
-                errorMessage.style.display = 'none';
-            }, 5000);
+                const message = `
+Ứng dụng : ${appData.name}
+Phiên bản : ${version}
+
+
+Chức năng : 
+${formattedDescription}
+
+Cài đặt ngay : ${appUrl}
+                `.trim();
+
+                const photoUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
+                await fetch(photoUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        photo: appData.image
+                    })
+                });
+
+                const textUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                await fetch(textUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                console.log('✅ Đã gửi ảnh và tin nhắn riêng biệt!');
+                return true;
+            } catch (error) {
+                console.error('❌ Lỗi khi gửi ảnh và tin nhắn riêng:', error);
+                return false;
+            }
         }
 
         // Xử lý sự kiện submit form
         uploadForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Kiểm tra danh mục
-            const selectedCategories = getSelectedCategories();
-            if (selectedCategories.length === 0) {
-                showError('Vui lòng chọn ít nhất một danh mục cho ứng dụng.');
+            // Validate VIP permissions
+            if (!validateVipPermissions()) {
                 return;
             }
             
-            // Kiểm tra gói VIP nếu có link VIP
-            const vipLink = vipLink1Input.value;
-            if (vipLink && vipLink.trim() !== '') {
-                const selectedVipPackages = getSelectedVipPackages();
-                if (selectedVipPackages.length === 0) {
-                    showError('Vui lòng chọn ít nhất một gói có thể tải cho liên kết VIP.');
-                    return;
-                }
+            const selectedCategories = getSelectedCategories();
+            if (selectedCategories.length === 0) {
+                showCustomAlert('warning', 'Thiếu thông tin', 
+                    'Vui lòng chọn ít nhất một danh mục cho ứng dụng.', 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                return;
             }
             
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<div class="loading"></div> Đang upload...';
             
             try {
-                const selectedVipPackages = getSelectedVipPackages();
-                const vipPackagesString = selectedVipPackages.join(',');
-                
                 const appData = {
                     name: appNameInput.value,
                     developer: appDeveloperInput.value,
@@ -1447,7 +3069,7 @@
                     screenshot1: screenshot1Input.value || '',
                     screenshot2: screenshot2Input.value || '',
                     screenshot3: screenshot3Input.value || '',
-                    vipPackages: vipPackagesString
+                    vipPermissions: getVipPermissionsString() // Thêm VIP permissions
                 };
                 
                 console.log('📤 Dữ liệu gửi đi:', appData);
@@ -1466,26 +3088,101 @@
                 const result = await response.json();
                 
                 if (result.success) {
-                    showSuccess('✅ Ứng dụng đã được upload thành công!');
-                    uploadForm.reset();
-                    updatePreview();
+                    submitBtn.innerHTML = '<div class="loading"></div> Đang lấy ID...';
+                    const actualAppId = await getAppIdAfterUpload(appData);
                     
-                    // Reset về "Tất cả các gói" mặc định
-                    document.getElementById('vipPackageAll').checked = true;
-                    const otherCheckboxes = document.querySelectorAll('.vip-package-checkbox:not(#vipPackageAll)');
-                    otherCheckboxes.forEach(cb => cb.checked = false);
+                    if (actualAppId) {
+                        submitBtn.innerHTML = '<div class="loading"></div> Đang gửi Telegram...';
+                        const telegramSent = await sendTelegramNotification(appData, actualAppId);
+                        
+                        if (telegramSent) {
+                            showCustomAlert('success', 'Thành công!', 
+                                `✅ Ứng dụng đã được upload!<br>ID: ${actualAppId}<br>Gói được phép: ${result.vipPermissions || 'all'}<br>Thông báo đã gửi đến Telegram!`, 
+                                [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                        } else {
+                            showCustomAlert('success', 'Thành công!', 
+                                `✅ Ứng dụng đã được upload!<br>ID: ${actualAppId}<br>Gói được phép: ${result.vipPermissions || 'all'}<br>(Lỗi khi gửi thông báo Telegram)`, 
+                                [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                        }
+                    } else {
+                        showCustomAlert('success', 'Thành công!', 
+                            '✅ Ứng dụng đã được upload!<br>(Không thể lấy ID để gửi Telegram)', 
+                            [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                    }
+                    
+                    uploadForm.reset();
+                    // Reset VIP permissions
+                    selectedVipPermissions.clear();
+                    document.querySelectorAll('.vip-permission-label').forEach(l => {
+                        l.classList.remove('selected');
+                    });
+                    // Mặc định chọn "Tất cả các gói"
+                    selectedVipPermissions.add('all');
+                    document.querySelector('[data-permission="all"]').classList.add('selected');
+                    
                     updatePreview();
+                    loadAppStats();
                 } else {
                     throw new Error(result.message || 'Không thể upload ứng dụng');
                 }
                 
             } catch (error) {
                 console.error('Lỗi khi upload ứng dụng:', error);
-                showError(error.message || 'Đã xảy ra lỗi khi upload ứng dụng. Vui lòng thử lại.');
+                showCustomAlert('error', 'Lỗi!', 
+                    error.message || 'Đã xảy ra lỗi khi upload ứng dụng. Vui lòng thử lại.', 
+                    [{ text: 'Thử lại', type: 'primary', icon: 'fas fa-redo' }]);
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Upload Ứng Dụng';
             }
+        });
+
+        // Hiển thị thông báo thành công (cũ - giữ lại cho tương thích)
+        function showSuccess(message = 'Ứng dụng đã được upload!') {
+            successMessage.querySelector('div div').textContent = message;
+            successMessage.style.display = 'flex';
+            errorMessage.style.display = 'none';
+            
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Hiển thị thông báo lỗi (cũ - giữ lại cho tương thích)
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.style.display = 'flex';
+            successMessage.style.display = 'none';
+            
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Làm mới analytics
+        refreshAnalyticsBtn.addEventListener('click', function() {
+            this.innerHTML = '<div class="loading"></div> Đang làm mới...';
+            this.disabled = true;
+            
+            Promise.all([loadVisitStats(), loadDailyVisits(), loadUserCount()]).finally(() => {
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-sync-alt"></i> Làm mới';
+                    this.disabled = false;
+                }, 1000);
+            });
+        });
+
+        // Làm mới daily visits
+        refreshDailyVisitsBtn.addEventListener('click', function() {
+            this.innerHTML = '<div class="loading"></div> Đang làm mới...';
+            this.disabled = true;
+            
+            loadDailyVisits().finally(() => {
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-sync-alt"></i> Làm mới';
+                    this.disabled = false;
+                }, 1000);
+            });
         });
 
         // Thêm sự kiện cho các input để cập nhật preview
@@ -1500,37 +3197,427 @@
         categoryCheckboxes.forEach(checkbox => {
             checkbox.addEventListener('change', updatePreview);
         });
-        
-        // Thêm sự kiện cho các checkbox VIP packages
-        document.getElementById('vipPackageAll').addEventListener('change', handleAllCheckbox);
-        
-        const otherVipCheckboxes = document.querySelectorAll('.vip-package-checkbox:not(#vipPackageAll)');
-        otherVipCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', handleOtherCheckboxes);
+
+        // ==================== VIP UPGRADE FUNCTIONALITY ====================
+
+        // Load VIP packages
+        async function loadVIPPackages() {
+            try {
+                console.log('🔄 Đang tải gói VIP...');
+                vipPackagesList.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 10px; font-size: 11px;"><div class="loading"></div> Đang tải gói VIP...</div>';
+                
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getVIPPackages&t=${Date.now()}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                console.log('📦 Kết quả tải gói VIP:', result);
+                
+                if (result.success && result.data && result.data.length > 0) {
+                    renderVIPPackages(result.data);
+                } else {
+                    const defaultPackages = [
+                        { packageId: 1, packageName: '7 Ngày', durationDays: 7 },
+                        { packageId: 2, packageName: '1 Tháng', durationDays: 30 },
+                        { packageId: 3, packageName: '3 Tháng', durationDays: 90 },
+                        { packageId: 4, packageName: '6 Tháng', durationDays: 180 },
+                        { packageId: 5, packageName: '1 Năm', durationDays: 365 }
+                    ];
+                    renderVIPPackages(defaultPackages);
+                }
+            } catch (error) {
+                console.error('❌ Lỗi khi tải gói VIP:', error);
+                const defaultPackages = [
+                    { packageId: 1, packageName: '7 Ngày', durationDays: 7 },
+                    { packageId: 2, packageName: '1 Tháng', durationDays: 30 },
+                    { packageId: 3, packageName: '3 Tháng', durationDays: 90 },
+                    { packageId: 4, packageName: '6 Tháng', durationDays: 180 },
+                    { packageId: 5, packageName: '1 Năm', durationDays: 365 }
+                ];
+                renderVIPPackages(defaultPackages);
+                showCustomAlert('error', 'Lỗi!', 
+                    'Không thể tải gói VIP từ server. Đang sử dụng gói mặc định.', 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+            }
+        }
+
+        // Hiển thị gói VIP
+        function renderVIPPackages(packages) {
+            vipPackagesList.innerHTML = '';
+            
+            packages.forEach(pkg => {
+                const packageElement = document.createElement('div');
+                packageElement.innerHTML = `
+                    <input type="radio" id="package-${pkg.packageId}" name="vipPackage" class="category-radio" value="${pkg.durationDays}" required>
+                    <label for="package-${pkg.packageId}" class="category-label">
+                        <i class="fas fa-crown category-icon"></i>
+                        <span>${pkg.packageName}</span>
+                    </label>
+                `;
+                vipPackagesList.appendChild(packageElement);
+            });
+            
+            console.log(`✅ Đã tải ${packages.length} gói VIP`);
+        }
+
+        // Tạo gói VIP mặc định
+        async function createDefaultPackages() {
+            showCustomAlert('info', 'Thông tin', 
+                'Vui lòng thêm thủ công các gói VIP vào sheet Package trong Google Sheets!', 
+                [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+        }
+
+        // Tìm kiếm người dùng theo email hoặc username
+        async function searchUserByIdentifier(identifier) {
+            try {
+                console.log(`🔍 Đang tìm kiếm người dùng với identifier: ${identifier}`);
+                
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getUserByEmail&email=${encodeURIComponent(identifier)}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    return result;
+                } else {
+                    return {
+                        success: false,
+                        message: 'Không tìm thấy người dùng với email hoặc username này'
+                    };
+                }
+            } catch (error) {
+                console.error('Lỗi khi tìm kiếm người dùng:', error);
+                return {
+                    success: false,
+                    message: 'Lỗi khi tìm kiếm người dùng: ' + error.message
+                };
+            }
+        }
+
+        // Search user by email or username
+        searchUserBtn.addEventListener('click', async function() {
+            const identifier = userIdentifierInput.value.trim();
+            
+            if (!identifier) {
+                showCustomAlert('warning', 'Thiếu thông tin', 
+                    'Vui lòng nhập email hoặc username', 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                return;
+            }
+            
+            searchUserBtn.innerHTML = '<div class="loading"></div> Đang tìm...';
+            searchUserBtn.disabled = true;
+            
+            try {
+                const result = await searchUserByIdentifier(identifier);
+                
+                if (result.success) {
+                    displayUserInfo(result.data);
+                    userPreviewSection.style.display = 'block';
+                } else {
+                    throw new Error(result.message || 'Không tìm thấy người dùng');
+                }
+            } catch (error) {
+                showCustomAlert('error', 'Lỗi!', 
+                    error.message, 
+                    [{ text: 'Thử lại', type: 'primary', icon: 'fas fa-redo' }]);
+                userPreviewSection.style.display = 'none';
+            } finally {
+                searchUserBtn.innerHTML = '<i class="fas fa-search"></i> Tìm';
+                searchUserBtn.disabled = false;
+            }
         });
 
-        // Tab switching functionality
-        document.querySelectorAll('.nav-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                const targetTab = tab.getAttribute('data-tab');
+        // Display user information
+        function displayUserInfo(userData) {
+            document.getElementById('previewUserName').textContent = userData.username || 'Không xác định';
+            document.getElementById('previewUserEmail').textContent = userData.email || 'Không có email';
+            
+            const firstLetter = (userData.username || userData.email || 'U').charAt(0).toUpperCase();
+            document.getElementById('userAvatar').textContent = firstLetter;
+            
+            const userTypeElement = document.getElementById('previewUserType');
+            const userVIPElement = document.getElementById('previewUserVIP');
+            
+            if (userData.accountType === 'premium' && isVIPActive(userData.vipExpiry)) {
+                userTypeElement.textContent = `Loại: Premium (VIP đến ${userData.vipExpiry || 'Không xác định'})`;
+                userTypeElement.style.color = 'var(--warning)';
+                userVIPElement.textContent = `✅ Tài khoản Premium - VIP còn hiệu lực đến ${userData.vipExpiry || 'Không xác định'}`;
+                userVIPElement.style.color = 'var(--success)';
+            } else if (userData.accountType === 'premium') {
+                userTypeElement.textContent = 'Loại: Premium (VIP đã hết hạn)';
+                userTypeElement.style.color = 'var(--danger)';
+                userVIPElement.textContent = '❌ Tài khoản Premium - VIP đã hết hạn';
+                userVIPElement.style.color = 'var(--danger)';
+            } else {
+                userTypeElement.textContent = 'Loại: Free';
+                userTypeElement.style.color = 'var(--text-secondary)';
+                userVIPElement.textContent = 'ℹ️ Tài khoản Miễn phí - Chưa có VIP';
+                userVIPElement.style.color = 'var(--text-muted)';
+            }
+        }
+
+        // Upgrade form submission
+        upgradeForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const identifier = userIdentifierInput.value.trim();
+            const selectedPackage = document.querySelector('input[name="vipPackage"]:checked');
+            
+            if (!identifier) {
+                showCustomAlert('warning', 'Thiếu thông tin', 
+                    'Vui lòng nhập email hoặc username', 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                return;
+            }
+            
+            if (!selectedPackage) {
+                showCustomAlert('warning', 'Thiếu thông tin', 
+                    'Vui lòng chọn gói thời gian', 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                return;
+            }
+            
+            upgradeSubmitBtn.innerHTML = '<div class="loading"></div> Đang nâng cấp...';
+            upgradeSubmitBtn.disabled = true;
+            
+            try {
+                // Tìm email thực tế của người dùng
+                const searchResult = await searchUserByIdentifier(identifier);
                 
-                // Update active tab
-                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
+                if (!searchResult.success || !searchResult.data) {
+                    throw new Error('Không tìm thấy người dùng để nâng cấp');
+                }
                 
-                // Show target tab content
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                    if (content.id === `${targetTab}Tab`) {
-                        content.classList.add('active');
-                    }
+                const userEmail = searchResult.data.email;
+                
+                if (!userEmail) {
+                    throw new Error('Người dùng không có email để nâng cấp');
+                }
+                
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        action: 'upgradeUser',
+                        data: { email: userEmail, durationDays: selectedPackage.value }
+                    })
                 });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showCustomAlert('success', 'Thành công!', 
+                        result.message, 
+                        [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                    upgradeForm.reset();
+                    userPreviewSection.style.display = 'none';
+                    // Tự động tải lại thông tin người dùng
+                    setTimeout(() => searchUserBtn.click(), 1000);
+                } else {
+                    throw new Error(result.message);
+                }
+            } catch (error) {
+                showCustomAlert('error', 'Lỗi!', 
+                    error.message, 
+                    [{ text: 'Thử lại', type: 'primary', icon: 'fas fa-redo' }]);
+            } finally {
+                upgradeSubmitBtn.innerHTML = '<i class="fas fa-crown"></i> Nâng cấp VIP';
+                upgradeSubmitBtn.disabled = false;
+            }
+        });
+
+        // Utility functions for upgrade
+        function isVIPActive(vipExpiry) {
+            if (!vipExpiry) return false;
+            const expiryDate = new Date(vipExpiry);
+            const today = new Date();
+            return expiryDate >= today;
+        }
+
+        // ==================== CODE MANAGEMENT FUNCTIONALITY ====================
+
+        // Create codes
+        createCodesBtn.addEventListener('click', async function() {
+            const codeType = document.querySelector('input[name="codeType"]:checked').value;
+            const count = parseInt(document.getElementById('codeCount').value);
+            
+            if (!count || count < 1) {
+                showCustomAlert('warning', 'Thiếu thông tin', 
+                    'Vui lòng nhập số lượng mã hợp lệ', 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                return;
+            }
+            
+            createCodesBtn.innerHTML = '<div class="loading"></div> Đang tạo...';
+            createCodesBtn.disabled = true;
+            
+            try {
+                if (codeType === 'discount') {
+                    await createDiscountCodes();
+                } else {
+                    await createActivationCodes();
+                }
+            } catch (error) {
+                showCustomAlert('error', 'Lỗi!', 
+                    'Lỗi khi tạo mã: ' + error.message, 
+                    [{ text: 'Thử lại', type: 'primary', icon: 'fas fa-redo' }]);
+            } finally {
+                createCodesBtn.innerHTML = '<i class="fas fa-plus"></i> Tạo Mã';
+                createCodesBtn.disabled = false;
+            }
+        });
+
+        // Create discount codes
+        async function createDiscountCodes() {
+            const percent = parseInt(document.getElementById('discountPercent').value);
+            const limit = parseInt(document.getElementById('discountLimit').value);
+            const count = parseInt(document.getElementById('codeCount').value);
+            const expiry = document.getElementById('discountExpiry').value;
+            
+            if (!percent || !limit || !expiry) {
+                throw new Error('Vui lòng điền đầy đủ thông tin mã giảm giá');
+            }
+            
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({
+                    action: 'createDiscountCodes',
+                    percent: percent,
+                    limit: limit,
+                    count: count,
+                    expiry: expiry
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                displayCreatedCodes(result.codes, 'Mã giảm giá');
+                showCustomAlert('success', 'Thành công!', 
+                    `Đã tạo thành công ${result.codes.length} mã giảm giá`, 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                loadDiscountCodes();
+            } else {
+                throw new Error(result.message);
+            }
+        }
+
+        // Create activation codes
+        async function createActivationCodes() {
+            const packageType = document.getElementById('activationPackage').value;
+            const count = parseInt(document.getElementById('codeCount').value);
+            
+            const durationMap = {
+                'trial': 30,
+                'basic': 90,
+                'plus': 180,
+                'premium': 365
+            };
+            
+            const duration = durationMap[packageType];
+            
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({
+                    action: 'createActivationCodes',
+                    packageType: packageType,
+                    duration: duration,
+                    count: count
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                displayCreatedCodes(result.codes, `Mã kích hoạt ${packageType}`);
+                showCustomAlert('success', 'Thành công!', 
+                    `Đã tạo thành công ${result.codes.length} mã kích hoạt ${packageType}`, 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                loadActivationCodes();
+            } else {
+                throw new Error(result.message);
+            }
+        }
+
+        // Display created codes
+        function displayCreatedCodes(codes, type) {
+            codesList.innerHTML = '';
+            codes.forEach(code => {
+                const codeElement = document.createElement('div');
+                codeElement.style.padding = '4px 0';
+                codeElement.style.borderBottom = '1px solid var(--border)';
+                codeElement.textContent = code;
+                codesList.appendChild(codeElement);
+            });
+            
+            createdCodesResult.style.display = 'block';
+        }
+
+        // Load discount codes
+        async function loadDiscountCodes() {
+            try {
+                discountCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Tính năng đang được phát triển...</div></div></div>';
+            } catch (error) {
+                console.error('Error loading discount codes:', error);
+                discountCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Lỗi khi tải dữ liệu</div></div></div>';
+            }
+        }
+
+        // Load activation codes
+        async function loadActivationCodes() {
+            try {
+                activationCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Tính năng đang được phát triển...</div></div></div>';
+            } catch (error) {
+                console.error('Error loading activation codes:', error);
+                activationCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Lỗi khi tải dữ liệu</div></div></div>';
+            }
+        }
+
+        // Refresh discount codes
+        refreshDiscountCodesBtn.addEventListener('click', function() {
+            this.innerHTML = '<div class="loading"></div>';
+            loadDiscountCodes().finally(() => {
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-sync-alt"></i> Làm mới';
+                }, 1000);
+            });
+        });
+
+        // Refresh activation codes
+        refreshActivationCodesBtn.addEventListener('click', function() {
+            this.innerHTML = '<div class="loading"></div>';
+            loadActivationCodes().finally(() => {
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-sync-alt"></i> Làm mới';
+                }, 1000);
             });
         });
 
         // Khởi tạo khi trang được tải
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize VIP permissions
+            initializeVipPermissions();
+            
             updatePreview();
+            loadAppStats();
+            loadUserCount();
+            
+            // Close custom alert when clicking outside
+            customAlertOverlay.addEventListener('click', function(e) {
+                if (e.target === customAlertOverlay) {
+                    customAlertOverlay.style.display = 'none';
+                }
+            });
+            
+            // Close custom alert with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && customAlertOverlay.style.display === 'flex') {
+                    customAlertOverlay.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
