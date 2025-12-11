@@ -2199,7 +2199,7 @@
         const codesSuccessText = document.getElementById('codesSuccessText');
         const codesErrorText = document.getElementById('codesErrorText');
 
-        // VIP Permissions Options
+        // VIP Permissions Options - THEO CẤU TRÚC CỦA BẠN
         const VIP_PERMISSIONS = [
             { id: 'trial', name: 'Trial', icon: 'fas fa-star' },
             { id: 'basic', name: 'Basic', icon: 'fas fa-crown' },
@@ -3200,7 +3200,7 @@ Cài đặt ngay : ${appUrl}
 
         // ==================== VIP UPGRADE FUNCTIONALITY ====================
 
-        // Load VIP packages
+        // Load VIP packages - THEO CẤU TRÚC CỦA BẠN
         async function loadVIPPackages() {
             try {
                 console.log('🔄 Đang tải gói VIP...');
@@ -3218,42 +3218,57 @@ Cài đặt ngay : ${appUrl}
                 if (result.success && result.data && result.data.length > 0) {
                     renderVIPPackages(result.data);
                 } else {
+                    // TẠO GÓI MẶC ĐỊNH THEO CẤU TRÚC CỦA BẠN
                     const defaultPackages = [
-                        { packageId: 1, packageName: '7 Ngày', durationDays: 7 },
-                        { packageId: 2, packageName: '1 Tháng', durationDays: 30 },
-                        { packageId: 3, packageName: '3 Tháng', durationDays: 90 },
-                        { packageId: 4, packageName: '6 Tháng', durationDays: 180 },
-                        { packageId: 5, packageName: '1 Năm', durationDays: 365 }
+                        { packageId: 1, packageName: '1 Tháng - Trial', durationDays: 30 },
+                        { packageId: 2, packageName: '3 Tháng - Basic', durationDays: 90 },
+                        { packageId: 3, packageName: '6 Tháng - Plus', durationDays: 180 },
+                        { packageId: 4, packageName: '12 Tháng - Premium', durationDays: 365 }
                     ];
                     renderVIPPackages(defaultPackages);
                 }
             } catch (error) {
                 console.error('❌ Lỗi khi tải gói VIP:', error);
+                // GÓI MẶC ĐỊNH THEO CẤU TRÚC CỦA BẠN
                 const defaultPackages = [
-                    { packageId: 1, packageName: '7 Ngày', durationDays: 7 },
-                    { packageId: 2, packageName: '1 Tháng', durationDays: 30 },
-                    { packageId: 3, packageName: '3 Tháng', durationDays: 90 },
-                    { packageId: 4, packageName: '6 Tháng', durationDays: 180 },
-                    { packageId: 5, packageName: '1 Năm', durationDays: 365 }
+                    { packageId: 1, packageName: '1 Tháng - Trial', durationDays: 30 },
+                    { packageId: 2, packageName: '3 Tháng - Basic', durationDays: 90 },
+                    { packageId: 3, packageName: '6 Tháng - Plus', durationDays: 180 },
+                    { packageId: 4, packageName: '12 Tháng - Premium', durationDays: 365 }
                 ];
                 renderVIPPackages(defaultPackages);
-                showCustomAlert('error', 'Lỗi!', 
+                showCustomAlert('warning', 'Lưu ý', 
                     'Không thể tải gói VIP từ server. Đang sử dụng gói mặc định.', 
                     [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
             }
         }
 
-        // Hiển thị gói VIP
+        // Hiển thị gói VIP - THEO CẤU TRÚC CỦA BẠN
         function renderVIPPackages(packages) {
             vipPackagesList.innerHTML = '';
             
             packages.forEach(pkg => {
                 const packageElement = document.createElement('div');
+                
+                // Xác định loại gói để hiển thị chính xác
+                let packageType = '';
+                if (pkg.durationDays === 30) {
+                    packageType = 'Trial';
+                } else if (pkg.durationDays === 90) {
+                    packageType = 'Basic';
+                } else if (pkg.durationDays === 180) {
+                    packageType = 'Plus';
+                } else if (pkg.durationDays === 365) {
+                    packageType = 'Premium';
+                } else {
+                    packageType = 'Trial';
+                }
+                
                 packageElement.innerHTML = `
                     <input type="radio" id="package-${pkg.packageId}" name="vipPackage" class="category-radio" value="${pkg.durationDays}" required>
                     <label for="package-${pkg.packageId}" class="category-label">
                         <i class="fas fa-crown category-icon"></i>
-                        <span>${pkg.packageName}</span>
+                        <span>${pkg.packageName || `${pkg.durationDays} Ngày - ${packageType}`}</span>
                     </label>
                 `;
                 vipPackagesList.appendChild(packageElement);
@@ -3264,8 +3279,12 @@ Cài đặt ngay : ${appUrl}
 
         // Tạo gói VIP mặc định
         async function createDefaultPackages() {
-            showCustomAlert('info', 'Thông tin', 
-                'Vui lòng thêm thủ công các gói VIP vào sheet Package trong Google Sheets!', 
+            showCustomAlert('info', 'Tạo Gói VIP', 
+                'Vui lòng thêm thủ công các gói VIP vào sheet Package trong Google Sheets:<br><br>' +
+                '1. 1 Tháng - Trial (30 ngày)<br>' +
+                '2. 3 Tháng - Basic (90 ngày)<br>' +
+                '3. 6 Tháng - Plus (180 ngày)<br>' +
+                '4. 12 Tháng - Premium (365 ngày)', 
                 [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
         }
 
@@ -3328,7 +3347,7 @@ Cài đặt ngay : ${appUrl}
             }
         });
 
-        // Display user information
+        // Display user information - HIỂN THỊ CHÍNH XÁC PACKAGE TYPE THEO CẤU TRÚC CỦA BẠN
         function displayUserInfo(userData) {
             document.getElementById('previewUserName').textContent = userData.username || 'Không xác định';
             document.getElementById('previewUserEmail').textContent = userData.email || 'Không có email';
@@ -3339,12 +3358,43 @@ Cài đặt ngay : ${appUrl}
             const userTypeElement = document.getElementById('previewUserType');
             const userVIPElement = document.getElementById('previewUserVIP');
             
-            if (userData.accountType === 'premium' && isVIPActive(userData.vipExpiry)) {
-                userTypeElement.textContent = `Loại: Premium (VIP đến ${userData.vipExpiry || 'Không xác định'})`;
-                userTypeElement.style.color = 'var(--warning)';
-                userVIPElement.textContent = `✅ Tài khoản Premium - VIP còn hiệu lực đến ${userData.vipExpiry || 'Không xác định'}`;
-                userVIPElement.style.color = 'var(--success)';
-            } else if (userData.accountType === 'premium') {
+            // Xác định loại gói chính xác từ dữ liệu server
+            const packageType = userData.packageType || 'free';
+            const daysRemaining = userData.daysRemaining || 0;
+            const accountType = userData.accountType || 'free';
+            const vipExpiry = userData.vipExpiry || '';
+            
+            let packageName = '';
+            let packageColor = 'var(--text-secondary)';
+            
+            switch(packageType) {
+                case 'trial':
+                    packageName = 'Trial (1 Tháng)';
+                    packageColor = 'var(--info)';
+                    break;
+                case 'basic':
+                    packageName = 'Basic (3 Tháng)';
+                    packageColor = 'var(--success)';
+                    break;
+                case 'plus':
+                    packageName = 'Plus (6 Tháng)';
+                    packageColor = 'var(--warning)';
+                    break;
+                case 'premium':
+                    packageName = 'Premium (12 Tháng)';
+                    packageColor = 'var(--primary)';
+                    break;
+                default:
+                    packageName = 'Free';
+                    packageColor = 'var(--text-muted)';
+            }
+            
+            if (accountType === 'premium' && vipExpiry && daysRemaining > 0) {
+                userTypeElement.textContent = `Loại: ${packageName} (VIP đến ${vipExpiry})`;
+                userTypeElement.style.color = packageColor;
+                userVIPElement.textContent = `✅ Tài khoản ${packageName} - Còn ${daysRemaining} ngày (đến ${vipExpiry})`;
+                userVIPElement.style.color = packageColor;
+            } else if (accountType === 'premium') {
                 userTypeElement.textContent = 'Loại: Premium (VIP đã hết hạn)';
                 userTypeElement.style.color = 'var(--danger)';
                 userVIPElement.textContent = '❌ Tài khoản Premium - VIP đã hết hạn';
@@ -3427,14 +3477,6 @@ Cài đặt ngay : ${appUrl}
             }
         });
 
-        // Utility functions for upgrade
-        function isVIPActive(vipExpiry) {
-            if (!vipExpiry) return false;
-            const expiryDate = new Date(vipExpiry);
-            const today = new Date();
-            return expiryDate >= today;
-        }
-
         // ==================== CODE MANAGEMENT FUNCTIONALITY ====================
 
         // Create codes
@@ -3509,22 +3551,12 @@ Cài đặt ngay : ${appUrl}
             const packageType = document.getElementById('activationPackage').value;
             const count = parseInt(document.getElementById('codeCount').value);
             
-            const durationMap = {
-                'trial': 30,
-                'basic': 90,
-                'plus': 180,
-                'premium': 365
-            };
-            
-            const duration = durationMap[packageType];
-            
             const response = await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify({
                     action: 'createActivationCodes',
                     packageType: packageType,
-                    duration: duration,
                     count: count
                 })
             });
