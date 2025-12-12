@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tung Lam Vu Dep Trai</title>
+    <title>Admin Dashboard - XSpace Store</title>
     <link rel="icon" href="https://i.imgur.com/fMrOKWc.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
@@ -417,7 +417,7 @@
             width: 12px;
         }
 
-        /* Thêm style cho VIP permissions */
+        /* VIP permissions */
         .vip-permissions-group {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -518,7 +518,7 @@
             font-size: 14px;
         }
 
-        /* App Card Preview giống với index.html */
+        /* App Card Preview */
         .app-card-preview {
             background: var(--surface);
             border-radius: 12px;
@@ -1332,7 +1332,7 @@
     </style>
 </head>
 <body>
-    <!-- Thêm Custom Alert -->
+    <!-- Custom Alert -->
     <div class="custom-alert-overlay" id="customAlertOverlay">
         <div class="custom-alert" id="customAlert">
             <div class="custom-alert-header">
@@ -1528,7 +1528,6 @@
                                     Danh mục ứng dụng
                                 </label>
                                 <div class="categories-group">
-                                    <!-- Danh mục cũ -->
                                     <input type="checkbox" id="category-game" class="category-checkbox" value="game">
                                     <label for="category-game" class="category-label">
                                         <i class="fas fa-gamepad category-icon"></i>
@@ -1565,7 +1564,6 @@
                                         <span>Mở khoá Premium</span>
                                     </label>
 
-                                    <!-- Danh mục mới -->
                                     <input type="checkbox" id="category-education" class="category-checkbox" value="education">
                                     <label for="category-education" class="category-label">
                                         <i class="fas fa-graduation-cap category-icon"></i>
@@ -1661,7 +1659,7 @@
 
             <!-- Analytics Tab Content -->
             <div class="tab-content" id="analyticsTab">
-                <!-- Stats Cards - ĐÃ CẬP NHẬT THÊM MỤC MỚI -->
+                <!-- Stats Cards -->
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-icon primary">
@@ -1712,7 +1710,6 @@
                         <div class="stat-number" id="totalPremium">0</div>
                         <div class="stat-label">Mở khoá Premium</div>
                     </div>
-                    <!-- Thống kê danh mục mới -->
                     <div class="stat-card">
                         <div class="stat-icon info">
                             <i class="fas fa-graduation-cap"></i>
@@ -1734,7 +1731,6 @@
                         <div class="stat-number" id="totalUtility">0</div>
                         <div class="stat-label">Tiện ích</div>
                     </div>
-                    <!-- Thống kê tài khoản đã tạo -->
                     <div class="stat-card">
                         <div class="stat-icon info">
                             <i class="fas fa-users"></i>
@@ -1808,7 +1804,7 @@
                 </div>
             </div>
 
-            <!-- Upgrade Tab Content -->
+            <!-- Upgrade Tab Content - FIXED -->
             <div class="tab-content" id="upgradeTab">
                 <!-- Messages -->
                 <div id="upgradeSuccessMessage" class="message message-success">
@@ -2034,7 +2030,7 @@
                             <div id="discountCodesList">
                                 <div class="code-item">
                                     <div class="code-info">
-                                        <div class="code-value">Đang tải dữ liệu...</div>
+                                        <div class="code-value">Tính năng đang phát triển...</div>
                                     </div>
                                 </div>
                             </div>
@@ -2058,7 +2054,7 @@
                             <div id="activationCodesList">
                                 <div class="code-item">
                                     <div class="code-info">
-                                        <div class="code-value">Đang tải dữ liệu...</div>
+                                        <div class="code-value">Tính năng đang phát triển...</div>
                                     </div>
                                 </div>
                             </div>
@@ -2079,7 +2075,7 @@
     </footer>
 
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztYtZ2D2b-8jku7SlzSxBqmkww-A1MgQ9LVqx1d7CMpKafIp-YJyi18Vzm8DQR4Hc16Q/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx69kUCmRe_bYECa1zdcdxQ9rzZm3ourOTGDJWLtN11ynKwuIPG0LE5qQt8XxmhehHZsw/exec';
         const TELEGRAM_BOT_TOKEN = '8255020775:AAH7Z777Pl9F5E0N-E_hCkb_mjPU1LCAdoE';
         const TELEGRAM_CHAT_ID = '@xspace_ipa';
         const BASE_APP_URL = 'https://modos.site/app-detail.html?id=';
@@ -2145,7 +2141,7 @@
 
         // VIP Permissions elements
         const vipPermissionsGroup = document.getElementById('vipPermissionsGroup');
-        const selectedVipPermissions = new Set(); // Lưu các gói đã chọn
+        const selectedVipPermissions = new Set();
 
         // Custom Alert elements
         const customAlertOverlay = document.getElementById('customAlertOverlay');
@@ -2171,7 +2167,7 @@
         const totalVisitsElement = document.getElementById('totalVisits');
         const todayVisitsElement = document.getElementById('todayVisits');
 
-        // Upgrade Elements
+        // Upgrade Elements - FIXED
         const upgradeForm = document.getElementById('upgradeForm');
         const userIdentifierInput = document.getElementById('userIdentifier');
         const vipPackagesList = document.getElementById('vipPackagesList');
@@ -2221,9 +2217,17 @@
             'utility': 'Tiện ích'
         };
 
-        // Custom Alert System
+        // Package mapping chính xác
+        const PACKAGE_MAPPING = {
+            30: { name: 'Trial', color: 'var(--warning)' },
+            90: { name: 'Basic', color: 'var(--info)' },
+            180: { name: 'Plus', color: 'var(--primary)' },
+            365: { name: 'Premium', color: 'var(--warning)' }
+        };
+
+        // ==================== CUSTOM ALERT SYSTEM ====================
+
         function showCustomAlert(type, title, message, buttons) {
-            // Set icon based on type
             alertIcon.className = 'alert-icon ' + type;
             const iconMap = {
                 'success': 'fas fa-check-circle',
@@ -2233,14 +2237,11 @@
             };
             alertIcon.innerHTML = `<i class="${iconMap[type] || 'fas fa-info-circle'}"></i>`;
             
-            // Set title and message
             alertTitle.textContent = title;
             alertMessage.innerHTML = message;
             
-            // Clear existing buttons
             alertButtons.innerHTML = '';
             
-            // Add buttons
             if (buttons && buttons.length > 0) {
                 buttons.forEach(button => {
                     const btn = document.createElement('button');
@@ -2262,7 +2263,6 @@
                     alertButtons.appendChild(btn);
                 });
             } else {
-                // Default OK button
                 const okBtn = document.createElement('button');
                 okBtn.className = 'alert-btn primary';
                 okBtn.innerHTML = '<i class="fas fa-check"></i> OK';
@@ -2272,11 +2272,11 @@
                 alertButtons.appendChild(okBtn);
             }
             
-            // Show alert
             customAlertOverlay.style.display = 'flex';
         }
 
-        // Initialize VIP Permissions
+        // ==================== VIP PERMISSIONS MANAGEMENT ====================
+
         function initializeVipPermissions() {
             vipPermissionsGroup.innerHTML = '';
             
@@ -2294,7 +2294,6 @@
                     toggleVipPermission(permission.id, label);
                 });
                 
-                // Mặc định chọn "Tất cả các gói"
                 if (permission.id === 'all') {
                     selectedVipPermissions.add('all');
                     label.classList.add('selected');
@@ -2306,29 +2305,22 @@
             updateVipPermissionsPreview();
         }
 
-        // Toggle VIP Permission
         function toggleVipPermission(permissionId, label) {
             if (permissionId === 'all') {
-                // Nếu chọn "Tất cả các gói", bỏ chọn các gói khác
                 if (selectedVipPermissions.has('all')) {
                     selectedVipPermissions.delete('all');
                     label.classList.remove('selected');
                 } else {
-                    // Xóa tất cả các lựa chọn khác
                     selectedVipPermissions.clear();
-                    // Xóa selected class từ tất cả labels
                     document.querySelectorAll('.vip-permission-label').forEach(l => {
                         l.classList.remove('selected');
                     });
-                    // Chọn "Tất cả các gói"
                     selectedVipPermissions.add('all');
                     label.classList.add('selected');
                 }
             } else {
-                // Nếu chọn một gói cụ thể
                 if (selectedVipPermissions.has('all')) {
                     selectedVipPermissions.delete('all');
-                    // Xóa selected class từ "Tất cả các gói"
                     document.querySelector('[data-permission="all"]').classList.remove('selected');
                 }
                 
@@ -2344,7 +2336,6 @@
             updateVipPermissionsPreview();
         }
 
-        // Update VIP Permissions Preview
         function updateVipPermissionsPreview() {
             previewVipPermissions.innerHTML = '';
             
@@ -2355,7 +2346,6 @@
             
             vipPermissionsPreview.style.display = 'block';
             
-            // Hiển thị các gói đã chọn
             VIP_PERMISSIONS.forEach(permission => {
                 if (selectedVipPermissions.has(permission.id)) {
                     const tag = document.createElement('span');
@@ -2366,22 +2356,18 @@
             });
         }
 
-        // Get selected VIP permissions as string
         function getVipPermissionsString() {
             if (selectedVipPermissions.size === 0) {
-                return 'all'; // Mặc định nếu không chọn gì
+                return 'all';
             }
             
-            // Nếu chọn "Tất cả các gói", trả về "all"
             if (selectedVipPermissions.has('all')) {
                 return 'all';
             }
             
-            // Trả về danh sách các gói đã chọn, phân cách bằng dấu phẩy
             return Array.from(selectedVipPermissions).join(',');
         }
 
-        // Validate VIP permissions before submit
         function validateVipPermissions() {
             if (selectedVipPermissions.size === 0) {
                 showCustomAlert('warning', 'Thiếu thông tin', 
@@ -2392,16 +2378,15 @@
             return true;
         }
 
-        // Tab switching functionality
+        // ==================== TAB MANAGEMENT ====================
+
         navTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 const targetTab = tab.getAttribute('data-tab');
                 
-                // Update active tab
                 navTabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
                 
-                // Show target tab content
                 tabContents.forEach(content => {
                     content.classList.remove('active');
                     if (content.id === `${targetTab}Tab`) {
@@ -2409,7 +2394,6 @@
                     }
                 });
                 
-                // Load data when switching tabs
                 if (targetTab === 'analytics') {
                     loadAppStats();
                     loadUserCount();
@@ -2424,7 +2408,8 @@
             });
         });
 
-        // Code Management - Switch between discount and activation forms
+        // ==================== CODE MANAGEMENT ====================
+
         codeTypeRadios.forEach(radio => {
             radio.addEventListener('change', function() {
                 if (this.value === 'discount') {
@@ -2437,7 +2422,8 @@
             });
         });
 
-        // Tải số lượng người dùng
+        // ==================== STATISTICS FUNCTIONS ====================
+
         async function loadUserCount() {
             try {
                 console.log('👥 Đang tải số lượng người dùng...');
@@ -2462,7 +2448,6 @@
             }
         }
 
-        // Tải thống kê ứng dụng
         async function loadAppStats() {
             try {
                 const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getApps&t=${Date.now()}`);
@@ -2471,10 +2456,8 @@
                 if (result.success) {
                     const apps = result.data;
                     
-                    // Cập nhật thống kê ứng dụng
                     totalAppsElement.textContent = apps.length;
                     
-                    // Thống kê theo từng category
                     const games = apps.filter(app => 
                         app.categories && app.categories.includes('game')
                     ).length;
@@ -2505,7 +2488,6 @@
                     ).length;
                     totalPremiumElement.textContent = premium;
                     
-                    // Thống kê category mới
                     const education = apps.filter(app => 
                         app.categories && app.categories.includes('education')
                     ).length;
@@ -2523,7 +2505,6 @@
                 }
             } catch (error) {
                 console.error('Lỗi khi tải thống kê ứng dụng:', error);
-                // Reset tất cả về 0 khi có lỗi
                 totalAppsElement.textContent = '0';
                 totalGamesElement.textContent = '0';
                 totalSocialElement.textContent = '0';
@@ -2537,7 +2518,6 @@
             }
         }
 
-        // Tải thống kê lượt truy cập từ Realtime Database
         async function loadVisitStats() {
             try {
                 console.log('Đang tải thống kê lượt truy cập...');
@@ -2547,16 +2527,13 @@
                     return;
                 }
 
-                // Lấy tổng lượt truy cập
                 const totalVisitsSnapshot = await database.ref('analytics/totalVisits').once('value');
                 const totalVisits = totalVisitsSnapshot.val() || 0;
                 totalVisitsElement.textContent = totalVisits.toLocaleString();
                 
-                // Lấy lượt truy cập hôm nay
                 const todayVisits = await getTodayVisits();
                 todayVisitsElement.textContent = todayVisits.toLocaleString();
                 
-                // Tải lượt truy cập gần đây
                 await loadRecentVisits();
                 
             } catch (error) {
@@ -2566,7 +2543,6 @@
             }
         }
 
-        // Tải lượt truy cập chi tiết theo ngày
         async function loadDailyVisits() {
             try {
                 if (!database) {
@@ -2585,7 +2561,6 @@
                     return;
                 }
                 
-                // Nhóm lượt truy cập theo ngày
                 const visitsByDate = {};
                 Object.values(visits).forEach(visit => {
                     if (visit.timestamp) {
@@ -2595,7 +2570,6 @@
                     }
                 });
                 
-                // Sắp xếp theo ngày giảm dần
                 const sortedDates = Object.entries(visitsByDate)
                     .sort(([dateA], [dateB]) => {
                         const convertToDate = (dateStr) => {
@@ -2614,7 +2588,6 @@
                     return;
                 }
                 
-                // Tìm lượt truy cập cao nhất
                 const maxVisits = Math.max(...Object.values(visitsByDate));
                 
                 sortedDates.forEach(([date, count]) => {
@@ -2629,7 +2602,6 @@
             }
         }
 
-        // Lấy lượt truy cập hôm nay
         async function getTodayVisits() {
             try {
                 if (!database) {
@@ -2657,7 +2629,6 @@
             }
         }
 
-        // Tải lượt truy cập gần đây
         async function loadRecentVisits() {
             try {
                 if (!database) {
@@ -2676,7 +2647,6 @@
                     return;
                 }
                 
-                // Sắp xếp visits theo thời gian giảm dần
                 const sortedVisits = Object.entries(visits)
                     .sort(([,a], [,b]) => (b.timestamp || 0) - (a.timestamp || 0))
                     .slice(0, 10);
@@ -2693,7 +2663,6 @@
             }
         }
 
-        // Tạo item lượt truy cập
         function createVisitItem(visitData) {
             const visitItem = document.createElement('div');
             visitItem.className = 'visit-item';
@@ -2730,7 +2699,6 @@
             return visitItem;
         }
 
-        // Tạo item lượt truy cập theo ngày
         function createDailyVisitItem(date, count, maxVisits) {
             const dailyVisitItem = document.createElement('div');
             dailyVisitItem.className = 'daily-visit-item';
@@ -2750,7 +2718,8 @@
             return dailyVisitItem;
         }
 
-        // Cập nhật preview
+        // ==================== PREVIEW FUNCTIONS ====================
+
         function updatePreview() {
             if (imageUrlInput.value) {
                 previewIcon.src = imageUrlInput.value;
@@ -2762,7 +2731,6 @@
             previewDeveloper.textContent = appDeveloperInput.value || 'Nhà phát triển';
             previewVersion.textContent = appVersionInput.value || '1.0.0';
             
-            // Cập nhật mô tả dạng list
             const description = appDescriptionInput.value;
             const descriptionContainer = previewDescription;
             
@@ -2770,7 +2738,6 @@
                 const lines = description.split('\n').filter(line => line.trim());
                 let descriptionHTML = '';
                 
-                // Lấy 2 dòng đầu tiên cho preview
                 const previewLines = lines.slice(0, 2);
                 
                 previewLines.forEach(line => {
@@ -2820,7 +2787,6 @@
             updateVipPermissionsPreview();
         }
 
-        // Cập nhật tags trong preview
         function updatePreviewTags() {
             previewTags.innerHTML = '';
             
@@ -2833,7 +2799,6 @@
                 }
             });
             
-            // Nếu không có tag nào, thêm tag mặc định
             if (previewTags.children.length === 0) {
                 const defaultTag = document.createElement('span');
                 defaultTag.className = 'app-tag-preview';
@@ -2842,7 +2807,6 @@
             }
         }
 
-        // Lấy danh mục đã chọn
         function getSelectedCategories() {
             const selectedCategories = [];
             categoryCheckboxes.forEach(checkbox => {
@@ -2853,7 +2817,8 @@
             return selectedCategories;
         }
 
-        // Lấy ID chính xác từ Google Sheets sau khi upload
+        // ==================== APP UPLOAD FUNCTIONS ====================
+
         async function getAppIdAfterUpload(appData) {
             try {
                 console.log('🚀 Đang lấy ID chính xác...');
@@ -2894,7 +2859,6 @@
             }
         }
 
-        // Gửi thông báo đến Telegram với ảnh
         async function sendTelegramNotification(appData, appId) {
             try {
                 const appUrl = `${BASE_APP_URL}${appId}`;
@@ -2975,7 +2939,6 @@ Cài đặt ngay : ${appUrl}
             }
         }
 
-        // Gửi ảnh và tin nhắn riêng biệt
         async function sendSeparateImageAndMessage(appData, appId) {
             try {
                 const appUrl = `${BASE_APP_URL}${appId}`;
@@ -3035,11 +2998,11 @@ Cài đặt ngay : ${appUrl}
             }
         }
 
-        // Xử lý sự kiện submit form
+        // ==================== APP UPLOAD EVENT ====================
+
         uploadForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Validate VIP permissions
             if (!validateVipPermissions()) {
                 return;
             }
@@ -3069,7 +3032,7 @@ Cài đặt ngay : ${appUrl}
                     screenshot1: screenshot1Input.value || '',
                     screenshot2: screenshot2Input.value || '',
                     screenshot3: screenshot3Input.value || '',
-                    vipPermissions: getVipPermissionsString() // Thêm VIP permissions
+                    vipPermissions: getVipPermissionsString()
                 };
                 
                 console.log('📤 Dữ liệu gửi đi:', appData);
@@ -3111,12 +3074,10 @@ Cài đặt ngay : ${appUrl}
                     }
                     
                     uploadForm.reset();
-                    // Reset VIP permissions
                     selectedVipPermissions.clear();
                     document.querySelectorAll('.vip-permission-label').forEach(l => {
                         l.classList.remove('selected');
                     });
-                    // Mặc định chọn "Tất cả các gói"
                     selectedVipPermissions.add('all');
                     document.querySelector('[data-permission="all"]').classList.add('selected');
                     
@@ -3137,7 +3098,6 @@ Cài đặt ngay : ${appUrl}
             }
         });
 
-        // Hiển thị thông báo thành công (cũ - giữ lại cho tương thích)
         function showSuccess(message = 'Ứng dụng đã được upload!') {
             successMessage.querySelector('div div').textContent = message;
             successMessage.style.display = 'flex';
@@ -3148,7 +3108,6 @@ Cài đặt ngay : ${appUrl}
             }, 5000);
         }
 
-        // Hiển thị thông báo lỗi (cũ - giữ lại cho tương thích)
         function showError(message) {
             errorText.textContent = message;
             errorMessage.style.display = 'flex';
@@ -3159,7 +3118,8 @@ Cài đặt ngay : ${appUrl}
             }, 5000);
         }
 
-        // Làm mới analytics
+        // ==================== REFRESH BUTTONS ====================
+
         refreshAnalyticsBtn.addEventListener('click', function() {
             this.innerHTML = '<div class="loading"></div> Đang làm mới...';
             this.disabled = true;
@@ -3172,7 +3132,6 @@ Cài đặt ngay : ${appUrl}
             });
         });
 
-        // Làm mới daily visits
         refreshDailyVisitsBtn.addEventListener('click', function() {
             this.innerHTML = '<div class="loading"></div> Đang làm mới...';
             this.disabled = true;
@@ -3185,22 +3144,8 @@ Cài đặt ngay : ${appUrl}
             });
         });
 
-        // Thêm sự kiện cho các input để cập nhật preview
-        const inputs = [imageUrlInput, appNameInput, appDeveloperInput, appVersionInput, 
-                       appDescriptionInput, vipLink1Input, screenshot1Input, 
-                       screenshot2Input, screenshot3Input];
-        
-        inputs.forEach(input => {
-            input.addEventListener('input', updatePreview);
-        });
-        
-        categoryCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updatePreview);
-        });
+        // ==================== VIP UPGRADE FUNCTIONS - FIXED ====================
 
-        // ==================== VIP UPGRADE FUNCTIONALITY ====================
-
-        // Load VIP packages
         async function loadVIPPackages() {
             try {
                 console.log('🔄 Đang tải gói VIP...');
@@ -3219,22 +3164,20 @@ Cài đặt ngay : ${appUrl}
                     renderVIPPackages(result.data);
                 } else {
                     const defaultPackages = [
-                        { packageId: 1, packageName: '7 Ngày', durationDays: 7 },
-                        { packageId: 2, packageName: '1 Tháng', durationDays: 30 },
-                        { packageId: 3, packageName: '3 Tháng', durationDays: 90 },
-                        { packageId: 4, packageName: '6 Tháng', durationDays: 180 },
-                        { packageId: 5, packageName: '1 Năm', durationDays: 365 }
+                        { packageId: 1, packageName: '1 Tháng (Trial)', durationDays: 30 },
+                        { packageId: 2, packageName: '3 Tháng (Basic)', durationDays: 90 },
+                        { packageId: 3, packageName: '6 Tháng (Plus)', durationDays: 180 },
+                        { packageId: 4, packageName: '12 Tháng (Premium)', durationDays: 365 }
                     ];
                     renderVIPPackages(defaultPackages);
                 }
             } catch (error) {
                 console.error('❌ Lỗi khi tải gói VIP:', error);
                 const defaultPackages = [
-                    { packageId: 1, packageName: '7 Ngày', durationDays: 7 },
-                    { packageId: 2, packageName: '1 Tháng', durationDays: 30 },
-                    { packageId: 3, packageName: '3 Tháng', durationDays: 90 },
-                    { packageId: 4, packageName: '6 Tháng', durationDays: 180 },
-                    { packageId: 5, packageName: '1 Năm', durationDays: 365 }
+                    { packageId: 1, packageName: '1 Tháng (Trial)', durationDays: 30 },
+                    { packageId: 2, packageName: '3 Tháng (Basic)', durationDays: 90 },
+                    { packageId: 3, packageName: '6 Tháng (Plus)', durationDays: 180 },
+                    { packageId: 4, packageName: '12 Tháng (Premium)', durationDays: 365 }
                 ];
                 renderVIPPackages(defaultPackages);
                 showCustomAlert('error', 'Lỗi!', 
@@ -3243,33 +3186,57 @@ Cài đặt ngay : ${appUrl}
             }
         }
 
-        // Hiển thị gói VIP
         function renderVIPPackages(packages) {
             vipPackagesList.innerHTML = '';
             
             packages.forEach(pkg => {
                 const packageElement = document.createElement('div');
+                
+                // Hiển thị tên gói với loại package tương ứng - FIXED
+                let displayName = pkg.packageName;
+                let packageType = '';
+                
+                // Xác định packageType dựa trên số ngày - CHÍNH XÁC
+                if (pkg.durationDays === 30) {
+                    displayName = '1 Tháng (Trial)';
+                    packageType = 'trial';
+                } else if (pkg.durationDays === 90) {
+                    displayName = '3 Tháng (Basic)';
+                    packageType = 'basic';
+                } else if (pkg.durationDays === 180) {
+                    displayName = '6 Tháng (Plus)';
+                    packageType = 'plus';
+                } else if (pkg.durationDays === 365) {
+                    displayName = '12 Tháng (Premium)';
+                    packageType = 'premium';
+                } else {
+                    // Mặc định
+                    displayName = pkg.packageName;
+                    packageType = 'free';
+                }
+                
                 packageElement.innerHTML = `
-                    <input type="radio" id="package-${pkg.packageId}" name="vipPackage" class="category-radio" value="${pkg.durationDays}" required>
+                    <input type="radio" id="package-${pkg.packageId}" name="vipPackage" class="category-radio" 
+                           value="${pkg.durationDays}" 
+                           data-packagename="${displayName}"
+                           data-packagetype="${packageType}" required>
                     <label for="package-${pkg.packageId}" class="category-label">
                         <i class="fas fa-crown category-icon"></i>
-                        <span>${pkg.packageName}</span>
+                        <span>${displayName}</span>
                     </label>
                 `;
                 vipPackagesList.appendChild(packageElement);
             });
             
-            console.log(`✅ Đã tải ${packages.length} gói VIP`);
+            console.log(`✅ Đã tải ${packages.length} gói VIP với tên chính xác`);
         }
 
-        // Tạo gói VIP mặc định
-        async function createDefaultPackages() {
+        function createDefaultPackages() {
             showCustomAlert('info', 'Thông tin', 
                 'Vui lòng thêm thủ công các gói VIP vào sheet Package trong Google Sheets!', 
                 [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
         }
 
-        // Tìm kiếm người dùng theo email hoặc username
         async function searchUserByIdentifier(identifier) {
             try {
                 console.log(`🔍 Đang tìm kiếm người dùng với identifier: ${identifier}`);
@@ -3328,7 +3295,7 @@ Cài đặt ngay : ${appUrl}
             }
         });
 
-        // Display user information
+        // Display user information - FIXED
         function displayUserInfo(userData) {
             document.getElementById('previewUserName').textContent = userData.username || 'Không xác định';
             document.getElementById('previewUserEmail').textContent = userData.email || 'Không có email';
@@ -3339,25 +3306,37 @@ Cài đặt ngay : ${appUrl}
             const userTypeElement = document.getElementById('previewUserType');
             const userVIPElement = document.getElementById('previewUserVIP');
             
+            // Sử dụng packageType CHÍNH XÁC từ server
+            const packageType = userData.packageType || 'free';
+            const packageNames = {
+                'free': { name: 'Miễn phí', color: 'var(--text-secondary)' },
+                'trial': { name: 'Trial', color: 'var(--warning)' },
+                'basic': { name: 'Basic', color: 'var(--info)' },
+                'plus': { name: 'Plus', color: 'var(--primary)' },
+                'premium': { name: 'Premium', color: 'var(--warning)' }
+            };
+            
+            const currentPackage = packageNames[packageType] || packageNames.free;
+            
             if (userData.accountType === 'premium' && isVIPActive(userData.vipExpiry)) {
-                userTypeElement.textContent = `Loại: Premium (VIP đến ${userData.vipExpiry || 'Không xác định'})`;
-                userTypeElement.style.color = 'var(--warning)';
-                userVIPElement.textContent = `✅ Tài khoản Premium - VIP còn hiệu lực đến ${userData.vipExpiry || 'Không xác định'}`;
+                userTypeElement.textContent = `Loại: ${currentPackage.name} (VIP đến ${userData.vipExpiry || 'Không xác định'})`;
+                userTypeElement.style.color = currentPackage.color;
+                userVIPElement.textContent = `✅ Tài khoản ${currentPackage.name} - VIP còn hiệu lực đến ${userData.vipExpiry || 'Không xác định'}`;
                 userVIPElement.style.color = 'var(--success)';
             } else if (userData.accountType === 'premium') {
-                userTypeElement.textContent = 'Loại: Premium (VIP đã hết hạn)';
+                userTypeElement.textContent = `Loại: ${currentPackage.name} (VIP đã hết hạn)`;
                 userTypeElement.style.color = 'var(--danger)';
-                userVIPElement.textContent = '❌ Tài khoản Premium - VIP đã hết hạn';
+                userVIPElement.textContent = `❌ Tài khoản ${currentPackage.name} - VIP đã hết hạn`;
                 userVIPElement.style.color = 'var(--danger)';
             } else {
-                userTypeElement.textContent = 'Loại: Free';
-                userTypeElement.style.color = 'var(--text-secondary)';
-                userVIPElement.textContent = 'ℹ️ Tài khoản Miễn phí - Chưa có VIP';
+                userTypeElement.textContent = `Loại: ${currentPackage.name}`;
+                userTypeElement.style.color = currentPackage.color;
+                userVIPElement.textContent = `ℹ️ Tài khoản ${currentPackage.name} - Chưa có VIP`;
                 userVIPElement.style.color = 'var(--text-muted)';
             }
         }
 
-        // Upgrade form submission
+        // Upgrade form submission - FIXED
         upgradeForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -3378,11 +3357,14 @@ Cài đặt ngay : ${appUrl}
                 return;
             }
             
+            const durationDays = parseInt(selectedPackage.value);
+            const packageName = selectedPackage.getAttribute('data-packagename') || selectedPackage.value + ' ngày';
+            const packageType = selectedPackage.getAttribute('data-packagetype') || 'free';
+            
             upgradeSubmitBtn.innerHTML = '<div class="loading"></div> Đang nâng cấp...';
             upgradeSubmitBtn.disabled = true;
             
             try {
-                // Tìm email thực tế của người dùng
                 const searchResult = await searchUserByIdentifier(identifier);
                 
                 if (!searchResult.success || !searchResult.data) {
@@ -3400,7 +3382,10 @@ Cài đặt ngay : ${appUrl}
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({
                         action: 'upgradeUser',
-                        data: { email: userEmail, durationDays: selectedPackage.value }
+                        data: { 
+                            email: userEmail, 
+                            durationDays: durationDays 
+                        }
                     })
                 });
                 
@@ -3408,11 +3393,14 @@ Cài đặt ngay : ${appUrl}
                 
                 if (result.success) {
                     showCustomAlert('success', 'Thành công!', 
-                        result.message, 
+                        `✅ Đã nâng cấp tài khoản ${userEmail} lên:<br>
+                        📦 Gói: ${packageName}<br>
+                        ⏰ Thời gian: ${durationDays} ngày<br>
+                        🎯 Loại: ${packageType.toUpperCase()}<br>
+                        📅 Hết hạn: ${result.expiryDate || 'Không xác định'}`,
                         [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
                     upgradeForm.reset();
                     userPreviewSection.style.display = 'none';
-                    // Tự động tải lại thông tin người dùng
                     setTimeout(() => searchUserBtn.click(), 1000);
                 } else {
                     throw new Error(result.message);
@@ -3427,7 +3415,6 @@ Cài đặt ngay : ${appUrl}
             }
         });
 
-        // Utility functions for upgrade
         function isVIPActive(vipExpiry) {
             if (!vipExpiry) return false;
             const expiryDate = new Date(vipExpiry);
@@ -3435,9 +3422,8 @@ Cài đặt ngay : ${appUrl}
             return expiryDate >= today;
         }
 
-        // ==================== CODE MANAGEMENT FUNCTIONALITY ====================
+        // ==================== CODE MANAGEMENT FUNCTIONS ====================
 
-        // Create codes
         createCodesBtn.addEventListener('click', async function() {
             const codeType = document.querySelector('input[name="codeType"]:checked').value;
             const count = parseInt(document.getElementById('codeCount').value);
@@ -3468,7 +3454,6 @@ Cài đặt ngay : ${appUrl}
             }
         });
 
-        // Create discount codes
         async function createDiscountCodes() {
             const percent = parseInt(document.getElementById('discountPercent').value);
             const limit = parseInt(document.getElementById('discountLimit').value);
@@ -3504,7 +3489,6 @@ Cài đặt ngay : ${appUrl}
             }
         }
 
-        // Create activation codes
         async function createActivationCodes() {
             const packageType = document.getElementById('activationPackage').value;
             const count = parseInt(document.getElementById('codeCount').value);
@@ -3542,7 +3526,6 @@ Cài đặt ngay : ${appUrl}
             }
         }
 
-        // Display created codes
         function displayCreatedCodes(codes, type) {
             codesList.innerHTML = '';
             codes.forEach(code => {
@@ -3556,7 +3539,6 @@ Cài đặt ngay : ${appUrl}
             createdCodesResult.style.display = 'block';
         }
 
-        // Load discount codes
         async function loadDiscountCodes() {
             try {
                 discountCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Tính năng đang được phát triển...</div></div></div>';
@@ -3566,7 +3548,6 @@ Cài đặt ngay : ${appUrl}
             }
         }
 
-        // Load activation codes
         async function loadActivationCodes() {
             try {
                 activationCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Tính năng đang được phát triển...</div></div></div>';
@@ -3576,7 +3557,6 @@ Cài đặt ngay : ${appUrl}
             }
         }
 
-        // Refresh discount codes
         refreshDiscountCodesBtn.addEventListener('click', function() {
             this.innerHTML = '<div class="loading"></div>';
             loadDiscountCodes().finally(() => {
@@ -3586,7 +3566,6 @@ Cài đặt ngay : ${appUrl}
             });
         });
 
-        // Refresh activation codes
         refreshActivationCodesBtn.addEventListener('click', function() {
             this.innerHTML = '<div class="loading"></div>';
             loadActivationCodes().finally(() => {
@@ -3596,27 +3575,36 @@ Cài đặt ngay : ${appUrl}
             });
         });
 
-        // Khởi tạo khi trang được tải
+        // ==================== INITIALIZATION ====================
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize VIP permissions
             initializeVipPermissions();
-            
             updatePreview();
             loadAppStats();
             loadUserCount();
             
-            // Close custom alert when clicking outside
             customAlertOverlay.addEventListener('click', function(e) {
                 if (e.target === customAlertOverlay) {
                     customAlertOverlay.style.display = 'none';
                 }
             });
             
-            // Close custom alert with Escape key
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && customAlertOverlay.style.display === 'flex') {
                     customAlertOverlay.style.display = 'none';
                 }
+            });
+            
+            const inputs = [imageUrlInput, appNameInput, appDeveloperInput, appVersionInput, 
+                           appDescriptionInput, vipLink1Input, screenshot1Input, 
+                           screenshot2Input, screenshot3Input];
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', updatePreview);
+            });
+            
+            categoryCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updatePreview);
             });
         });
     </script>
