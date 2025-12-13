@@ -1082,13 +1082,6 @@
             border-radius: 5px;
         }
 
-        /* Search user form */
-        .search-user-form {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 8px;
-        }
-
         /* Style cho Custom Alert */
         .custom-alert-overlay {
             position: fixed;
@@ -1804,7 +1797,7 @@
                 </div>
             </div>
 
-            <!-- Upgrade Tab Content - FIXED -->
+            <!-- Upgrade Tab Content - GIỮ NGUYÊN -->
             <div class="tab-content" id="upgradeTab">
                 <!-- Messages -->
                 <div id="upgradeSuccessMessage" class="message message-success">
@@ -1832,22 +1825,15 @@
 
                     <form class="upgrade-form" id="upgradeForm">
                         <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-user"></i>
-                                Tìm người dùng (Email hoặc Tên đăng nhập)
+                            <label class="form-label" for="userEmail">
+                                <i class="fas fa-envelope"></i>
+                                Email người dùng cần nâng cấp
                             </label>
-                            <div class="form-row search-user-form">
-                                <div>
-                                    <input type="text" id="userIdentifier" class="form-input" placeholder="Nhập email hoặc username" required>
-                                    <div style="font-size: 9px; color: var(--text-muted); margin-top: 4px;">
-                                        Ví dụ: email@example.com hoặc tunglam123
-                                    </div>
-                                </div>
-                                <button type="button" class="submit-btn" id="searchUserBtn" style="padding: 8px 16px; font-size: 12px;">
-                                    <i class="fas fa-search"></i>
-                                    Tìm
-                                </button>
-                            </div>
+                            <input type="email" id="userEmail" class="form-input" placeholder="Nhập email của người dùng" required>
+                            <button type="button" class="submit-btn" id="searchUserBtn" style="margin-top: 8px; padding: 8px 16px; font-size: 12px;">
+                                <i class="fas fa-search"></i>
+                                Tìm người dùng
+                            </button>
                         </div>
 
                         <div class="form-group">
@@ -2030,7 +2016,7 @@
                             <div id="discountCodesList">
                                 <div class="code-item">
                                     <div class="code-info">
-                                        <div class="code-value">Tính năng đang phát triển...</div>
+                                        <div class="code-value">Đang tải dữ liệu...</div>
                                     </div>
                                 </div>
                             </div>
@@ -2054,7 +2040,7 @@
                             <div id="activationCodesList">
                                 <div class="code-item">
                                     <div class="code-info">
-                                        <div class="code-value">Tính năng đang phát triển...</div>
+                                        <div class="code-value">Đang tải dữ liệu...</div>
                                     </div>
                                 </div>
                             </div>
@@ -2075,7 +2061,7 @@
     </footer>
 
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw721PW4Nwx8mO5iltptcQ440sJNQjEuueH1BylIsLgFUOdQqamrthO6_cXQs354uNUPQ/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxsKi6YlXv2oGhrFvnjhZwDVqebT8PlLV3DZqbWibkX62H6AGQKbOC8itaywZvj82Py/exec';
         const TELEGRAM_BOT_TOKEN = '8255020775:AAH7Z777Pl9F5E0N-E_hCkb_mjPU1LCAdoE';
         const TELEGRAM_CHAT_ID = '@xspace_ipa';
         const BASE_APP_URL = 'https://modos.site/app-detail.html?id=';
@@ -2167,9 +2153,9 @@
         const totalVisitsElement = document.getElementById('totalVisits');
         const todayVisitsElement = document.getElementById('todayVisits');
 
-        // Upgrade Elements - FIXED
+        // Upgrade Elements - GIỮ NGUYÊN
         const upgradeForm = document.getElementById('upgradeForm');
-        const userIdentifierInput = document.getElementById('userIdentifier');
+        const userEmailInput = document.getElementById('userEmail');
         const vipPackagesList = document.getElementById('vipPackagesList');
         const upgradeSubmitBtn = document.getElementById('upgradeSubmitBtn');
         const searchUserBtn = document.getElementById('searchUserBtn');
@@ -2215,14 +2201,6 @@
             'education': 'Giáo dục',
             'health': 'Sức khỏe',
             'utility': 'Tiện ích'
-        };
-
-        // Package mapping chính xác
-        const PACKAGE_MAPPING = {
-            30: { name: 'Trial', color: 'var(--warning)' },
-            90: { name: 'Basic', color: 'var(--info)' },
-            180: { name: 'Plus', color: 'var(--primary)' },
-            365: { name: 'Premium', color: 'var(--warning)' }
         };
 
         // ==================== CUSTOM ALERT SYSTEM ====================
@@ -3098,26 +3076,6 @@ Cài đặt ngay : ${appUrl}
             }
         });
 
-        function showSuccess(message = 'Ứng dụng đã được upload!') {
-            successMessage.querySelector('div div').textContent = message;
-            successMessage.style.display = 'flex';
-            errorMessage.style.display = 'none';
-            
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 5000);
-        }
-
-        function showError(message) {
-            errorText.textContent = message;
-            errorMessage.style.display = 'flex';
-            successMessage.style.display = 'none';
-            
-            setTimeout(() => {
-                errorMessage.style.display = 'none';
-            }, 5000);
-        }
-
         // ==================== REFRESH BUTTONS ====================
 
         refreshAnalyticsBtn.addEventListener('click', function() {
@@ -3144,8 +3102,9 @@ Cài đặt ngay : ${appUrl}
             });
         });
 
-        // ==================== VIP UPGRADE FUNCTIONS - FIXED ====================
+        // ==================== VIP UPGRADE FUNCTIONS - GIỮ NGUYÊN ====================
 
+        // Load VIP packages - GIỮ NGUYÊN
         async function loadVIPPackages() {
             try {
                 console.log('🔄 Đang tải gói VIP...');
@@ -3164,111 +3123,59 @@ Cài đặt ngay : ${appUrl}
                     renderVIPPackages(result.data);
                 } else {
                     const defaultPackages = [
-                        { packageId: 1, packageName: '1 Tháng (Trial)', durationDays: 30 },
-                        { packageId: 2, packageName: '3 Tháng (Basic)', durationDays: 90 },
-                        { packageId: 3, packageName: '6 Tháng (Plus)', durationDays: 180 },
-                        { packageId: 4, packageName: '12 Tháng (Premium)', durationDays: 365 }
+                        { packageId: 1, packageName: '7 Ngày', durationDays: 7 },
+                        { packageId: 2, packageName: '1 Tháng', durationDays: 30 },
+                        { packageId: 3, packageName: '3 Tháng', durationDays: 90 }
                     ];
                     renderVIPPackages(defaultPackages);
                 }
             } catch (error) {
                 console.error('❌ Lỗi khi tải gói VIP:', error);
                 const defaultPackages = [
-                    { packageId: 1, packageName: '1 Tháng (Trial)', durationDays: 30 },
-                    { packageId: 2, packageName: '3 Tháng (Basic)', durationDays: 90 },
-                    { packageId: 3, packageName: '6 Tháng (Plus)', durationDays: 180 },
-                    { packageId: 4, packageName: '12 Tháng (Premium)', durationDays: 365 }
+                    { packageId: 1, packageName: '7 Ngày', durationDays: 7 },
+                    { packageId: 2, packageName: '1 Tháng', durationDays: 30 },
+                    { packageId: 3, packageName: '3 Tháng', durationDays: 90 }
                 ];
                 renderVIPPackages(defaultPackages);
-                showCustomAlert('error', 'Lỗi!', 
-                    'Không thể tải gói VIP từ server. Đang sử dụng gói mặc định.', 
-                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                showUpgradeError('Không thể tải gói VIP từ server. Đang sử dụng gói mặc định.');
             }
         }
 
+        // Hiển thị gói VIP - GIỮ NGUYÊN
         function renderVIPPackages(packages) {
             vipPackagesList.innerHTML = '';
             
             packages.forEach(pkg => {
                 const packageElement = document.createElement('div');
-                
-                // Hiển thị tên gói với loại package tương ứng - FIXED
-                let displayName = pkg.packageName;
-                let packageType = '';
-                
-                // Xác định packageType dựa trên số ngày - CHÍNH XÁC
-                if (pkg.durationDays === 30) {
-                    displayName = '1 Tháng (Trial)';
-                    packageType = 'trial';
-                } else if (pkg.durationDays === 90) {
-                    displayName = '3 Tháng (Basic)';
-                    packageType = 'basic';
-                } else if (pkg.durationDays === 180) {
-                    displayName = '6 Tháng (Plus)';
-                    packageType = 'plus';
-                } else if (pkg.durationDays === 365) {
-                    displayName = '12 Tháng (Premium)';
-                    packageType = 'premium';
-                } else {
-                    // Mặc định
-                    displayName = pkg.packageName;
-                    packageType = 'free';
-                }
-                
                 packageElement.innerHTML = `
-                    <input type="radio" id="package-${pkg.packageId}" name="vipPackage" class="category-radio" 
-                           value="${pkg.durationDays}" 
-                           data-packagename="${displayName}"
-                           data-packagetype="${packageType}" required>
+                    <input type="radio" id="package-${pkg.packageId}" name="vipPackage" class="category-radio" value="${pkg.durationDays}" required>
                     <label for="package-${pkg.packageId}" class="category-label">
                         <i class="fas fa-crown category-icon"></i>
-                        <span>${displayName}</span>
+                        <span>${pkg.packageName}</span>
                     </label>
                 `;
                 vipPackagesList.appendChild(packageElement);
             });
             
-            console.log(`✅ Đã tải ${packages.length} gói VIP với tên chính xác`);
+            console.log(`✅ Đã tải ${packages.length} gói VIP`);
         }
 
+        // Tạo gói VIP mặc định - GIỮ NGUYÊN
         function createDefaultPackages() {
-            showCustomAlert('info', 'Thông tin', 
-                'Vui lòng thêm thủ công các gói VIP vào sheet Package trong Google Sheets!', 
-                [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+            showUpgradeSuccess('Vui lòng thêm thủ công các gói VIP vào sheet Package trong Google Sheets!');
         }
 
-        async function searchUserByIdentifier(identifier) {
-            try {
-                console.log(`🔍 Đang tìm kiếm người dùng với identifier: ${identifier}`);
-                
-                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getUserByEmail&email=${encodeURIComponent(identifier)}`);
-                const result = await response.json();
-                
-                if (result.success) {
-                    return result;
-                } else {
-                    return {
-                        success: false,
-                        message: 'Không tìm thấy người dùng với email hoặc username này'
-                    };
-                }
-            } catch (error) {
-                console.error('Lỗi khi tìm kiếm người dùng:', error);
-                return {
-                    success: false,
-                    message: 'Lỗi khi tìm kiếm người dùng: ' + error.message
-                };
-            }
-        }
-
-        // Search user by email or username
+        // Search user by email - GIỮ NGUYÊN
         searchUserBtn.addEventListener('click', async function() {
-            const identifier = userIdentifierInput.value.trim();
+            const email = userEmailInput.value.trim();
             
-            if (!identifier) {
-                showCustomAlert('warning', 'Thiếu thông tin', 
-                    'Vui lòng nhập email hoặc username', 
-                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+            if (!email) {
+                showUpgradeError('Vui lòng nhập email');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                showUpgradeError('Email không hợp lệ');
                 return;
             }
             
@@ -3276,7 +3183,8 @@ Cài đặt ngay : ${appUrl}
             searchUserBtn.disabled = true;
             
             try {
-                const result = await searchUserByIdentifier(identifier);
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getUserByEmail&email=${encodeURIComponent(email)}`);
+                const result = await response.json();
                 
                 if (result.success) {
                     displayUserInfo(result.data);
@@ -3285,141 +3193,113 @@ Cài đặt ngay : ${appUrl}
                     throw new Error(result.message || 'Không tìm thấy người dùng');
                 }
             } catch (error) {
-                showCustomAlert('error', 'Lỗi!', 
-                    error.message, 
-                    [{ text: 'Thử lại', type: 'primary', icon: 'fas fa-redo' }]);
+                showUpgradeError(error.message);
                 userPreviewSection.style.display = 'none';
             } finally {
-                searchUserBtn.innerHTML = '<i class="fas fa-search"></i> Tìm';
+                searchUserBtn.innerHTML = '<i class="fas fa-search"></i> Tìm người dùng';
                 searchUserBtn.disabled = false;
             }
         });
 
-        // Display user information - FIXED
+        // Display user information - GIỮ NGUYÊN
         function displayUserInfo(userData) {
-            document.getElementById('previewUserName').textContent = userData.username || 'Không xác định';
-            document.getElementById('previewUserEmail').textContent = userData.email || 'Không có email';
+            document.getElementById('previewUserName').textContent = userData.username;
+            document.getElementById('previewUserEmail').textContent = userData.email;
             
-            const firstLetter = (userData.username || userData.email || 'U').charAt(0).toUpperCase();
+            const firstLetter = userData.username.charAt(0).toUpperCase();
             document.getElementById('userAvatar').textContent = firstLetter;
             
             const userTypeElement = document.getElementById('previewUserType');
             const userVIPElement = document.getElementById('previewUserVIP');
             
-            // Sử dụng packageType CHÍNH XÁC từ server
-            const packageType = userData.packageType || 'free';
-            const packageNames = {
-                'free': { name: 'Miễn phí', color: 'var(--text-secondary)' },
-                'trial': { name: 'Trial', color: 'var(--warning)' },
-                'basic': { name: 'Basic', color: 'var(--info)' },
-                'plus': { name: 'Plus', color: 'var(--primary)' },
-                'premium': { name: 'Premium', color: 'var(--warning)' }
-            };
-            
-            const currentPackage = packageNames[packageType] || packageNames.free;
-            
             if (userData.accountType === 'premium' && isVIPActive(userData.vipExpiry)) {
-                userTypeElement.textContent = `Loại: ${currentPackage.name} (VIP đến ${userData.vipExpiry || 'Không xác định'})`;
-                userTypeElement.style.color = currentPackage.color;
-                userVIPElement.textContent = `✅ Tài khoản ${currentPackage.name} - VIP còn hiệu lực đến ${userData.vipExpiry || 'Không xác định'}`;
+                userTypeElement.textContent = `Loại: Premium (VIP đến ${userData.vipExpiry})`;
+                userTypeElement.style.color = 'var(--warning)';
+                userVIPElement.textContent = `✅ Tài khoản Premium - VIP còn hiệu lực đến ${userData.vipExpiry}`;
                 userVIPElement.style.color = 'var(--success)';
-            } else if (userData.accountType === 'premium') {
-                userTypeElement.textContent = `Loại: ${currentPackage.name} (VIP đã hết hạn)`;
-                userTypeElement.style.color = 'var(--danger)';
-                userVIPElement.textContent = `❌ Tài khoản ${currentPackage.name} - VIP đã hết hạn`;
-                userVIPElement.style.color = 'var(--danger)';
             } else {
-                userTypeElement.textContent = `Loại: ${currentPackage.name}`;
-                userTypeElement.style.color = currentPackage.color;
-                userVIPElement.textContent = `ℹ️ Tài khoản ${currentPackage.name} - Chưa có VIP`;
+                userTypeElement.textContent = 'Loại: Free';
+                userTypeElement.style.color = 'var(--text-secondary)';
+                userVIPElement.textContent = 'ℹ️ Tài khoản Miễn phí - Chưa có VIP';
                 userVIPElement.style.color = 'var(--text-muted)';
             }
         }
 
-        // Upgrade form submission - FIXED
+        // Upgrade form submission - GIỮ NGUYÊN
         upgradeForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const identifier = userIdentifierInput.value.trim();
+            const email = userEmailInput.value.trim();
             const selectedPackage = document.querySelector('input[name="vipPackage"]:checked');
             
-            if (!identifier) {
-                showCustomAlert('warning', 'Thiếu thông tin', 
-                    'Vui lòng nhập email hoặc username', 
-                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+            if (!email) {
+                showUpgradeError('Vui lòng nhập email');
                 return;
             }
             
             if (!selectedPackage) {
-                showCustomAlert('warning', 'Thiếu thông tin', 
-                    'Vui lòng chọn gói thời gian', 
-                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                showUpgradeError('Vui lòng chọn gói thời gian');
                 return;
             }
-            
-            const durationDays = parseInt(selectedPackage.value);
-            const packageName = selectedPackage.getAttribute('data-packagename') || selectedPackage.value + ' ngày';
-            const packageType = selectedPackage.getAttribute('data-packagetype') || 'free';
             
             upgradeSubmitBtn.innerHTML = '<div class="loading"></div> Đang nâng cấp...';
             upgradeSubmitBtn.disabled = true;
             
             try {
-                const searchResult = await searchUserByIdentifier(identifier);
-                
-                if (!searchResult.success || !searchResult.data) {
-                    throw new Error('Không tìm thấy người dùng để nâng cấp');
-                }
-                
-                const userEmail = searchResult.data.email;
-                
-                if (!userEmail) {
-                    throw new Error('Người dùng không có email để nâng cấp');
-                }
-                
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({
                         action: 'upgradeUser',
-                        data: { 
-                            email: userEmail, 
-                            durationDays: durationDays 
-                        }
+                        data: { email: email, durationDays: selectedPackage.value }
                     })
                 });
                 
                 const result = await response.json();
                 
                 if (result.success) {
-                    showCustomAlert('success', 'Thành công!', 
-                        `✅ Đã nâng cấp tài khoản ${userEmail} lên:<br>
-                        📦 Gói: ${packageName}<br>
-                        ⏰ Thời gian: ${durationDays} ngày<br>
-                        🎯 Loại: ${packageType.toUpperCase()}<br>
-                        📅 Hết hạn: ${result.expiryDate || 'Không xác định'}`,
-                        [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                    showUpgradeSuccess(result.message);
                     upgradeForm.reset();
                     userPreviewSection.style.display = 'none';
-                    setTimeout(() => searchUserBtn.click(), 1000);
+                    if (userEmailInput.value === email) {
+                        setTimeout(() => searchUserBtn.click(), 1000);
+                    }
                 } else {
                     throw new Error(result.message);
                 }
             } catch (error) {
-                showCustomAlert('error', 'Lỗi!', 
-                    error.message, 
-                    [{ text: 'Thử lại', type: 'primary', icon: 'fas fa-redo' }]);
+                showUpgradeError(error.message);
             } finally {
                 upgradeSubmitBtn.innerHTML = '<i class="fas fa-crown"></i> Nâng cấp VIP';
                 upgradeSubmitBtn.disabled = false;
             }
         });
 
+        // Utility functions for upgrade - GIỮ NGUYÊN
+        function showUpgradeSuccess(message) {
+            upgradeSuccessText.textContent = message;
+            upgradeSuccessMessage.style.display = 'flex';
+            upgradeErrorMessage.style.display = 'none';
+            setTimeout(() => upgradeSuccessMessage.style.display = 'none', 5000);
+        }
+
+        function showUpgradeError(message) {
+            upgradeErrorText.textContent = message;
+            upgradeErrorMessage.style.display = 'flex';
+            upgradeSuccessMessage.style.display = 'none';
+            setTimeout(() => upgradeErrorMessage.style.display = 'none', 5000);
+        }
+
         function isVIPActive(vipExpiry) {
             if (!vipExpiry) return false;
             const expiryDate = new Date(vipExpiry);
             const today = new Date();
             return expiryDate >= today;
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
         }
 
         // ==================== CODE MANAGEMENT FUNCTIONS ====================
@@ -3541,7 +3421,7 @@ Cài đặt ngay : ${appUrl}
 
         async function loadDiscountCodes() {
             try {
-                discountCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Tính năng đang được phát triển...</div></div></div>';
+                discountCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Đang tải dữ liệu...</div></div></div>';
             } catch (error) {
                 console.error('Error loading discount codes:', error);
                 discountCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Lỗi khi tải dữ liệu</div></div></div>';
@@ -3550,7 +3430,7 @@ Cài đặt ngay : ${appUrl}
 
         async function loadActivationCodes() {
             try {
-                activationCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Tính năng đang được phát triển...</div></div></div>';
+                activationCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Đang tải dữ liệu...</div></div></div>';
             } catch (error) {
                 console.error('Error loading activation codes:', error);
                 activationCodesList.innerHTML = '<div class="code-item"><div class="code-info"><div class="code-value">Lỗi khi tải dữ liệu</div></div></div>';
