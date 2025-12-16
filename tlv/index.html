@@ -2153,7 +2153,7 @@
         const totalVisitsElement = document.getElementById('totalVisits');
         const todayVisitsElement = document.getElementById('todayVisits');
 
-        // Upgrade Elements - GIỮ NGUYÊN
+        // Upgrade Elements
         const upgradeForm = document.getElementById('upgradeForm');
         const userEmailInput = document.getElementById('userEmail');
         const vipPackagesList = document.getElementById('vipPackagesList');
@@ -2795,6 +2795,281 @@
             return selectedCategories;
         }
 
+        // ==================== TELEGRAM FIXED FUNCTIONS ====================
+
+        /**
+         * Gửi thông báo đến Telegram - ĐÃ FIX HOÀN TOÀN
+         * 1. Ảnh và nội dung trong cùng một tin nhắn
+         * 2. Không mất mô tả ứng dụng
+         * 3. Có retry và fallback
+         * 4. Sử dụng dấu "•" thay vì "+"
+         */
+        async function sendTelegramNotification(appData, appId) {
+            console.log('📤 Bắt đầu gửi thông báo Telegram...');
+            
+            const maxRetries = 3;
+            
+            for (let attempt = 1; attempt <= maxRetries; attempt++) {
+                try {
+                    console.log(`🔄 Lần thử ${attempt}/${maxRetries}...`);
+                    
+                    // Thử phương pháp chính: gửi ảnh với caption đầy đủ
+                    const success = await sendPhotoWithCompleteCaption(appData, appId);
+                    
+                    if (success) {
+                        console.log(`✅ Thông báo Telegram thành công sau ${attempt} lần thử!`);
+                        return true;
+                    }
+                    
+                    if (attempt < maxRetries) {
+                        console.log(`⏳ Chờ 2 giây trước khi thử lại...`);
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                    }
+                    
+                } catch (error) {
+                    console.error(`❌ Lỗi lần thử ${attempt}:`, error.message);
+                    
+                    if (attempt < maxRetries) {
+                        console.log(`⏳ Chờ 2 giây trước khi thử lại...`);
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                    }
+                }
+            }
+            
+            // Nếu không thành công sau 3 lần, thử phương pháp fallback
+            console.log('🔄 Thử phương pháp fallback...');
+            return await sendFallbackTelegramMessage(appData, appId);
+        }
+
+        /**
+         * PHƯƠNG PHÁP CHÍNH: Gửi ảnh với caption đầy đủ
+         * Đảm bảo ảnh và nội dung trong cùng một tin nhắn
+         */
+        async function sendPhotoWithCompleteCaption(appData, appId) {
+            const appUrl = `${BASE_APP_URL}${appId}`;
+            
+            // Xử lý version
+            let version = appData.version;
+            if (version && version.startsWith("'")) {
+                version = version.substring(1);
+            }
+            
+            // Tạo caption với định dạng đúng
+            const caption = formatTelegramMessage(appData.name, version, appData.description, appUrl);
+            
+            console.log('📝 Độ dài caption:', caption.length);
+            console.log('📝 Caption preview:', caption.substring(0, 100) + '...');
+            
+            // Kiểm tra độ dài caption (Telegram limit: 1024 ký tự cho caption)
+            if (caption.length > 1024) {
+                console.warn('⚠️ Caption quá dài, cắt bớt mô tả...');
+                // Tạo caption ngắn hơn bằng cách cắt bớt mô tả
+                const shortCaption = formatTelegramMessageShort(appData.name, version, appData.description, appUrl);
+                return await sendTelegramPhoto(appData.image, shortCaption);
+            }
+            
+            return await sendTelegramPhoto(appData.image, caption);
+        }
+
+        /**
+         * Format tin nhắn Telegram với blockquote và dấu "•"
+         */
+        function formatTelegramMessage(appName, version, description, appUrl) {
+            // Escape HTML entities
+            const escapedName = escapeHtml(appName);
+            const escapedVersion = escapeHtml(version);
+            
+            // Format description thành blockquote với dấu "•"
+            let formattedDescription = '';
+            if (description && description.trim()) {
+                // Escape và giữ nguyên các dòng
+                const escapedDesc = escapeHtml(description);
+                const lines = escapedDesc.split('\n').map(line => line.trim()).filter(line => line);
+                // THÊM DẤU "•" VÀO ĐẦU MỖI DÒNG
+                const linesWithBullet = lines.map(line => `• ${line}`);
+                formattedDescription = `<blockquote>${linesWithBullet.join('\n')}</blockquote>`;
+            } else {
+                formattedDescription = '<blockquote>Không có mô tả</blockquote>';
+            }
+            
+            // Tạo caption với định dạng HTML
+            return `Ứng dụng : ${escapedName}
+
+Phiên bản : ${escapedVersion}
+
+Chức năng :
+${formattedDescription}
+
+Cài đặt ngay : ${appUrl}`;
+        }
+
+        /**
+         * Format tin nhắn ngắn (cho caption quá dài) với dấu "•"
+         */
+        function formatTelegramMessageShort(appName, version, description, appUrl) {
+            const escapedName = escapeHtml(appName);
+            const escapedVersion = escapeHtml(version);
+            
+            // Lấy 3 dòng đầu của description và thêm dấu "•"
+            let shortDesc = '';
+            if (description && description.trim()) {
+                const escapedDesc = escapeHtml(description);
+                const lines = escapedDesc.split('\n').map(line => line.trim()).filter(line => line);
+                if (lines.length > 0) {
+                    // THÊM DẤU "•" VÀO ĐẦU MỖI DÒNG
+                    const linesWithBullet = lines.slice(0, 3).map(line => `• ${line}`);
+                    shortDesc = linesWithBullet.join('\n');
+                    if (lines.length > 3) {
+                        shortDesc += '\n• ...';
+                    }
+                }
+            }
+            
+            const formattedDescription = shortDesc ? `<blockquote>${shortDesc}</blockquote>` : '<blockquote>Không có mô tả</blockquote>';
+            
+            return `Ứng dụng : ${escapedName}
+
+Phiên bản : ${escapedVersion}
+
+Chức năng :
+${formattedDescription}
+
+Cài đặt ngay : ${appUrl}`;
+        }
+
+        /**
+         * Gửi ảnh đến Telegram với caption
+         */
+        async function sendTelegramPhoto(photoUrl, caption) {
+            const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
+            
+            try {
+                const response = await fetch(telegramUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        photo: photoUrl,
+                        caption: caption,
+                        parse_mode: 'HTML',
+                        disable_web_page_preview: false
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.ok) {
+                    console.log('✅ Telegram response OK');
+                    return true;
+                } else {
+                    console.error('❌ Telegram API error:', result);
+                    return false;
+                }
+            } catch (error) {
+                console.error('💥 Lỗi khi gửi đến Telegram:', error);
+                return false;
+            }
+        }
+
+        /**
+         * PHƯƠNG PHÁP FALLBACK: Gửi riêng ảnh và tin nhắn
+         */
+        async function sendFallbackTelegramMessage(appData, appId) {
+            try {
+                console.log('🔄 Đang sử dụng phương pháp fallback...');
+                
+                const appUrl = `${BASE_APP_URL}${appId}`;
+                let version = appData.version;
+                if (version && version.startsWith("'")) {
+                    version = version.substring(1);
+                }
+                
+                // Bước 1: Gửi ảnh
+                const photoSent = await sendTelegramPhotoOnly(appData.image);
+                
+                // Chờ 1 giây
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Bước 2: Gửi tin nhắn text với đầy đủ thông tin
+                const textMessage = formatTelegramMessage(appData.name, version, appData.description, appUrl);
+                const textSent = await sendTelegramText(textMessage);
+                
+                return photoSent && textSent;
+                
+            } catch (error) {
+                console.error('💥 Lỗi trong fallback method:', error);
+                return false;
+            }
+        }
+
+        /**
+         * Chỉ gửi ảnh (không caption)
+         */
+        async function sendTelegramPhotoOnly(photoUrl) {
+            const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
+            
+            try {
+                const response = await fetch(telegramUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        photo: photoUrl
+                    })
+                });
+                
+                const result = await response.json();
+                return result.ok;
+            } catch (error) {
+                console.error('Lỗi khi gửi ảnh:', error);
+                return false;
+            }
+        }
+
+        /**
+         * Chỉ gửi text
+         */
+        async function sendTelegramText(message) {
+            const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(telegramUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'HTML',
+                        disable_web_page_preview: false
+                    })
+                });
+                
+                const result = await response.json();
+                return result.ok;
+            } catch (error) {
+                console.error('Lỗi khi gửi tin nhắn text:', error);
+                return false;
+            }
+        }
+
+        /**
+         * Escape HTML cho Telegram parse_mode HTML
+         */
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
         // ==================== APP UPLOAD FUNCTIONS ====================
 
         async function getAppIdAfterUpload(appData) {
@@ -2837,145 +3112,6 @@
             }
         }
 
-        async function sendTelegramNotification(appData, appId) {
-            try {
-                const appUrl = `${BASE_APP_URL}${appId}`;
-                
-                let version = appData.version;
-                if (version && version.startsWith("'")) {
-                    version = version.substring(1);
-                }
-                
-                const formattedDescription = appData.description
-                    .split('\n')
-                    .filter(line => line.trim())
-                    .map(line => `+ ${line.trim()}`)
-                    .join('\n');
-
-                const message = `
-Ứng dụng : ${appData.name}
-
-Phiên bản : ${version}
-
-Chức năng : 
-${formattedDescription}
-
-Cài đặt ngay : ${appUrl}
-                `.trim();
-
-                console.log('📤 Đang gửi thông báo Telegram...');
-                
-                const photoUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
-                
-                const response = await fetch(photoUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        photo: appData.image,
-                        caption: message,
-                        parse_mode: 'Markdown'
-                    })
-                });
-
-                const result = await response.json();
-                
-                if (result.ok) {
-                    console.log('✅ Thông báo Telegram thành công!');
-                    return true;
-                } else {
-                    console.error('❌ Lỗi khi gửi ảnh Telegram:', result);
-                    
-                    const retryResponse = await fetch(photoUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            chat_id: TELEGRAM_CHAT_ID,
-                            photo: appData.image,
-                            caption: message,
-                            parse_mode: 'Markdown'
-                        })
-                    });
-                    
-                    const retryResult = await retryResponse.json();
-                    if (retryResult.ok) {
-                        console.log('✅ Thông báo Telegram thành công sau lần thử 2!');
-                        return true;
-                    }
-                    
-                    await sendSeparateImageAndMessage(appData, appId);
-                    return true;
-                }
-            } catch (error) {
-                console.error('💥 Lỗi kết nối Telegram:', error);
-                await sendSeparateImageAndMessage(appData, appId);
-                return true;
-            }
-        }
-
-        async function sendSeparateImageAndMessage(appData, appId) {
-            try {
-                const appUrl = `${BASE_APP_URL}${appId}`;
-                
-                let version = appData.version;
-                if (version && version.startsWith("'")) {
-                    version = version.substring(1);
-                }
-                
-                const formattedDescription = appData.description
-                    .split('\n')
-                    .filter(line => line.trim())
-                    .map(line => `+ ${line.trim()}`)
-                    .join('\n');
-
-                const message = `
-Ứng dụng : ${appData.name}
-Phiên bản : ${version}
-
-
-Chức năng : 
-${formattedDescription}
-
-Cài đặt ngay : ${appUrl}
-                `.trim();
-
-                const photoUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
-                await fetch(photoUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        photo: appData.image
-                    })
-                });
-
-                const textUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-                await fetch(textUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        text: message,
-                        parse_mode: 'Markdown'
-                    })
-                });
-
-                console.log('✅ Đã gửi ảnh và tin nhắn riêng biệt!');
-                return true;
-            } catch (error) {
-                console.error('❌ Lỗi khi gửi ảnh và tin nhắn riêng:', error);
-                return false;
-            }
-        }
-
         // ==================== APP UPLOAD EVENT ====================
 
         uploadForm.addEventListener('submit', async function(e) {
@@ -3015,6 +3151,7 @@ Cài đặt ngay : ${appUrl}
                 
                 console.log('📤 Dữ liệu gửi đi:', appData);
                 
+                // Bước 1: Upload lên Google Sheets
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     headers: {
@@ -3029,28 +3166,41 @@ Cài đặt ngay : ${appUrl}
                 const result = await response.json();
                 
                 if (result.success) {
+                    console.log('✅ Upload Google Sheets thành công');
+                    
+                    // Bước 2: Lấy ID app
                     submitBtn.innerHTML = '<div class="loading"></div> Đang lấy ID...';
                     const actualAppId = await getAppIdAfterUpload(appData);
                     
                     if (actualAppId) {
-                        submitBtn.innerHTML = '<div class="loading"></div> Đang gửi Telegram...';
-                        const telegramSent = await sendTelegramNotification(appData, actualAppId);
+                        // Bước 3: Gửi Telegram (ASYNC - không block)
+                        submitBtn.innerHTML = '<div class="loading"></div> Đang gửi thông báo...';
                         
-                        if (telegramSent) {
-                            showCustomAlert('success', 'Thành công!', 
-                                `✅ Ứng dụng đã được upload!<br>ID: ${actualAppId}<br>Gói được phép: ${result.vipPermissions || 'all'}<br>Thông báo đã gửi đến Telegram!`, 
-                                [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
-                        } else {
-                            showCustomAlert('success', 'Thành công!', 
-                                `✅ Ứng dụng đã được upload!<br>ID: ${actualAppId}<br>Gói được phép: ${result.vipPermissions || 'all'}<br>(Lỗi khi gửi thông báo Telegram)`, 
-                                [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
-                        }
+                        // Gửi Telegram async
+                        sendTelegramNotification(appData, actualAppId)
+                            .then(telegramSent => {
+                                if (telegramSent) {
+                                    console.log('✅ Thông báo Telegram đã được gửi thành công');
+                                } else {
+                                    console.warn('⚠️ Không thể gửi thông báo Telegram');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('💥 Lỗi khi gửi Telegram:', error);
+                            });
+                        
+                        // Hiển thị thành công ngay lập tức
+                        showCustomAlert('success', 'Thành công!', 
+                            `✅ Ứng dụng đã được upload!<br>ID: ${actualAppId}<br>Gói được phép: ${result.vipPermissions || 'all'}<br>Thông báo đang được gửi đến Telegram...`, 
+                            [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                        
                     } else {
                         showCustomAlert('success', 'Thành công!', 
-                            '✅ Ứng dụng đã được upload!<br>(Không thể lấy ID để gửi Telegram)', 
+                            '✅ Ứng dụng đã được upload!<br>(Đang gửi thông báo Telegram...)', 
                             [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
                     }
                     
+                    // Reset form
                     uploadForm.reset();
                     selectedVipPermissions.clear();
                     document.querySelectorAll('.vip-permission-label').forEach(l => {
@@ -3102,9 +3252,8 @@ Cài đặt ngay : ${appUrl}
             });
         });
 
-        // ==================== VIP UPGRADE FUNCTIONS - GIỮ NGUYÊN ====================
+        // ==================== VIP UPGRADE FUNCTIONS ====================
 
-        // Load VIP packages - GIỮ NGUYÊN
         async function loadVIPPackages() {
             try {
                 console.log('🔄 Đang tải gói VIP...');
@@ -3141,7 +3290,6 @@ Cài đặt ngay : ${appUrl}
             }
         }
 
-        // Hiển thị gói VIP - GIỮ NGUYÊN
         function renderVIPPackages(packages) {
             vipPackagesList.innerHTML = '';
             
@@ -3160,12 +3308,10 @@ Cài đặt ngay : ${appUrl}
             console.log(`✅ Đã tải ${packages.length} gói VIP`);
         }
 
-        // Tạo gói VIP mặc định - GIỮ NGUYÊN
         function createDefaultPackages() {
             showUpgradeSuccess('Vui lòng thêm thủ công các gói VIP vào sheet Package trong Google Sheets!');
         }
 
-        // Search user by email - GIỮ NGUYÊN
         searchUserBtn.addEventListener('click', async function() {
             const email = userEmailInput.value.trim();
             
@@ -3201,7 +3347,6 @@ Cài đặt ngay : ${appUrl}
             }
         });
 
-        // Display user information - GIỮ NGUYÊN
         function displayUserInfo(userData) {
             document.getElementById('previewUserName').textContent = userData.username;
             document.getElementById('previewUserEmail').textContent = userData.email;
@@ -3225,7 +3370,6 @@ Cài đặt ngay : ${appUrl}
             }
         }
 
-        // Upgrade form submission - GIỮ NGUYÊN
         upgradeForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -3275,7 +3419,6 @@ Cài đặt ngay : ${appUrl}
             }
         });
 
-        // Utility functions for upgrade - GIỮ NGUYÊN
         function showUpgradeSuccess(message) {
             upgradeSuccessText.textContent = message;
             upgradeSuccessMessage.style.display = 'flex';
