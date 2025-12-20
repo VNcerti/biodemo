@@ -2253,6 +2253,37 @@
             customAlertOverlay.style.display = 'flex';
         }
 
+        // ==================== URL FORMATTING FUNCTIONS ====================
+
+        /**
+         * Chuyển tên ứng dụng thành slug URL-friendly
+         * @param {string} appName - Tên ứng dụng
+         * @returns {string} - Slug URL
+         */
+        function createAppSlug(appName) {
+            if (!appName) return '';
+            
+            return appName
+                .toLowerCase()
+                .normalize('NFD') // Tách ký tự có dấu
+                .replace(/[\u0300-\u036f]/g, '') // Xóa dấu
+                .replace(/[^a-z0-9\s-]/g, '') // Xóa ký tự đặc biệt
+                .replace(/\s+/g, '-') // Thay space bằng dấu -
+                .replace(/-+/g, '-') // Xóa nhiều dấu - liên tiếp
+                .trim(); // Xóa khoảng trắng thừa
+        }
+
+        /**
+         * Tạo URL SEO-friendly với định dạng id-tên-ứng-dụng
+         * @param {string|number} appId - ID ứng dụng
+         * @param {string} appName - Tên ứng dụng
+         * @returns {string} - URL đầy đủ
+         */
+        function createSeoUrl(appId, appName) {
+            const slug = createAppSlug(appName);
+            return `${BASE_APP_URL}${appId}${slug ? '-' + slug : ''}`;
+        }
+
         // ==================== VIP PERMISSIONS MANAGEMENT ====================
 
         function initializeVipPermissions() {
@@ -2795,14 +2826,11 @@
             return selectedCategories;
         }
 
-        // ==================== TELEGRAM FIXED FUNCTIONS ====================
+        // ==================== TELEGRAM NOTIFICATION FUNCTIONS ====================
 
         /**
-         * Gửi thông báo đến Telegram - ĐÃ FIX HOÀN TOÀN
-         * 1. Ảnh và nội dung trong cùng một tin nhắn
-         * 2. Không mất mô tả ứng dụng
-         * 3. Có retry và fallback
-         * 4. Sử dụng dấu "•" thay vì "+"
+         * Gửi thông báo đến Telegram với URL SEO-friendly mới
+         * Định dạng: https://modos.site/app-detail.html?id=138-soul-knight
          */
         async function sendTelegramNotification(appData, appId) {
             console.log('📤 Bắt đầu gửi thông báo Telegram...');
@@ -2813,8 +2841,12 @@
                 try {
                     console.log(`🔄 Lần thử ${attempt}/${maxRetries}...`);
                     
+                    // Tạo URL SEO-friendly mới với định dạng id-tên-ứng-dụng
+                    const appUrl = createSeoUrl(appId, appData.name);
+                    console.log(`🌐 URL mới: ${appUrl}`);
+                    
                     // Thử phương pháp chính: gửi ảnh với caption đầy đủ
-                    const success = await sendPhotoWithCompleteCaption(appData, appId);
+                    const success = await sendPhotoWithCompleteCaption(appData, appId, appUrl);
                     
                     if (success) {
                         console.log(`✅ Thông báo Telegram thành công sau ${attempt} lần thử!`);
@@ -2838,15 +2870,16 @@
             
             // Nếu không thành công sau 3 lần, thử phương pháp fallback
             console.log('🔄 Thử phương pháp fallback...');
-            return await sendFallbackTelegramMessage(appData, appId);
+            const appUrl = createSeoUrl(appId, appData.name);
+            return await sendFallbackTelegramMessage(appData, appId, appUrl);
         }
 
         /**
          * PHƯƠNG PHÁP CHÍNH: Gửi ảnh với caption đầy đủ
-         * Đảm bảo ảnh và nội dung trong cùng một tin nhắn
+         * Sử dụng URL SEO-friendly mới
          */
-        async function sendPhotoWithCompleteCaption(appData, appId) {
-            const appUrl = `${BASE_APP_URL}${appId}`;
+        async function sendPhotoWithCompleteCaption(appData, appId, appUrl) {
+            console.log('📝 Gửi Telegram với URL:', appUrl);
             
             // Xử lý version
             let version = appData.version;
@@ -2854,7 +2887,7 @@
                 version = version.substring(1);
             }
             
-            // Tạo caption với định dạng đúng
+            // Tạo caption với định dạng đúng và URL mới
             const caption = formatTelegramMessage(appData.name, version, appData.description, appUrl);
             
             console.log('📝 Độ dài caption:', caption.length);
@@ -2873,6 +2906,7 @@
 
         /**
          * Format tin nhắn Telegram với blockquote và dấu "•"
+         * Sử dụng URL SEO-friendly mới
          */
         function formatTelegramMessage(appName, version, description, appUrl) {
             // Escape HTML entities
@@ -2892,7 +2926,7 @@
                 formattedDescription = '<blockquote>Không có mô tả</blockquote>';
             }
             
-            // Tạo caption với định dạng HTML
+            // Tạo caption với định dạng HTML và URL mới
             return `Ứng dụng : ${escapedName}
 
 Phiên bản : ${escapedVersion}
@@ -2905,6 +2939,7 @@ Cài đặt ngay : ${appUrl}`;
 
         /**
          * Format tin nhắn ngắn (cho caption quá dài) với dấu "•"
+         * Sử dụng URL SEO-friendly mới
          */
         function formatTelegramMessageShort(appName, version, description, appUrl) {
             const escapedName = escapeHtml(appName);
@@ -2975,12 +3010,12 @@ Cài đặt ngay : ${appUrl}`;
 
         /**
          * PHƯƠNG PHÁP FALLBACK: Gửi riêng ảnh và tin nhắn
+         * Sử dụng URL SEO-friendly mới
          */
-        async function sendFallbackTelegramMessage(appData, appId) {
+        async function sendFallbackTelegramMessage(appData, appId, appUrl) {
             try {
                 console.log('🔄 Đang sử dụng phương pháp fallback...');
                 
-                const appUrl = `${BASE_APP_URL}${appId}`;
                 let version = appData.version;
                 if (version && version.startsWith("'")) {
                     version = version.substring(1);
@@ -2992,7 +3027,7 @@ Cài đặt ngay : ${appUrl}`;
                 // Chờ 1 giây
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 
-                // Bước 2: Gửi tin nhắn text với đầy đủ thông tin
+                // Bước 2: Gửi tin nhắn text với đầy đủ thông tin và URL mới
                 const textMessage = formatTelegramMessage(appData.name, version, appData.description, appUrl);
                 const textSent = await sendTelegramText(textMessage);
                 
@@ -3173,8 +3208,12 @@ Cài đặt ngay : ${appUrl}`;
                     const actualAppId = await getAppIdAfterUpload(appData);
                     
                     if (actualAppId) {
-                        // Bước 3: Gửi Telegram (ASYNC - không block)
+                        // Bước 3: Gửi Telegram với URL SEO-friendly mới (ASYNC - không block)
                         submitBtn.innerHTML = '<div class="loading"></div> Đang gửi thông báo...';
+                        
+                        // Tạo URL SEO-friendly mới
+                        const seoUrl = createSeoUrl(actualAppId, appData.name);
+                        console.log('🌐 URL SEO-friendly mới:', seoUrl);
                         
                         // Gửi Telegram async
                         sendTelegramNotification(appData, actualAppId)
@@ -3189,9 +3228,9 @@ Cài đặt ngay : ${appUrl}`;
                                 console.error('💥 Lỗi khi gửi Telegram:', error);
                             });
                         
-                        // Hiển thị thành công ngay lập tức
+                        // Hiển thị thành công ngay lập tức với URL mới
                         showCustomAlert('success', 'Thành công!', 
-                            `✅ Ứng dụng đã được upload!<br>ID: ${actualAppId}<br>Gói được phép: ${result.vipPermissions || 'all'}<br>Thông báo đang được gửi đến Telegram...`, 
+                            `✅ Ứng dụng đã được upload!<br>ID: ${actualAppId}<br>URL: ${seoUrl}<br>Gói được phép: ${result.vipPermissions || 'all'}<br>Thông báo đang được gửi đến Telegram...`, 
                             [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
                         
                     } else {
