@@ -79,11 +79,30 @@
             top: 0;
             height: 100vh;
             overflow-y: auto;
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -200px;
+                top: 0;
+                height: 100vh;
+                z-index: 1000;
+            }
+            
+            .sidebar.active {
+                left: 0;
+            }
         }
 
         .sidebar-header {
             padding: 16px;
             border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .logo {
@@ -106,6 +125,35 @@
             justify-content: center;
             color: white;
             font-size: 14px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            color: var(--text-primary);
+            background-color: var(--bg-tertiary);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 999;
+                background-color: var(--bg-card);
+                border: 1px solid var(--border-color);
+            }
         }
 
         .nav-menu {
@@ -175,6 +223,19 @@
             padding: 20px;
             overflow-y: auto;
             max-width: calc(100vw - 200px);
+            transition: var(--transition);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                max-width: 100vw;
+                padding-top: 70px;
+            }
+            
+            .sidebar.active + .main-content {
+                opacity: 0.3;
+                pointer-events: none;
+            }
         }
 
         .page-header {
@@ -711,7 +772,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
+            z-index: 2000;
             padding: 16px;
         }
 
@@ -723,6 +784,18 @@
             width: 100%;
             border: 1px solid var(--border-color);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            animation: alertSlideIn 0.3s ease-out;
+        }
+
+        @keyframes alertSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .alert-header {
@@ -764,6 +837,48 @@
             display: flex;
             gap: 10px;
             justify-content: flex-end;
+        }
+
+        /* ==================== SUCCESS/ERROR MESSAGES ==================== */
+        .message {
+            padding: 10px 12px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+            font-size: 12px;
+            animation: messageSlideIn 0.3s ease-out;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-success {
+            background-color: rgba(63, 185, 80, 0.15);
+            color: var(--accent-green);
+            border-color: rgba(63, 185, 80, 0.3);
+            display: flex;
+        }
+
+        .message-error {
+            background-color: rgba(248, 81, 73, 0.15);
+            color: var(--accent-red);
+            border-color: rgba(248, 81, 73, 0.3);
+            display: flex;
+        }
+
+        .message i {
+            font-size: 14px;
         }
 
         /* ==================== UTILITY CLASSES ==================== */
@@ -840,28 +955,39 @@
             }
             
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: static;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
+                width: 200px;
+                position: fixed;
+                left: -200px;
+                top: 0;
+                height: 100vh;
+                z-index: 1000;
+            }
+            
+            .sidebar.active {
+                left: 0;
             }
             
             .main-content {
-                max-width: 100%;
-                padding: 16px;
+                max-width: 100vw;
+                padding: 20px;
+                padding-top: 70px;
+            }
+            
+            .sidebar.active + .main-content {
+                opacity: 0.3;
+                pointer-events: none;
             }
             
             .nav-menu {
                 display: flex;
-                overflow-x: auto;
+                flex-direction: column;
+                overflow-y: auto;
                 padding: 0;
-                border-bottom: 1px solid var(--border-color);
             }
             
             .nav-item {
                 border-left: none;
-                border-bottom: 2px solid transparent;
+                border-bottom: 1px solid var(--border-color);
                 white-space: nowrap;
             }
             
@@ -871,7 +997,7 @@
             }
             
             .sidebar-footer {
-                display: none;
+                display: block;
             }
             
             .form-row {
@@ -904,6 +1030,11 @@
     </style>
 </head>
 <body>
+    <!-- Menu Toggle for Mobile -->
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
     <!-- Alert Modal -->
     <div class="alert-overlay" id="alertOverlay">
         <div class="alert-modal">
@@ -925,7 +1056,7 @@
     <!-- Dashboard Layout -->
     <div class="dashboard-container">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="#" class="logo">
                     <div class="logo-icon">
@@ -933,6 +1064,9 @@
                     </div>
                     XSpace Admin
                 </a>
+                <button class="menu-toggle" id="sidebarClose">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
 
             <nav class="nav-menu">
@@ -972,6 +1106,23 @@
 
             <!-- Upload Tab -->
             <div id="uploadTab" class="tab-content">
+                <!-- Success/Error Messages -->
+                <div id="successMessage" class="message message-success hidden">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Thành công!</strong>
+                        <div id="successText">Ứng dụng đã được upload!</div>
+                    </div>
+                </div>
+                
+                <div id="errorMessage" class="message message-error hidden">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div>
+                        <strong>Lỗi!</strong>
+                        <div id="errorText">Đã xảy ra lỗi khi upload.</div>
+                    </div>
+                </div>
+
                 <div class="dashboard-grid">
                     <!-- Upload Form -->
                     <div class="dashboard-card">
@@ -1307,6 +1458,23 @@
 
             <!-- Upgrade Tab -->
             <div id="upgradeTab" class="tab-content hidden">
+                <!-- Success/Error Messages -->
+                <div id="upgradeSuccessMessage" class="message message-success hidden">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Thành công!</strong>
+                        <div id="upgradeSuccessText">Đã nâng cấp tài khoản!</div>
+                    </div>
+                </div>
+                
+                <div id="upgradeErrorMessage" class="message message-error hidden">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div>
+                        <strong>Lỗi!</strong>
+                        <div id="upgradeErrorText">Đã xảy ra lỗi khi nâng cấp.</div>
+                    </div>
+                </div>
+
                 <div class="dashboard-grid">
                     <!-- Upgrade Form -->
                     <div class="dashboard-card">
@@ -1383,6 +1551,23 @@
 
             <!-- Codes Tab -->
             <div id="codesTab" class="tab-content hidden">
+                <!-- Success/Error Messages -->
+                <div id="codesSuccessMessage" class="message message-success hidden">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Thành công!</strong>
+                        <div id="codesSuccessText">Đã tạo mã thành công!</div>
+                    </div>
+                </div>
+                
+                <div id="codesErrorMessage" class="message message-error hidden">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div>
+                        <strong>Lỗi!</strong>
+                        <div id="codesErrorText">Đã xảy ra lỗi khi tạo mã.</div>
+                    </div>
+                </div>
+
                 <div class="dashboard-grid">
                     <!-- Create Codes -->
                     <div class="dashboard-card">
@@ -1433,7 +1618,7 @@
                                 <label class="form-label" for="discountExpiry">
                                     <i class="fas fa-calendar-times"></i>
                                     Ngày hết hạn
-                                </label>
+                                    </label>
                                 <input type="date" id="discountExpiry" class="form-input">
                             </div>
                         </div>
@@ -1557,6 +1742,9 @@
         const tabContents = document.querySelectorAll('.tab-content');
         const pageTitle = document.getElementById('pageTitle');
         const pageSubtitle = document.getElementById('pageSubtitle');
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarClose = document.getElementById('sidebarClose');
 
         // Upload Form
         const uploadForm = document.getElementById('uploadForm');
@@ -1572,6 +1760,24 @@
         const screenshot3Input = document.getElementById('screenshot3');
         const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
         const submitBtn = document.getElementById('submitBtn');
+
+        // Message Elements
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const successText = document.getElementById('successText');
+        const errorText = document.getElementById('errorText');
+
+        // Upgrade Message Elements
+        const upgradeSuccessMessage = document.getElementById('upgradeSuccessMessage');
+        const upgradeErrorMessage = document.getElementById('upgradeErrorMessage');
+        const upgradeSuccessText = document.getElementById('upgradeSuccessText');
+        const upgradeErrorText = document.getElementById('upgradeErrorText');
+
+        // Codes Message Elements
+        const codesSuccessMessage = document.getElementById('codesSuccessMessage');
+        const codesErrorMessage = document.getElementById('codesErrorMessage');
+        const codesSuccessText = document.getElementById('codesSuccessText');
+        const codesErrorText = document.getElementById('codesErrorText');
 
         // Preview Elements
         const previewIcon = document.getElementById('previewIcon');
@@ -1660,6 +1866,69 @@
             'utility': 'Tiện ích'
         };
 
+        // ==================== MESSAGE FUNCTIONS ====================
+        function showSuccessMessage(text) {
+            successText.textContent = text;
+            successMessage.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        function showErrorMessage(text) {
+            errorText.textContent = text;
+            errorMessage.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                errorMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        function showUpgradeSuccessMessage(text) {
+            upgradeSuccessText.textContent = text;
+            upgradeSuccessMessage.classList.remove('hidden');
+            upgradeErrorMessage.classList.add('hidden');
+            
+            setTimeout(() => {
+                upgradeSuccessMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        function showUpgradeErrorMessage(text) {
+            upgradeErrorText.textContent = text;
+            upgradeErrorMessage.classList.remove('hidden');
+            upgradeSuccessMessage.classList.add('hidden');
+            
+            setTimeout(() => {
+                upgradeErrorMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        function showCodesSuccessMessage(text) {
+            codesSuccessText.textContent = text;
+            codesSuccessMessage.classList.remove('hidden');
+            codesErrorMessage.classList.add('hidden');
+            
+            setTimeout(() => {
+                codesSuccessMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        function showCodesErrorMessage(text) {
+            codesErrorText.textContent = text;
+            codesErrorMessage.classList.remove('hidden');
+            codesSuccessMessage.classList.add('hidden');
+            
+            setTimeout(() => {
+                codesErrorMessage.classList.add('hidden');
+            }, 5000);
+        }
+
         // ==================== ALERT SYSTEM ====================
         function showAlert(type, title, message, buttons) {
             alertIcon.className = 'alert-icon ' + type;
@@ -1686,7 +1955,7 @@
                     }
                     btn.onclick = () => {
                         if (button.onClick) button.onClick();
-                        alertOverlay.classList.add('hidden');
+                        alertOverlay.style.display = 'none';
                     };
                     alertActions.appendChild(btn);
                 });
@@ -1694,11 +1963,11 @@
                 const okBtn = document.createElement('button');
                 okBtn.className = 'btn btn-primary';
                 okBtn.innerHTML = '<i class="fas fa-check"></i> OK';
-                okBtn.onclick = () => alertOverlay.classList.add('hidden');
+                okBtn.onclick = () => alertOverlay.style.display = 'none';
                 alertActions.appendChild(okBtn);
             }
             
-            alertOverlay.classList.remove('hidden');
+            alertOverlay.style.display = 'flex';
         }
 
         // ==================== NAVIGATION ====================
@@ -1744,7 +2013,38 @@
                     loadDiscountCodes();
                     loadActivationCodes();
                 }
+                
+                // Close sidebar on mobile
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                }
             });
+        });
+
+        // ==================== SIDEBAR TOGGLE ====================
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        sidebarClose.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(e.target) && 
+                e.target !== menuToggle && 
+                !menuToggle.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Close sidebar with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
         });
 
         // ==================== PREVIEW SYSTEM ====================
@@ -1976,12 +2276,12 @@ Cài đặt ngay : ${appUrl}`;
             
             const selectedCategories = await getSelectedCategories();
             if (selectedCategories.length === 0) {
-                showAlert('warning', 'Thiếu thông tin', 'Vui lòng chọn ít nhất một danh mục cho ứng dụng.');
+                showErrorMessage('Vui lòng chọn ít nhất một danh mục cho ứng dụng.');
                 return;
             }
             
             if (selectedVipPermissions.size === 0) {
-                showAlert('warning', 'Thiếu thông tin', 'Vui lòng chọn ít nhất một gói được phép tải VIP #1.');
+                showErrorMessage('Vui lòng chọn ít nhất một gói được phép tải VIP #1.');
                 return;
             }
             
@@ -2027,6 +2327,11 @@ Cài đặt ngay : ${appUrl}`;
                         .catch(error => console.error('Telegram error:', error));
                     
                     const appUrl = createSeoUrl(appId, appData.name);
+                    
+                    // Show success message with full details
+                    showSuccessMessage(`Ứng dụng đã được upload thành công! ID: ${appId || 'N/A'}`);
+                    
+                    // Also show alert for more detailed information
                     showAlert('success', 'Thành công!', 
                         `✅ Ứng dụng đã được upload!<br><br>
                         <strong>ID:</strong> ${appId || 'N/A'}<br>
@@ -2047,6 +2352,7 @@ Cài đặt ngay : ${appUrl}`;
                     throw new Error(result.message || 'Không thể upload ứng dụng');
                 }
             } catch (error) {
+                showErrorMessage(error.message || 'Đã xảy ra lỗi khi upload ứng dụng. Vui lòng thử lại.');
                 showAlert('error', 'Lỗi!', error.message || 'Đã xảy ra lỗi khi upload ứng dụng. Vui lòng thử lại.');
             } finally {
                 submitBtn.disabled = false;
@@ -2317,19 +2623,19 @@ Cài đặt ngay : ${appUrl}`;
         }
 
         function createDefaultPackages() {
-            showAlert('info', 'Thông tin', 'Vui lòng thêm thủ công các gói VIP vào sheet Package trong Google Sheets!');
+            showUpgradeSuccessMessage('Vui lòng thêm thủ công các gói VIP vào sheet Package trong Google Sheets!');
         }
 
         searchUserBtn.addEventListener('click', async function() {
             const email = userEmailInput.value.trim();
             
             if (!email) {
-                showAlert('warning', 'Thiếu thông tin', 'Vui lòng nhập email');
+                showUpgradeErrorMessage('Vui lòng nhập email');
                 return;
             }
             
             if (!isValidEmail(email)) {
-                showAlert('warning', 'Email không hợp lệ', 'Vui lòng nhập đúng định dạng email');
+                showUpgradeErrorMessage('Email không hợp lệ');
                 return;
             }
             
@@ -2347,7 +2653,7 @@ Cài đặt ngay : ${appUrl}`;
                     throw new Error(result.message || 'Không tìm thấy người dùng');
                 }
             } catch (error) {
-                showAlert('error', 'Lỗi', error.message);
+                showUpgradeErrorMessage(error.message);
                 userPreviewSection.style.display = 'none';
             } finally {
                 searchUserBtn.innerHTML = '<i class="fas fa-search"></i>';
@@ -2390,12 +2696,12 @@ Cài đặt ngay : ${appUrl}`;
             const selectedPackage = document.querySelector('input[name="vipPackage"]:checked');
             
             if (!email) {
-                showAlert('warning', 'Thiếu thông tin', 'Vui lòng nhập email');
+                showUpgradeErrorMessage('Vui lòng nhập email');
                 return;
             }
             
             if (!selectedPackage) {
-                showAlert('warning', 'Thiếu thông tin', 'Vui lòng chọn gói thời gian');
+                showUpgradeErrorMessage('Vui lòng chọn gói thời gian');
                 return;
             }
             
@@ -2415,6 +2721,7 @@ Cài đặt ngay : ${appUrl}`;
                 const result = await response.json();
                 
                 if (result.success) {
+                    showUpgradeSuccessMessage(result.message);
                     showAlert('success', 'Thành công!', result.message);
                     upgradeForm.reset();
                     userPreviewSection.style.display = 'none';
@@ -2426,6 +2733,7 @@ Cài đặt ngay : ${appUrl}`;
                     throw new Error(result.message);
                 }
             } catch (error) {
+                showUpgradeErrorMessage(error.message);
                 showAlert('error', 'Lỗi!', error.message);
             } finally {
                 upgradeSubmitBtn.innerHTML = '<i class="fas fa-crown"></i> Nâng cấp VIP';
@@ -2451,7 +2759,7 @@ Cài đặt ngay : ${appUrl}`;
             const count = parseInt(document.getElementById('codeCount').value);
             
             if (!count || count < 1) {
-                showAlert('warning', 'Thiếu thông tin', 'Vui lòng nhập số lượng mã hợp lệ');
+                showCodesErrorMessage('Vui lòng nhập số lượng mã hợp lệ');
                 return;
             }
             
@@ -2465,6 +2773,7 @@ Cài đặt ngay : ${appUrl}`;
                     await createActivationCodes();
                 }
             } catch (error) {
+                showCodesErrorMessage('Lỗi khi tạo mã: ' + error.message);
                 showAlert('error', 'Lỗi!', 'Lỗi khi tạo mã: ' + error.message);
             } finally {
                 createCodesBtn.innerHTML = '<i class="fas fa-plus"></i> Tạo Mã';
@@ -2498,6 +2807,7 @@ Cài đặt ngay : ${appUrl}`;
             
             if (result.success) {
                 displayCreatedCodes(result.codes, 'Mã giảm giá');
+                showCodesSuccessMessage(`Đã tạo thành công ${result.codes.length} mã giảm giá`);
                 showAlert('success', 'Thành công!', `Đã tạo thành công ${result.codes.length} mã giảm giá`);
                 loadDiscountCodes();
             } else {
@@ -2533,6 +2843,7 @@ Cài đặt ngay : ${appUrl}`;
             
             if (result.success) {
                 displayCreatedCodes(result.codes, `Mã kích hoạt ${packageType}`);
+                showCodesSuccessMessage(`Đã tạo thành công ${result.codes.length} mã kích hoạt ${packageType}`);
                 showAlert('success', 'Thành công!', `Đã tạo thành công ${result.codes.length} mã kích hoạt ${packageType}`);
                 loadActivationCodes();
             } else {
@@ -2602,14 +2913,19 @@ Cài đặt ngay : ${appUrl}`;
             // Close alert when clicking outside
             alertOverlay.addEventListener('click', function(e) {
                 if (e.target === alertOverlay) {
-                    alertOverlay.classList.add('hidden');
+                    alertOverlay.style.display = 'none';
                 }
             });
             
             // Close alert with Escape key
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && !alertOverlay.classList.contains('hidden')) {
-                    alertOverlay.classList.add('hidden');
+                if (e.key === 'Escape') {
+                    if (alertOverlay.style.display === 'flex') {
+                        alertOverlay.style.display = 'none';
+                    }
+                    if (sidebar.classList.contains('active')) {
+                        sidebar.classList.remove('active');
+                    }
                 }
             });
             
