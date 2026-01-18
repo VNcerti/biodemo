@@ -23,12 +23,10 @@
     --success: #10b981;
     --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --nav-height: 65px;
+    --nav-height: 50px;
     --radius-full: 9999px;
     --transition-fast: 0.2s ease;
     --spacing-xs: 8px;
-    --safe-area-inset-top: env(safe-area-inset-top, 15px);
-    --safe-area-inset-bottom: env(safe-area-inset-bottom, 15px);
 }
 
 [data-theme="dark"] {
@@ -49,16 +47,24 @@
 
 html {
     background-color: var(--background);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    touch-action: manipulation;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 body {
     background: var(--background);
     color: var(--text-primary);
     line-height: 1.4;
+    padding-bottom: var(--nav-height);
     font-size: 13px;
     min-height: 100vh;
-    padding-top: calc(50px + var(--safe-area-inset-top));
-    padding-bottom: var(--nav-height);
+    padding-top: 60px; /* THÊM DÒNG NÀY ĐỂ KHÔNG BỊ HEADER CHE */
+    overflow-x: hidden;
+    max-width: 100%;
+    touch-action: pan-y pinch-zoom;
 }
 
 /* Prevent zoom on mobile */
@@ -67,33 +73,24 @@ input, select, textarea {
     max-width: 100%;
 }
 
-/* Main Content */
-.main-content {
-    padding-top: 0;
-}
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 12px;
-    width: 100%;
 }
 
-/* ===== HEADER - LẤY TỪ CSS CỦA BẠN ===== */
+/* ===== HEADER - GIỮ NGUYÊN 100% TỪ CODE CỦA BẠN ===== */
 .header {
     background: var(--background);
     border-bottom: 1px solid var(--border);
-    position: fixed; /* Đổi từ sticky sang fixed */
+    position: fixed; /* ĐỔI TỪ sticky SANG fixed */
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
     width: 100%;
-    padding-top: var(--safe-area-inset-top);
     height: 50px;
-    /* LOẠI BỎ backdrop-filter để tránh bị trong suốt trên iOS WKWebView */
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    /* backdrop-filter: blur(10px); - GIỮ NGUYÊN NHƯ BẠN */
 }
 
 .header-content {
@@ -207,16 +204,15 @@ input, select, textarea {
     transform: rotate(0deg) scale(1);
 }
 
-/* Hero Section - ĐÃ THÊM PADDING TOP ĐỂ KHÔNG BỊ CHE */
+/* ===== GIỮ NGUYÊN TẤT CẢ PHẦN DƯỚI KHÔNG THAY ĐỔI ===== */
+/* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
-    padding: 30px 0 24px 0;
+    padding: 24px 0;
     margin-bottom: 16px;
     border-radius: 0 0 16px 16px;
-    margin-top: -10px;
-    position: relative;
-    z-index: 1;
+    margin-top: -10px; /* THÊM DÒNG NÀY */
 }
 
 .hero-content {
@@ -899,7 +895,7 @@ input, select, textarea {
     transform: translateY(-1px);
 }
 
-/* Search Modal - SỬA LẠI backdrop-filter */
+/* Search Modal */
 .search-modal {
     display: none;
     position: fixed;
@@ -1045,7 +1041,7 @@ input, select, textarea {
     font-size: 10px;
 }
 
-/* ===== BOTTOM NAVIGATION - ĐÃ CHỈNH SỬA ===== */
+/* Bottom Navigation */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -1053,10 +1049,9 @@ input, select, textarea {
     right: 0;
     background: var(--background);
     border-top: 1px solid var(--border);
-    padding: 8px 0 var(--safe-area-inset-bottom);
+    padding: 6px 0;
     z-index: 1000;
     height: var(--nav-height);
-    width: 100%;
 }
 
 .nav-items {
@@ -1066,7 +1061,6 @@ input, select, textarea {
     max-width: 500px;
     margin: 0 auto;
     height: 100%;
-    width: 100%;
 }
 
 .nav-item {
@@ -1075,9 +1069,9 @@ input, select, textarea {
     align-items: center;
     text-decoration: none;
     color: var(--text-secondary);
-    transition: color 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     flex: 1;
-    padding: 6px 0;
+    padding: 4px 0;
     border-radius: 8px;
     position: relative;
     height: 100%;
@@ -1091,35 +1085,63 @@ input, select, textarea {
 .nav-item.active::after {
     content: '';
     position: absolute;
-    bottom: 4px;
+    bottom: -2px;
     left: 50%;
     transform: translateX(-50%);
     width: 4px;
     height: 4px;
     background-color: var(--primary);
     border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.2);
+    }
 }
 
 .nav-icon {
-    font-size: 20px;
-    margin-bottom: 4px;
-    transition: color 0.2s ease;
+    font-size: 16px;
+    margin-bottom: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
 .nav-item.active .nav-icon {
     color: var(--primary);
+    filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.3));
 }
 
 .nav-label {
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 500;
-    transition: color 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hiệu ứng hover đơn giản cho nav item */
+/* Hiệu ứng hover cho nav item */
 .nav-item:hover {
+    transform: translateY(-3px);
+}
+
+.nav-item:hover .nav-icon {
+    transform: translateY(-4px) scale(1.1);
+}
+
+.nav-item:hover .nav-label {
+    transform: translateY(1px);
     color: var(--primary);
+}
+
+/* Hiệu ứng click */
+.nav-item:active .nav-icon {
+    transform: translateY(-2px) scale(0.95);
+    transition: transform 0.1s ease;
 }
 
 /* Loading */
@@ -1359,19 +1381,6 @@ input, select, textarea {
     .footer-links {
         gap: 15px;
     }
-    
-    /* Bottom nav responsive */
-    .nav-icon {
-        font-size: 18px;
-    }
-    
-    .nav-label {
-        font-size: 10px;
-    }
-    
-    .bottom-nav {
-        padding: 6px 0 var(--safe-area-inset-bottom);
-    }
 }
 
 @media (max-width: 480px) {
@@ -1424,7 +1433,7 @@ input, select, textarea {
     }
     
     .hero {
-        padding: 25px 0 20px 0;
+        padding: 20px 0;
     }
     
     .hero h1 {
@@ -1486,23 +1495,13 @@ input, select, textarea {
         font-size: 8px;
     }
     
-    /* Bottom nav responsive */
-    .nav-icon {
-        font-size: 16px;
-    }
-    
     .nav-label {
-        font-size: 9px;
+        font-size: 8px;
     }
     
     .nav-item.active::after {
         width: 3px;
         height: 3px;
-        bottom: 2px;
-    }
-    
-    .bottom-nav {
-        padding: 4px 0 var(--safe-area-inset-bottom);
     }
     
     /* Footer responsive */
@@ -1536,15 +1535,6 @@ input, select, textarea {
     }
     
     .categories-hint {
-        font-size: 8px;
-    }
-    
-    /* Bottom nav responsive */
-    .nav-icon {
-        font-size: 15px;
-    }
-    
-    .nav-label {
         font-size: 8px;
     }
     
@@ -1589,14 +1579,5 @@ input, select, textarea {
     /* Ẩn categories hint trên desktop */
     .categories-hint {
         display: none;
-    }
-    
-    /* Bottom nav desktop */
-    .nav-icon {
-        font-size: 22px;
-    }
-    
-    .nav-label {
-        font-size: 12px;
     }
 }
