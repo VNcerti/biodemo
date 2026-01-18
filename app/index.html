@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Kho ứng dụng iPA dành cho iPhone/iPad</title>
     <link rel="icon" href="https://i.imgur.com/k0zikhA.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -71,52 +71,11 @@
         .auto-refresh-notification.show {
             opacity: 1;
         }
-        
-        /* FIXED HEADER - LUÔN GIỮ PADDING-TOP 30px KHI SCROLL */
-        .header-fixed-padding {
-            padding-top: 30px !important;
-            min-height: 70px !important;
-        }
-        
-        /* iOS safe area adjustments */
-        .ios-header-safe {
-            top: env(safe-area-inset-top, 0px) !important;
-        }
-        
-        .ios-nav-safe {
-            padding-bottom: env(safe-area-inset-bottom, 0px) !important;
-        }
-        
-        /* Safe area spacer */
-        .safe-area-spacer {
-            height: env(safe-area-inset-top, 0px);
-            background: var(--background);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 101;
-            pointer-events: none;
-        }
-        
-        /* Body padding cho iOS */
-        .ios-body-padding {
-            padding-top: calc(30px + env(safe-area-inset-top, 0px)) !important;
-            padding-bottom: calc(15px + env(safe-area-inset-bottom, 0px)) !important;
-        }
-        
-        /* Main content spacing */
-        .main-content {
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
-    <!-- Safe area spacer for notch/Dynamic Island -->
-    <div class="safe-area-spacer"></div>
-    
-    <!-- Header với padding cố định -->
-    <header class="header ios-header-safe header-fixed-padding">
+    <!-- Header -->
+    <header class="header">
         <div class="container">
             <div class="header-content">
                 <a href="#" class="logo">
@@ -149,148 +108,164 @@
         <i class="fas fa-sync-alt"></i> Đã cập nhật dữ liệu mới
     </div>
 
-    <!-- Main Content (ĐÃ XOÁ HERO SECTION) -->
-    <main class="container main-content">
-        <!-- Featured Apps Carousel -->
-        <section class="featured-section">
-            <div class="section-title">
-                <span>Ứng dụng nổi bật</span>
-                <a href="#" class="view-all">Xem tất cả</a>
-            </div>
-            <div class="featured-carousel">
-                <!-- Navigation Arrows -->
-                <div class="nav-arrow prev">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <div class="nav-arrow next">
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-
-                <!-- Carousel Container -->
-                <div class="carousel-container" id="featuredCarousel">
-                    <!-- Featured Cards will be loaded by JavaScript -->
-                    <div class="featured-loading" id="featuredLoading">
-                        <div class="featured-skeleton"></div>
-                        <div class="featured-skeleton"></div>
-                        <div class="featured-skeleton"></div>
-                        <div class="featured-skeleton"></div>
-                        <div class="featured-skeleton"></div>
-                    </div>
-                </div>
-
-                <!-- Scroll Indicator -->
-                <div class="scroll-indicator">
-                    <i class="fas fa-arrows-alt-h"></i>
-                    Kéo để xem thêm
-                </div>
-
-                <!-- Dots Navigation -->
-                <div class="carousel-nav">
-                    <div class="carousel-dot active" data-index="0"></div>
-                    <div class="carousel-dot" data-index="1"></div>
-                    <div class="carousel-dot" data-index="2"></div>
-                    <div class="carousel-dot" data-index="3"></div>
-                    <div class="carousel-dot" data-index="4"></div>
+    <!-- Main Content (có padding-top để không bị che bởi header cố định) -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Khám phá kho ứng dụng iPA đỉnh cao</h1>
+                    <p>Tận hưởng thế giới ứng dụng và trò chơi được tuyển chọn kỹ lưỡng, hoàn toàn miễn phí. Tải về các bản iPA chất lượng, mở khóa trải nghiệm mà trước đây bạn chưa từng thấy trong App Store.</p>
+                    <a href="#" class="cta-button">
+                        <i class="fas fa-download"></i>
+                        Khám phá ngay
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Categories -->
-        <section class="categories-section">
-            <div class="section-title">
-                <span>Thể loại</span>
-                <a href="#" class="view-all">Xem tất cả</a>
-            </div>
-            <div class="categories-scroll">
-                <div class="category-card active" data-category="all">
-                    <div class="category-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="category-name">Tất cả</div>
+        <div class="container">
+            <!-- Featured Apps Carousel -->
+            <section class="featured-section">
+                <div class="section-title">
+                    <span>Ứng dụng nổi bật</span>
+                    <a href="#" class="view-all">Xem tất cả</a>
                 </div>
-                <div class="category-card" data-category="game">
-                    <div class="category-icon">
-                        <i class="fas fa-gamepad"></i>
+                <div class="featured-carousel">
+                    <!-- Navigation Arrows -->
+                    <div class="nav-arrow prev">
+                        <i class="fas fa-chevron-left"></i>
                     </div>
-                    <div class="category-name">Trò chơi</div>
-                </div>
-                <div class="category-card" data-category="social">
-                    <div class="category-icon">
-                        <i class="fas fa-users"></i>
+                    <div class="nav-arrow next">
+                        <i class="fas fa-chevron-right"></i>
                     </div>
-                    <div class="category-name">Mạng xã hội</div>
-                </div>
-                <div class="category-card" data-category="entertainment">
-                    <div class="category-icon">
-                        <i class="fas fa-film"></i>
-                    </div>
-                    <div class="category-name">Giải trí</div>
-                </div>
-                <div class="category-card" data-category="photo">
-                    <div class="category-icon">
-                        <i class="fas fa-camera"></i>
-                    </div>
-                    <div class="category-name">Ảnh & Video</div>
-                </div>
-                <div class="category-card" data-category="clone">
-                    <div class="category-icon">
-                        <i class="fas fa-copy"></i>
-                    </div>
-                    <div class="category-name">Nhân bản</div>
-                </div>
-                <div class="category-card" data-category="premium">
-                    <div class="category-icon">
-                        <i class="fas fa-unlock"></i>
-                    </div>
-                    <div class="category-name">Premium</div>
-                </div>
-                <div class="category-card" data-category="education">
-                    <div class="category-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="category-name">Giáo dục</div>
-                </div>
-                <div class="category-card" data-category="health">
-                    <div class="category-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <div class="category-name">Sức khỏe</div>
-                </div>
-                <div class="category-card" data-category="utility">
-                    <div class="category-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <div class="category-name">Tiện ích</div>
-                </div>
-            </div>
-            <!-- Thêm dòng "Vuốt sang phải để xem thêm" -->
-            <div class="categories-hint">
-                <i class="fas fa-arrow-right"></i>
-                <span>Vuốt sang phải để xem thêm</span>
-            </div>
-        </section>
 
-        <!-- Apps Section -->
-        <section class="apps-section">
-            <div class="section-title">
-                <span id="sectionTitle">Ứng dụng mới</span>
-                <a href="#" class="view-all">Xem thêm</a>
-            </div>
-            <div class="apps-grid" id="appsGrid">
-                <!-- Skeleton loading sẽ được thêm bằng JavaScript -->
-            </div>
-        </section>
+                    <!-- Carousel Container -->
+                    <div class="carousel-container" id="featuredCarousel">
+                        <!-- Featured Cards will be loaded by JavaScript -->
+                        <div class="featured-loading" id="featuredLoading">
+                            <div class="featured-skeleton"></div>
+                            <div class="featured-skeleton"></div>
+                            <div class="featured-skeleton"></div>
+                            <div class="featured-skeleton"></div>
+                            <div class="featured-skeleton"></div>
+                        </div>
+                    </div>
 
-        <!-- Popular Games -->
-        <section class="apps-section" id="gamesSection">
-            <div class="section-title">
-                <span>Trò chơi phổ biến</span>
-                <a href="#" class="view-all">Xem thêm</a>
-            </div>
-            <div class="apps-grid" id="gamesGrid">
-                <!-- Games will be loaded here -->
-            </div>
-        </section>
+                    <!-- Scroll Indicator -->
+                    <div class="scroll-indicator">
+                        <i class="fas fa-arrows-alt-h"></i>
+                        Kéo để xem thêm
+                    </div>
+
+                    <!-- Dots Navigation -->
+                    <div class="carousel-nav">
+                        <div class="carousel-dot active" data-index="0"></div>
+                        <div class="carousel-dot" data-index="1"></div>
+                        <div class="carousel-dot" data-index="2"></div>
+                        <div class="carousel-dot" data-index="3"></div>
+                        <div class="carousel-dot" data-index="4"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categories - ĐÃ CẬP NHẬT -->
+            <section class="categories-section">
+                <div class="section-title">
+                    <span>Thể loại</span>
+                    <a href="#" class="view-all">Xem tất cả</a>
+                </div>
+                <div class="categories-scroll">
+                    <div class="category-card active" data-category="all">
+                        <div class="category-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="category-name">Tất cả</div>
+                    </div>
+                    <div class="category-card" data-category="game">
+                        <div class="category-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="category-name">Trò chơi</div>
+                    </div>
+                    <div class="category-card" data-category="social">
+                        <div class="category-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="category-name">Mạng xã hội</div>
+                    </div>
+                    <div class="category-card" data-category="entertainment">
+                        <div class="category-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="category-name">Giải trí</div>
+                    </div>
+                    <div class="category-card" data-category="photo">
+                        <div class="category-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="category-name">Ảnh & Video</div>
+                    </div>
+                    <div class="category-card" data-category="clone">
+                        <div class="category-icon">
+                            <i class="fas fa-copy"></i>
+                        </div>
+                        <div class="category-name">Nhân bản</div>
+                    </div>
+                    <div class="category-card" data-category="premium">
+                        <div class="category-icon">
+                            <i class="fas fa-unlock"></i>
+                        </div>
+                        <div class="category-name">Premium</div>
+                    </div>
+                    <div class="category-card" data-category="education">
+                        <div class="category-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="category-name">Giáo dục</div>
+                    </div>
+                    <div class="category-card" data-category="health">
+                        <div class="category-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="category-name">Sức khỏe</div>
+                    </div>
+                    <div class="category-card" data-category="utility">
+                        <div class="category-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="category-name">Tiện ích</div>
+                    </div>
+                </div>
+                <!-- Thêm dòng "Vuốt sang phải để xem thêm" - ĐÃ CẬP NHẬT VỊ TRÍ -->
+                <div class="categories-hint">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Vuốt sang phải để xem thêm</span>
+                </div>
+            </section>
+
+            <!-- Apps Section -->
+            <section class="apps-section">
+                <div class="section-title">
+                    <span id="sectionTitle">Ứng dụng mới</span>
+                    <a href="#" class="view-all">Xem thêm</a>
+                </div>
+                <div class="apps-grid" id="appsGrid">
+                    <!-- Skeleton loading sẽ được thêm bằng JavaScript -->
+                </div>
+            </section>
+
+            <!-- Popular Games -->
+            <section class="apps-section" id="gamesSection">
+                <div class="section-title">
+                    <span>Trò chơi phổ biến</span>
+                    <a href="#" class="view-all">Xem thêm</a>
+                </div>
+                <div class="apps-grid" id="gamesGrid">
+                    <!-- Games will be loaded here -->
+                </div>
+            </section>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -340,8 +315,8 @@
         </div>
     </div>
 
-    <!-- Bottom Navigation với safe area cho home indicator -->
-    <nav class="bottom-nav ios-nav-safe">
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
         <div class="container">
             <div class="nav-items">
                 <a href="#" class="nav-item active" data-view="home">
@@ -696,77 +671,6 @@
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
             
-            // Thêm hiệu ứng hover cho các mục navbar
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                // Hiệu ứng khi hover
-                item.addEventListener('mouseenter', () => {
-                    const icon = item.querySelector('.nav-icon');
-                    const label = item.querySelector('.nav-label');
-                    
-                    // Hiệu ứng icon
-                    icon.style.transform = 'translateY(-4px) scale(1.1)';
-                    icon.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                    
-                    // Hiệu ứng label
-                    label.style.transform = 'translateY(2px)';
-                    label.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                    
-                    // Hiệu ứng màu sắc
-                    if (!item.classList.contains('active')) {
-                        item.style.color = 'var(--primary)';
-                    }
-                });
-                
-                // Hiệu ứng khi rời chuột
-                item.addEventListener('mouseleave', () => {
-                    const icon = item.querySelector('.nav-icon');
-                    const label = item.querySelector('.nav-label');
-                    
-                    // Khôi phục icon
-                    icon.style.transform = 'translateY(0) scale(1)';
-                    
-                    // Khôi phục label
-                    label.style.transform = 'translateY(0)';
-                    
-                    // Khôi phục màu sắc
-                    if (!item.classList.contains('active')) {
-                        item.style.color = '';
-                    }
-                });
-                
-                // Hiệu ứng khi click
-                item.addEventListener('click', (e) => {
-                    if (!item.href || item.href.includes('#')) {
-                        e.preventDefault();
-                    }
-                    
-                    // Xóa active khỏi tất cả các mục
-                    navItems.forEach(navItem => {
-                        navItem.classList.remove('active');
-                        const navIcon = navItem.querySelector('.nav-icon');
-                        navIcon.style.transform = 'translateY(0) scale(1)';
-                        navIcon.style.transition = 'transform 0.2s ease-out';
-                    });
-                    
-                    // Thêm active vào mục được click
-                    item.classList.add('active');
-                    
-                    // Hiệu ứng click cho icon
-                    const icon = item.querySelector('.nav-icon');
-                    icon.style.transform = 'translateY(-4px) scale(1.1)';
-                    
-                    // Hiệu ứng bounce nhẹ
-                    setTimeout(() => {
-                        icon.style.transform = 'translateY(-2px) scale(1.05)';
-                    }, 150);
-                    
-                    setTimeout(() => {
-                        icon.style.transform = 'translateY(-4px) scale(1.1)';
-                    }, 300);
-                });
-            });
-            
             // Xử lý nút Telegram
             document.getElementById('telegramBtn').addEventListener('click', function(e) {
                 window.open(this.href, '_blank');
@@ -781,82 +685,7 @@
                 }, 100);
             });
             
-            // Điều chỉnh layout cho iOS safe areas
-            function adjustForIOS() {
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                const header = document.querySelector('.header');
-                const safeAreaSpacer = document.querySelector('.safe-area-spacer');
-                
-                if (isIOS && header && safeAreaSpacer) {
-                    // Thêm class cho body
-                    document.body.classList.add('ios-body-padding');
-                    
-                    // Điều chỉnh safe area spacer
-                    safeAreaSpacer.style.display = 'block';
-                    
-                    // Đảm bảo header luôn có padding-top 30px
-                    header.style.paddingTop = '30px';
-                    header.style.minHeight = '70px';
-                    
-                    console.log('📱 iOS device detected, applying safe area adjustments');
-                } else {
-                    // Trên desktop/Android, ẩn safe area spacer
-                    if (safeAreaSpacer) {
-                        safeAreaSpacer.style.display = 'none';
-                    }
-                }
-            }
-            
-            // Điều chỉnh layout ngay khi tải trang
-            adjustForIOS();
-            
-            // Điều chỉnh khi resize
-            window.addEventListener('resize', adjustForIOS);
-            
-            // Theo dõi scroll để đảm bảo header không bị giảm padding
-            let lastScrollTop = 0;
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('.header');
-                if (header) {
-                    // LUÔN giữ padding-top 30px, không cho phép thay đổi
-                    header.style.paddingTop = '30px';
-                    header.style.minHeight = '70px';
-                }
-            });
-            
-            // Ngăn double-tap zoom trên toàn bộ trang
-            document.addEventListener('dblclick', function(e) {
-                e.preventDefault();
-            }, { passive: false });
-            
-            // Ngăn context menu (right click) trên mobile
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-            }, { passive: false });
-            
             console.log('✅ Index page fully initialized with auto data refresh system');
-        });
-        
-        // Ngăn zoom bằng gesture trên iOS
-        document.addEventListener('gesturestart', function(e) {
-            e.preventDefault();
-        });
-        
-        // Ngăn zoom bằng pinch trên mobile
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-        
-        // Ngăn text selection trừ input và textarea
-        document.addEventListener('selectstart', function(e) {
-            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-                e.preventDefault();
-            }
         });
     </script>
 </body>
