@@ -88,9 +88,9 @@ input, select, textarea {
     width: 100%;
 }
 
-/* ===== HEADER - SỬA LẠI ĐỂ HOẠT ĐỘNG TRÊN CẢ WEB VÀ iOS WKWebView ===== */
+/* ===== HEADER - ĐƠN GIẢN & AN TOÀN NHẤT ===== */
 .header {
-    background: var(--background) !important; /* QUAN TRỌNG: Luôn có nền rắn */
+    background: var(--background);
     border-bottom: 1px solid var(--border);
     position: fixed;
     top: 0;
@@ -100,33 +100,7 @@ input, select, textarea {
     padding-top: var(--safe-area-inset-top);
     height: 50px;
     width: 100%;
-    /* LOẠI BỎ backdrop-filter cho WKWebView iOS */
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-/* Thêm pseudo-element để đảm bảo có nền */
-.header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--background);
-    z-index: -1;
-}
-
-/* CHỈ áp dụng backdrop-filter khi KHÔNG phải iOS WKWebView */
-/* Thêm class này bằng JavaScript nếu cần */
-body:not(.ios-webview) .header {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.9) !important;
-}
-
-[data-theme="dark"] body:not(.ios-webview) .header {
-    background: rgba(15, 23, 42, 0.9) !important;
+    /* KHÔNG có backdrop-filter - AN TOÀN 100% */
 }
 
 .header-content {
@@ -136,8 +110,6 @@ body:not(.ios-webview) .header {
     padding: 8px 0;
     height: 100%;
     width: 100%;
-    position: relative;
-    z-index: 1;
 }
 
 .logo {
