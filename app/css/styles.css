@@ -65,7 +65,7 @@ body {
     background: var(--background);
     color: var(--text-primary);
     line-height: 1.4;
-    padding-top: 30px;
+    padding-top: 10px;
     padding-bottom: 15px;
     font-size: 13px;
     min-height: 100vh;
@@ -101,7 +101,7 @@ textarea,
     z-index: 100;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding-top: 30px !important;
+    padding-top: 10px !important;
     min-height: 70px !important;
     touch-action: pan-y; /* Không cho zoom trên header */
 }
@@ -976,6 +976,7 @@ textarea,
     font-size: 11px;
     line-height: 1.6;
     margin-top: 40px;
+    margin-bottom: -80px;
     border-top: 1px solid var(--border);
     touch-action: manipulation;
 }
@@ -983,7 +984,7 @@ textarea,
 .footer-content {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 5px;
 }
 
 .copyright {
@@ -1064,7 +1065,7 @@ textarea,
     flex: 1;
     padding: 4px 0;
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 3px;
     position: relative;
     touch-action: manipulation;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
