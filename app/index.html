@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Kho ứng dụng iPA dành cho iPhone/iPad</title>
     <link rel="icon" href="https://i.imgur.com/k0zikhA.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -71,6 +71,18 @@
         .auto-refresh-notification.show {
             opacity: 1;
         }
+        
+        /* Prevent zoom on input focus */
+        input, select, textarea {
+            font-size: 16px !important;
+            touch-action: manipulation;
+        }
+        
+        /* Disable text size adjustment */
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
     </style>
 </head>
 <body>
@@ -84,7 +96,8 @@
                     </div>
                     XSpace Store
                 </a>
-                <div class="search-bar">
+                <!-- GIỮ NGUYÊN SEARCH BAR NHƯNG SẼ ẨN BẰNG CSS -->
+                <div class="search-bar" style="display: none;">
                     <i class="fas fa-search"></i>
                     <input type="text" id="searchInput" placeholder="Tìm kiếm ứng dụng...">
                 </div>
@@ -114,11 +127,11 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1>Khám phá kho ứng dụng iPA đỉnh cao</h1>
-                    <p>Tận hưởng thế giới ứng dụng và trò chơi được tuyển chọn kỹ lưỡng, hoàn toàn miễn phí. Tải về các bản iPA chất lượng, mở khóa trải nghiệm mà trước đây bạn chưa từng thấy trong App Store.</p>
+                    <h1>Kho ứng dụng chính thức</h1>
+                    <p>Tận hưởng thế giới ứng dụng và trò chơi được tuyển chọn kỹ lưỡng, an toàn bảo mật và hoàn toàn độc quyền. Tải về các bản iPA chất lượng, mở khóa trải nghiệm mà trước đây bạn chưa từng thấy trong App Store.</p>
                     <a href="#" class="cta-button">
-                        <i class="fas fa-download"></i>
-                        Khám phá ngay
+                        <i class="fa-brands fa-apple"></i>
+                        Trải nghiệm ngay nào!
                     </a>
                 </div>
             </div>
