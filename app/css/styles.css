@@ -28,10 +28,8 @@
     --radius-full: 9999px;
     --transition-fast: 0.2s ease;
     --spacing-xs: 8px;
-    --safe-area-inset-top: env(safe-area-inset-top, 0px);
-    --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
-    --header-background: #ffffff;
-    --header-border: #e2e8f0;
+    --safe-area-inset-top: env(safe-area-inset-top, 15px);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 15px);
 }
 
 [data-theme="dark"] {
@@ -48,8 +46,6 @@
     --success: #10b981;
     --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
     --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-    --header-background: #0f172a;
-    --header-border: #334155;
 }
 
 html {
@@ -92,38 +88,41 @@ input, select, textarea {
     width: 100%;
 }
 
-/* ===== HEADER FIX HOÀN TOÀN CHO WKWEBVIEW ===== */
+/* ────────────────────────────────────────────────
+   HEADER - Fix nền trong suốt trong WKWebView
+   ──────────────────────────────────────────────── */
 .header {
-    background: var(--header-background) !important; /* QUAN TRỌNG: Background cứng */
-    border-bottom: 1px solid var(--header-border);
+    background-color: var(--background);                /* dùng color thay vì chỉ background */
+    background-image: linear-gradient(var(--background), var(--background)); /* trick giúp WKWebView render ổn định hơn */
+    border-bottom: 1px solid var(--border);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    /* LOẠI BỎ HOÀN TOÀN backdrop-filter vì gây vấn đề với WKWebView */
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding-top: var(--safe-area-inset-top);
     height: 50px;
     width: 100%;
-    /* Đảm bảo không có transparency */
-    opacity: 1 !important;
-    -webkit-opacity: 1 !important;
+
+    /* Các thuộc tính giúp WKWebView render background ổn định */
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Thêm lớp overlay cứng để đảm bảo nền không trong suốt */
 .header::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--header-background) !important;
+    inset: 0;
+    background: var(--background);
     z-index: -1;
-    /* Đảm bảo lớp này có nền đầy đủ */
-    border-bottom: 1px solid var(--header-border);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .header-content {
@@ -133,10 +132,24 @@ input, select, textarea {
     padding: 8px 0;
     height: 100%;
     width: 100%;
-    /* Background transparent nhưng có header::before phía sau */
-    background: transparent;
     position: relative;
-    z-index: 1;
+    z-index: 2;
+}
+
+/* SEARCH BAR - ẨN HOÀN TOÀN */
+.search-bar {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    pointer-events: none !important;
+}
+
+.search-bar input,
+.search-bar i {
+    display: none !important;
 }
 
 .logo {
@@ -161,25 +174,6 @@ input, select, textarea {
     color: white;
     font-size: 12px;
     flex-shrink: 0;
-}
-
-/* SEARCH BAR - ẨN HOÀN TOÀN */
-.search-bar {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-    opacity: 0 !important;
-    position: absolute !important;
-    pointer-events: none !important;
-}
-
-.search-bar input {
-    display: none !important;
-}
-
-.search-bar i {
-    display: none !important;
 }
 
 .user-actions {
@@ -241,7 +235,7 @@ input, select, textarea {
     transform: rotate(0deg) scale(1);
 }
 
-/* Hero Section */
+/* Hero Section - ĐÃ THÊM PADDING TOP ĐỂ KHÔNG BỊ CHE */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
@@ -609,14 +603,14 @@ input, select, textarea {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    padding: 8px 4px 2px 4px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    padding: 8px 4px 2px 4px; /* ĐÃ GIẢM PADDING DƯỚI ĐỂ DỊCH LÊN */
+    scrollbar-width: none; /* ẨN THANH TRƯỢT */
+    -ms-overflow-style: none; /* ẨN THANH TRƯỢT CHO IE */
     -webkit-overflow-scrolling: touch;
 }
 
 .categories-scroll::-webkit-scrollbar {
-    display: none;
+    display: none; /* ẨN THANH TRƯỢT CHO WEBKIT */
 }
 
 /* New Category Card Design - Chip Style */
@@ -702,7 +696,7 @@ input, select, textarea {
     animation: pulseActive 2s infinite;
 }
 
-/* ===== CATEGORIES HINT ===== */
+/* ===== CATEGORIES HINT - ĐÃ CẬP NHẬT VỊ TRÍ ===== */
 .categories-hint {
     display: flex;
     align-items: center;
@@ -710,10 +704,10 @@ input, select, textarea {
     gap: 6px;
     color: var(--text-muted);
     font-size: 11px;
-    margin-top: 5px;
+    margin-top: 5px; /* GIẢM MARGIN ĐỂ DỊCH LÊN TRÊN */
     opacity: 0.7;
     transition: opacity 0.3s ease;
-    padding: 2px 0;
+    padding: 2px 0; /* GIẢM PADDING */
 }
 
 .categories-hint i {
@@ -1080,7 +1074,7 @@ input, select, textarea {
     font-size: 10px;
 }
 
-/* ===== BOTTOM NAVIGATION ===== */
+/* ===== BOTTOM NAVIGATION - ĐÃ CHỈNH SỬA ===== */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -1290,120 +1284,119 @@ input, select, textarea {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-
 /* Responsive for Featured Carousel */
 @media (max-width: 768px) {
     .featured-card {
         width: 280px;
         height: 160px;
     }
-    
+   
     .featured-content {
         padding: 14px 18px;
     }
-    
+   
     .featured-logo-container {
         width: 48px;
         height: 48px;
     }
-    
+   
     .featured-logo {
         width: 42px;
         height: 42px;
     }
-    
+   
     .featured-name {
         font-size: 15px;
     }
-    
+   
     .nav-arrow {
         display: none;
     }
-    
+   
     .scroll-indicator {
         opacity: 1;
         font-size: 10px;
     }
-    
+   
     .apps-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
-    
+   
     .hero h1 {
         font-size: 16px;
     }
-    
+   
     .app-card {
         padding: 10px;
         gap: 10px;
         height: 105px;
     }
-    
+   
     .app-logo {
         width: 90px;
         height: 90px;
     }
-    
+   
     .app-name {
         font-size: 14px;
     }
-    
+   
     /* Categories responsive */
     .categories-section {
         margin-bottom: 16px;
     }
-    
+   
     .section-title {
         font-size: 15px;
         margin-bottom: 12px;
     }
-    
+   
     .category-card {
         padding: 8px 14px;
         gap: 6px;
         font-size: 12px;
     }
-    
+   
     .category-icon {
         width: 22px;
         height: 22px;
         font-size: 13px;
     }
-    
+   
     .category-name {
         font-size: 12px;
     }
-    
+   
     .view-all {
         font-size: 12px;
         padding: 4px 10px;
     }
-    
+   
     /* Categories hint responsive */
     .categories-hint {
         font-size: 10px;
         gap: 5px;
-        margin-top: 5px;
+        margin-top: 5px; /* GIẢM THÊM CHO MOBILE */
     }
-    
+   
     .categories-hint i {
         font-size: 9px;
     }
-    
+   
     /* Footer responsive */
     .footer-links {
         gap: 15px;
     }
-    
+   
     /* Bottom nav responsive */
     .nav-icon {
         font-size: 18px;
     }
-    
+   
     .nav-label {
         font-size: 10px;
     }
-    
+   
     .bottom-nav {
         padding: 6px 0 var(--safe-area-inset-bottom);
     }
@@ -1414,145 +1407,145 @@ input, select, textarea {
         width: 270px;
         height: 165px;
     }
-    
+   
     .featured-content {
         padding: 12px 16px;
     }
-    
+   
     .featured-logo-container {
         width: 60px;
         height: 60px;
     }
-    
+   
     .featured-logo {
         width: 55px;
         height: 55px;
     }
-    
+   
     .featured-name {
         font-size: 14px;
     }
-    
+   
     .featured-description {
         font-size: 11px;
     }
-    
+   
     .featured-rating {
         font-size: 10px;
     }
-    
+   
     .container {
         padding: 0 10px;
     }
-    
+   
     .apps-grid {
         grid-template-columns: 1fr;
     }
-    
+   
     .logo {
         font-size: 14px;
     }
-    
+   
     .logo-icon {
         width: 34px;
         height: 34px;
     }
-    
+   
     .hero {
         padding: 25px 0 20px 0;
     }
-    
+   
     .hero h1 {
         font-size: 15px;
     }
-    
+   
     .app-card {
         height: 100px;
     }
-    
+   
     .app-logo {
         width: 90px;
         height: 90px;
     }
-    
+   
     .app-name {
         font-size: 13px;
     }
-    
+   
     .app-description {
         font-size: 10px;
     }
-    
+   
     /* Categories responsive */
     .categories-scroll {
         gap: 6px;
-        padding: 6px 2px 0px 2px;
+        padding: 6px 2px 0px 2px; /* GIẢM PADDING DƯỚI VỀ 0 */
     }
-    
+   
     .category-card {
         padding: 7px 12px;
         gap: 5px;
         font-size: 11px;
     }
-    
+   
     .category-icon {
         width: 20px;
         height: 20px;
         font-size: 12px;
     }
-    
+   
     .category-name {
         font-size: 11px;
     }
-    
+   
     .section-title {
         font-size: 14px;
         margin-bottom: 10px;
     }
-    
+   
     /* Categories hint responsive */
     .categories-hint {
         font-size: 9px;
         gap: 4px;
-        margin-top: 5px;
+        margin-top: 5px; /* GIẢM VỀ 0 CHO MOBILE NHỎ */
     }
-    
+   
     .categories-hint i {
         font-size: 8px;
     }
-    
+   
     /* Bottom nav responsive */
     .nav-icon {
         font-size: 16px;
     }
-    
+   
     .nav-label {
         font-size: 9px;
     }
-    
+   
     .nav-item.active::after {
         width: 3px;
         height: 3px;
         bottom: 2px;
     }
-    
+   
     .bottom-nav {
         padding: 4px 0 var(--safe-area-inset-bottom);
     }
-    
+   
     /* Footer responsive */
     .footer-links {
         gap: 12px;
     }
-    
+   
     .footer-link {
         font-size: 9px;
     }
-    
+   
     .copyright {
         font-size: 9px;
     }
-    
+   
     .page-footer {
         padding: 20px 0 35px;
         font-size: 10px;
@@ -1565,29 +1558,29 @@ input, select, textarea {
         padding: 6px 10px;
         font-size: 10px;
     }
-    
+   
     .category-name {
         font-size: 10px;
     }
-    
+   
     .categories-hint {
         font-size: 8px;
     }
-    
+   
     /* Bottom nav responsive */
     .nav-icon {
         font-size: 15px;
     }
-    
+   
     .nav-label {
         font-size: 8px;
     }
-    
+   
     .footer-links {
         flex-direction: column;
         gap: 8px;
     }
-    
+   
     .footer-divider {
         display: none;
     }
@@ -1597,92 +1590,41 @@ input, select, textarea {
 @media (min-width: 1024px) {
     .categories-scroll {
         gap: 10px;
-        padding: 10px 4px 5px 4px;
+        padding: 10px 4px 5px 4px; /* GIẢM PADDING DƯỚI */
     }
-    
+   
     .category-card {
         padding: 11px 18px;
         gap: 9px;
         font-size: 14px;
     }
-    
+   
     .category-icon {
         width: 26px;
         height: 26px;
         font-size: 15px;
     }
-    
+   
     .category-name {
         font-size: 14px;
     }
-    
+   
     .category-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 6px 20px rgba(37, 99, 235, 0.15);
     }
-    
+   
     /* Ẩn categories hint trên desktop */
     .categories-hint {
         display: none;
     }
-    
+   
     /* Bottom nav desktop */
     .nav-icon {
         font-size: 22px;
     }
-    
+   
     .nav-label {
         font-size: 12px;
     }
-}
-
-/* ===== FIX WKWEBVIEW IOS TRIỆT ĐỂ ===== */
-/* Fix cho tất cả trình duyệt iOS, đặc biệt là WKWebView */
-@supports (-webkit-overflow-scrolling: touch) {
-    /* iOS devices */
-    .header {
-        /* LOẠI BỎ HOÀN TOÀN backdrop-filter */
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        /* SỬ DỤNG BACKGROUND CỨNG */
-        background: var(--header-background) !important;
-        background-color: var(--header-background) !important;
-        /* ĐẢM BẢO KHÔNG CÓ TRANSPARENCY */
-        opacity: 1 !important;
-        -webkit-opacity: 1 !important;
-    }
-    
-    /* Thêm shadow để tạo hiệu ứng depth thay vì backdrop-filter */
-    .header {
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-    
-    [data-theme="dark"] .header {
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    }
-}
-
-/* Fix riêng cho WKWebView trong iOS app */
-@media (-webkit-touch-callout: none) {
-    /* This targets iOS web views specifically */
-    .header {
-        /* LOẠI BỎ HOÀN TOÀN MỌI HIỆU ỨNG TRONG SUỐT */
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        background: var(--header-background) !important;
-        background-color: var(--header-background) !important;
-        /* QUAN TRỌNG: Thêm thuộc tính này để fix WKWebView */
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
-    }
-}
-
-/* Đảm bảo header luôn có nền ngay cả khi có bug */
-.header {
-    /* Thêm các thuộc tính đảm bảo hiển thị đúng */
-    will-change: transform;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
 }
