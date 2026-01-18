@@ -88,7 +88,7 @@ input, select, textarea {
     width: 100%;
 }
 
-/* ===== HEADER - ĐƠN GIẢN & AN TOÀN NHẤT ===== */
+/* Header - ĐÃ CHỈNH SỬA (XOÁ SEARCH BAR) */
 .header {
     background: var(--background);
     border-bottom: 1px solid var(--border);
@@ -97,10 +97,11 @@ input, select, textarea {
     left: 0;
     right: 0;
     z-index: 100;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding-top: var(--safe-area-inset-top);
     height: 50px;
     width: 100%;
-    /* KHÔNG có backdrop-filter - AN TOÀN 100% */
 }
 
 .header-content {
@@ -136,24 +137,7 @@ input, select, textarea {
     flex-shrink: 0;
 }
 
-/* SEARCH BAR - ẨN HOÀN TOÀN */
-.search-bar {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-    opacity: 0 !important;
-    position: absolute !important;
-    pointer-events: none !important;
-}
-
-.search-bar input {
-    display: none !important;
-}
-
-.search-bar i {
-    display: none !important;
-}
+/* ĐÃ XOÁ SEARCH BAR TỪ HEADER */
 
 .user-actions {
     display: flex;
