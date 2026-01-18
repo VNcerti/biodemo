@@ -7,6 +7,7 @@
                 color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -23,10 +24,12 @@
     --success: #10b981;
     --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --nav-height: 50px;
+    --nav-height: 65px;
     --radius-full: 9999px;
     --transition-fast: 0.2s ease;
     --spacing-xs: 8px;
+    --safe-area-inset-top: env(safe-area-inset-top, 15px);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 15px);
 }
 
 [data-theme="dark"] {
@@ -58,10 +61,10 @@ body {
     background: var(--background);
     color: var(--text-primary);
     line-height: 1.4;
-    padding-bottom: var(--nav-height);
     font-size: 13px;
     min-height: 100vh;
-    padding-top: 60px; /* THÊM DÒNG NÀY ĐỂ KHÔNG BỊ HEADER CHE */
+    padding-top: calc(50px + var(--safe-area-inset-top));
+    padding-bottom: var(--nav-height);
     overflow-x: hidden;
     max-width: 100%;
     touch-action: pan-y pinch-zoom;
@@ -73,24 +76,49 @@ input, select, textarea {
     max-width: 100%;
 }
 
+/* Main Content */
+.main-content {
+    padding-top: 0;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 12px;
+    width: 100%;
 }
 
-/* ===== HEADER - GIỮ NGUYÊN 100% TỪ CODE CỦA BẠN ===== */
+/* ===== HEADER - ĐÃ FIX NỀN CHO WKWEBVIEW ===== */
+/* Sử dụng kỹ thuật từ CSS cũ: thêm background cứng và backdrop-filter */
 .header {
-    background: var(--background);
+    background: var(--background) !important; /* Thêm !important để đảm bảo áp dụng trong WKWebView */
     border-bottom: 1px solid var(--border);
-    position: fixed; /* ĐỔI TỪ sticky SANG fixed */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    width: 100%;
+    /* Backdrop filter chỉ áp dụng khi hỗ trợ, không phải là nền chính */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding-top: var(--safe-area-inset-top);
     height: 50px;
-    /* backdrop-filter: blur(10px); - GIỮ NGUYÊN NHƯ BẠN */
+    width: 100%;
+    /* Thêm thuộc tính giữ nền cho WKWebView */
+    background-color: var(--background) !important;
+    background-image: none !important;
+}
+
+/* Thêm lớp phụ trợ để đảm bảo nền không bị trong suốt trong WKWebView */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--background);
+    z-index: -1; /* Đặt phía sau nội dung */
 }
 
 .header-content {
@@ -100,6 +128,10 @@ input, select, textarea {
     padding: 8px 0;
     height: 100%;
     width: 100%;
+    /* Thêm background rõ ràng cho content */
+    background: transparent;
+    position: relative;
+    z-index: 1;
 }
 
 .logo {
@@ -126,7 +158,7 @@ input, select, textarea {
     flex-shrink: 0;
 }
 
-/* SEARCH BAR - ẨN HOÀN TOÀN */
+/* SEARCH BAR - ẨN HOÀN TOÀN (giữ nguyên từ CSS mới) */
 .search-bar {
     display: none !important;
     visibility: hidden !important;
@@ -204,15 +236,16 @@ input, select, textarea {
     transform: rotate(0deg) scale(1);
 }
 
-/* ===== GIỮ NGUYÊN TẤT CẢ PHẦN DƯỚI KHÔNG THAY ĐỔI ===== */
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
-    padding: 24px 0;
+    padding: 30px 0 24px 0;
     margin-bottom: 16px;
     border-radius: 0 0 16px 16px;
-    margin-top: -10px; /* THÊM DÒNG NÀY */
+    margin-top: -10px;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content {
@@ -254,7 +287,6 @@ input, select, textarea {
 }
 
 /* ===== FEATURED APPS CAROUSEL ===== */
-
 .featured-section {
     margin: 16px 0;
 }
@@ -572,14 +604,14 @@ input, select, textarea {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    padding: 8px 4px 2px 4px; /* ĐÃ GIẢM PADDING DƯỚI ĐỂ DỊCH LÊN */
-    scrollbar-width: none; /* ẨN THANH TRƯỢT */
-    -ms-overflow-style: none; /* ẨN THANH TRƯỢT CHO IE */
+    padding: 8px 4px 2px 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
 }
 
 .categories-scroll::-webkit-scrollbar {
-    display: none; /* ẨN THANH TRƯỢT CHO WEBKIT */
+    display: none;
 }
 
 /* New Category Card Design - Chip Style */
@@ -665,7 +697,7 @@ input, select, textarea {
     animation: pulseActive 2s infinite;
 }
 
-/* ===== CATEGORIES HINT - ĐÃ CẬP NHẬT VỊ TRÍ ===== */
+/* ===== CATEGORIES HINT ===== */
 .categories-hint {
     display: flex;
     align-items: center;
@@ -673,10 +705,10 @@ input, select, textarea {
     gap: 6px;
     color: var(--text-muted);
     font-size: 11px;
-    margin-top: 5px; /* GIẢM MARGIN ĐỂ DỊCH LÊN TRÊN */
+    margin-top: 5px;
     opacity: 0.7;
     transition: opacity 0.3s ease;
-    padding: 2px 0; /* GIẢM PADDING */
+    padding: 2px 0;
 }
 
 .categories-hint i {
@@ -905,6 +937,8 @@ input, select, textarea {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 2000;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     animation: fadeIn 0.3s ease;
 }
 
@@ -1041,7 +1075,7 @@ input, select, textarea {
     font-size: 10px;
 }
 
-/* Bottom Navigation */
+/* ===== BOTTOM NAVIGATION ===== */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -1049,9 +1083,10 @@ input, select, textarea {
     right: 0;
     background: var(--background);
     border-top: 1px solid var(--border);
-    padding: 6px 0;
+    padding: 8px 0 var(--safe-area-inset-bottom);
     z-index: 1000;
     height: var(--nav-height);
+    width: 100%;
 }
 
 .nav-items {
@@ -1061,6 +1096,7 @@ input, select, textarea {
     max-width: 500px;
     margin: 0 auto;
     height: 100%;
+    width: 100%;
 }
 
 .nav-item {
@@ -1069,9 +1105,9 @@ input, select, textarea {
     align-items: center;
     text-decoration: none;
     color: var(--text-secondary);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.2s ease;
     flex: 1;
-    padding: 4px 0;
+    padding: 6px 0;
     border-radius: 8px;
     position: relative;
     height: 100%;
@@ -1085,63 +1121,35 @@ input, select, textarea {
 .nav-item.active::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: 4px;
     left: 50%;
     transform: translateX(-50%);
     width: 4px;
     height: 4px;
     background-color: var(--primary);
     border-radius: 50%;
-    animation: pulse-dot 2s infinite;
-}
-
-@keyframes pulse-dot {
-    0%, 100% {
-        opacity: 0.5;
-        transform: translateX(-50%) scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: translateX(-50%) scale(1.2);
-    }
 }
 
 .nav-icon {
-    font-size: 16px;
-    margin-bottom: 2px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 20px;
+    margin-bottom: 4px;
+    transition: color 0.2s ease;
     position: relative;
 }
 
 .nav-item.active .nav-icon {
     color: var(--primary);
-    filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.3));
 }
 
 .nav-label {
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.2s ease;
 }
 
-/* Hiệu ứng hover cho nav item */
+/* Hiệu ứng hover đơn giản cho nav item */
 .nav-item:hover {
-    transform: translateY(-3px);
-}
-
-.nav-item:hover .nav-icon {
-    transform: translateY(-4px) scale(1.1);
-}
-
-.nav-item:hover .nav-label {
-    transform: translateY(1px);
     color: var(--primary);
-}
-
-/* Hiệu ứng click */
-.nav-item:active .nav-icon {
-    transform: translateY(-2px) scale(0.95);
-    transition: transform 0.1s ease;
 }
 
 /* Loading */
@@ -1370,7 +1378,7 @@ input, select, textarea {
     .categories-hint {
         font-size: 10px;
         gap: 5px;
-        margin-top: 5px; /* GIẢM THÊM CHO MOBILE */
+        margin-top: 5px;
     }
     
     .categories-hint i {
@@ -1380,6 +1388,19 @@ input, select, textarea {
     /* Footer responsive */
     .footer-links {
         gap: 15px;
+    }
+    
+    /* Bottom nav responsive */
+    .nav-icon {
+        font-size: 18px;
+    }
+    
+    .nav-label {
+        font-size: 10px;
+    }
+    
+    .bottom-nav {
+        padding: 6px 0 var(--safe-area-inset-bottom);
     }
 }
 
@@ -1433,7 +1454,7 @@ input, select, textarea {
     }
     
     .hero {
-        padding: 20px 0;
+        padding: 25px 0 20px 0;
     }
     
     .hero h1 {
@@ -1460,7 +1481,7 @@ input, select, textarea {
     /* Categories responsive */
     .categories-scroll {
         gap: 6px;
-        padding: 6px 2px 0px 2px; /* GIẢM PADDING DƯỚI VỀ 0 */
+        padding: 6px 2px 0px 2px;
     }
     
     .category-card {
@@ -1488,20 +1509,30 @@ input, select, textarea {
     .categories-hint {
         font-size: 9px;
         gap: 4px;
-        margin-top: 5px; /* GIẢM VỀ 0 CHO MOBILE NHỎ */
+        margin-top: 5px;
     }
     
     .categories-hint i {
         font-size: 8px;
     }
     
+    /* Bottom nav responsive */
+    .nav-icon {
+        font-size: 16px;
+    }
+    
     .nav-label {
-        font-size: 8px;
+        font-size: 9px;
     }
     
     .nav-item.active::after {
         width: 3px;
         height: 3px;
+        bottom: 2px;
+    }
+    
+    .bottom-nav {
+        padding: 4px 0 var(--safe-area-inset-bottom);
     }
     
     /* Footer responsive */
@@ -1538,6 +1569,15 @@ input, select, textarea {
         font-size: 8px;
     }
     
+    /* Bottom nav responsive */
+    .nav-icon {
+        font-size: 15px;
+    }
+    
+    .nav-label {
+        font-size: 8px;
+    }
+    
     .footer-links {
         flex-direction: column;
         gap: 8px;
@@ -1552,7 +1592,7 @@ input, select, textarea {
 @media (min-width: 1024px) {
     .categories-scroll {
         gap: 10px;
-        padding: 10px 4px 5px 4px; /* GIẢM PADDING DƯỚI */
+        padding: 10px 4px 5px 4px;
     }
     
     .category-card {
@@ -1579,5 +1619,35 @@ input, select, textarea {
     /* Ẩn categories hint trên desktop */
     .categories-hint {
         display: none;
+    }
+    
+    /* Bottom nav desktop */
+    .nav-icon {
+        font-size: 22px;
+    }
+    
+    .nav-label {
+        font-size: 12px;
+    }
+}
+
+/* ===== FIX ĐẶC BIỆT CHO WKWEBVIEW IOS ===== */
+/* Áp dụng background cứng và loại bỏ transparency issue */
+@media (-webkit-overflow-scrolling: touch) {
+    /* Đây là media query cho iOS WKWebView */
+    .header {
+        background: var(--background) !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        background-color: var(--background) !important;
+        opacity: 1 !important;
+    }
+    
+    .header::before {
+        display: none; /* Không cần pseudo-element trong WKWebView */
+    }
+    
+    .header-content {
+        background: transparent !important;
     }
 }
