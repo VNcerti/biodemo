@@ -88,9 +88,9 @@ input, select, textarea {
     width: 100%;
 }
 
-/* ===== HEADER - ĐÃ SỬA CHO WEBVIEW iOS ===== */
+/* ===== HEADER - SỬA LẠI ĐỂ HOẠT ĐỘNG TRÊN CẢ WEB VÀ iOS WKWebView ===== */
 .header {
-    background: var(--background);
+    background: var(--background) !important; /* QUAN TRỌNG: Luôn có nền rắn */
     border-bottom: 1px solid var(--border);
     position: fixed;
     top: 0;
@@ -100,22 +100,12 @@ input, select, textarea {
     padding-top: var(--safe-area-inset-top);
     height: 50px;
     width: 100%;
+    /* LOẠI BỎ backdrop-filter cho WKWebView iOS */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 
-/* Giữ backdrop-filter cho trình duyệt thông thường */
-@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
-    .header {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
-    
-    [data-theme="dark"] .header {
-        background: rgba(15, 23, 42, 0.8);
-    }
-}
-
-/* Fallback đặc biệt cho iOS WebView */
+/* Thêm pseudo-element để đảm bảo có nền */
 .header::before {
     content: '';
     position: absolute;
@@ -127,10 +117,16 @@ input, select, textarea {
     z-index: -1;
 }
 
-@supports not (backdrop-filter: blur(10px)) {
-    .header::before {
-        opacity: 0.95;
-    }
+/* CHỈ áp dụng backdrop-filter khi KHÔNG phải iOS WKWebView */
+/* Thêm class này bằng JavaScript nếu cần */
+body:not(.ios-webview) .header {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="dark"] body:not(.ios-webview) .header {
+    background: rgba(15, 23, 42, 0.9) !important;
 }
 
 .header-content {
