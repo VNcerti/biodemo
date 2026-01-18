@@ -88,7 +88,7 @@ input, select, textarea {
     width: 100%;
 }
 
-/* Header - ĐÃ CHỈNH SỬA (SEARCH BAR ẨN HOÀN TOÀN) */
+/* ===== HEADER - ĐÃ SỬA CHO WEBVIEW iOS ===== */
 .header {
     background: var(--background);
     border-bottom: 1px solid var(--border);
@@ -97,11 +97,40 @@ input, select, textarea {
     left: 0;
     right: 0;
     z-index: 100;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     padding-top: var(--safe-area-inset-top);
     height: 50px;
     width: 100%;
+}
+
+/* Giữ backdrop-filter cho trình duyệt thông thường */
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    .header {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    [data-theme="dark"] .header {
+        background: rgba(15, 23, 42, 0.8);
+    }
+}
+
+/* Fallback đặc biệt cho iOS WebView */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--background);
+    z-index: -1;
+}
+
+@supports not (backdrop-filter: blur(10px)) {
+    .header::before {
+        opacity: 0.95;
+    }
 }
 
 .header-content {
@@ -111,6 +140,8 @@ input, select, textarea {
     padding: 8px 0;
     height: 100%;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .logo {
