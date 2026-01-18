@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Kho ứng dụng iPA dành cho iPhone/iPad</title>
     <link rel="icon" href="https://i.imgur.com/k0zikhA.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -71,11 +71,52 @@
         .auto-refresh-notification.show {
             opacity: 1;
         }
+        
+        /* FIXED HEADER - LUÔN GIỮ PADDING-TOP 30px KHI SCROLL */
+        .header-fixed-padding {
+            padding-top: 30px !important;
+            min-height: 70px !important;
+        }
+        
+        /* iOS safe area adjustments */
+        .ios-header-safe {
+            top: env(safe-area-inset-top, 0px) !important;
+        }
+        
+        .ios-nav-safe {
+            padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+        }
+        
+        /* Safe area spacer */
+        .safe-area-spacer {
+            height: env(safe-area-inset-top, 0px);
+            background: var(--background);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 101;
+            pointer-events: none;
+        }
+        
+        /* Body padding cho iOS */
+        .ios-body-padding {
+            padding-top: calc(30px + env(safe-area-inset-top, 0px)) !important;
+            padding-bottom: calc(15px + env(safe-area-inset-bottom, 0px)) !important;
+        }
+        
+        /* Main content spacing */
+        .main-content {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <!-- Safe area spacer for notch/Dynamic Island -->
+    <div class="safe-area-spacer"></div>
+    
+    <!-- Header với padding cố định -->
+    <header class="header ios-header-safe header-fixed-padding">
         <div class="container">
             <div class="header-content">
                 <a href="#" class="logo">
@@ -108,22 +149,8 @@
         <i class="fas fa-sync-alt"></i> Đã cập nhật dữ liệu mới
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Khám phá kho ứng dụng iPA đỉnh cao</h1>
-                <p>Tận hưởng thế giới ứng dụng và trò chơi được tuyển chọn kỹ lưỡng, hoàn toàn miễn phí. Tải về các bản iPA chất lượng, mở khóa trải nghiệm mà trước đây bạn chưa từng thấy trong App Store.</p>
-                <a href="#" class="cta-button">
-                    <i class="fas fa-download"></i>
-                    Khám phá ngay
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="container">
+    <!-- Main Content (ĐÃ XOÁ HERO SECTION) -->
+    <main class="container main-content">
         <!-- Featured Apps Carousel -->
         <section class="featured-section">
             <div class="section-title">
@@ -168,7 +195,7 @@
             </div>
         </section>
 
-        <!-- Categories - ĐÃ CẬP NHẬT -->
+        <!-- Categories -->
         <section class="categories-section">
             <div class="section-title">
                 <span>Thể loại</span>
@@ -236,7 +263,7 @@
                     <div class="category-name">Tiện ích</div>
                 </div>
             </div>
-            <!-- Thêm dòng "Vuốt sang phải để xem thêm" - ĐÃ CẬP NHẬT VỊ TRÍ -->
+            <!-- Thêm dòng "Vuốt sang phải để xem thêm" -->
             <div class="categories-hint">
                 <i class="fas fa-arrow-right"></i>
                 <span>Vuốt sang phải để xem thêm</span>
@@ -313,8 +340,8 @@
         </div>
     </div>
 
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
+    <!-- Bottom Navigation với safe area cho home indicator -->
+    <nav class="bottom-nav ios-nav-safe">
         <div class="container">
             <div class="nav-items">
                 <a href="#" class="nav-item active" data-view="home">
@@ -754,7 +781,82 @@
                 }, 100);
             });
             
+            // Điều chỉnh layout cho iOS safe areas
+            function adjustForIOS() {
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                const header = document.querySelector('.header');
+                const safeAreaSpacer = document.querySelector('.safe-area-spacer');
+                
+                if (isIOS && header && safeAreaSpacer) {
+                    // Thêm class cho body
+                    document.body.classList.add('ios-body-padding');
+                    
+                    // Điều chỉnh safe area spacer
+                    safeAreaSpacer.style.display = 'block';
+                    
+                    // Đảm bảo header luôn có padding-top 30px
+                    header.style.paddingTop = '30px';
+                    header.style.minHeight = '70px';
+                    
+                    console.log('📱 iOS device detected, applying safe area adjustments');
+                } else {
+                    // Trên desktop/Android, ẩn safe area spacer
+                    if (safeAreaSpacer) {
+                        safeAreaSpacer.style.display = 'none';
+                    }
+                }
+            }
+            
+            // Điều chỉnh layout ngay khi tải trang
+            adjustForIOS();
+            
+            // Điều chỉnh khi resize
+            window.addEventListener('resize', adjustForIOS);
+            
+            // Theo dõi scroll để đảm bảo header không bị giảm padding
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (header) {
+                    // LUÔN giữ padding-top 30px, không cho phép thay đổi
+                    header.style.paddingTop = '30px';
+                    header.style.minHeight = '70px';
+                }
+            });
+            
+            // Ngăn double-tap zoom trên toàn bộ trang
+            document.addEventListener('dblclick', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+            
+            // Ngăn context menu (right click) trên mobile
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+            
             console.log('✅ Index page fully initialized with auto data refresh system');
+        });
+        
+        // Ngăn zoom bằng gesture trên iOS
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+        
+        // Ngăn zoom bằng pinch trên mobile
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+        
+        // Ngăn text selection trừ input và textarea
+        document.addEventListener('selectstart', function(e) {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
         });
     </script>
 </body>
