@@ -49,9 +49,6 @@
 
 html {
     background-color: var(--background);
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    touch-action: manipulation;
 }
 
 body {
@@ -60,23 +57,8 @@ body {
     line-height: 1.4;
     font-size: 13px;
     min-height: 100vh;
-    padding-top: calc(60px + var(--safe-area-inset-top)); /* TĂNG LÊN 60px để không bị che */
+    padding-top: calc(15px + var(--safe-area-inset-top));
     padding-bottom: var(--nav-height);
-    overflow-x: hidden;
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-}
-
-/* Ngăn chặn zoom trên input */
-input, textarea, select, button {
-    font-size: 16px !important;
-    max-height: 3em;
-}
-
-input:focus, textarea:focus, select:focus {
-    font-size: 16px !important;
 }
 
 /* Main Content */
@@ -90,7 +72,7 @@ input:focus, textarea:focus, select:focus {
     padding: 0 12px;
 }
 
-/* Header - ĐÃ CHỈNH SỬA - THÊM HEIGHT CỐ ĐỊNH */
+/* Header - ĐÃ CHỈNH SỬA */
 .header {
     background: var(--background);
     border-bottom: 1px solid var(--border);
@@ -102,7 +84,6 @@ input:focus, textarea:focus, select:focus {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding-top: var(--safe-area-inset-top);
-    height: 60px; /* THÊM CHIỀU CAO CỐ ĐỊNH */
 }
 
 .header-content {
@@ -110,7 +91,7 @@ input:focus, textarea:focus, select:focus {
     align-items: center;
     justify-content: space-between;
     padding: 8px 0;
-    height: 100%; /* SỬ DỤNG TOÀN BỘ CHIỀU CAO */
+    height: 50px;
 }
 
 .logo {
@@ -153,10 +134,8 @@ input:focus, textarea:focus, select:focus {
     background: transparent;
     outline: none;
     width: 100%;
-    font-size: 12px !important; /* FONT SIZE CỐ ĐỊNH */
+    font-size: 12px;
     color: var(--text-primary);
-    height: 24px;
-    max-height: 24px;
 }
 
 .search-bar i {
@@ -221,14 +200,13 @@ input:focus, textarea:focus, select:focus {
     transform: rotate(0deg) scale(1);
 }
 
-/* Hero Section - ĐÃ THÊM MARGIN-TOP */
+/* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
     padding: 24px 0;
     margin-bottom: 16px;
     border-radius: 0 0 16px 16px;
-    margin-top: -5px; /* ĐIỀU CHỈNH ĐỂ HIỂN THỊ ĐẦY ĐỦ */
 }
 
 .hero-content {
@@ -968,12 +946,10 @@ input:focus, textarea:focus, select:focus {
     padding: 12px 16px;
     border: 1px solid var(--border);
     border-radius: 12px;
-    font-size: 16px !important; /* FONT SIZE CỐ ĐỊNH */
+    font-size: 16px;
     background: var(--surface);
     color: var(--text-primary);
     outline: none;
-    height: 48px;
-    max-height: 48px;
 }
 
 .search-modal-input:focus {
