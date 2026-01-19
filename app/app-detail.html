@@ -189,7 +189,7 @@
             gap: 4px;
         }
         
-        /* Description Section - ĐÃ SỬA LỖI */
+        /* Description Section - FIXED FOR WKWEBVIEW */
         .description-section {
             margin-bottom: 25px;
         }
@@ -208,10 +208,12 @@
             border: 1px solid var(--border);
             font-size: 12.5px;
             line-height: 1.4;
-            /* QUAN TRỌNG: Cho phép mở rộng tự do */
-            overflow: visible !important;
-            min-height: auto !important;
-            height: auto !important;
+            /* WKWebView fix - giữ nguyên cho web */
+            height: auto;
+            max-height: none;
+            overflow: visible;
+            display: block;
+            min-height: fit-content;
         }
         
         .description-item {
@@ -414,8 +416,7 @@
             background: var(--surface);
             border-radius: 12px;
             padding: 16px;
-            margin-bottom: -20px;
-            margin-top: 30px;
+            margin-bottom: 20px;
             border: 1px solid var(--border);
             text-align: center;
         }
@@ -730,6 +731,52 @@
             background: var(--primary-light);
         }
         
+        /* FIX SPECIFIC FOR iOS WKWEBVIEW - Không ảnh hưởng web */
+        @supports (-webkit-touch-callout: none) {
+            /* CSS chỉ áp dụng cho iOS Safari/WKWebView */
+            .ios-webview-fix {
+                /* Tạo lớp bọc chỉ cho WebView */
+            }
+            
+            /* Fix mạnh cho description box trong WKWebView */
+            .app-description-check {
+                height: auto !important;
+                max-height: none !important;
+                min-height: fit-content !important;
+                overflow: visible !important;
+                display: block !important;
+                contain: none !important;
+                will-change: transform !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            /* Đảm bảo content không bị cắt */
+            .description-text {
+                white-space: normal !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                -webkit-line-clamp: none !important;
+                display: block !important;
+            }
+            
+            /* Fix cho toàn bộ container */
+            .app-detail {
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .main-content .container {
+                display: block !important;
+                height: auto !important;
+            }
+            
+            /* Remove any WebKit specific height restrictions */
+            * {
+                -webkit-text-size-adjust: 100%;
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .app-header {
@@ -918,6 +965,18 @@
                 padding: 15px;
                 margin: 0 10px;
             }
+            
+            /* Thêm fix cho mobile WKWebView */
+            @supports (-webkit-touch-callout: none) {
+                .app-description-check {
+                    min-height: auto !important;
+                    -webkit-overflow-scrolling: touch !important;
+                }
+                
+                .description-section {
+                    min-height: auto !important;
+                }
+            }
         }
         
         /* Navbar adjustments for iOS app */
@@ -952,62 +1011,9 @@
                 margin-top: -3px;
             }
         }
-        
-        /* ===== WKWebView FIX – CHỈ ÁP DỤNG CHO APP DETAIL ===== */
-        /* Wrapper chỉ cho WKWebView */
-        .wkwebview-fix {
-            /* Không ảnh hưởng desktop/mobile web bình thường */
-            padding-top: 0;
-            padding-bottom: 0;
-        }
-        
-        /* Chỉ áp dụng khi trong WKWebView (iOS app) */
-        .wkwebview-fix .description-section,
-        .wkwebview-fix .app-description-check {
-            overflow: visible !important;
-            height: auto !important;
-            max-height: none !important;
-            min-height: auto !important;
-        }
-        
-        /* Đảm bảo mô tả có đủ không gian */
-        .wkwebview-fix .description-text {
-            white-space: normal !important;
-            overflow: visible !important;
-        }
-        
-        /* Cải thiện hiển thị mô tả chi tiết */
-        .wkwebview-fix .description-item {
-            margin-bottom: 8px;
-        }
-        
-        .wkwebview-fix .description-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        /* FIX đặc biệt cho iOS WKWebView */
-        @supports (-webkit-overflow-scrolling: touch) {
-            .wkwebview-fix {
-                /* Tạo không gian an toàn cho iOS */
-                padding-top: env(safe-area-inset-top, 0px);
-                padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-            }
-            
-            .wkwebview-fix .app-description-check {
-                /* Bỏ mọi giới hạn chiều cao */
-                max-height: unset !important;
-                height: auto !important;
-            }
-            
-            /* Đảm bảo mô tả không bị cắt */
-            .wkwebview-fix .description-section {
-                min-height: auto;
-                overflow: visible;
-            }
-        }
     </style>
 </head>
-<body>
+<body class="ios-webview-fix">
     <!-- Custom Alert Overlay -->
     <div class="custom-alert-overlay" id="customAlertOverlay">
         <div class="custom-alert" id="customAlert">
@@ -1054,44 +1060,41 @@
         </div>
     </header>
 
-    <!-- Main Content - ĐÃ THÊM WKWEBVIEW WRAPPER -->
+    <!-- Main Content -->
     <main class="main-content">
         <div class="container">
-            <!-- WRAPPER CHỈ DÀNH CHO WKWEBVIEW FIX -->
-            <div class="wkwebview-fix">
-                <div class="app-detail">
-                    <!-- Login Prompt -->
-                    <div class="login-prompt" id="loginPrompt" style="display: none;">
-                        <p>Vui lòng đăng nhập để tải ứng dụng</p>
-                        <button class="download-btn" onclick="window.location.href='account.html'">
-                            <i class="fas fa-sign-in-alt"></i>
-                            Đăng nhập ngay
-                        </button>
-                    </div>
+            <div class="app-detail">
+                <!-- Login Prompt -->
+                <div class="login-prompt" id="loginPrompt" style="display: none;">
+                    <p>Vui lòng đăng nhập để tải ứng dụng</p>
+                    <button class="download-btn" onclick="window.location.href='account.html'">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Đăng nhập ngay
+                    </button>
+                </div>
 
-                    <div id="appContent">
-                        <!-- App content will be loaded by JavaScript -->
-                        <div class="loading" id="loading">
-                            <div class="loading-spinner"></div>
-                            <p>Đang tải thông tin ứng dụng...</p>
-                        </div>
+                <div id="appContent">
+                    <!-- App content will be loaded by JavaScript -->
+                    <div class="loading" id="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Đang tải thông tin ứng dụng...</p>
                     </div>
-                    
-                    <!-- Share Button -->
-                    <div class="share-btn-container" style="display: none;" id="shareBtnContainer">
-                        <button class="share-btn" onclick="shareApp()">
-                            <i class="fas fa-share-alt"></i>
-                            Chia sẻ
-                        </button>
-                    </div>
-                    
-                    <!-- Debug Info (ẩn mặc định) -->
-                    <div id="debugInfo" class="debug-info">
-                        <div id="debugContent"></div>
-                    </div>
-                    <div class="debug-toggle" onclick="toggleDebug()">
-                        <i class="fas fa-bug"></i> Hiển thị thông tin debug
-                    </div>
+                </div>
+                
+                <!-- Share Button -->
+                <div class="share-btn-container" style="display: none;" id="shareBtnContainer">
+                    <button class="share-btn" onclick="shareApp()">
+                        <i class="fas fa-share-alt"></i>
+                        Chia sẻ
+                    </button>
+                </div>
+                
+                <!-- Debug Info (ẩn mặc định) -->
+                <div id="debugInfo" class="debug-info">
+                    <div id="debugContent"></div>
+                </div>
+                <div class="debug-toggle" onclick="toggleDebug()">
+                    <i class="fas fa-bug"></i> Hiển thị thông tin debug
                 </div>
             </div>
         </div>
@@ -1139,7 +1142,126 @@
     <script src="js/app-detail.js"></script>
     
     <script>
-        // Simple share function
+        // ==================== WKWEBVIEW DETECTION & FIX ====================
+        
+        // Phát hiện WKWebView iOS
+        function isWKWebViewiOS() {
+            const ua = navigator.userAgent;
+            const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+            const isWebKit = /WebKit/.test(ua);
+            const isChrome = /CriOS/.test(ua);
+            const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+            
+            // WKWebView iOS detection
+            return isIOS && isWebKit && !isChrome && window.webkit && window.webkit.messageHandlers;
+        }
+        
+        // Force reflow để fix chiều cao trong WKWebView
+        function forceWebViewReflow() {
+            if (!isWKWebViewiOS()) return;
+            
+            console.log('🔄 Áp dụng reflow fix cho iOS WKWebView');
+            
+            // Method 1: Trigger reflow bằng cách đọc offsetHeight
+            const descriptionCheck = document.querySelector('.app-description-check');
+            if (descriptionCheck) {
+                // Đặt chiều cao động
+                descriptionCheck.style.height = 'auto';
+                descriptionCheck.style.minHeight = 'fit-content';
+                
+                // Trigger reflow
+                void descriptionCheck.offsetHeight;
+                
+                // Tính toán chiều cao thực tế
+                const realHeight = descriptionCheck.scrollHeight;
+                descriptionCheck.style.height = realHeight + 'px';
+                
+                console.log(`📏 Set description height to: ${realHeight}px`);
+                
+                // Thêm class để track
+                descriptionCheck.classList.add('webview-fixed');
+            }
+            
+            // Method 2: Fix cho toàn bộ content
+            setTimeout(() => {
+                const containers = document.querySelectorAll('.app-detail, .main-content, .container');
+                containers.forEach(container => {
+                    container.style.height = 'auto';
+                    container.style.overflow = 'visible';
+                    void container.offsetHeight; // Trigger reflow
+                });
+            }, 100);
+            
+            // Method 3: Reset scroll position
+            window.scrollTo(0, 0);
+            setTimeout(() => {
+                window.scrollTo(0, 1);
+                window.scrollTo(0, 0);
+            }, 50);
+        }
+        
+        // Apply CSS overrides cho WKWebView
+        function applyWebViewCSSOverrides() {
+            if (!isWKWebViewiOS()) return;
+            
+            console.log('🎨 Áp dụng CSS overrides cho WKWebView');
+            
+            // Tạo dynamic stylesheet chỉ cho WKWebView
+            const styleId = 'wkwebview-override-styles';
+            if (document.getElementById(styleId)) return;
+            
+            const style = document.createElement('style');
+            style.id = styleId;
+            style.textContent = `
+                /* WKWebView iOS Height Fix Override */
+                body.ios-webview-fix .app-description-check {
+                    height: auto !important;
+                    max-height: none !important;
+                    min-height: fit-content !important;
+                    overflow: visible !important;
+                    display: block !important;
+                    contain: none !important;
+                    will-change: transform !important;
+                    -webkit-overflow-scrolling: touch !important;
+                }
+                
+                body.ios-webview-fix .description-text {
+                    white-space: normal !important;
+                    word-wrap: break-word !important;
+                    overflow-wrap: break-word !important;
+                    -webkit-line-clamp: none !important;
+                    display: block !important;
+                }
+                
+                body.ios-webview-fix .description-item {
+                    flex-shrink: 0 !important;
+                    min-height: auto !important;
+                }
+                
+                body.ios-webview-fix .app-detail {
+                    overflow-y: auto !important;
+                    -webkit-overflow-scrolling: touch !important;
+                    height: auto !important;
+                }
+                
+                body.ios-webview-fix .main-content .container {
+                    display: block !important;
+                    height: auto !important;
+                    max-height: none !important;
+                }
+                
+                /* Remove WebKit text size adjustment */
+                body.ios-webview-fix * {
+                    -webkit-text-size-adjust: 100%;
+                    -webkit-tap-highlight-color: transparent;
+                }
+            `;
+            
+            document.head.appendChild(style);
+        }
+        
+        // ==================== GLOBAL FUNCTIONS ====================
+        
         function shareApp() {
             if (navigator.share) {
                 navigator.share({
@@ -1149,7 +1271,6 @@
                 })
                 .catch(console.error);
             } else {
-                // Fallback
                 navigator.clipboard.writeText(window.location.href).then(() => {
                     showAlert('Thông báo', 'Đã sao chép link vào clipboard!');
                 });
@@ -1180,44 +1301,8 @@
             }
         }
         
-        // QUAN TRỌNG: JavaScript detection cho WKWebView
-        function isInWKWebView() {
-            // Kiểm tra nếu đang trong iOS app (WKWebView)
-            return /(iPhone|iPad|iPod).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) ||
-                   window.webkit && window.webkit.messageHandlers;
-        }
+        // ==================== THEME MANAGEMENT ====================
         
-        // Áp dụng WKWebView fix nếu cần
-        function applyWKWebViewFix() {
-            if (isInWKWebView()) {
-                console.log('WKWebView detected - applying fixes');
-                
-                // Thêm class đặc biệt cho body
-                document.body.classList.add('in-wkwebview');
-                
-                // Thêm padding cho safe area
-                const wkwebviewFix = document.querySelector('.wkwebview-fix');
-                if (wkwebviewFix) {
-                    // Đảm bảo có đủ không gian
-                    wkwebviewFix.style.paddingTop = 'calc(65px + env(safe-area-inset-top, 0px))';
-                    wkwebviewFix.style.paddingBottom = 'calc(85px + env(safe-area-inset-bottom, 0px))';
-                    
-                    // Đảm bảo mô tả có đủ không gian
-                    const descriptionCheck = wkwebviewFix.querySelector('.app-description-check');
-                    if (descriptionCheck) {
-                        descriptionCheck.style.maxHeight = 'none';
-                        descriptionCheck.style.overflow = 'visible';
-                        descriptionCheck.style.height = 'auto';
-                    }
-                }
-                
-                // Fix cuộn mượt cho iOS
-                document.documentElement.style.webkitOverflowScrolling = 'touch';
-                document.body.style.webkitOverflowScrolling = 'touch';
-            }
-        }
-        
-        // Quản lý chế độ sáng/tối
         class ThemeManager {
             constructor() {
                 this.htmlElement = document.documentElement;
@@ -1225,14 +1310,11 @@
             }
             
             init() {
-                // Kiểm tra theme đã lưu
                 const savedTheme = localStorage.getItem('theme');
                 
-                // Áp dụng theme đã lưu hoặc mặc định (light)
                 if (savedTheme === 'dark') {
                     this.setTheme('dark');
                 } else {
-                    // Mặc định là light mode
                     this.setTheme('light');
                     localStorage.setItem('theme', 'light');
                 }
@@ -1243,12 +1325,10 @@
                 this.htmlElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 
-                // Cập nhật meta theme-color cho viền trên cùng
                 this.updateMetaThemeColor(isDark);
             }
             
             updateMetaThemeColor(isDark) {
-                // Cập nhật màu theme cho thanh địa chỉ và UI trình duyệt
                 const themeColor = isDark ? '#0f172a' : '#ffffff';
                 
                 let metaThemeColor = document.querySelector('meta[name="theme-color"]');
@@ -1259,7 +1339,6 @@
                 }
                 metaThemeColor.content = themeColor;
                 
-                // Cập nhật màu cho Safari
                 let metaAppleThemeColor = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
                 if (!metaAppleThemeColor) {
                     metaAppleThemeColor = document.createElement('meta');
@@ -1270,36 +1349,68 @@
             }
         }
         
-        // Khởi tạo khi trang được tải
+        // ==================== INITIALIZATION ====================
+        
         document.addEventListener('DOMContentLoaded', () => {
             const themeManager = new ThemeManager();
             
-            // Kiểm tra và áp dụng theme ngay lập tức để tránh flash
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
             
-            // Áp dụng WKWebView fix nếu cần
-            setTimeout(applyWKWebViewFix, 100);
+            // Áp dụng WKWebView fixes
+            applyWebViewCSSOverrides();
             
-            console.log('✅ App detail page fully initialized with WKWebView fixes');
+            console.log('✅ App detail page fully initialized');
+            
+            // Thêm event listener để fix khi content thay đổi
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' || mutation.type === 'attributes') {
+                        if (isWKWebViewiOS()) {
+                            setTimeout(forceWebViewReflow, 300);
+                        }
+                    }
+                });
+            });
+            
+            // Quan sát thay đổi trong appContent
+            const appContent = document.getElementById('appContent');
+            if (appContent) {
+                observer.observe(appContent, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true
+                });
+            }
+            
+            // Force reflow sau khi trang load hoàn tất
+            setTimeout(() => {
+                if (isWKWebViewiOS()) {
+                    forceWebViewReflow();
+                }
+            }, 1000);
         });
         
-        // Fix thêm khi trang đã load xong
+        // Thêm event listener cho window load
         window.addEventListener('load', function() {
-            // Chạy lại fix để đảm bảo
-            setTimeout(applyWKWebViewFix, 300);
-            
-            // Fix cho mô tả nếu có
-            const descriptionCheck = document.querySelector('.app-description-check');
-            if (descriptionCheck && isInWKWebView()) {
-                // Đảm bảo mô tả có đủ chiều cao
-                descriptionCheck.style.minHeight = 'auto';
-                descriptionCheck.style.height = 'auto';
-                descriptionCheck.style.maxHeight = 'none';
+            if (isWKWebViewiOS()) {
+                // Thêm delay để đảm bảo mọi thứ đã render
+                setTimeout(() => {
+                    forceWebViewReflow();
+                    // Thêm một lần nữa sau 2 giây để chắc chắn
+                    setTimeout(forceWebViewReflow, 2000);
+                }, 500);
             }
         });
+        
+        // Thêm hàm global để gọi từ app-detail.js
+        window.fixWebViewLayout = function() {
+            if (isWKWebViewiOS()) {
+                setTimeout(forceWebViewReflow, 100);
+            }
+        };
     </script>
 </body>
 </html>
