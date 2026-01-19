@@ -27,7 +27,7 @@
     --radius-full: 9999px;
     --transition-fast: 0.2s ease;
     --spacing-xs: 8px;
-    --safe-area-inset-top: env(safe-area-inset-top, 0px); /* GIẢM TỪ 15px XUỐNG 0px */
+    --safe-area-inset-top: env(safe-area-inset-top, 15px); /* KHÔI PHỤC VỀ 15px */
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 15px);
 }
 
@@ -57,7 +57,7 @@ body {
     line-height: 1.4;
     font-size: 13px;
     min-height: 100vh;
-    padding-top: calc(var(--safe-area-inset-top)); /* GIẢM PADDING TOP */
+    padding-top: calc(var(--safe-area-inset-top)); /* ĐƠN GIẢN HÓA */
     padding-bottom: var(--nav-height);
 }
 
@@ -72,27 +72,44 @@ body {
     padding: 0 12px;
 }
 
-/* Header - CHỈNH SỬA: GIẢM KHOẢNG CÁCH TRÊN XUỐNG */
+/* Header - FIX LẠI HOÀN TOÀN CHO WKWEBVIEW */
 .header {
-    background: var(--background);
+    background: var(--background) !important; /* THÊM !important để đảm bảo */
     border-bottom: 1px solid var(--border);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding-top: var(--safe-area-inset-top); /* CHỈ GIỮ SAFE AREA */
-    height: 50px; /* CỐ ĐỊNH CHIỀU CAO */
+    /* LOẠI BỎ backdrop-filter cho WKWebView an toàn */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding-top: var(--safe-area-inset-top);
+    height: 50px;
+    /* Thêm fallback nền cứng */
+    background-color: var(--background) !important;
+}
+
+/* Thêm pseudo-element để đảm bảo nền hiển thị đúng */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--background);
+    z-index: -1;
 }
 
 .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4px 0; /* GIẢM PADDING TỪ 8px XUỐNG 4px */
-    height: 100%; /* CHIẾM TOÀN BỘ CHIỀU CAO HEADER */
+    padding: 8px 0; /* KHÔI PHỤC VỀ 8px */
+    height: 100%;
+    position: relative; /* Đảm bảo nằm trên pseudo-element */
+    z-index: 1;
 }
 
 .logo {
@@ -201,7 +218,7 @@ body {
     transform: rotate(0deg) scale(1);
 }
 
-/* Hero Section */
+/* Hero Section - THÊM MARGIN TOP */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
@@ -1038,7 +1055,7 @@ body {
     font-size: 10px;
 }
 
-/* ===== BOTTOM NAVIGATION - CHỈNH SỬA HOÀN TOÀN ===== */
+/* ===== BOTTOM NAVIGATION - CHỈNH SỬA ===== */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -1076,7 +1093,7 @@ body {
     min-height: 56px; /* TĂNG CHIỀU CAO TỐI THIỂU */
 }
 
-/* TRẠNG THÁI ACTIVE HOÀN TOÀN MỚI */
+/* TRẠNG THÁI ACTIVE */
 .nav-item.active {
     color: var(--primary);
     background: var(--primary-light);
@@ -1676,19 +1693,43 @@ body {
     }
 }
 
-/* Thêm rule đặc biệt cho WKWebView iOS */
+/* THÊM QUY TẮC ĐẶC BIỆT CHO WKWEBVIEW IOS ĐỂ FIX NỀN */
 @supports (-webkit-touch-callout: none) {
     .header {
-        padding-top: max(var(--safe-area-inset-top), 5px); /* ĐẢM BẢO CÓ ÍT NHẤT 5px PADDING TOP */
+        /* ĐẢM BẢO NỀN HIỂN THỊ TRONG WKWEBVIEW */
+        background: var(--background) !important;
+        background-color: var(--background) !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    /* ĐẢM BẢO PSEUDO-ELEMENT CÓ MÀU NỀN ĐÚNG */
+    .header::before {
+        background: var(--background) !important;
+        background-color: var(--background) !important;
     }
     
     .bottom-nav {
-        padding-bottom: max(var(--safe-area-inset-bottom), 10px); /* ĐẢM BẢO CÓ ÍT NHẤT 10px PADDING BOTTOM */
+        padding-bottom: max(var(--safe-area-inset-bottom), 10px);
     }
     
     /* Tối ưu hiệu ứng cho iOS */
     .nav-item.active {
         -webkit-tap-highlight-color: transparent;
         transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+/* QUY TẮC DỰ PHÒNG - ĐẢM BẢO NỀN LUÔN HIỂN THỊ */
+.header {
+    background-color: var(--background) !important;
+    background: var(--background) !important;
+}
+
+/* LOẠI BỎ backdrop-filter nếu WKWebView không hỗ trợ */
+@supports not (backdrop-filter: blur(10px)) {
+    .header {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
     }
 }
