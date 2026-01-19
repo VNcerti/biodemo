@@ -19,35 +19,24 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://modos.site/account.html">
     
+    <!-- Sử dụng CSS chính từ index.html -->
+    <link rel="stylesheet" href="css/styles.css">
+    
     <script src="js/config.js"></script>
 
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif; }
+        /* Page-specific styles */
         :root {
             --primary:#2076f3; --primary-dark:#0cabeb; --primary-light:#e1f0ff;
-            --background:#ffffff; --surface:#f8fafc; --text-primary:#1e293b;
-            --text-secondary:#64748b; --text-muted:#94a3b8; --border:#e2e8f0;
             --success:#10b981; --danger:#ef4444; --warning:#f59e0b;
             --refresh-bg:#f1f5f9; --refresh-hover:#e1f0ff; --refresh-active:#d1e4ff;
             --premium: linear-gradient(135deg, #f59e0b, #eab308, #f97316);
-            --card-shadow:0 1px 3px rgba(0,0,0,0.1),0 1px 2px rgba(0,0,0,0.06);
-            --card-shadow-hover:0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06);
-            --nav-height:65px;
-            --safe-area-inset-top: env(safe-area-inset-top, 15px);
-            --safe-area-inset-bottom: env(safe-area-inset-bottom, 15px);
         }
         
-        /* Chế độ tối */
         [data-theme="dark"] {
             --primary: #3b82f6;
             --primary-dark: #1d4ed8;
             --primary-light: #1e293b;
-            --background: #0f172a;
-            --surface: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --border: #334155;
             --success: #10b981;
             --danger: #ef4444;
             --warning: #f59e0b;
@@ -55,8 +44,6 @@
             --refresh-hover: #2d3748;
             --refresh-active: #3c4b5f;
             --premium: linear-gradient(135deg, #f59e0b, #eab308, #f97316);
-            --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-            --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
         }
         
         /* Ripple effect cho theme toggle */
@@ -75,101 +62,21 @@
             }
         }
         
-        html {
-            background-color: var(--background);
+        /* Pulse effect cho nút Telegram */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
         
-        body { 
-            background:var(--background); 
-            color:var(--text-primary); 
-            line-height:1.4; 
-            font-size:13px;
-            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding-top: calc(15px + var(--safe-area-inset-top));
-            padding-bottom: var(--nav-height);
-            min-height: 100vh;
-        }
-        
-        .container { max-width:1200px; margin:0 auto; padding:0 12px; }
-
-        /* Header - ĐỒNG BỘ VỚI INDEX.HTML */
-        .header { 
-            background:var(--background); 
-            border-bottom:1px solid var(--border); 
-            position:fixed; top:0; left:0; right:0; z-index:100; 
-            backdrop-filter:blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding-top: var(--safe-area-inset-top);
-        }
-        
-        .header-content { 
-            display:flex; align-items:center; justify-content:space-between; padding:8px 0; 
-            height: 50px;
-        }
-        
-        .logo { 
-            display:flex; align-items:center; gap:6px; font-size:24px; font-weight:700; 
-            color:var(--primary); text-decoration:none; 
-        }
-        
-        .logo-icon { 
-            background:linear-gradient(135deg, var(--primary), var(--primary-dark)); 
-            width:36px; height:36px; border-radius:6px; 
-            display:flex; align-items:center; justify-content:center; 
-            color:#fff; font-size:22px; 
-        }
-        
-        .user-actions {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .icon-btn { 
-            width:34px; height:34px; border-radius:8px; 
-            background:var(--surface); color:var(--text-secondary); 
-            border:none; cursor:pointer; 
-            display:flex; align-items:center; justify-content:center; 
-            font-size:14px; text-decoration:none;
-            transition: all 0.2s ease;
-        }
-        
-        .icon-btn:hover { 
-            background:var(--primary-light); color:var(--primary); 
-        }
-        
-        /* Theme Toggle Button */
-        .theme-toggle {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .theme-icon {
-            position: absolute;
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-                        opacity 0.5s ease;
-        }
-        
-        .sun-icon {
-            opacity: 1;
-            transform: rotate(0deg) scale(1);
-        }
-        
-        .moon-icon {
-            opacity: 0;
-            transform: rotate(-90deg) scale(0.5);
-        }
-        
-        [data-theme="dark"] .sun-icon {
-            opacity: 0;
-            transform: rotate(90deg) scale(0.5);
-        }
-        
-        [data-theme="dark"] .moon-icon {
-            opacity: 1;
-            transform: rotate(0deg) scale(1);
+        .telegram-btn:hover {
+            animation: pulse 0.5s ease-in-out;
         }
 
         /* Main Content */
@@ -408,142 +315,18 @@
             text-decoration: underline;
         }
 
-        /* Footer mới - kích thước nhỏ, ở cuối trang */
-        .page-footer {
-            background: transparent;
-            color: var(--text-muted);
-            text-align: center;
-            padding: 25px 0 40px;
-            font-size: 11px;
-            line-height: 1.6;
-            margin-top: 40px;
-            border-top: 1px solid var(--border);
+        /* Prevent zoom on input focus */
+        input, select, textarea {
+            font-size: 16px !important;
+            touch-action: manipulation;
         }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 15px;
+        
+        /* Disable text size adjustment */
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
-
-        .copyright {
-            font-size: 10px;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            opacity: 0.7;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 18px;
-            margin-top: 10px;
-        }
-
-        .footer-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 10px;
-            transition: all 0.2s ease;
-            opacity: 0.8;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .footer-link:hover {
-            color: var(--primary);
-            opacity: 1;
-            text-decoration: underline;
-        }
-
-        .footer-link i {
-            font-size: 9px;
-        }
-
-        .footer-divider {
-            color: var(--text-muted);
-            opacity: 0.3;
-            font-size: 10px;
-        }
-
-        /* Bottom Navigation - ĐỒNG BỘ 100% VỚI INDEX.HTML */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--background);
-            border-top: 1px solid var(--border);
-            padding: 8px 0 var(--safe-area-inset-bottom);
-            z-index: 1000;
-            height: var(--nav-height);
-        }
-
-        .nav-items {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            max-width: 500px;
-            margin: 0 auto;
-            height: 100%;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text-secondary);
-            transition: color 0.2s ease;
-            flex: 1;
-            padding: -10px 0;
-            border-radius: 8px;
-            position: relative;
-            height: 100%;
-            justify-content: center;
-        }
-
-        .nav-item.active {
-            color: var(--primary);
-        }
-
-        .nav-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: 6px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 5px;
-            height: 5px;
-            background-color: var(--primary);
-            border-radius: 50%;
-        }
-
-        .nav-icon {
-            font-size: 24px;
-            margin-bottom: 6px;
-            transition: color 0.2s ease;
-            position: relative;
-        }
-
-        .nav-item.active .nav-icon {
-            color: var(--primary);
-        }
-
-        .nav-label {
-            font-size: 13px;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        /* Hiệu ứng hover cho nav item */
-        .nav-item:hover {
-            color: var(--primary);
-        }
-
+        
         /* Responsive */
         @media (max-width:480px) {
             .account-container { padding:16px 0; margin:10px auto; }
@@ -553,106 +336,11 @@
             .welcome-title { font-size:18px; }
             .welcome-subtitle { font-size:13px; }
             .change-password-card { padding:20px; margin:0 12px; }
-            
-            .nav-label {
-                font-size: 11px;
-            }
-            
-            .nav-item.active::after {
-                width: 4px;
-                height: 4px;
-                bottom: -6px;
-            }
-            
-            .bottom-nav {
-                padding: 4px 0 var(--safe-area-inset-bottom);
-            }
-            
-            .nav-icon {
-                font-size: 20px;
-            }
-            
-            .footer-links {
-                gap: 12px;
-            }
-            
-            .footer-link {
-                font-size: 9px;
-            }
-            
-            .copyright {
-                font-size: 9px;
-            }
-            
-            .page-footer {
-                padding: 20px 0 35px;
-                font-size: 10px;
-            }
-        }
-        
-        @media (max-width: 768px) and (min-width: 481px) {
-            .footer-links {
-                gap: 15px;
-            }
-            
-            .nav-icon {
-                font-size: 22px;
-            }
-            
-            .nav-label {
-                font-size: 12px;
-            }
-            
-            .nav-item.active::after {
-                bottom: -15px;
-                width: 4px;
-                height: 4px;
-            }
-            
-            .bottom-nav {
-                padding: 6px 0 var(--safe-area-inset-bottom);
-            }
-        }
-        
-        @media (max-width: 380px) {
-            .footer-links {
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .footer-divider {
-                display: none;
-            }
-            
-            .nav-icon {
-                font-size: 19px;
-            }
-            
-            .nav-label {
-                font-size: 10px;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .nav-icon {
-                font-size: 26px;
-            }
-            
-            .nav-label {
-                font-size: 14px;
-            }
-            
-            .nav-item.active::after {
-                bottom: 8px;
-                width: 6px;
-                height: 6px;
-            }
         }
     </style>
 </head>
 <body>
-
-    <!-- Header - ĐỒNG BỘ VỚI INDEX.HTML -->
+    <!-- Header - ĐỒNG BỘ 100% VỚI INDEX.HTML -->
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -660,6 +348,11 @@
                     <div class="logo-icon"><i class="fas fa-rocket"></i></div>
                     XSpace Store
                 </a>
+                <!-- Search bar ẩn giống index.html -->
+                <div class="search-bar" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm ứng dụng...">
+                </div>
                 <div class="user-actions">
                     <!-- Nút chuyển đổi chế độ sáng/tối -->
                     <button class="icon-btn theme-toggle" id="themeToggle">
@@ -851,7 +544,7 @@
         </div>
     </main>
 
-    <!-- Footer mới - ở cuối trang với kích thước nhỏ -->
+    <!-- Footer -->
     <footer class="page-footer">
         <div class="container">
             <div class="footer-content">
