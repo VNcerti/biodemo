@@ -57,7 +57,8 @@ body {
     line-height: 1.4;
     font-size: 13px;
     min-height: 100vh;
-    padding-top: calc(15px + var(--safe-area-inset-top));
+    /* GIẢM padding-top của body để nội dung dịch lên */
+    padding-top: calc(10px + var(--safe-area-inset-top));
     padding-bottom: var(--nav-height);
 }
 
@@ -72,33 +73,40 @@ body {
     padding: 0 12px;
 }
 
-/* Header - ĐÃ CHỈNH SỬA ĐỂ DỊCH LÊN TRÊN THÊM */
+/* HEADER - ĐÃ CHỈNH SỬA MẠNH TAY ĐỂ DỊCH LÊN HẲN TRÊN */
 .header {
     background: var(--background);
     border-bottom: 1px solid var(--border);
     position: fixed;
-    top: 0;
+    top: 0; /* GIỮ NGUYÊN top: 0 */
     left: 0;
     right: 0;
     z-index: 100;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding-top: calc(var(--safe-area-inset-top) - 3px); /* Dịch lên 3px */
+    /* GIẢM padding-top đáng kể để dịch lên trên */
+    padding-top: 0;
+    /* GIẢM chiều cao tổng thể */
+    height: 48px;
 }
 
 .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 0; /* Giảm padding để dịch lên */
-    height: 48px; /* Giảm chiều cao */
+    /* GIẢM padding vertical để content nhỏ lại */
+    padding: 2px 0;
+    /* GIẢM chiều cao content */
+    height: 40px;
+    /* Canh giữa theo chiều dọc */
+    align-items: center;
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 16px;
+    font-size: 15px; /* GIẢM size một chút */
     font-weight: 700;
     color: var(--primary);
     text-decoration: none;
@@ -106,14 +114,14 @@ body {
 
 .logo-icon {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    width: 26px;
-    height: 26px;
+    width: 24px; /* GIẢM kích thước */
+    height: 24px;
     border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 12px;
+    font-size: 11px; /* GIẢM size */
 }
 
 .search-bar {
@@ -121,11 +129,11 @@ body {
     align-items: center;
     background: var(--surface);
     border-radius: 10px;
-    padding: 6px 12px;
+    padding: 5px 10px; /* GIẢM padding */
     flex: 1;
-    max-width: 200px;
-    margin: 0 12px;
-    gap: 6px;
+    max-width: 180px; /* GIẢM max-width */
+    margin: 0 10px; /* GIẢM margin */
+    gap: 5px;
     border: 1px solid var(--border);
 }
 
@@ -134,23 +142,23 @@ body {
     background: transparent;
     outline: none;
     width: 100%;
-    font-size: 12px;
+    font-size: 11px; /* GIẢM size */
     color: var(--text-primary);
 }
 
 .search-bar i {
-    font-size: 12px;
+    font-size: 11px; /* GIẢM size */
     color: var(--text-muted);
 }
 
 .user-actions {
     display: flex;
-    gap: 8px;
+    gap: 6px; /* GIẢM gap */
 }
 
 .icon-btn {
-    width: 34px;
-    height: 34px;
+    width: 32px; /* GIẢM size */
+    height: 32px;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -160,7 +168,7 @@ body {
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
-    font-size: 14px;
+    font-size: 13px; /* GIẢM size */
     text-decoration: none;
 }
 
@@ -200,13 +208,15 @@ body {
     transform: rotate(0deg) scale(1);
 }
 
-/* Hero Section */
+/* Hero Section - ĐIỀU CHỈNH MARGIN TOP VÌ HEADER NHỎ HƠN */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
-    padding: 24px 0;
+    padding: 20px 0; /* GIẢM padding một chút */
     margin-bottom: 16px;
     border-radius: 0 0 16px 16px;
+    /* TĂNG margin-top để hero không bị che bởi header mới */
+    margin-top: 48px; /* Bằng với chiều cao header */
 }
 
 .hero-content {
@@ -1036,7 +1046,7 @@ body {
     font-size: 10px;
 }
 
-/* ===== BOTTOM NAVIGATION - ĐÃ CHỈNH SỬA HOÀN TOÀN ===== */
+/* ===== BOTTOM NAVIGATION - GIỮ NGUYÊN NHƯ BẠN MUỐN ===== */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -1044,7 +1054,7 @@ body {
     right: 0;
     background: var(--background);
     border-top: 1px solid var(--border);
-    padding: 4px 0 var(--safe-area-inset-bottom); /* Giảm padding trên để dịch lên */
+    padding: 4px 0 var(--safe-area-inset-bottom);
     z-index: 1000;
     height: var(--nav-height);
 }
@@ -1066,7 +1076,7 @@ body {
     color: var(--text-secondary);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     flex: 1;
-    padding: 4px 0 6px 0; /* Điều chỉnh padding để dịch lên */
+    padding: 4px 0 6px 0;
     border-radius: 8px;
     position: relative;
     height: 100%;
@@ -1085,7 +1095,7 @@ body {
 .nav-item.active::after {
     content: '';
     position: absolute;
-    bottom: 2px; /* Dịch lên trên hơn một chút */
+    bottom: 2px;
     left: 50%;
     transform: translateX(-50%);
     width: 4px;
@@ -1096,7 +1106,7 @@ body {
 
 .nav-icon {
     font-size: 20px;
-    margin-bottom: 2px; /* Giảm margin để dịch lên */
+    margin-bottom: 2px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
@@ -1304,13 +1314,63 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
     
+    /* HEADER RESPONSIVE - DỊCH LÊN MẠNH HƠN */
+    .header {
+        height: 45px;
+    }
+    
+    .header-content {
+        padding: 1px 0;
+        height: 38px;
+    }
+    
+    .logo {
+        font-size: 14px;
+    }
+    
+    .logo-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+    }
+    
     .search-bar {
         margin: 0 8px;
-        max-width: 180px;
+        max-width: 150px;
+        padding: 4px 8px;
+    }
+    
+    .search-bar input {
+        font-size: 10px;
+    }
+    
+    .search-bar i {
+        font-size: 10px;
+    }
+    
+    .user-actions {
+        gap: 5px;
+    }
+    
+    .icon-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+    
+    /* Hero điều chỉnh margin-top */
+    .hero {
+        margin-top: 45px;
+        padding: 18px 0;
     }
     
     .hero h1 {
         font-size: 16px;
+    }
+    
+    /* Body giảm padding-top */
+    body {
+        padding-top: calc(8px + var(--safe-area-inset-top));
     }
     
     .app-card {
@@ -1326,16 +1386,6 @@ body {
     
     .app-name {
         font-size: 14px;
-    }
-    
-    /* Header responsive */
-    .header {
-        padding-top: calc(var(--safe-area-inset-top) - 2px);
-    }
-    
-    .header-content {
-        padding: 5px 0;
-        height: 46px;
     }
     
     /* Categories responsive */
@@ -1385,7 +1435,7 @@ body {
         gap: 15px;
     }
     
-    /* Bottom nav responsive - ĐÃ CHỈNH SỬA */
+    /* Bottom nav responsive */
     .nav-icon {
         font-size: 18px;
         margin-bottom: 1px;
@@ -1450,27 +1500,63 @@ body {
         grid-template-columns: 1fr;
     }
     
+    /* HEADER RESPONSIVE MOBILE - DỊCH LÊN MẠNH HƠN */
+    .header {
+        height: 42px;
+    }
+    
+    .header-content {
+        padding: 0;
+        height: 35px;
+    }
+    
     .logo {
-        font-size: 14px;
+        font-size: 13px;
     }
     
     .logo-icon {
-        width: 34px;
-        height: 34px;
+        width: 20px;
+        height: 20px;
+        font-size: 9px;
     }
     
     .search-bar {
         margin: 0 6px;
-        padding: 5px 10px;
-        max-width: 150px;
+        padding: 3px 6px;
+        max-width: 130px;
     }
     
+    .search-bar input {
+        font-size: 9px;
+    }
+    
+    .search-bar i {
+        font-size: 9px;
+    }
+    
+    .user-actions {
+        gap: 4px;
+    }
+    
+    .icon-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+    }
+    
+    /* Hero điều chỉnh margin-top */
     .hero {
-        padding: 20px 0;
+        margin-top: 42px;
+        padding: 16px 0;
     }
     
     .hero h1 {
         font-size: 15px;
+    }
+    
+    /* Body giảm padding-top thêm */
+    body {
+        padding-top: calc(6px + var(--safe-area-inset-top));
     }
     
     .app-card {
@@ -1488,16 +1574,6 @@ body {
     
     .app-description {
         font-size: 10px;
-    }
-    
-    /* Header responsive */
-    .header {
-        padding-top: calc(var(--safe-area-inset-top) - 1px);
-    }
-    
-    .header-content {
-        padding: 4px 0;
-        height: 44px;
     }
     
     /* Categories responsive */
@@ -1538,7 +1614,7 @@ body {
         font-size: 8px;
     }
     
-    /* Bottom nav responsive - ĐÃ CHỈNH SỬA */
+    /* Bottom nav responsive */
     .nav-icon {
         font-size: 16px;
         margin-bottom: 1px;
@@ -1596,13 +1672,53 @@ body {
         font-size: 8px;
     }
     
-    /* Header responsive */
-    .header-content {
-        padding: 3px 0;
-        height: 42px;
+    /* HEADER RESPONSIVE MOBILE NHỎ - DỊCH LÊN TỐI ĐA */
+    .header {
+        height: 40px;
     }
     
-    /* Bottom nav responsive - ĐÃ CHỈNH SỬA */
+    .header-content {
+        padding: 0;
+        height: 33px;
+    }
+    
+    .logo {
+        font-size: 12px;
+    }
+    
+    .logo-icon {
+        width: 18px;
+        height: 18px;
+        font-size: 8px;
+    }
+    
+    .search-bar {
+        max-width: 120px;
+        padding: 2px 5px;
+    }
+    
+    .search-bar input {
+        font-size: 8px;
+    }
+    
+    .icon-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 10px;
+    }
+    
+    /* Hero điều chỉnh margin-top */
+    .hero {
+        margin-top: 40px;
+        padding: 14px 0;
+    }
+    
+    /* Body giảm padding-top tối đa */
+    body {
+        padding-top: calc(4px + var(--safe-area-inset-top));
+    }
+    
+    /* Bottom nav responsive */
     .nav-icon {
         font-size: 15px;
         margin-bottom: 0;
@@ -1669,14 +1785,29 @@ body {
         display: none;
     }
     
-    /* Header desktop */
+    /* Header desktop - DỊCH LÊN MẠNH */
     .header {
-        padding-top: calc(var(--safe-area-inset-top) - 4px);
+        height: 50px;
     }
     
     .header-content {
-        padding: 7px 0;
-        height: 50px;
+        padding: 4px 0;
+        height: 42px;
+    }
+    
+    .logo {
+        font-size: 16px;
+    }
+    
+    .logo-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+    
+    /* Hero điều chỉnh margin-top cho desktop */
+    .hero {
+        margin-top: 50px;
     }
     
     /* Bottom nav desktop */
