@@ -27,7 +27,7 @@
     --radius-full: 9999px;
     --transition-fast: 0.2s ease;
     --spacing-xs: 8px;
-    --safe-area-inset-top: env(safe-area-inset-top, 15px); /* KHÔI PHỤC VỀ 15px */
+    --safe-area-inset-top: env(safe-area-inset-top, 15px);
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 15px);
 }
 
@@ -57,7 +57,7 @@ body {
     line-height: 1.4;
     font-size: 13px;
     min-height: 100vh;
-    padding-top: calc(var(--safe-area-inset-top)); /* ĐƠN GIẢN HÓA */
+    padding-top: calc(15px + var(--safe-area-inset-top));
     padding-bottom: var(--nav-height);
 }
 
@@ -72,44 +72,28 @@ body {
     padding: 0 12px;
 }
 
-/* Header - FIX LẠI HOÀN TOÀN CHO WKWEBVIEW */
+/* Header - GIỮ NGUYÊN NHƯ CODE GỐC, CHỈ CHỈNH VỊ TRÍ */
 .header {
-    background: var(--background) !important; /* THÊM !important để đảm bảo */
+    background: var(--background);
     border-bottom: 1px solid var(--border);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    /* LOẠI BỎ backdrop-filter cho WKWebView an toàn */
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding-top: var(--safe-area-inset-top);
-    height: 50px;
-    /* Thêm fallback nền cứng */
+    /* THÊM NỀN DỰ PHÒNG CHO WKWEBVIEW */
     background-color: var(--background) !important;
-}
-
-/* Thêm pseudo-element để đảm bảo nền hiển thị đúng */
-.header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--background);
-    z-index: -1;
 }
 
 .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0; /* KHÔI PHỤC VỀ 8px */
-    height: 100%;
-    position: relative; /* Đảm bảo nằm trên pseudo-element */
-    z-index: 1;
+    padding: 6px 0; /* GIẢM TỪ 8px XUỐNG 6px để header cao lên */
+    height: 50px;
 }
 
 .logo {
@@ -218,14 +202,14 @@ body {
     transform: rotate(0deg) scale(1);
 }
 
-/* Hero Section - THÊM MARGIN TOP */
+/* Hero Section - THÊM MARGIN TOP để không bị header che */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
     padding: 24px 0;
     margin-bottom: 16px;
     border-radius: 0 0 16px 16px;
-    margin-top: 50px; /* THÊM MARGIN TOP BẰNG CHIỀU CAO HEADER */
+    margin-top: 50px; /* THÊM MARGIN TOP = chiều cao header */
 }
 
 .hero-content {
@@ -1055,7 +1039,7 @@ body {
     font-size: 10px;
 }
 
-/* ===== BOTTOM NAVIGATION - CHỈNH SỬA ===== */
+/* ===== BOTTOM NAVIGATION - CHỈNH SỬA NHẸ ===== */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -1071,7 +1055,7 @@ body {
 .nav-items {
     display: flex;
     justify-content: space-around;
-    align-items: stretch; /* CHIẾM TOÀN BỘ CHIỀU CAO */
+    align-items: stretch;
     max-width: 500px;
     margin: 0 auto;
     height: 100%;
@@ -1081,91 +1065,53 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* CANH GIỮA THEO CHIỀU DỌC */
+    justify-content: center;
     text-decoration: none;
     color: var(--text-secondary);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     flex: 1;
-    padding: 0; /* LOẠI BỎ PADDING VERTICAL */
-    border-radius: 0; /* LOẠI BỎ BORDER RADIUS */
+    padding: 2px 0; /* GIẢM PADDING DƯỚI để icon và chữ cao lên */
+    border-radius: 8px;
     position: relative;
     height: 100%;
-    min-height: 56px; /* TĂNG CHIỀU CAO TỐI THIỂU */
 }
 
-/* TRẠNG THÁI ACTIVE */
 .nav-item.active {
     color: var(--primary);
-    background: var(--primary-light);
-    border-radius: 12px; /* THÊM BORDER RADIUS CHỈ KHI ACTIVE */
-    margin: 2px 4px; /* THÊM KHOẢNG CÁCH XUNG QUANH */
-    transform: translateY(-2px); /* HIỆU ỨNG NỔI */
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
 }
 
-/* LOẠI BỎ DẤU CHẤM DƯỚI */
 .nav-item.active::after {
-    display: none;
+    content: '';
+    position: absolute;
+    bottom: 6px; /* DỊCH LÊN TRÊN MỘT CHÚT */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: var(--primary);
+    border-radius: 50%;
 }
 
-/* ICON LỚN HƠN VÀ DỊCH LÊN */
 .nav-icon {
-    font-size: 22px; /* TĂNG TỪ 20px LÊN 22px */
-    margin-bottom: 2px; /* GIẢM MARGIN DƯỚI */
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 22px; /* TĂNG KÍCH THƯỚIC TỪ 20px */
+    margin-bottom: 2px; /* GIẢM MARGIN DƯỚI để icon cao lên */
+    transition: color 0.2s ease;
     position: relative;
-    transform: translateY(-1px); /* DỊCH ICON LÊN TRÊN 1PX */
 }
 
 .nav-item.active .nav-icon {
     color: var(--primary);
-    transform: translateY(-2px) scale(1.1); /* HIỆU ỨNG PHÓNG TO VÀ DỊCH LÊN */
 }
 
-/* CHỮ LỚN HƠN VÀ DỊCH LÊN */
 .nav-label {
-    font-size: 12px; /* TĂNG TỪ 11px LÊN 12px */
+    font-size: 12px; /* TĂNG KÍCH THƯỚC TỪ 11px */
     font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(-1px); /* DỊCH CHỮ LÊN TRÊN 1PX */
-}
-
-.nav-item.active .nav-label {
-    color: var(--primary);
-    font-weight: 600;
-    transform: translateY(-1px); /* GIỮ NGUYÊN VỊ TRÍ */
+    transition: color 0.2s ease;
 }
 
 /* Hiệu ứng hover đơn giản cho nav item */
-.nav-item:hover:not(.active) {
+.nav-item:hover {
     color: var(--primary);
-    background: rgba(0, 0, 0, 0.02);
-    border-radius: 8px;
-    margin: 4px 4px;
-}
-
-[data-theme="dark"] .nav-item:hover:not(.active) {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* Animation cho active state */
-@keyframes navItemActive {
-    0% {
-        transform: translateY(0) scale(1);
-        box-shadow: 0 2px 6px rgba(37, 99, 235, 0.1);
-    }
-    50% {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
-    }
-    100% {
-        transform: translateY(-2px) scale(1);
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
-    }
-}
-
-.nav-item.active {
-    animation: navItemActive 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Loading */
@@ -1411,9 +1357,9 @@ body {
         gap: 15px;
     }
     
-    /* Bottom nav responsive - ĐIỀU CHỈNH CHO TABLET */
+    /* Bottom nav responsive */
     .nav-icon {
-        font-size: 21px; /* GIẢM NHẸ SO VỚI DESKTOP */
+        font-size: 20px;
     }
     
     .nav-label {
@@ -1424,13 +1370,9 @@ body {
         padding: 6px 0 var(--safe-area-inset-bottom);
     }
     
-    .nav-item.active {
-        margin: 3px 3px;
-        transform: translateY(-1px);
-    }
-    
-    .nav-item.active .nav-icon {
-        transform: translateY(-1px) scale(1.05);
+    /* Header mobile */
+    .header-content {
+        padding: 5px 0; /* GIẢM NHẸ CHO MOBILE */
     }
 }
 
@@ -1552,31 +1494,32 @@ body {
         font-size: 8px;
     }
     
-    /* Bottom nav responsive - ĐIỀU CHỈNH CHO MOBILE */
+    /* Bottom nav responsive */
     .nav-icon {
-        font-size: 20px; /* VẪN GIỮ LỚN HƠN BAN ĐẦU */
-        margin-bottom: 1px;
+        font-size: 20px;
     }
     
     .nav-label {
         font-size: 10px;
     }
     
-    .nav-item {
-        min-height: 54px; /* GIẢM NHẸ CHO MOBILE */
-    }
-    
-    .nav-item.active {
-        margin: 2px 2px;
-        border-radius: 10px;
-    }
-    
-    .nav-item.active .nav-icon {
-        transform: translateY(-1px) scale(1.05);
+    .nav-item.active::after {
+        width: 3px;
+        height: 3px;
+        bottom: 5px;
     }
     
     .bottom-nav {
         padding: 4px 0 var(--safe-area-inset-bottom);
+    }
+    
+    /* Header mobile nhỏ */
+    .header-content {
+        padding: 4px 0; /* GIẢM THÊM CHO MOBILE NHỎ */
+    }
+    
+    .hero {
+        margin-top: 48px; /* GIẢM NHẸ MARGIN TOP CHO MOBILE */
     }
     
     /* Footer responsive */
@@ -1613,17 +1556,13 @@ body {
         font-size: 8px;
     }
     
-    /* Bottom nav responsive - ĐIỀU CHỈNH CHO MÀN HÌNH RẤT NHỎ */
+    /* Bottom nav responsive */
     .nav-icon {
         font-size: 19px;
     }
     
     .nav-label {
         font-size: 9px;
-    }
-    
-    .nav-item {
-        min-height: 52px;
     }
     
     .footer-links {
@@ -1640,7 +1579,7 @@ body {
 @media (min-width: 1024px) {
     .categories-scroll {
         gap: 10px;
-        padding: 10px 4px 5px 4px; /* GIẢM PADDING DƯỚI */
+        padding: 10px 4px 5px 4px; /* GIẢM PADDING DƯỊ */
     }
     
     .category-card {
@@ -1669,67 +1608,50 @@ body {
         display: none;
     }
     
-    /* Bottom nav desktop - GIỮ LẠI CÁC TÙY CHỈNH MỚI */
+    /* Bottom nav desktop */
     .nav-icon {
         font-size: 24px; /* TĂNG LÊN 24px CHO DESKTOP */
-        margin-bottom: 3px;
     }
     
     .nav-label {
         font-size: 13px;
     }
     
-    .nav-item {
-        min-height: 60px;
-    }
-    
-    .nav-item.active {
-        margin: 4px 6px;
-        transform: translateY(-3px);
-    }
-    
-    .nav-item.active .nav-icon {
-        transform: translateY(-3px) scale(1.15);
+    .nav-item.active::after {
+        bottom: 8px;
     }
 }
 
-/* THÊM QUY TẮC ĐẶC BIỆT CHO WKWEBVIEW IOS ĐỂ FIX NỀN */
-@supports (-webkit-touch-callout: none) {
+/* FIX TRIỆT ĐỂ CHO WKWEBVIEW IOS - DÙNG QUY TẮC RIÊNG */
+/* Nếu WKWebView không hỗ trợ backdrop-filter, dùng nền đơn thuần */
+@supports not (backdrop-filter: blur(10px)) {
     .header {
-        /* ĐẢM BẢO NỀN HIỂN THỊ TRONG WKWEBVIEW */
         background: var(--background) !important;
-        background-color: var(--background) !important;
-        -webkit-backdrop-filter: none !important;
         backdrop-filter: none !important;
-    }
-    
-    /* ĐẢM BẢO PSEUDO-ELEMENT CÓ MÀU NỀN ĐÚNG */
-    .header::before {
-        background: var(--background) !important;
-        background-color: var(--background) !important;
-    }
-    
-    .bottom-nav {
-        padding-bottom: max(var(--safe-area-inset-bottom), 10px);
-    }
-    
-    /* Tối ưu hiệu ứng cho iOS */
-    .nav-item.active {
-        -webkit-tap-highlight-color: transparent;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        -webkit-backdrop-filter: none !important;
     }
 }
 
-/* QUY TẮC DỰ PHÒNG - ĐẢM BẢO NỀN LUÔN HIỂN THỊ */
+/* QUY TẮC DỰ PHÒNG - ĐẢM BẢO HEADER LUÔN CÓ NỀN */
 .header {
     background-color: var(--background) !important;
     background: var(--background) !important;
 }
 
-/* LOẠI BỎ backdrop-filter nếu WKWebView không hỗ trợ */
-@supports not (backdrop-filter: blur(10px)) {
-    .header {
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
+/* THÊM PSEUDO-ELEMENT ĐỂ ĐẢM BẢO NỀN HIỂN THỊ */
+.header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* FIX cho trường hợp backdrop-filter làm trong suốt */
+.header {
+    isolation: isolate; /* Tạo stacking context mới */
 }
