@@ -57,7 +57,7 @@ body {
     line-height: 1.4;
     font-size: 13px;
     min-height: 100vh;
-    padding-top: calc(15px + var(--safe-area-inset-top));
+    padding-top: calc(var(--safe-area-inset-top) + 10px); /* GIẢM XUỐNG CÒN 10px */
     padding-bottom: var(--nav-height);
 }
 
@@ -72,19 +72,20 @@ body {
     padding: 0 12px;
 }
 
-/* Header - GIỮ NGUYÊN NHƯ CODE GỐC, CHỈ CHỈNH VỊ TRÍ */
+/* Header - DỊCH LÊN TRÊN */
 .header {
     background: var(--background);
     border-bottom: 1px solid var(--border);
     position: fixed;
-    top: 0;
+    top: 0; /* ĐẢM BẢO SÁT ĐỈNH */
     left: 0;
     right: 0;
     z-index: 100;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding-top: var(--safe-area-inset-top);
-    /* THÊM NỀN DỰ PHÒNG CHO WKWEBVIEW */
+    padding-top: var(--safe-area-inset-top); /* GIỮ NGUYÊN SAFE AREA */
+    height: 50px;
+    /* ĐẢM BẢO NỀN HIỂN THỊ TRONG WKWEBVIEW */
     background-color: var(--background) !important;
 }
 
@@ -92,8 +93,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 0; /* GIẢM TỪ 8px XUỐNG 6px để header cao lên */
-    height: 50px;
+    padding: 5px 0; /* GIẢM PADDING ĐỂ HEADER NHỎ GỌN HƠN */
+    height: 100%;
 }
 
 .logo {
@@ -202,20 +203,22 @@ body {
     transform: rotate(0deg) scale(1);
 }
 
-/* Hero Section - THÊM MARGIN TOP để không bị header che */
+/* Hero Section - DỊCH LÊN SÁT HEADER */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
-    padding: 24px 0;
+    padding: 20px 0 24px 0; /* GIẢM PADDING TRÊN XUỐNG 20px */
     margin-bottom: 16px;
     border-radius: 0 0 16px 16px;
-    margin-top: 50px; /* THÊM MARGIN TOP = chiều cao header */
+    margin-top: 0; /* LOẠI BỎ MARGIN TOP */
+    padding-top: 0; /* ĐẢM BẢO KHÔNG CÓ KHOẢNG TRỐNG TRÊN */
 }
 
 .hero-content {
     text-align: center;
     max-width: 400px;
     margin: 0 auto;
+    padding-top: 33px; /* THÊM CHÚT PADDING ĐỂ CÂN ĐỐI */
 }
 
 .hero h1 {
@@ -223,12 +226,14 @@ body {
     font-weight: 700;
     margin-bottom: 8px;
     line-height: 1.3;
+    margin-top: 33px; /* ĐẢM BẢO KHÔNG CÓ MARGIN TRÊN */
 }
 
 .hero p {
     font-size: 12px;
     opacity: 0.9;
     margin-bottom: 16px;
+    line-height: 1.4;
 }
 
 .cta-button {
@@ -892,7 +897,7 @@ body {
     transform: translateY(-1px);
 }
 
-/* Search Modal */
+/* Search Modal - FIX ĐỂ HIỂN THỊ DƯỚI DYNAMIC ISLAND */
 .search-modal {
     display: none;
     position: fixed;
@@ -926,6 +931,8 @@ body {
     padding: 16px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     animation: slideDown 0.3s ease;
+    /* ĐẢM BẢO KHÔNG CHE DYNAMIC ISLAND */
+    padding-top: calc(var(--safe-area-inset-top) + 10px);
 }
 
 @keyframes slideDown {
@@ -942,6 +949,7 @@ body {
     align-items: center;
     gap: 12px;
     margin-bottom: 16px;
+    padding-top: 5px; /* THÊM PADDING ĐỂ TRÁNH CHE */
 }
 
 .search-modal-input {
@@ -974,7 +982,7 @@ body {
 }
 
 .search-results {
-    max-height: 70vh;
+    max-height: calc(100vh - 150px); /* GIẢM CHIỀU CAO ĐỂ ĐẢM BẢO KHÔNG TRÀN */
     overflow-y: auto;
 }
 
@@ -1093,7 +1101,7 @@ body {
 }
 
 .nav-icon {
-    font-size: 22px; /* TĂNG KÍCH THƯỚIC TỪ 20px */
+    font-size: 22px; /* TĂNG KÍCH THƯỚC TỪ 20px */
     margin-bottom: 2px; /* GIẢM MARGIN DƯỚI để icon cao lên */
     transition: color 0.2s ease;
     position: relative;
@@ -1295,6 +1303,14 @@ body {
         font-size: 16px;
     }
     
+    .hero {
+        padding: 18px 0 22px 0; /* GIẢM THÊM CHO TABLET */
+    }
+    
+    .hero-content {
+        padding-top: 33px;
+    }
+    
     .app-card {
         padding: 10px;
         gap: 10px;
@@ -1372,7 +1388,12 @@ body {
     
     /* Header mobile */
     .header-content {
-        padding: 5px 0; /* GIẢM NHẸ CHO MOBILE */
+        padding: 4px 0; /* GIẢM NHẸ CHO MOBILE */
+    }
+    
+    /* Search modal responsive */
+    .search-modal-content {
+        padding-top: calc(var(--safe-area-inset-top) + 8px);
     }
 }
 
@@ -1432,11 +1453,16 @@ body {
     }
     
     .hero {
-        padding: 20px 0;
+        padding: 16px 0 20px 0; /* GIẢM THÊM CHO MOBILE */
     }
     
     .hero h1 {
         font-size: 15px;
+    }
+    
+    .hero p {
+        font-size: 11px;
+        line-height: 1.3;
     }
     
     .app-card {
@@ -1515,11 +1541,23 @@ body {
     
     /* Header mobile nhỏ */
     .header-content {
-        padding: 4px 0; /* GIẢM THÊM CHO MOBILE NHỎ */
+        padding: 3px 0; /* GIẢM THÊM CHO MOBILE NHỎ */
     }
     
-    .hero {
-        margin-top: 48px; /* GIẢM NHẸ MARGIN TOP CHO MOBILE */
+    /* Search modal mobile */
+    .search-modal-content {
+        padding-top: calc(var(--safe-area-inset-top) + 6px);
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .search-modal-header {
+        margin-bottom: 12px;
+    }
+    
+    .search-modal-input {
+        font-size: 14px;
+        padding: 10px 14px;
     }
     
     /* Footer responsive */
@@ -1579,7 +1617,7 @@ body {
 @media (min-width: 1024px) {
     .categories-scroll {
         gap: 10px;
-        padding: 10px 4px 5px 4px; /* GIẢM PADDING DƯỊ */
+        padding: 10px 4px 5px 4px; /* GIẢM PADDING DƯỚI */
     }
     
     .category-card {
@@ -1622,36 +1660,29 @@ body {
     }
 }
 
-/* FIX TRIỆT ĐỂ CHO WKWEBVIEW IOS - DÙNG QUY TẮC RIÊNG */
-/* Nếu WKWebView không hỗ trợ backdrop-filter, dùng nền đơn thuần */
-@supports not (backdrop-filter: blur(10px)) {
-    .header {
-        background: var(--background) !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
-}
-
-/* QUY TẮC DỰ PHÒNG - ĐẢM BẢO HEADER LUÔN CÓ NỀN */
-.header {
-    background-color: var(--background) !important;
-    background: var(--background) !important;
-}
-
-/* THÊM PSEUDO-ELEMENT ĐỂ ĐẢM BẢO NỀN HIỂN THỊ */
-.header::after {
+/* FIX TRIỆT ĐỂ CHO WKWEBVIEW IOS */
+/* Thêm lớp phủ nền để đảm bảo header không trong suốt */
+.header::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: inherit;
+    background: var(--background);
     z-index: -1;
     pointer-events: none;
 }
 
-/* FIX cho trường hợp backdrop-filter làm trong suốt */
+/* Đảm bảo header luôn có nền đầy đủ */
 .header {
-    isolation: isolate; /* Tạo stacking context mới */
+    isolation: isolate;
+}
+
+/* FIX cho WKWebView không hỗ trợ backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+    .header {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
 }
