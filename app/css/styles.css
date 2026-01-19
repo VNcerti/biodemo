@@ -98,7 +98,7 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--primary);
     text-decoration: none;
@@ -106,14 +106,14 @@ body {
 
 .logo-icon {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    width: 26px;
-    height: 26px;
+    width: 36px;
+    height: 36px;
     border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 12px;
+    font-size: 22px;
 }
 
 .search-bar {
@@ -1037,7 +1037,7 @@ body {
     font-size: 10px;
 }
 
-/* ===== BOTTOM NAVIGATION - ĐÃ CHỈNH SỬA ===== */
+/* ===== BOTTOM NAVIGATION - CHỈ CHỈNH SỬA KÍCH THƯỚC ===== */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -1067,7 +1067,7 @@ body {
     color: var(--text-secondary);
     transition: color 0.2s ease;
     flex: 1;
-    padding: 6px 0;
+    padding: 8px 0; /* TĂNG PADDING */
     border-radius: 8px;
     position: relative;
     height: 100%;
@@ -1081,18 +1081,18 @@ body {
 .nav-item.active::after {
     content: '';
     position: absolute;
-    bottom: 4px;
+    bottom: 6px; /* DỊCH LÊN TRÊN */
     left: 50%;
     transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
+    width: 5px; /* TĂNG KÍCH THƯỚC */
+    height: 5px; /* TĂNG KÍCH THƯỚC */
     background-color: var(--primary);
     border-radius: 50%;
 }
 
 .nav-icon {
-    font-size: 20px;
-    margin-bottom: 4px;
+    font-size: 24px; /* TĂNG TỪ 20px LÊN 24px */
+    margin-bottom: 6px; /* TĂNG MARGIN */
     transition: color 0.2s ease;
     position: relative;
 }
@@ -1102,7 +1102,7 @@ body {
 }
 
 .nav-label {
-    font-size: 11px;
+    font-size: 13px; /* TĂNG TỪ 11px LÊN 13px */
     font-weight: 500;
     transition: color 0.2s ease;
 }
@@ -1355,17 +1355,23 @@ body {
         gap: 15px;
     }
     
-    /* Bottom nav responsive */
+    /* Bottom nav responsive - CHỈNH KÍCH THƯỚC CHO TABLET */
     .nav-icon {
-        font-size: 18px;
+        font-size: 22px; /* GIẢM NHẸ TỪ 24px */
     }
     
     .nav-label {
-        font-size: 10px;
+        font-size: 12px; /* GIẢM NHẸ TỪ 13px */
     }
     
     .bottom-nav {
         padding: 6px 0 var(--safe-area-inset-bottom);
+    }
+    
+    .nav-item.active::after {
+        bottom: 5px;
+        width: 4px;
+        height: 4px;
     }
 }
 
@@ -1410,12 +1416,12 @@ body {
     }
     
     .logo {
-        font-size: 14px;
+        font-size: 24px;
     }
     
     .logo-icon {
-        width: 34px;
-        height: 34px;
+        width: 36px;
+        height: 36px;
     }
     
     .search-bar {
@@ -1487,19 +1493,19 @@ body {
         font-size: 8px;
     }
     
-    /* Bottom nav responsive */
+    /* Bottom nav responsive - CHỈNH KÍCH THƯỚC CHO MOBILE */
     .nav-icon {
-        font-size: 16px;
+        font-size: 20px; /* GIẢM TỪ 22px XUỐNG 20px */
     }
     
     .nav-label {
-        font-size: 9px;
+        font-size: 11px; /* GIẢM TỪ 12px XUỐNG 11px */
     }
     
     .nav-item.active::after {
-        width: 3px;
-        height: 3px;
-        bottom: 2px;
+        width: 4px;
+        height: 4px;
+        bottom: 4px;
     }
     
     .bottom-nav {
@@ -1540,13 +1546,13 @@ body {
         font-size: 8px;
     }
     
-    /* Bottom nav responsive */
+    /* Bottom nav responsive - CHỈNH CHO MÀN HÌNH RẤT NHỎ */
     .nav-icon {
-        font-size: 15px;
+        font-size: 19px;
     }
     
     .nav-label {
-        font-size: 8px;
+        font-size: 10px;
     }
     
     .footer-links {
@@ -1592,12 +1598,18 @@ body {
         display: none;
     }
     
-    /* Bottom nav desktop */
+    /* Bottom nav desktop - GIỮ KÍCH THƯỚC LỚN CHO DESKTOP */
     .nav-icon {
-        font-size: 22px;
+        font-size: 26px; /* TĂNG LÊN 26px CHO DESKTOP */
     }
     
     .nav-label {
-        font-size: 12px;
+        font-size: 14px; /* TĂNG LÊN 14px CHO DESKTOP */
     }
-} 
+    
+    .nav-item.active::after {
+        bottom: 8px;
+        width: 6px;
+        height: 6px;
+    }
+}
