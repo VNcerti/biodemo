@@ -951,6 +951,7 @@ body {
     background: var(--surface);
     color: var(--text-primary);
     outline: none;
+    margin-top: 30px;
 }
 
 .search-modal-input:focus {
@@ -964,6 +965,7 @@ body {
     color: var(--text-secondary);
     cursor: pointer;
     padding: 8px;
+    margin-top: 30px;
     transition: color 0.2s ease;
 }
 
