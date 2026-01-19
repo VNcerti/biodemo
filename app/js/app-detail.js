@@ -1,1 +1,1206 @@
-const _0x2af703=_0x8e13;function _0x48d5(){const _0x1f04eb=['3xSBLQt','appendChild','Tất\x20cả\x20gói','displayAppDetail','showError','showLoading','requirePremium','N/A','customAlertOverlay','clearCache','VIP_PACKAGE_LABELS','6702696EqKBKZ','log','⚠️\x20Không\x20thể\x20xoá\x20cache:','src','Không\x20thể\x20sao\x20chép\x20đường\x20dẫn.\x20Vui\x20lòng\x20thử\x20lại.','updateDebugInfo','Chưa\x20cập\x20nhật','none','onclick','Thành\x20công!','initScreenshotScroll','fas\x20fa-layer-group','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22screenshots-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20class=\x22section-title\x22>Hình\x20ảnh\x20ứng\x20dụng</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','keydown','createDownloadButton','currentUser','then','description','vi-VN','imgur.com','appId','split','screenshot2','❌\x20Định\x20dạng\x20không\x20hợp\x20lệ:','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22app-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Tên\x20từ\x20URL:</strong>\x20','trim','screenshot1','version','Đăng\x20nhập','Image3','VIP','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22app-developer\x22>','Tài\x20khoản\x20của\x20bạn\x20hiện\x20không\x20đủ\x20điều\x20kiện\x20tải\x20ứng\x20dụng\x20này.<br><br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>Yêu\x20cầu\x20gói:</strong>\x20','vipPermissions','✅\x20Found\x20app:','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22download-btn\x22\x20onclick=\x22appDetail.downloadApp(\x27','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','alert-btn\x20primary','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22retry-btn\x22\x20onclick=\x22appDetail.forceReload()\x22\x20style=\x22margin-top:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-sync-alt\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Tải\x20lại\x20dữ\x20liệu\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','#8b5cf6','🖼️\x20Creating\x20screenshots\x20HTML...','HTTP\x20','n/a','parse','onClick','Ảnh\x20&\x20Video','Screenshot2','Image2','innerHTML','</span>','data-theme','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22download-btn\x20download-btn-premium\x22\x20disabled\x20style=\x22background:\x20var(--text-muted);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-crown\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Tải\x20VIP\x20#1\x20(Đang\x20cập\x20nhật)\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','block','warning','Không\x20tìm\x20thấy\x20ID\x20ứng\x20dụng','Trial','.webp','active','all','fas\x20fa-crown','Plus','classList','alert-btn\x20','icon','round','copyToClipboard','.screenshot-nav.prev','1322600xFExwy','button','type','https://','✅\x20Chia\x20sẻ\x20thành\x20công','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','initializeElements','alertTitle','now','\x20lần\x20thử.\x20Vui\x20lòng\x20thử\x20lại\x20sau.','appNameFromUrl','bindEvents','get','<i\x20class=\x22fas\x20fa-check\x22></i>\x20OK','color','createSeoUrl','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22meta-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22meta-label\x22>Cập\x20nhật</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22meta-value\x22>','xspace_apps_cache','urlInfo','removeItem','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22screenshot-nav\x20prev\x22\x20onclick=\x22appDetail.scrollScreenshots(-220)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-chevron-left\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22screenshot-nav\x20next\x22\x20onclick=\x22appDetail.scrollScreenshots(220)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-chevron-right\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22screenshot-counter\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22currentScreenshot\x22>1</span>\x20/\x20','Tải\x20xuống','statusText','retryLoadApp','translateY(-2px)\x20scale(1.05)','Dữ\x20liệu\x20không\x20hợp\x20lệ\x20từ\x20server','remove','Không\x20có','target','alert-icon\x20','viplink1','bind','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20class=\x22app-icon-large\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onerror=\x22this.src=\x27https://via.placeholder.com/135/2563eb/FFFFFF?text=App\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','className','downloadApp','<div\x20class=\x22app-description-check\x22>Ứng\x20dụng\x20chưa\x20có\x20mô\x20tả\x20chi\x20tiết.</div>','parseUrlId','open','translateY(-4px)\x20scale(1.1)','\x22></i>','transform','success','</div>','Hủy','Yêu\x20cầu\x20đăng\x20nhập','includes','share','\x27,\x20true)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-crown\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Tải\x20VIP\x20#1\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','hasValidFreeDownload','Không\x20đủ\x20điều\x20kiện','<i\x20class=\x22fas\x20fa-crown\x20vip-crown-icon\x22></i>','downloadlink','Nhà\x20phát\x20triển','map','translateY(2px)','clipboard','querySelectorAll','Ứng\x20dụng\x20chỉ\x20có\x20bản\x20Premium','Đã\x20sao\x20chép!','mouseleave','style','match','addEventListener','\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-crown\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Tải\x20VIP\x20#1\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','join','shareBtnContainer','setAttribute','href','\x27,\x20\x27','📌\x20Định\x20dạng\x20cũ\x20(chỉ\x20số):','screenshot_2','📌\x20Tên\x20từ\x20URL:\x20','appDetail','imageshack.com','alertOverlay','.screenshot-item','isValidImageUrl','contactSupport','⚠️\x20Link\x20tải\x20đang\x20được\x20cập\x20nhật.\x20Vui\x20lòng\x20thử\x20lại\x20sau.','Giải\x20trí','vipExpiry','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22app-meta\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22meta-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22meta-label\x22>Phiên\x20bản</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22meta-value\x22>','alt','replace','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22no-screenshots-message\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22no-screenshots-icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-images\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22no-screenshots-text\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Ứng\x20dụng\x20này\x20chưa\x20có\x20ảnh\x20minh\x20hoạ</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22margin-top:\x208px;\x20font-size:\x2012px;\x20color:\x20var(--text-muted);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Ảnh\x20minh\x20hoạ\x20sẽ\x20được\x20cập\x20nhật\x20trong\x20thời\x20gian\x20sớm\x20nhất\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','834WPuowy','placeholder','scrollBy','string','replaceState','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22app-icon-container\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22','🎨\x20Displaying\x20app\x20detail:','error','Trò\x20chơi','screenshot_3','dispatchEvent','canUserDownloadVIP','📦\x20Server\x20response:','premium','search','shareApp','Bản\x20VIP\x20đang\x20được\x20cập\x20nhật','\x22></i>\x20','payment.html','flex','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22download-btn\x22\x20onclick=\x22window.location.href=\x27index.html\x27\x22\x20style=\x22margin-top:\x2016px;\x20max-width:\x20200px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-home\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Quay\x20về\x20trang\x20chủ\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','getCurrentUser','<br><br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Vui\x20lòng\x20nâng\x20cấp\x20gói\x20cao\x20hơn\x20để\x20tiếp\x20tục.','MAX_RETRIES','key','location','querySelector','mouseenter','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','<i\x20class=\x22','scroll','❌\x20Lỗi\x20chia\x20sẻ:','debugContent','\x20-\x20','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22download-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20class=\x22download-title\x22>Tải\x20ứng\x20dụng</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22download-options\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','fas\x20fa-star','fas\x20fa-download','showUpgradeRequiredAlert','fas\x20fa-check','retryCount','https://t.me/m/inBUSKQ1N2E1','6251840xADzff','Xem\x20ứng\x20dụng\x20','<i\x20class=\x22fas\x20fa-spinner\x20fa-spin\x22></i>\x20Đang\x20xử\x20lý...','&nocache=true','scrollLeft','textContent','light','1.0.0','processAppData','handleNavClick','5808852xRvUpa','toLowerCase','alertIcon','\x27;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','fas\x20fa-exclamation-triangle','updatedate','...','http://','❌\x20Skipped\x20invalid\x20screenshot\x20','Bạn\x20muốn\x20tải\x20xuống\x20ứng\x20dụng\x20<strong>','navItems','🔄\x20Đã\x20cập\x20nhật\x20URL:','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>VIP\x20Permissions:</strong>\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22error-message\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22error-icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-exclamation-triangle\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Đã\x20xảy\x20ra\x20lỗi</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>','handleNavHover','519898tUrxlt','📱\x20App\x20detail\x20page\x20initialized','requireLogin','toggleDebug','#f59e0b','image1','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22app-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h1\x20class=\x22app-title\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','Basic','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20alt=\x22','data','alertMessage','fas\x20fa-info-circle','Screenshot1','find','<div\x20class=\x22app-description-check\x22>','null','getVipPermissionsReadable','Ảnh\x20minh\x20hoạ\x20','getElementById','🔗\x20Raw\x20ID\x20from\x20URL:','dark','</strong>\x20(','click','debugInfo','screenshot3','setItem',')?<br><br>Chọn\x20\x22Tải\x20xuống\x22\x20để\x20tiếp\x20tục.','miễn\x20phí','clientWidth','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4>Thông\x20tin\x20debug:</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>App\x20ID:</strong>\x20','Đường\x20dẫn\x20đã\x20được\x20sao\x20chép\x20vào\x20clipboard.\x20Bạn\x20có\x20thể\x20chia\x20sẻ\x20với\x20bạn\x20bè.','Thông\x20báo','isArray','.jpg','Escape','forEach','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22screenshot-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22','#10b981','cdn.discordapp.com','translateY(0)\x20scale(1)','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22download-btn\x22\x20onclick=\x22appDetail.requireLogin(false)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-download\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Tải\x20miễn\x20phí\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','Yêu\x20cầu\x20nâng\x20cấp','✅\x20Đã\x20bắt\x20đầu\x20tải\x20xuống\x20','_blank','createDescriptionHTML','startsWith','https://via.placeholder.com/135/2563eb/FFFFFF?text=App','createScreenshotsHTML','Premium','length','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Current\x20URL:</strong>\x20','http','contains','translateY(0)','getItem','alertButtons','.png','❌\x20Lỗi\x20sao\x20chép:','fas\x20fa-times','origin','text','smooth','appContent','Tài\x20khoản\x20của\x20bạn\x20chưa\x20được\x20cấp\x20phép\x20VIP.<br><br>Nâng\x20cấp\x20tài\x20khoản\x20Premium\x20ngay?','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','secondary','catch','Mạng\x20xã\x20hội','disabled','33995SOLDxr','title','undefined','Giáo\x20dục','display','Không\x20tìm\x20thấy\x20ứng\x20dụng\x20với\x20ID:\x20','.nav-icon','https://via.placeholder.com/220x400/2563eb/FFFFFF?text=Ảnh+','scrollWidth','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22screenshots-container\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22screenshots-wrapper\x22\x20id=\x22screenshotsWrapper\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','image','primary','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','.jpeg','scrollScreenshots','showCustomAlert','createElement','loginPrompt','?action=getApps&t=','Nâng\x20cấp\x20ngay','GOOGLE_SCRIPT_URL','fas\x20fa-check-circle','Image1','#3b82f6','json','toLocaleString','loadAppDetail','message','.nav-label','screenshotsWrapper','var(--primary)','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Timestamp:</strong>\x20','.gif','4069668RzuXJs','.download-btn','👑\x20App\x20VIP\x20Permissions:','currentAppData','isUserPremium','toString','developer','filter','Bạn\x20cần\x20đăng\x20nhập\x20để\x20tải\x20ứng\x20dụng\x20','Lỗi','name','app-detail.html?id=','<i\x20class=\x22fas\x20fa-bug\x22></i>\x20Hiển\x20thị\x20thông\x20tin\x20debug','getTime','📌\x20Định\x20dạng\x20mới\x20(số-tên):','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22description-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22check-icon-container\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-check\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22description-text\x22>','load','free','accountType','image2','fas\x20fa-times-circle','min','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22download-btn\x20download-btn-premium\x22\x20onclick=\x22appDetail.requirePremium()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-crown\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Tải\x20VIP\x20#1\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','documentElement','categories','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22download-btn\x20download-btn-premium\x22\x20onclick=\x22appDetail.showUpgradeRequiredAlert(\x27'];_0x48d5=function(){return _0x1f04eb;};return _0x48d5();}(function(_0x37617a,_0x344b9f){const _0x5232fb=_0x8e13,_0x23435e=_0x37617a();while(!![]){try{const _0xf36bae=parseInt(_0x5232fb(0x1ce))/0x1+-parseInt(_0x5232fb(0x137))/0x2+-parseInt(_0x5232fb(0xe8))/0x3*(-parseInt(_0x5232fb(0x234))/0x4)+parseInt(_0x5232fb(0x213))/0x5*(-parseInt(_0x5232fb(0x18c))/0x6)+-parseInt(_0x5232fb(0x1b5))/0x7+parseInt(_0x5232fb(0xf3))/0x8+parseInt(_0x5232fb(0x1bf))/0x9;if(_0xf36bae===_0x344b9f)break;else _0x23435e['push'](_0x23435e['shift']());}catch(_0x94b65a){_0x23435e['push'](_0x23435e['shift']());}}}(_0x48d5,0x7f38b));function _0x8e13(_0x20df8d,_0x25c2ba){_0x20df8d=_0x20df8d-0xd6;const _0x48d5f1=_0x48d5();let _0x8e1342=_0x48d5f1[_0x20df8d];return _0x8e1342;}class AppDetailManager{constructor(){const _0x458b4e=_0x8e13;this[_0x458b4e(0x227)]=CONFIG['GOOGLE_SCRIPT_URL'],this[_0x458b4e(0x149)]=this[_0x458b4e(0x15b)](),this['appId']=this[_0x458b4e(0x149)]?this[_0x458b4e(0x149)]['id']:null,this[_0x458b4e(0x141)]=this['urlInfo']?this[_0x458b4e(0x149)][_0x458b4e(0xd8)]:null,this['retryCount']=0x0,this[_0x458b4e(0x1a3)]=0x3,this[_0x458b4e(0x237)]=null,this[_0x458b4e(0xf2)]={'trial':{'name':_0x458b4e(0x12b),'icon':_0x458b4e(0x1af),'color':_0x458b4e(0x1f3)},'basic':{'name':_0x458b4e(0x1d5),'icon':_0x458b4e(0x12f),'color':_0x458b4e(0x22a)},'plus':{'name':_0x458b4e(0x130),'icon':_0x458b4e(0x12f),'color':_0x458b4e(0x11b)},'premium':{'name':_0x458b4e(0x1fe),'icon':_0x458b4e(0x12f),'color':_0x458b4e(0x1d2)},'all':{'name':_0x458b4e(0xea),'icon':_0x458b4e(0xfe),'color':'#6366f1'}},this[_0x458b4e(0x13d)](),this[_0x458b4e(0x142)](),this['init']();}['initializeElements'](){const _0x371ccc=_0x8e13;this[_0x371ccc(0x20c)]=document[_0x371ccc(0x1e0)](_0x371ccc(0x20c)),this[_0x371ccc(0x224)]=document[_0x371ccc(0x1e0)]('loginPrompt'),this[_0x371ccc(0x178)]=document['getElementById'](_0x371ccc(0x178)),this[_0x371ccc(0x1e5)]=document[_0x371ccc(0x1e0)](_0x371ccc(0x1e5)),this[_0x371ccc(0x1ac)]=document['getElementById']('debugContent'),this[_0x371ccc(0x181)]=document[_0x371ccc(0x1e0)](_0x371ccc(0xf0)),this[_0x371ccc(0x1c9)]=document[_0x371ccc(0x16f)]('.nav-item');}[_0x2af703(0x142)](){const _0x23fa44=_0x2af703;this['navItems']['forEach'](_0x20fb4f=>{const _0x1a7bb0=_0x8e13;_0x20fb4f['addEventListener'](_0x1a7bb0(0x1a7),this[_0x1a7bb0(0x1cd)][_0x1a7bb0(0x156)](this,_0x20fb4f,!![])),_0x20fb4f[_0x1a7bb0(0x175)](_0x1a7bb0(0x172),this['handleNavHover']['bind'](this,_0x20fb4f,![])),_0x20fb4f[_0x1a7bb0(0x175)](_0x1a7bb0(0x1e4),this[_0x1a7bb0(0x1be)][_0x1a7bb0(0x156)](this,_0x20fb4f));}),this[_0x23fa44(0x181)][_0x23fa44(0x175)](_0x23fa44(0x1e4),_0xeb60e6=>{const _0x267338=_0x23fa44;_0xeb60e6['target']===this[_0x267338(0x181)]&&(this[_0x267338(0x181)][_0x267338(0x173)][_0x267338(0x217)]=_0x267338(0xfa));}),document[_0x23fa44(0x175)](_0x23fa44(0x100),_0x1f74af=>{const _0x5a4429=_0x23fa44;_0x1f74af[_0x5a4429(0x1a4)]===_0x5a4429(0x1f0)&&this['alertOverlay'][_0x5a4429(0x173)][_0x5a4429(0x217)]==='flex'&&(this[_0x5a4429(0x181)][_0x5a4429(0x173)]['display']=_0x5a4429(0xfa));}),document[_0x23fa44(0x175)](_0x23fa44(0x1e4),_0x340c03=>{const _0x4f448f=_0x23fa44,_0x170bdc=_0x340c03[_0x4f448f(0x153)]['closest'](_0x4f448f(0x235));if(_0x170bdc&&!_0x170bdc[_0x4f448f(0x212)]){const _0x5294ea=_0x170bdc[_0x4f448f(0x124)];_0x170bdc[_0x4f448f(0x124)]=_0x4f448f(0x1b7),_0x170bdc[_0x4f448f(0x212)]=!![],setTimeout(()=>{const _0x3cf919=_0x4f448f;_0x170bdc['innerHTML']=_0x5294ea,_0x170bdc[_0x3cf919(0x212)]=![];},0x5dc);}});}['init'](){const _0x51e182=_0x2af703;console['log'](_0x51e182(0x1cf)),console[_0x51e182(0xf4)]('🔗\x20URL\x20Info:',this[_0x51e182(0x149)]),this['applyTheme'](),this[_0x51e182(0x22d)]();}[_0x2af703(0x15b)](){const _0x4e40a3=_0x2af703,_0x44ba55=new URLSearchParams(window[_0x4e40a3(0x1a5)][_0x4e40a3(0x19a)]),_0x19e4e3=_0x44ba55[_0x4e40a3(0x143)]('id');console[_0x4e40a3(0xf4)](_0x4e40a3(0x1e1),_0x19e4e3);if(!_0x19e4e3)return null;if(/^\d+$/['test'](_0x19e4e3))return console[_0x4e40a3(0xf4)](_0x4e40a3(0x17c),_0x19e4e3),{'id':_0x19e4e3,'name':null,'fullId':_0x19e4e3};const _0x396638=_0x19e4e3[_0x4e40a3(0x174)](/^(\d+)-(.+)$/);if(_0x396638){const _0x162c51=_0x396638[0x1],_0x4ae3a7=_0x396638[0x2]['replace'](/-/g,'\x20');return console[_0x4e40a3(0xf4)](_0x4e40a3(0xdc),{'id':_0x162c51,'name':_0x4ae3a7}),{'id':_0x162c51,'name':_0x4ae3a7,'fullId':_0x19e4e3};}return console[_0x4e40a3(0xf4)](_0x4e40a3(0x10a),_0x19e4e3),{'id':_0x19e4e3,'name':null,'fullId':_0x19e4e3};}[_0x2af703(0x146)](_0x25b508,_0x13f617){const _0x204de1=_0x2af703;if(!_0x13f617)return _0x204de1(0xd9)+_0x25b508;const _0x1455a7=_0x13f617[_0x204de1(0x1c0)]()[_0x204de1(0x18a)](/[^\w\s]/g,'')[_0x204de1(0x18a)](/\s+/g,'-')[_0x204de1(0x18a)](/-+/g,'-')['trim']();return'app-detail.html?id='+_0x25b508+'-'+_0x1455a7;}['updateBrowserUrl'](_0x38a02b,_0x324ed3){const _0x5edfc9=_0x2af703,_0x23f251=this[_0x5edfc9(0x146)](_0x38a02b,_0x324ed3),_0x39b45e=window[_0x5edfc9(0x1a5)][_0x5edfc9(0x17a)];!_0x39b45e['includes'](_0x23f251)&&(history[_0x5edfc9(0x190)](null,'',_0x23f251),console['log'](_0x5edfc9(0x1ca),_0x23f251));}['applyTheme'](){const _0x57a8b3=_0x2af703,_0x5dc116=localStorage[_0x57a8b3(0x204)]('theme'),_0x5dc1be=document[_0x57a8b3(0xe5)];_0x5dc116===_0x57a8b3(0x1e2)?_0x5dc1be['setAttribute']('data-theme',_0x57a8b3(0x1e2)):(_0x5dc1be[_0x57a8b3(0x179)](_0x57a8b3(0x126),_0x57a8b3(0x1bb)),!_0x5dc116&&localStorage[_0x57a8b3(0x1e7)]('theme',_0x57a8b3(0x1bb)));}[_0x2af703(0x222)](_0x5981fc,_0x30092b,_0x35e3a9,_0x175108){const _0xc9ca46=_0x2af703,_0x1c33e6=document[_0xc9ca46(0x1e0)](_0xc9ca46(0x1c1)),_0x2a4922=document[_0xc9ca46(0x1e0)](_0xc9ca46(0x13e)),_0x133ab1=document[_0xc9ca46(0x1e0)](_0xc9ca46(0x1d8)),_0x3f38eb=document[_0xc9ca46(0x1e0)](_0xc9ca46(0x205));_0x1c33e6[_0xc9ca46(0x158)]=_0xc9ca46(0x154)+_0x5981fc;const _0x3942d7={'success':_0xc9ca46(0x228),'warning':_0xc9ca46(0x1c3),'error':_0xc9ca46(0xe2),'info':_0xc9ca46(0x1d9)};_0x1c33e6[_0xc9ca46(0x124)]=_0xc9ca46(0x1a9)+(_0x3942d7[_0x5981fc]||_0xc9ca46(0x1d9))+_0xc9ca46(0x15e),_0x2a4922[_0xc9ca46(0x1ba)]=_0x30092b,_0x133ab1[_0xc9ca46(0x124)]=_0x35e3a9,_0x3f38eb[_0xc9ca46(0x124)]='';if(_0x175108&&_0x175108[_0xc9ca46(0x1ff)]>0x0)_0x175108[_0xc9ca46(0x1f1)](_0x752038=>{const _0xc0e8a7=_0xc9ca46,_0x26e16f=document[_0xc0e8a7(0x223)](_0xc0e8a7(0x138));_0x26e16f[_0xc0e8a7(0x158)]=_0xc0e8a7(0x132)+(_0x752038[_0xc0e8a7(0x139)]||_0xc0e8a7(0x21e)),_0x26e16f[_0xc0e8a7(0x1ba)]=_0x752038[_0xc0e8a7(0x20a)],_0x752038[_0xc0e8a7(0x133)]&&(_0x26e16f[_0xc0e8a7(0x124)]=_0xc0e8a7(0x1a9)+_0x752038[_0xc0e8a7(0x133)]+_0xc0e8a7(0x19d)+_0x752038['text']),_0x752038[_0xc0e8a7(0x120)]?_0x26e16f[_0xc0e8a7(0xfb)]=()=>{const _0x2a75d0=_0xc0e8a7;_0x752038[_0x2a75d0(0x120)](),this[_0x2a75d0(0x181)][_0x2a75d0(0x173)]['display']='none';}:_0x26e16f[_0xc0e8a7(0xfb)]=()=>{const _0x395af5=_0xc0e8a7;this[_0x395af5(0x181)][_0x395af5(0x173)][_0x395af5(0x217)]=_0x395af5(0xfa);},_0x3f38eb['appendChild'](_0x26e16f);});else{const _0x3b6336=document[_0xc9ca46(0x223)](_0xc9ca46(0x138));_0x3b6336['className']=_0xc9ca46(0x119),_0x3b6336['innerHTML']=_0xc9ca46(0x144),_0x3b6336['onclick']=()=>{const _0xaaaf19=_0xc9ca46;this['alertOverlay'][_0xaaaf19(0x173)][_0xaaaf19(0x217)]=_0xaaaf19(0xfa);},_0x3f38eb[_0xc9ca46(0xe9)](_0x3b6336);}this['alertOverlay']['style'][_0xc9ca46(0x217)]=_0xc9ca46(0x19f);}[_0x2af703(0x197)](_0xbecdd3,_0x419fd3){const _0x505219=_0x2af703;if(!_0xbecdd3||_0xbecdd3===_0x505219(0x12e))return!![];if(!_0x419fd3||_0x419fd3===_0x505219(0xdf))return![];const _0x51a9a=_0xbecdd3[_0x505219(0x108)](',')[_0x505219(0x16c)](_0x35c47a=>_0x35c47a[_0x505219(0x10d)]());return _0x51a9a['includes'](_0x419fd3);}[_0x2af703(0x1de)](_0x3fbd49){const _0x278df9=_0x2af703;if(!_0x3fbd49||_0x3fbd49===_0x278df9(0x12e))return['Tất\x20cả\x20các\x20gói'];const _0x3008e6=_0x3fbd49[_0x278df9(0x108)](',')[_0x278df9(0x16c)](_0x357b8c=>_0x357b8c[_0x278df9(0x10d)]());return _0x3008e6[_0x278df9(0x16c)](_0x54845c=>this['VIP_PACKAGE_LABELS'][_0x54845c]?.[_0x278df9(0xd8)]||_0x54845c);}['clearCache'](){const _0x20c8c6=_0x2af703;try{localStorage[_0x20c8c6(0x14a)](_0x20c8c6(0x148)),localStorage['removeItem']('xspace_cache_timestamp'),console[_0x20c8c6(0xf4)]('✅\x20Đã\x20xoá\x20cache');}catch(_0x5f2f7f){console[_0x20c8c6(0xf4)](_0x20c8c6(0xf5),_0x5f2f7f);}}[_0x2af703(0xed)](){const _0x2ebd67=_0x2af703;this['appContent'][_0x2ebd67(0x124)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22loading\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22loading-spinner\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Đang\x20tải\x20thông\x20tin\x20ứng\x20dụng...</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20';}['showError'](_0x4a4cf7,_0x675a91=!![]){const _0x1738d3=_0x2af703;let _0xdd9cf='';_0x675a91&&this['retryCount']<this[_0x1738d3(0x1a3)]&&(_0xdd9cf='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22retry-btn\x22\x20onclick=\x22appDetail.retryLoadApp()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-redo\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Thử\x20lại\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'),this[_0x1738d3(0x20c)][_0x1738d3(0x124)]=_0x1738d3(0x1cc)+_0x4a4cf7+_0x1738d3(0x118)+_0xdd9cf+_0x1738d3(0x1a0);}[_0x2af703(0x14e)](){const _0x1be60f=_0x2af703;this[_0x1be60f(0x1b3)]++,console[_0x1be60f(0xf4)]('🔄\x20Thử\x20lại\x20lần\x20'+this[_0x1be60f(0x1b3)]+'/'+this[_0x1be60f(0x1a3)]+_0x1be60f(0x1c5)),this[_0x1be60f(0x22d)]();}[_0x2af703(0x1d1)](){const _0x65e2ef=_0x2af703,_0x53e6c9=document[_0x65e2ef(0x1a6)]('.debug-toggle');this[_0x65e2ef(0x1e5)][_0x65e2ef(0x173)][_0x65e2ef(0x217)]===_0x65e2ef(0xfa)||this[_0x65e2ef(0x1e5)][_0x65e2ef(0x173)]['display']===''?(this['debugInfo'][_0x65e2ef(0x173)][_0x65e2ef(0x217)]='block',_0x53e6c9[_0x65e2ef(0x124)]='<i\x20class=\x22fas\x20fa-bug\x22></i>\x20Ẩn\x20thông\x20tin\x20debug',this[_0x65e2ef(0xf8)]()):(this[_0x65e2ef(0x1e5)][_0x65e2ef(0x173)]['display']=_0x65e2ef(0xfa),_0x53e6c9[_0x65e2ef(0x124)]=_0x65e2ef(0xda));}[_0x2af703(0xf8)](){const _0xb7caaf=_0x2af703;if(!this[_0xb7caaf(0x1ac)]||!this[_0xb7caaf(0x237)])return;this['debugContent'][_0xb7caaf(0x124)]=_0xb7caaf(0x1eb)+this[_0xb7caaf(0x107)]+_0xb7caaf(0x10c)+(this['appNameFromUrl']||_0xb7caaf(0x152))+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Retry\x20count:</strong>\x20'+this[_0xb7caaf(0x1b3)]+'/'+this[_0xb7caaf(0x1a3)]+_0xb7caaf(0x232)+new Date()[_0xb7caaf(0x22c)]()+_0xb7caaf(0x1cb)+(this[_0xb7caaf(0x237)]['vipPermissions']||_0xb7caaf(0x12e))+_0xb7caaf(0x200)+window[_0xb7caaf(0x1a5)][_0xb7caaf(0x17a)]+_0xb7caaf(0x11a);}['forceReload'](){const _0x6fa586=_0x2af703;this[_0x6fa586(0xf1)](),this[_0x6fa586(0x1b3)]=0x0,this[_0x6fa586(0x22d)]();}[_0x2af703(0x183)](_0x6ac632){const _0x60dc87=_0x2af703;if(!_0x6ac632||typeof _0x6ac632!==_0x60dc87(0x18f))return![];const _0x572640=_0x6ac632[_0x60dc87(0x10d)]();if(_0x572640===''||_0x572640===_0x60dc87(0x1dd)||_0x572640===_0x60dc87(0x215)||_0x572640==='#'||_0x572640[_0x60dc87(0x1c0)]()===_0x60dc87(0x1dd)||_0x572640[_0x60dc87(0x1c0)]()==='undefined'||_0x572640==='N/A'||_0x572640===_0x60dc87(0x11e))return![];const _0x4a86bd=_0x572640[_0x60dc87(0x1fb)](_0x60dc87(0x1c6))||_0x572640['startsWith'](_0x60dc87(0x13a))||_0x572640[_0x60dc87(0x1fb)]('//')||_0x572640['includes'](_0x60dc87(0x1ef))||_0x572640[_0x60dc87(0x164)](_0x60dc87(0x220))||_0x572640['includes'](_0x60dc87(0x206))||_0x572640[_0x60dc87(0x164)](_0x60dc87(0x233))||_0x572640[_0x60dc87(0x164)](_0x60dc87(0x12c))||_0x572640[_0x60dc87(0x164)](_0x60dc87(0x106))||_0x572640[_0x60dc87(0x164)]('i.imgur.com')||_0x572640[_0x60dc87(0x164)](_0x60dc87(0x1f4))||_0x572640['includes'](_0x60dc87(0x180))||_0x572640['includes']('photobucket.com');return _0x4a86bd;}[_0x2af703(0x1bd)](_0x191de3){const _0x1ac1d5=_0x2af703;console[_0x1ac1d5(0xf4)]('🔍\x20Processing\x20app\x20data...'),_0x191de3[_0x1ac1d5(0x155)]=_0x191de3['viplink1']||'',_0x191de3[_0x1ac1d5(0x16a)]=_0x191de3[_0x1ac1d5(0x16a)]||'',_0x191de3[_0x1ac1d5(0xe6)]=_0x191de3[_0x1ac1d5(0xe6)]||'other',_0x191de3[_0x1ac1d5(0x115)]=_0x191de3[_0x1ac1d5(0x115)]||_0x1ac1d5(0x12e);const _0x279ede={'screenshot1':[_0x1ac1d5(0x10e),_0x1ac1d5(0x1da),'screenshot_1',_0x1ac1d5(0x1d3),_0x1ac1d5(0x229)],'screenshot2':['screenshot2',_0x1ac1d5(0x122),_0x1ac1d5(0x17d),_0x1ac1d5(0xe1),_0x1ac1d5(0x123)],'screenshot3':[_0x1ac1d5(0x1e6),'Screenshot3',_0x1ac1d5(0x195),'image3',_0x1ac1d5(0x111)]};let _0x132655='';for(const _0x5ca181 of _0x279ede[_0x1ac1d5(0x10e)]){if(_0x191de3[_0x5ca181]&&typeof _0x191de3[_0x5ca181]===_0x1ac1d5(0x18f)&&_0x191de3[_0x5ca181][_0x1ac1d5(0x10d)]()!==''){_0x132655=_0x191de3[_0x5ca181][_0x1ac1d5(0x10d)]();break;}}let _0x4c7fe0='';for(const _0x338d0a of _0x279ede[_0x1ac1d5(0x109)]){if(_0x191de3[_0x338d0a]&&typeof _0x191de3[_0x338d0a]===_0x1ac1d5(0x18f)&&_0x191de3[_0x338d0a]['trim']()!==''){_0x4c7fe0=_0x191de3[_0x338d0a]['trim']();break;}}let _0x5003c3='';for(const _0x2a5e4e of _0x279ede[_0x1ac1d5(0x1e6)]){if(_0x191de3[_0x2a5e4e]&&typeof _0x191de3[_0x2a5e4e]===_0x1ac1d5(0x18f)&&_0x191de3[_0x2a5e4e]['trim']()!==''){_0x5003c3=_0x191de3[_0x2a5e4e][_0x1ac1d5(0x10d)]();break;}}if(!_0x132655&&Array[_0x1ac1d5(0x1ee)](_0x191de3)){if(_0x191de3[_0x1ac1d5(0x1ff)]>0xa)_0x132655=_0x191de3[0xa]||'';if(_0x191de3[_0x1ac1d5(0x1ff)]>0xb)_0x4c7fe0=_0x191de3[0xb]||'';if(_0x191de3[_0x1ac1d5(0x1ff)]>0xc)_0x5003c3=_0x191de3[0xc]||'';}return _0x191de3[_0x1ac1d5(0x10e)]=_0x132655,_0x191de3[_0x1ac1d5(0x109)]=_0x4c7fe0,_0x191de3[_0x1ac1d5(0x1e6)]=_0x5003c3,_0x191de3;}[_0x2af703(0x1fa)](_0x7347a0){const _0xeeab28=_0x2af703;if(!_0x7347a0)return _0xeeab28(0x15a);const _0x3e66b7=_0x7347a0[_0xeeab28(0x108)]('\x0a')[_0xeeab28(0x23b)](_0x1bffa9=>_0x1bffa9['trim']());let _0x3cd713=_0xeeab28(0x1dc);return _0x3e66b7[_0xeeab28(0x1f1)](_0x4d5bbb=>{const _0xf8636f=_0xeeab28;_0x4d5bbb['trim']()&&(_0x3cd713+=_0xf8636f(0xdd)+_0x4d5bbb[_0xf8636f(0x10d)]()+_0xf8636f(0x13c));}),_0x3cd713+=_0xeeab28(0x161),_0x3cd713;}[_0x2af703(0x1fd)](_0xf85a45){const _0x119661=_0x2af703;console[_0x119661(0xf4)](_0x119661(0x11c));const _0x57458b=_0xf85a45[_0x119661(0x10e)]||'',_0x423d0b=_0xf85a45['screenshot2']||'',_0x4733fc=_0xf85a45[_0x119661(0x1e6)]||'',_0x2c600a=[];[_0x57458b,_0x423d0b,_0x4733fc][_0x119661(0x1f1)]((_0x4540ea,_0x578531)=>{const _0x366dcd=_0x119661;this[_0x366dcd(0x183)](_0x4540ea)?(_0x2c600a['push']({'src':_0x4540ea['trim'](),'alt':_0x366dcd(0x1df)+(_0x578531+0x1)+_0x366dcd(0x1ad)+_0xf85a45[_0x366dcd(0xd8)],'placeholder':_0x366dcd(0x21a)+(_0x578531+0x1)}),console[_0x366dcd(0xf4)]('✅\x20Added\x20screenshot\x20'+(_0x578531+0x1))):console[_0x366dcd(0xf4)](_0x366dcd(0x1c7)+(_0x578531+0x1)+':',_0x4540ea);}),console[_0x119661(0xf4)]('📊\x20Total\x20valid\x20screenshots:\x20'+_0x2c600a[_0x119661(0x1ff)]);if(_0x2c600a[_0x119661(0x1ff)]===0x0)return _0x119661(0x18b);let _0x2fa24=_0x119661(0x21c);return _0x2c600a[_0x119661(0x1f1)]((_0x22dae5,_0x715817)=>{const _0x2d24ad=_0x119661;_0x2fa24+=_0x2d24ad(0x1f2)+_0x22dae5[_0x2d24ad(0xf6)]+_0x2d24ad(0x1d6)+_0x22dae5[_0x2d24ad(0x189)]+'\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20class=\x22screenshot\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20loading=\x22lazy\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onerror=\x22this.onerror=null;\x20this.src=\x27'+_0x22dae5[_0x2d24ad(0x18d)]+_0x2d24ad(0x1c2);}),_0x2fa24+='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x2c600a[_0x119661(0x1ff)]>0x1?_0x119661(0x14b)+_0x2c600a[_0x119661(0x1ff)]+_0x119661(0x1a8):'')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',_0x2fa24;}[_0x2af703(0x221)](_0x25662f){const _0x3b2d87=_0x2af703,_0x267125=document[_0x3b2d87(0x1e0)](_0x3b2d87(0x230));_0x267125&&_0x267125[_0x3b2d87(0x18e)]({'left':_0x25662f,'behavior':_0x3b2d87(0x20b)});}[_0x2af703(0x167)](_0x2e7d9a){const _0x105260=_0x2af703;if(!_0x2e7d9a||typeof _0x2e7d9a!==_0x105260(0x18f))return![];const _0x22ee92=_0x2e7d9a[_0x105260(0x10d)]();if(_0x22ee92===''||_0x22ee92===_0x105260(0x1dd)||_0x22ee92===_0x105260(0x215)||_0x22ee92==='#'||_0x22ee92[_0x105260(0x1c0)]()===_0x105260(0x1dd)||_0x22ee92[_0x105260(0x1c0)]()===_0x105260(0x215)||_0x22ee92===_0x105260(0xef)||_0x22ee92==='n/a')return![];const _0x4972ab=_0x22ee92[_0x105260(0x1fb)](_0x105260(0x1c6))||_0x22ee92[_0x105260(0x1fb)](_0x105260(0x13a))||_0x22ee92[_0x105260(0x1fb)]('//');return _0x4972ab;}[_0x2af703(0xeb)](_0x55373a){const _0x3ecd9d=_0x2af703;this[_0x3ecd9d(0x237)]=_0x55373a,console[_0x3ecd9d(0xf4)](_0x3ecd9d(0x192),_0x55373a[_0x3ecd9d(0xd8)]),console[_0x3ecd9d(0xf4)](_0x3ecd9d(0x236),_0x55373a[_0x3ecd9d(0x115)]),this['updateBrowserUrl'](_0x55373a['id'],_0x55373a[_0x3ecd9d(0xd8)]),this[_0x3ecd9d(0x178)][_0x3ecd9d(0x173)][_0x3ecd9d(0x217)]=_0x3ecd9d(0x19f);const _0x4a60a2={'game':_0x3ecd9d(0x194),'social':_0x3ecd9d(0x211),'entertainment':_0x3ecd9d(0x186),'photo':_0x3ecd9d(0x121),'clone':'Nhân\x20bản','premium':'Mở\x20khoá\x20Premium','education':_0x3ecd9d(0x216),'health':'Sức\x20khỏe','utility':'Tiện\x20ích'};let _0x5b1135=[];if(typeof _0x55373a[_0x3ecd9d(0xe6)]==='string')_0x5b1135=_0x55373a[_0x3ecd9d(0xe6)][_0x3ecd9d(0x108)](',');else Array[_0x3ecd9d(0x1ee)](_0x55373a[_0x3ecd9d(0xe6)])&&(_0x5b1135=_0x55373a['categories']);const _0x2388bf=_0x5b1135[_0x3ecd9d(0x16c)](_0xff9a73=>'<span\x20class=\x22app-tag\x22>'+(_0x4a60a2[_0xff9a73]||_0xff9a73)+_0x3ecd9d(0x125))['join']('');let _0x5973ec=_0x3ecd9d(0xf9);if(_0x55373a[_0x3ecd9d(0x1c4)])try{const _0x13cfe5=new Date(_0x55373a[_0x3ecd9d(0x1c4)]);!isNaN(_0x13cfe5[_0x3ecd9d(0xdb)]())&&(_0x5973ec=_0x13cfe5['toLocaleDateString'](_0x3ecd9d(0x105)));}catch(_0x28de6b){_0x5973ec=_0x55373a[_0x3ecd9d(0x1c4)];}document[_0x3ecd9d(0x214)]=_0x55373a['name']+'\x20-\x20XSpace\x20Store';const _0x216d96=this[_0x3ecd9d(0x1a1)]();this[_0x3ecd9d(0x224)][_0x3ecd9d(0x173)][_0x3ecd9d(0x217)]=_0x216d96?'none':_0x3ecd9d(0x128);const _0x140c98=this[_0x3ecd9d(0x167)](_0x55373a[_0x3ecd9d(0x16a)]),_0xda86ec=this[_0x3ecd9d(0x183)](_0x55373a[_0x3ecd9d(0x155)]?.['replace']('image','http')||''),_0x1e8691=_0xda86ec&&!_0x140c98;let _0x2bfbf8='',_0xd2b4ad='',_0x58fcc8='';_0x1e8691?_0x58fcc8=_0x3ecd9d(0x191)+(_0x55373a[_0x3ecd9d(0x21d)]||_0x3ecd9d(0x1fc))+_0x3ecd9d(0x1d6)+_0x55373a[_0x3ecd9d(0xd8)]+'\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20class=\x22app-icon-large\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onerror=\x22this.src=\x27https://via.placeholder.com/135/2563eb/FFFFFF?text=App\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22app-badge-overlay\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22vip-badge\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20':_0x58fcc8='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22app-icon-container\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22'+(_0x55373a[_0x3ecd9d(0x21d)]||'https://via.placeholder.com/135/2563eb/FFFFFF?text=App')+_0x3ecd9d(0x1d6)+_0x55373a[_0x3ecd9d(0xd8)]+_0x3ecd9d(0x157);if(_0x140c98){const _0x8a3fc3=this[_0x3ecd9d(0x101)](_0x55373a,![],_0x216d96),_0x260bb8=this[_0x3ecd9d(0x101)](_0x55373a,!![],_0x216d96);_0x2bfbf8=_0x3ecd9d(0x20e)+_0x8a3fc3+_0x3ecd9d(0x20e)+_0x260bb8+_0x3ecd9d(0x21f),_0xd2b4ad=_0x55373a['viplink1']?'Premium:\x20No\x20Ads\x20–\x20Full\x20Features\x20–\x20Unlimited\x20Access':'Bản\x20VIP\x20đang\x20được\x20cập\x20nhật';}else{const _0x508600=this['createDownloadButton'](_0x55373a,!![],_0x216d96);_0x2bfbf8=_0x508600,_0xd2b4ad=_0x55373a[_0x3ecd9d(0x155)]?_0x3ecd9d(0x170):_0x3ecd9d(0x19c);}let _0x31077c='';_0x1e8691&&(_0x31077c=_0x3ecd9d(0x169));const _0x47e534=_0x3ecd9d(0x10b)+_0x58fcc8+_0x3ecd9d(0x1d4)+_0x55373a['name']+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x31077c+_0x3ecd9d(0x113)+(_0x55373a[_0x3ecd9d(0x23a)]||_0x3ecd9d(0x16b))+_0x3ecd9d(0x188)+(_0x55373a[_0x3ecd9d(0x10f)]||_0x3ecd9d(0x1bc))+_0x3ecd9d(0x147)+_0x5973ec+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22app-tags\x22>'+_0x2388bf+_0x3ecd9d(0x1ae)+_0x2bfbf8+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22download-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-info-circle\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0xd2b4ad+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22description-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20class=\x22section-title\x22>Mô\x20tả\x20ứng\x20dụng</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+this[_0x3ecd9d(0x1fa)](_0x55373a[_0x3ecd9d(0x104)])+_0x3ecd9d(0xff)+this['createScreenshotsHTML'](_0x55373a)+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22support-section\x22\x20style=\x22text-align:\x20center;\x20margin-top:\x2030px;\x20padding:\x2016px;\x20background:\x20var(--surface);\x20border-radius:\x2012px;\x20border:\x201px\x20solid\x20var(--border);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20style=\x22margin-bottom:\x2010px;\x20color:\x20var(--text-primary);\x20font-size:\x2015px;\x22>Cần\x20hỗ\x20trợ?</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22color:\x20var(--text-secondary);\x20margin-bottom:\x2012px;\x20font-size:\x2012px;\x22>Liên\x20hệ\x20với\x20chúng\x20tôi\x20nếu\x20bạn\x20gặp\x20vấn\x20đề\x20khi\x20tải\x20hoặc\x20sử\x20dụng\x20ứng\x20dụng</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22download-btn\x20download-btn-secondary\x22\x20onclick=\x22appDetail.contactSupport()\x22\x20style=\x22max-width:\x20180px;\x20font-size:\x2012px;\x20padding:\x208px\x2016px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-headset\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Liên\x20hệ\x20hỗ\x20trợ\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20';this[_0x3ecd9d(0x20c)][_0x3ecd9d(0x124)]=_0x47e534,setTimeout(()=>this[_0x3ecd9d(0xfd)](),0x64);}[_0x2af703(0x101)](_0x11ad98,_0x136114,_0x2bf98d){const _0x522b27=_0x2af703,_0x2c3e91=_0x136114?_0x11ad98[_0x522b27(0x155)]:_0x11ad98[_0x522b27(0x16a)],_0x1022cb=_0x2c3e91&&this[_0x522b27(0x183)](_0x2c3e91[_0x522b27(0x18a)](_0x522b27(0x21d),_0x522b27(0x201)));if(_0x136114){if(!_0x1022cb)return _0x522b27(0x127);if(!_0x2bf98d)return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22download-btn\x20download-btn-premium\x22\x20onclick=\x22appDetail.requireLogin(true)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-crown\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Tải\x20VIP\x20#1\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';const _0x3c30d7=_0x2bf98d['packageType']||_0x522b27(0xdf),_0xc04762=this[_0x522b27(0x197)](_0x11ad98[_0x522b27(0x115)],_0x3c30d7);if(!_0xc04762){const _0x2abb43=this[_0x522b27(0x1de)](_0x11ad98[_0x522b27(0x115)]);return _0x522b27(0xe7)+_0x2abb43[_0x522b27(0x177)](',\x20')+_0x522b27(0x176);}if(!this['isUserPremium']())return _0x522b27(0xe4);return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22download-btn\x20download-btn-premium\x22\x20onclick=\x22appDetail.downloadApp(\x27'+_0x2c3e91+_0x522b27(0x17b)+_0x11ad98[_0x522b27(0xd8)]+_0x522b27(0x166);}else{if(!_0x1022cb)return'';if(!_0x2bf98d)return _0x522b27(0x1f6);return _0x522b27(0x117)+_0x2c3e91+_0x522b27(0x17b)+_0x11ad98[_0x522b27(0xd8)]+'\x27,\x20false)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-download\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Tải\x20miễn\x20phí\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';}}[_0x2af703(0xfd)](){const _0x262884=_0x2af703,_0x5951eb=document[_0x262884(0x1e0)]('screenshotsWrapper'),_0x260b95=document[_0x262884(0x1a6)](_0x262884(0x136)),_0x329053=document['querySelector']('.screenshot-nav.next'),_0x477471=document[_0x262884(0x1a6)]('#currentScreenshot');if(!_0x5951eb)return;const _0x116f43=_0x5951eb[_0x262884(0x16f)](_0x262884(0x182))[_0x262884(0x1ff)];if(_0x116f43>0x1){if(_0x260b95)_0x260b95['style'][_0x262884(0x217)]='flex';if(_0x329053)_0x329053['style'][_0x262884(0x217)]=_0x262884(0x19f);}_0x5951eb[_0x262884(0x175)](_0x262884(0x1aa),function(){const _0x307435=_0x262884,_0x339a64=_0x5951eb[_0x307435(0x1b9)],_0x372495=0xdc,_0x3cd1a7=Math[_0x307435(0x134)](_0x339a64/_0x372495)+0x1;_0x477471&&(_0x477471[_0x307435(0x1ba)]=Math[_0x307435(0xe3)](_0x3cd1a7,_0x116f43)),_0x260b95&&(_0x260b95[_0x307435(0x173)][_0x307435(0x217)]=_0x339a64>0x0?_0x307435(0x19f):'none'),_0x329053&&(_0x329053[_0x307435(0x173)][_0x307435(0x217)]=_0x339a64<_0x5951eb[_0x307435(0x21b)]-_0x5951eb[_0x307435(0x1ea)]-0xa?'flex':'none');}),_0x5951eb[_0x262884(0x196)](new Event(_0x262884(0x1aa)));}async[_0x2af703(0x22d)](){const _0xa1b901=_0x2af703;if(!this[_0xa1b901(0x107)]){this[_0xa1b901(0xec)](_0xa1b901(0x12a),![]);return;}console[_0xa1b901(0xf4)]('🚀\x20Loading\x20app\x20detail\x20for\x20ID:\x20'+this[_0xa1b901(0x107)]),console[_0xa1b901(0xf4)](_0xa1b901(0x17e)+(this[_0xa1b901(0x141)]||_0xa1b901(0x152))),this[_0xa1b901(0xf1)](),this[_0xa1b901(0xed)]();try{const _0x4d6fa2=Date[_0xa1b901(0x13f)](),_0x4ef195=this[_0xa1b901(0x227)]+_0xa1b901(0x225)+_0x4d6fa2+_0xa1b901(0x1b8);console[_0xa1b901(0xf4)]('📡\x20Fetching\x20from:\x20'+_0x4ef195);const _0x49296b=await fetch(_0x4ef195);if(!_0x49296b['ok'])throw new Error(_0xa1b901(0x11d)+_0x49296b['status']+':\x20'+_0x49296b[_0xa1b901(0x14d)]);const _0x22ec54=await _0x49296b[_0xa1b901(0x22b)]();console[_0xa1b901(0xf4)](_0xa1b901(0x198),_0x22ec54);if(_0x22ec54[_0xa1b901(0x160)]&&_0x22ec54[_0xa1b901(0x1d7)]){const _0x3db6a2=_0x22ec54[_0xa1b901(0x1d7)][_0xa1b901(0x1db)](_0x2b98f7=>{const _0x196fd7=_0xa1b901;return _0x2b98f7['id']==this[_0x196fd7(0x107)]||_0x2b98f7['id']===this[_0x196fd7(0x107)]||_0x2b98f7['id']['toString']()===this[_0x196fd7(0x107)][_0x196fd7(0x239)]();});if(_0x3db6a2){console[_0xa1b901(0xf4)](_0xa1b901(0x116),_0x3db6a2[_0xa1b901(0xd8)]);const _0x26b32b=this[_0xa1b901(0x1bd)](_0x3db6a2);this['displayAppDetail'](_0x26b32b),this['retryCount']=0x0;}else console['error']('❌\x20App\x20not\x20found\x20with\x20ID:',this[_0xa1b901(0x107)]),this[_0xa1b901(0xec)](_0xa1b901(0x218)+this['appId'],!![]);}else throw new Error(_0x22ec54[_0xa1b901(0x22e)]||_0xa1b901(0x150));}catch(_0x5852db){console[_0xa1b901(0x193)]('💥\x20Error\x20loading\x20app:',_0x5852db),this[_0xa1b901(0x1b3)]<this[_0xa1b901(0x1a3)]?this['showError']('Lỗi\x20tải\x20dữ\x20liệu:\x20'+_0x5852db['message']+'.\x20Thử\x20lại?',!![]):this[_0xa1b901(0xec)]('Không\x20thể\x20tải\x20thông\x20tin\x20ứng\x20dụng\x20sau\x20'+this[_0xa1b901(0x1a3)]+_0xa1b901(0x140),![]);}}[_0x2af703(0x19b)](){const _0x21fe40=_0x2af703;if(!this[_0x21fe40(0x237)])return;const _0x233609=this['createSeoUrl'](this[_0x21fe40(0x237)]['id'],this[_0x21fe40(0x237)]['name']),_0xb26d16=window[_0x21fe40(0x1a5)][_0x21fe40(0x209)]+'/'+_0x233609,_0x107f19=_0x21fe40(0x1b6)+this[_0x21fe40(0x237)][_0x21fe40(0xd8)]+'\x20trên\x20XSpace\x20Store';navigator['share']?navigator[_0x21fe40(0x165)]({'title':this[_0x21fe40(0x237)][_0x21fe40(0xd8)],'text':_0x107f19,'url':_0xb26d16})[_0x21fe40(0x103)](()=>console[_0x21fe40(0xf4)](_0x21fe40(0x13b)))[_0x21fe40(0x210)](_0x16fac9=>{const _0x259965=_0x21fe40;console[_0x259965(0xf4)](_0x259965(0x1ab),_0x16fac9),this[_0x259965(0x135)](_0xb26d16);}):this[_0x21fe40(0x135)](_0xb26d16);}['copyToClipboard'](_0x471c28){const _0x593379=_0x2af703;navigator[_0x593379(0x16e)]['writeText'](_0x471c28)[_0x593379(0x103)](()=>{const _0x3cd51e=_0x593379;this[_0x3cd51e(0x222)](_0x3cd51e(0x160),_0x3cd51e(0x171),_0x3cd51e(0x1ec),[{'text':'OK','type':_0x3cd51e(0x21e),'icon':_0x3cd51e(0x1b2)}]);})[_0x593379(0x210)](_0x14229d=>{const _0x366a1d=_0x593379;console[_0x366a1d(0x193)](_0x366a1d(0x207),_0x14229d),this[_0x366a1d(0x222)]('error',_0x366a1d(0xd7),_0x366a1d(0xf7),[{'text':'OK','type':'primary','icon':'fas\x20fa-check'}]);});}[_0x2af703(0x1a1)](){const _0x395bb7=_0x2af703;try{const _0x99c6bd=localStorage[_0x395bb7(0x204)](_0x395bb7(0x102));return _0x99c6bd?JSON[_0x395bb7(0x11f)](_0x99c6bd):null;}catch(_0x576c51){return null;}}[_0x2af703(0x238)](){const _0x24fee0=_0x2af703,_0x2f8d81=this['getCurrentUser']();if(!_0x2f8d81)return![];if(_0x2f8d81[_0x24fee0(0xe0)]===_0x24fee0(0x199)){if(_0x2f8d81['vipExpiry']){const _0x43d0ef=new Date(_0x2f8d81[_0x24fee0(0x187)]),_0x3b7308=new Date();return _0x43d0ef>=_0x3b7308;}return!![];}return![];}[_0x2af703(0x159)](_0x53f346,_0x454405,_0x2b63fe=![]){const _0x302129=_0x2af703;if(!_0x53f346||_0x53f346==='#'||_0x53f346===''||_0x53f346===_0x302129(0x1dd)||_0x53f346==='undefined'){this['showCustomAlert'](_0x302129(0x129),_0x302129(0x1ed),_0x302129(0x185),[{'text':'OK','type':_0x302129(0x21e),'icon':'fas\x20fa-check'}]);return;}const _0x5519ec=_0x2b63fe?_0x302129(0x112):_0x302129(0x1e9);this[_0x302129(0x222)]('info','Xác\x20nhận\x20tải',_0x302129(0x1c8)+_0x454405+_0x302129(0x1e3)+_0x5519ec+_0x302129(0x1e8),[{'text':_0x302129(0x162),'type':_0x302129(0x20f),'icon':_0x302129(0x208),'onClick':()=>{}},{'text':_0x302129(0x14c),'type':_0x302129(0x21e),'icon':_0x302129(0x1b0),'onClick':()=>{const _0x1b0d55=_0x302129;window[_0x1b0d55(0x15c)](_0x53f346,_0x1b0d55(0x1f9)),setTimeout(()=>{const _0x4452cb=_0x1b0d55;this[_0x4452cb(0x222)]('success',_0x4452cb(0xfc),_0x4452cb(0x1f8)+_0x5519ec+'!',[{'text':'OK','type':_0x4452cb(0x21e),'icon':_0x4452cb(0x1b2)}]);},0x1f4);}}]);}[_0x2af703(0x1d0)](_0x5318c8=![]){const _0x4fe2bb=_0x2af703,_0x43a1b2=_0x5318c8?_0x4fe2bb(0x112):_0x4fe2bb(0x1e9);this[_0x4fe2bb(0x222)]('warning',_0x4fe2bb(0x163),_0x4fe2bb(0xd6)+_0x43a1b2+'.<br><br>Chuyển\x20đến\x20trang\x20đăng\x20nhập?',[{'text':_0x4fe2bb(0x162),'type':'secondary','icon':_0x4fe2bb(0x208),'onClick':()=>{}},{'text':_0x4fe2bb(0x110),'type':_0x4fe2bb(0x21e),'icon':'fas\x20fa-sign-in-alt','onClick':()=>{const _0x1ae38b=_0x4fe2bb;window[_0x1ae38b(0x1a5)][_0x1ae38b(0x17a)]='account.html';}}]);}[_0x2af703(0xee)](){const _0x24e0b7=_0x2af703;this['showCustomAlert'](_0x24e0b7(0x129),_0x24e0b7(0x1f7),_0x24e0b7(0x20d),[{'text':_0x24e0b7(0x162),'type':_0x24e0b7(0x20f),'icon':_0x24e0b7(0x208),'onClick':()=>{}},{'text':'Nâng\x20cấp','type':_0x24e0b7(0x129),'icon':'fas\x20fa-crown','onClick':()=>{const _0xf5220f=_0x24e0b7;window[_0xf5220f(0x1a5)][_0xf5220f(0x17a)]=_0xf5220f(0x19e);}}]);}[_0x2af703(0x1b1)](_0x1da7b1){const _0x56e4a2=_0x2af703;this[_0x56e4a2(0x222)](_0x56e4a2(0x129),_0x56e4a2(0x168),_0x56e4a2(0x114)+_0x1da7b1+_0x56e4a2(0x1a2),[{'text':_0x56e4a2(0x162),'type':_0x56e4a2(0x20f),'icon':_0x56e4a2(0x208),'onClick':()=>{}},{'text':_0x56e4a2(0x226),'type':'warning','icon':_0x56e4a2(0x12f),'onClick':()=>{const _0x130fa4=_0x56e4a2;window[_0x130fa4(0x1a5)][_0x130fa4(0x17a)]=_0x130fa4(0x19e);}}]);}[_0x2af703(0x184)](){const _0x3864c1=_0x2af703;window[_0x3864c1(0x15c)](_0x3864c1(0x1b4),'_blank');}[_0x2af703(0x1cd)](_0x4229de,_0x510512){const _0x105a6a=_0x2af703,_0x4c3694=_0x4229de[_0x105a6a(0x1a6)](_0x105a6a(0x219)),_0x33cb85=_0x4229de[_0x105a6a(0x1a6)](_0x105a6a(0x22f));_0x510512?(_0x4c3694[_0x105a6a(0x173)][_0x105a6a(0x15f)]='translateY(-4px)\x20scale(1.1)',_0x33cb85[_0x105a6a(0x173)][_0x105a6a(0x15f)]=_0x105a6a(0x16d),!_0x4229de[_0x105a6a(0x131)]['contains'](_0x105a6a(0x12d))&&(_0x4229de[_0x105a6a(0x173)][_0x105a6a(0x145)]=_0x105a6a(0x231))):(_0x4c3694[_0x105a6a(0x173)][_0x105a6a(0x15f)]=_0x105a6a(0x1f5),_0x33cb85['style'][_0x105a6a(0x15f)]=_0x105a6a(0x203),!_0x4229de[_0x105a6a(0x131)][_0x105a6a(0x202)](_0x105a6a(0x12d))&&(_0x4229de[_0x105a6a(0x173)]['color']=''));}[_0x2af703(0x1be)](_0x59477d){const _0x44ddb5=_0x2af703;if(!_0x59477d[_0x44ddb5(0x17a)]||_0x59477d[_0x44ddb5(0x17a)][_0x44ddb5(0x164)]('#'))return;this[_0x44ddb5(0x1c9)][_0x44ddb5(0x1f1)](_0x5d17a4=>{const _0x4bd66a=_0x44ddb5;_0x5d17a4['classList'][_0x4bd66a(0x151)](_0x4bd66a(0x12d));const _0x91bca0=_0x5d17a4[_0x4bd66a(0x1a6)](_0x4bd66a(0x219));_0x91bca0[_0x4bd66a(0x173)]['transform']=_0x4bd66a(0x1f5);}),_0x59477d[_0x44ddb5(0x131)]['add'](_0x44ddb5(0x12d));const _0x436fbc=_0x59477d['querySelector'](_0x44ddb5(0x219));_0x436fbc[_0x44ddb5(0x173)][_0x44ddb5(0x15f)]='translateY(-4px)\x20scale(1.1)',setTimeout(()=>{const _0xf87c6f=_0x44ddb5;_0x436fbc[_0xf87c6f(0x173)][_0xf87c6f(0x15f)]=_0xf87c6f(0x14f);},0x96),setTimeout(()=>{const _0x2eff36=_0x44ddb5;_0x436fbc[_0x2eff36(0x173)][_0x2eff36(0x15f)]=_0x2eff36(0x15d);},0x12c);}}document['addEventListener']('DOMContentLoaded',function(){const _0x56a56f=_0x2af703;window[_0x56a56f(0x17f)]=new AppDetailManager();}),window['addEventListener'](_0x2af703(0xde),function(){const _0x52fb11=_0x2af703;window[_0x52fb11(0x17f)]&&window[_0x52fb11(0x17f)][_0x52fb11(0xf1)]();});
+// app-detail.js - JavaScript cho trang chi tiết ứng dụng
+class AppDetailManager {
+    constructor() {
+        this.GOOGLE_SCRIPT_URL = CONFIG.GOOGLE_SCRIPT_URL;
+        this.urlInfo = this.parseUrlId();
+        this.appId = this.urlInfo ? this.urlInfo.id : null;
+        this.appNameFromUrl = this.urlInfo ? this.urlInfo.name : null;
+        this.retryCount = 0;
+        this.MAX_RETRIES = 3;
+        this.currentAppData = null;
+        
+        this.VIP_PACKAGE_LABELS = {
+            'trial': { name: 'Trial', icon: 'fas fa-star', color: '#10b981' },
+            'basic': { name: 'Basic', icon: 'fas fa-crown', color: '#3b82f6' },
+            'plus': { name: 'Plus', icon: 'fas fa-crown', color: '#8b5cf6' },
+            'premium': { name: 'Premium', icon: 'fas fa-crown', color: '#f59e0b' },
+            'all': { name: 'Tất cả gói', icon: 'fas fa-layer-group', color: '#6366f1' }
+        };
+        
+        this.initializeElements();
+        this.bindEvents();
+        this.init();
+    }
+    
+    initializeElements() {
+        this.appContent = document.getElementById('appContent');
+        this.loginPrompt = document.getElementById('loginPrompt');
+        this.shareBtnContainer = document.getElementById('shareBtnContainer');
+        this.debugInfo = document.getElementById('debugInfo');
+        this.debugContent = document.getElementById('debugContent');
+        this.alertOverlay = document.getElementById('customAlertOverlay');
+        this.navItems = document.querySelectorAll('.nav-item');
+    }
+    
+    bindEvents() {
+        // Nav item hover effects
+        this.navItems.forEach(item => {
+            item.addEventListener('mouseenter', this.handleNavHover.bind(this, item, true));
+            item.addEventListener('mouseleave', this.handleNavHover.bind(this, item, false));
+            item.addEventListener('click', this.handleNavClick.bind(this, item));
+        });
+        
+        // Alert overlay click
+        this.alertOverlay.addEventListener('click', (e) => {
+            if (e.target === this.alertOverlay) {
+                this.alertOverlay.style.display = 'none';
+            }
+        });
+        
+        // Escape key to close alert
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.alertOverlay.style.display === 'flex') {
+                this.alertOverlay.style.display = 'none';
+            }
+        });
+        
+        // Download button click effects
+        document.addEventListener('click', (e) => {
+            const downloadBtn = e.target.closest('.download-btn');
+            if (downloadBtn && !downloadBtn.disabled) {
+                const originalHTML = downloadBtn.innerHTML;
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+                downloadBtn.disabled = true;
+                
+                setTimeout(() => {
+                    downloadBtn.innerHTML = originalHTML;
+                    downloadBtn.disabled = false;
+                }, 1500);
+            }
+        });
+    }
+    
+    init() {
+        console.log('📱 App detail page initialized');
+        console.log('🔗 URL Info:', this.urlInfo);
+        
+        this.applyTheme();
+        this.loadAppDetail();
+        
+        // Apply WebView fixes
+        this.applyWebViewFixes();
+    }
+    
+    // ==================== WKWEBVIEW FIXES ====================
+    
+    applyWebViewFixes() {
+        // Kiểm tra nếu đang ở WKWebView iOS
+        if (this.isWKWebViewiOS()) {
+            console.log('🔧 Áp dụng WKWebView iOS fixes');
+            
+            // Thêm class để CSS overrides có hiệu lực
+            document.body.classList.add('ios-webview-fix');
+            
+            // Force layout fix sau khi content load
+            setTimeout(() => {
+                this.forceWebViewLayoutFix();
+            }, 500);
+        }
+    }
+    
+    isWKWebViewiOS() {
+        const ua = navigator.userAgent;
+        const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+        const isWebKit = /WebKit/.test(ua);
+        const isChrome = /CriOS/.test(ua);
+        
+        // WKWebView iOS detection
+        return isIOS && isWebKit && !isChrome;
+    }
+    
+    forceWebViewLayoutFix() {
+        if (!this.isWKWebViewiOS()) return;
+        
+        console.log('🔄 Forcing WKWebView layout fix');
+        
+        // Fix 1: Đảm bảo description box có đủ chiều cao
+        const descriptionCheck = document.querySelector('.app-description-check');
+        if (descriptionCheck) {
+            // Reset height
+            descriptionCheck.style.height = 'auto';
+            descriptionCheck.style.minHeight = 'fit-content';
+            descriptionCheck.style.overflow = 'visible';
+            
+            // Trigger reflow
+            void descriptionCheck.offsetHeight;
+            
+            // Tính toán chiều cao thực
+            const scrollHeight = descriptionCheck.scrollHeight;
+            descriptionCheck.style.height = scrollHeight + 'px';
+            
+            console.log(`📏 Description height set to: ${scrollHeight}px`);
+            
+            // Thêm class để track
+            descriptionCheck.classList.add('webview-fixed');
+        }
+        
+        // Fix 2: Đảm bảo các container cha không giới hạn chiều cao
+        const containers = [
+            '.description-section',
+            '.app-detail',
+            '.main-content .container'
+        ];
+        
+        containers.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.style.height = 'auto';
+                element.style.overflow = 'visible';
+                element.style.maxHeight = 'none';
+                void element.offsetHeight; // Trigger reflow
+            }
+        });
+        
+        // Fix 3: Scroll trick để trigger layout
+        setTimeout(() => {
+            window.scrollTo(0, 1);
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 10);
+        }, 100);
+        
+        // Gọi global fix function nếu tồn tại
+        if (typeof window.fixWebViewLayout === 'function') {
+            window.fixWebViewLayout();
+        }
+    }
+    
+    // ==================== URL PARSING FUNCTIONS ====================
+    
+    parseUrlId() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const rawId = urlParams.get('id');
+        
+        console.log('🔗 Raw ID from URL:', rawId);
+        
+        if (!rawId) {
+            return null;
+        }
+        
+        if (/^\d+$/.test(rawId)) {
+            console.log('📌 Định dạng cũ (chỉ số):', rawId);
+            return {
+                id: rawId,
+                name: null,
+                fullId: rawId
+            };
+        }
+        
+        const match = rawId.match(/^(\d+)-(.+)$/);
+        if (match) {
+            const id = match[1];
+            const name = match[2].replace(/-/g, ' ');
+            console.log('📌 Định dạng mới (số-tên):', { id, name });
+            return {
+                id: id,
+                name: name,
+                fullId: rawId
+            };
+        }
+        
+        console.log('❌ Định dạng không hợp lệ:', rawId);
+        return {
+            id: rawId,
+            name: null,
+            fullId: rawId
+        };
+    }
+    
+    createSeoUrl(appId, appName) {
+        if (!appName) {
+            return `app-detail.html?id=${appId}`;
+        }
+        
+        const seoName = appName
+            .toLowerCase()
+            .replace(/[^\w\s]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .trim();
+        
+        return `app-detail.html?id=${appId}-${seoName}`;
+    }
+    
+    updateBrowserUrl(appId, appName) {
+        const newUrl = this.createSeoUrl(appId, appName);
+        const currentUrl = window.location.href;
+        
+        if (!currentUrl.includes(newUrl)) {
+            history.replaceState(null, '', newUrl);
+            console.log('🔄 Đã cập nhật URL:', newUrl);
+        }
+    }
+    
+    // ==================== THEME MANAGEMENT ====================
+    
+    applyTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const htmlElement = document.documentElement;
+        
+        if (savedTheme === 'dark') {
+            htmlElement.setAttribute('data-theme', 'dark');
+        } else {
+            htmlElement.setAttribute('data-theme', 'light');
+            if (!savedTheme) {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    }
+    
+    // ==================== CUSTOM ALERT SYSTEM ====================
+    
+    showCustomAlert(type, title, message, buttons) {
+        const alertIcon = document.getElementById('alertIcon');
+        const alertTitle = document.getElementById('alertTitle');
+        const alertMessage = document.getElementById('alertMessage');
+        const alertButtons = document.getElementById('alertButtons');
+        
+        alertIcon.className = 'alert-icon ' + type;
+        const iconMap = {
+            'success': 'fas fa-check-circle',
+            'warning': 'fas fa-exclamation-triangle',
+            'error': 'fas fa-times-circle',
+            'info': 'fas fa-info-circle'
+        };
+        alertIcon.innerHTML = `<i class="${iconMap[type] || 'fas fa-info-circle'}"></i>`;
+        
+        alertTitle.textContent = title;
+        alertMessage.innerHTML = message;
+        
+        alertButtons.innerHTML = '';
+        
+        if (buttons && buttons.length > 0) {
+            buttons.forEach(button => {
+                const btn = document.createElement('button');
+                btn.className = `alert-btn ${button.type || 'primary'}`;
+                btn.textContent = button.text;
+                if (button.icon) {
+                    btn.innerHTML = `<i class="${button.icon}"></i> ${button.text}`;
+                }
+                if (button.onClick) {
+                    btn.onclick = () => {
+                        button.onClick();
+                        this.alertOverlay.style.display = 'none';
+                    };
+                } else {
+                    btn.onclick = () => {
+                        this.alertOverlay.style.display = 'none';
+                    };
+                }
+                alertButtons.appendChild(btn);
+            });
+        } else {
+            const okBtn = document.createElement('button');
+            okBtn.className = 'alert-btn primary';
+            okBtn.innerHTML = '<i class="fas fa-check"></i> OK';
+            okBtn.onclick = () => {
+                this.alertOverlay.style.display = 'none';
+            };
+            alertButtons.appendChild(okBtn);
+        }
+        
+        this.alertOverlay.style.display = 'flex';
+    }
+    
+    // ==================== VIP PERMISSIONS SYSTEM ====================
+    
+    canUserDownloadVIP(appVipPermissions, userPackage) {
+        if (!appVipPermissions || appVipPermissions === 'all') {
+            return true;
+        }
+        
+        if (!userPackage || userPackage === 'free') {
+            return false;
+        }
+        
+        const allowedPackages = appVipPermissions.split(',').map(p => p.trim());
+        return allowedPackages.includes(userPackage);
+    }
+    
+    getVipPermissionsReadable(appVipPermissions) {
+        if (!appVipPermissions || appVipPermissions === 'all') {
+            return ['Tất cả các gói'];
+        }
+        
+        const packages = appVipPermissions.split(',').map(p => p.trim());
+        return packages.map(p => this.VIP_PACKAGE_LABELS[p]?.name || p);
+    }
+    
+    // ==================== UTILITY FUNCTIONS ====================
+    
+    clearCache() {
+        try {
+            localStorage.removeItem('xspace_apps_cache');
+            localStorage.removeItem('xspace_cache_timestamp');
+            console.log('✅ Đã xoá cache');
+        } catch (e) {
+            console.log('⚠️ Không thể xoá cache:', e);
+        }
+    }
+    
+    showLoading() {
+        this.appContent.innerHTML = `
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Đang tải thông tin ứng dụng...</p>
+            </div>
+        `;
+    }
+    
+    showError(message, showRetry = true) {
+        let retryButton = '';
+        if (showRetry && this.retryCount < this.MAX_RETRIES) {
+            retryButton = `
+                <button class="retry-btn" onclick="appDetail.retryLoadApp()">
+                    <i class="fas fa-redo"></i>
+                    Thử lại
+                </button>
+            `;
+        }
+        
+        this.appContent.innerHTML = `
+            <div class="error-message">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>Đã xảy ra lỗi</h3>
+                <p>${message}</p>
+                ${retryButton}
+                <button class="download-btn" onclick="window.location.href='index.html'" style="margin-top: 16px; max-width: 200px;">
+                    <i class="fas fa-home"></i>
+                    Quay về trang chủ
+                </button>
+            </div>
+        `;
+    }
+    
+    retryLoadApp() {
+        this.retryCount++;
+        console.log(`🔄 Thử lại lần ${this.retryCount}/${this.MAX_RETRIES}...`);
+        this.loadAppDetail();
+    }
+    
+    toggleDebug() {
+        const toggle = document.querySelector('.debug-toggle');
+        
+        if (this.debugInfo.style.display === 'none' || this.debugInfo.style.display === '') {
+            this.debugInfo.style.display = 'block';
+            toggle.innerHTML = '<i class="fas fa-bug"></i> Ẩn thông tin debug';
+            this.updateDebugInfo();
+        } else {
+            this.debugInfo.style.display = 'none';
+            toggle.innerHTML = '<i class="fas fa-bug"></i> Hiển thị thông tin debug';
+        }
+    }
+    
+    updateDebugInfo() {
+        if (!this.debugContent || !this.currentAppData) return;
+        
+        this.debugContent.innerHTML = `
+            <h4>Thông tin debug:</h4>
+            <p><strong>App ID:</strong> ${this.appId}</p>
+            <p><strong>Tên từ URL:</strong> ${this.appNameFromUrl || 'Không có'}</p>
+            <p><strong>Retry count:</strong> ${this.retryCount}/${this.MAX_RETRIES}</p>
+            <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>VIP Permissions:</strong> ${this.currentAppData.vipPermissions || 'all'}</p>
+            <p><strong>Current URL:</strong> ${window.location.href}</p>
+            <p><strong>WKWebView iOS:</strong> ${this.isWKWebViewiOS() ? 'Yes' : 'No'}</p>
+            <button class="retry-btn" onclick="appDetail.forceReload()" style="margin-top: 10px;">
+                <i class="fas fa-sync-alt"></i>
+                Tải lại dữ liệu
+            </button>
+        `;
+    }
+    
+    forceReload() {
+        this.clearCache();
+        this.retryCount = 0;
+        this.loadAppDetail();
+    }
+    
+    // ==================== DATA PROCESSING ====================
+    
+    isValidImageUrl(url) {
+        if (!url || typeof url !== 'string') {
+            return false;
+        }
+        
+        const trimmedUrl = url.trim();
+        
+        if (trimmedUrl === '' || 
+            trimmedUrl === 'null' || 
+            trimmedUrl === 'undefined' ||
+            trimmedUrl === '#' ||
+            trimmedUrl.toLowerCase() === 'null' ||
+            trimmedUrl.toLowerCase() === 'undefined' ||
+            trimmedUrl === 'N/A' ||
+            trimmedUrl === 'n/a') {
+            return false;
+        }
+        
+        const isUrl = trimmedUrl.startsWith('http://') || 
+                     trimmedUrl.startsWith('https://') || 
+                     trimmedUrl.startsWith('//') ||
+                     trimmedUrl.includes('.jpg') || 
+                     trimmedUrl.includes('.jpeg') || 
+                     trimmedUrl.includes('.png') ||
+                     trimmedUrl.includes('.gif') ||
+                     trimmedUrl.includes('.webp') ||
+                     trimmedUrl.includes('imgur.com') ||
+                     trimmedUrl.includes('i.imgur.com') ||
+                     trimmedUrl.includes('cdn.discordapp.com') ||
+                     trimmedUrl.includes('imageshack.com') ||
+                     trimmedUrl.includes('photobucket.com');
+        
+        return isUrl;
+    }
+    
+    processAppData(app) {
+        console.log('🔍 Processing app data...');
+        
+        app.viplink1 = app.viplink1 || '';
+        app.downloadlink = app.downloadlink || '';
+        app.categories = app.categories || 'other';
+        app.vipPermissions = app.vipPermissions || 'all';
+        
+        const possibleKeys = {
+            'screenshot1': ['screenshot1', 'Screenshot1', 'screenshot_1', 'image1', 'Image1'],
+            'screenshot2': ['screenshot2', 'Screenshot2', 'screenshot_2', 'image2', 'Image2'],
+            'screenshot3': ['screenshot3', 'Screenshot3', 'screenshot_3', 'image3', 'Image3']
+        };
+        
+        let foundScreenshot1 = '';
+        for (const key of possibleKeys.screenshot1) {
+            if (app[key] && typeof app[key] === 'string' && app[key].trim() !== '') {
+                foundScreenshot1 = app[key].trim();
+                break;
+            }
+        }
+        
+        let foundScreenshot2 = '';
+        for (const key of possibleKeys.screenshot2) {
+            if (app[key] && typeof app[key] === 'string' && app[key].trim() !== '') {
+                foundScreenshot2 = app[key].trim();
+                break;
+            }
+        }
+        
+        let foundScreenshot3 = '';
+        for (const key of possibleKeys.screenshot3) {
+            if (app[key] && typeof app[key] === 'string' && app[key].trim() !== '') {
+                foundScreenshot3 = app[key].trim();
+                break;
+            }
+        }
+        
+        if (!foundScreenshot1 && Array.isArray(app)) {
+            if (app.length > 10) foundScreenshot1 = app[10] || '';
+            if (app.length > 11) foundScreenshot2 = app[11] || '';
+            if (app.length > 12) foundScreenshot3 = app[12] || '';
+        }
+        
+        app.screenshot1 = foundScreenshot1;
+        app.screenshot2 = foundScreenshot2;
+        app.screenshot3 = foundScreenshot3;
+        
+        return app;
+    }
+    
+    // ==================== DISPLAY FUNCTIONS ====================
+    
+    createDescriptionHTML(description) {
+        if (!description) {
+            return '<div class="app-description-check">Ứng dụng chưa có mô tả chi tiết.</div>';
+        }
+
+        const lines = description.split('\n').filter(line => line.trim());
+        
+        let html = '<div class="app-description-check">';
+        lines.forEach(line => {
+            if (line.trim()) {
+                html += `
+                    <div class="description-item">
+                        <div class="check-icon-container">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="description-text">${line.trim()}</span>
+                    </div>
+                `;
+            }
+        });
+        html += '</div>';
+        return html;
+    }
+    
+    createScreenshotsHTML(app) {
+        console.log('🖼️ Creating screenshots HTML...');
+        
+        const screenshot1 = app.screenshot1 || '';
+        const screenshot2 = app.screenshot2 || '';
+        const screenshot3 = app.screenshot3 || '';
+        
+        const validImages = [];
+        
+        [screenshot1, screenshot2, screenshot3].forEach((url, index) => {
+            if (this.isValidImageUrl(url)) {
+                validImages.push({
+                    src: url.trim(),
+                    alt: `Ảnh minh hoạ ${index + 1} - ${app.name}`,
+                    placeholder: `https://via.placeholder.com/220x400/2563eb/FFFFFF?text=Ảnh+${index + 1}`
+                });
+                console.log(`✅ Added screenshot ${index + 1}`);
+            } else {
+                console.log(`❌ Skipped invalid screenshot ${index + 1}:`, url);
+            }
+        });
+        
+        console.log(`📊 Total valid screenshots: ${validImages.length}`);
+        
+        if (validImages.length === 0) {
+            return `
+                <div class="no-screenshots-message">
+                    <div class="no-screenshots-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <div class="no-screenshots-text">
+                        <p>Ứng dụng này chưa có ảnh minh hoạ</p>
+                        <p style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">
+                            Ảnh minh hoạ sẽ được cập nhật trong thời gian sớm nhất
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        let html = `
+            <div class="screenshots-container">
+                <div class="screenshots-wrapper" id="screenshotsWrapper">
+        `;
+        
+        validImages.forEach((img, index) => {
+            html += `
+                <div class="screenshot-item">
+                    <img src="${img.src}" 
+                         alt="${img.alt}" 
+                         class="screenshot" 
+                         loading="lazy"
+                         onerror="this.onerror=null; this.src='${img.placeholder}';">
+                </div>
+            `;
+        });
+        
+        html += `
+                </div>
+                
+                ${validImages.length > 1 ? `
+                    <div class="screenshot-nav prev" onclick="appDetail.scrollScreenshots(-220)">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="screenshot-nav next" onclick="appDetail.scrollScreenshots(220)">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="screenshot-counter">
+                        <span id="currentScreenshot">1</span> / ${validImages.length}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+        
+        return html;
+    }
+    
+    scrollScreenshots(amount) {
+        const wrapper = document.getElementById('screenshotsWrapper');
+        if (wrapper) {
+            wrapper.scrollBy({ left: amount, behavior: 'smooth' });
+        }
+    }
+    
+    hasValidFreeDownload(downloadlink) {
+        if (!downloadlink || typeof downloadlink !== 'string') {
+            return false;
+        }
+        
+        const trimmedLink = downloadlink.trim();
+        
+        if (trimmedLink === '' || 
+            trimmedLink === 'null' || 
+            trimmedLink === 'undefined' ||
+            trimmedLink === '#' ||
+            trimmedLink.toLowerCase() === 'null' ||
+            trimmedLink.toLowerCase() === 'undefined' ||
+            trimmedLink === 'N/A' ||
+            trimmedLink === 'n/a') {
+            return false;
+        }
+        
+        const isUrl = trimmedLink.startsWith('http://') || 
+                     trimmedLink.startsWith('https://') || 
+                     trimmedLink.startsWith('//');
+        
+        return isUrl;
+    }
+    
+    displayAppDetail(app) {
+        this.currentAppData = app;
+        
+        console.log('🎨 Displaying app detail:', app.name);
+        console.log('👑 App VIP Permissions:', app.vipPermissions);
+        
+        // Cập nhật URL trình duyệt với định dạng mới
+        this.updateBrowserUrl(app.id, app.name);
+        
+        // Hiển thị nút chia sẻ
+        this.shareBtnContainer.style.display = 'flex';
+        
+        const categoryLabels = {
+            'game': 'Trò chơi',
+            'social': 'Mạng xã hội',
+            'entertainment': 'Giải trí',
+            'photo': 'Ảnh & Video',
+            'clone': 'Nhân bản',
+            'premium': 'Mở khoá Premium',
+            'education': 'Giáo dục',
+            'health': 'Sức khỏe',
+            'utility': 'Tiện ích'
+        };
+        
+        let categories = [];
+        if (typeof app.categories === 'string') {
+            categories = app.categories.split(',');
+        } else if (Array.isArray(app.categories)) {
+            categories = app.categories;
+        }
+        
+        const tagsHTML = categories.map(cat => 
+            `<span class="app-tag">${categoryLabels[cat] || cat}</span>`
+        ).join('');
+        
+        let formattedDate = 'Chưa cập nhật';
+        if (app.updatedate) {
+            try {
+                const date = new Date(app.updatedate);
+                if (!isNaN(date.getTime())) {
+                    formattedDate = date.toLocaleDateString('vi-VN');
+                }
+            } catch (e) {
+                formattedDate = app.updatedate;
+            }
+        }
+        
+        document.title = `${app.name} - XSpace Store`;
+        
+        const user = this.getCurrentUser();
+        this.loginPrompt.style.display = user ? 'none' : 'block';
+        
+        const hasFreeDownload = this.hasValidFreeDownload(app.downloadlink);
+        const hasVipDownload = this.isValidImageUrl(app.viplink1?.replace('image', 'http') || '');
+        const isVipOnly = hasVipDownload && !hasFreeDownload;
+        
+        let downloadButtonsHTML = '';
+        let downloadInfoText = '';
+        
+        // Tạo icon HTML với VIP badge nếu cần
+        let iconHTML = '';
+        if (isVipOnly) {
+            iconHTML = `
+                <div class="app-icon-container">
+                    <img src="${app.image || 'https://via.placeholder.com/135/2563eb/FFFFFF?text=App'}" 
+                         alt="${app.name}" 
+                         class="app-icon-large"
+                         onerror="this.src='https://via.placeholder.com/135/2563eb/FFFFFF?text=App'">
+                    <div class="app-badge-overlay">
+                        <div class="vip-badge"></div>
+                    </div>
+                </div>
+            `;
+        } else {
+            iconHTML = `
+                <div class="app-icon-container">
+                    <img src="${app.image || 'https://via.placeholder.com/135/2563eb/FFFFFF?text=App'}" 
+                         alt="${app.name}" 
+                         class="app-icon-large"
+                         onerror="this.src='https://via.placeholder.com/135/2563eb/FFFFFF?text=App'">
+                </div>
+            `;
+        }
+        
+        if (hasFreeDownload) {
+            const freeButton = this.createDownloadButton(app, false, user);
+            const vipButton = this.createDownloadButton(app, true, user);
+            
+            downloadButtonsHTML = `
+                ${freeButton}
+                ${vipButton}
+            `;
+            downloadInfoText = app.viplink1 ? 'Premium: No Ads – Full Features – Unlimited Access' : 'Bản VIP đang được cập nhật';
+        } else {
+            const vipButton = this.createDownloadButton(app, true, user);
+            
+            downloadButtonsHTML = vipButton;
+            downloadInfoText = app.viplink1 ? 'Ứng dụng chỉ có bản Premium' : 'Bản VIP đang được cập nhật';
+        }
+        
+        let vipCrownIcon = '';
+        if (isVipOnly) {
+            vipCrownIcon = '<i class="fas fa-crown vip-crown-icon"></i>';
+        }
+        
+        const html = `
+            <div class="app-header">
+                ${iconHTML}
+                <div class="app-info">
+                    <h1 class="app-title">
+                        ${app.name}
+                        ${vipCrownIcon}
+                    </h1>
+                    <div class="app-developer">${app.developer || 'Nhà phát triển'}</div>
+                    <div class="app-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Phiên bản</span>
+                            <span class="meta-value">${app.version || '1.0.0'}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Cập nhật</span>
+                            <span class="meta-value">${formattedDate}</span>
+                        </div>
+                    </div>
+                    <div class="app-tags">${tagsHTML}</div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <h2 class="download-title">Tải ứng dụng</h2>
+                <div class="download-options">
+                    ${downloadButtonsHTML}
+                </div>
+                <div class="download-info">
+                    <i class="fas fa-info-circle"></i>
+                    ${downloadInfoText}
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h2 class="section-title">Mô tả ứng dụng</h2>
+                ${this.createDescriptionHTML(app.description)}
+            </div>
+
+            <div class="screenshots-section">
+                <h2 class="section-title">Hình ảnh ứng dụng</h2>
+                ${this.createScreenshotsHTML(app)}
+            </div>
+
+            <div class="support-section" style="text-align: center; margin-top: 30px; padding: 16px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border);">
+                <h3 style="margin-bottom: 10px; color: var(--text-primary); font-size: 15px;">Cần hỗ trợ?</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 12px;">Liên hệ với chúng tôi nếu bạn gặp vấn đề khi tải hoặc sử dụng ứng dụng</p>
+                <button class="download-btn download-btn-secondary" onclick="appDetail.contactSupport()" style="max-width: 180px; font-size: 12px; padding: 8px 16px;">
+                    <i class="fas fa-headset"></i>
+                    Liên hệ hỗ trợ
+                </button>
+            </div>
+        `;
+        
+        this.appContent.innerHTML = html;
+        
+        setTimeout(() => this.initScreenshotScroll(), 100);
+        
+        // Áp dụng WKWebView fix sau khi hiển thị content
+        setTimeout(() => {
+            this.forceWebViewLayoutFix();
+        }, 300);
+    }
+    
+    createDownloadButton(app, isVIP, user) {
+        const link = isVIP ? app.viplink1 : app.downloadlink;
+        const isValidLink = link && this.isValidImageUrl(link.replace('image', 'http'));
+        
+        if (isVIP) {
+            if (!isValidLink) {
+                return `
+                    <button class="download-btn download-btn-premium" disabled style="background: var(--text-muted);">
+                        <i class="fas fa-crown"></i>
+                        Tải VIP #1 (Đang cập nhật)
+                    </button>
+                `;
+            }
+            
+            if (!user) {
+                return `
+                    <button class="download-btn download-btn-premium" onclick="appDetail.requireLogin(true)">
+                        <i class="fas fa-crown"></i>
+                        Tải VIP #1
+                    </button>
+                `;
+            }
+            
+            const userPackage = user.packageType || 'free';
+            const canDownload = this.canUserDownloadVIP(app.vipPermissions, userPackage);
+            
+            if (!canDownload) {
+                const requiredPackages = this.getVipPermissionsReadable(app.vipPermissions);
+                return `
+                    <button class="download-btn download-btn-premium" onclick="appDetail.showUpgradeRequiredAlert('${requiredPackages.join(', ')}')">
+                        <i class="fas fa-crown"></i>
+                        Tải VIP #1
+                    </button>
+                `;
+            }
+            
+            if (!this.isUserPremium()) {
+                return `
+                    <button class="download-btn download-btn-premium" onclick="appDetail.requirePremium()">
+                        <i class="fas fa-crown"></i>
+                        Tải VIP #1
+                    </button>
+                `;
+            }
+            
+            return `
+                <button class="download-btn download-btn-premium" onclick="appDetail.downloadApp('${link}', '${app.name}', true)">
+                    <i class="fas fa-crown"></i>
+                    Tải VIP #1
+                </button>
+            `;
+        } else {
+            if (!isValidLink) {
+                return '';
+            }
+            
+            if (!user) {
+                return `
+                    <button class="download-btn" onclick="appDetail.requireLogin(false)">
+                        <i class="fas fa-download"></i>
+                        Tải miễn phí
+                    </button>
+                `;
+            }
+            
+            return `
+                <button class="download-btn" onclick="appDetail.downloadApp('${link}', '${app.name}', false)">
+                    <i class="fas fa-download"></i>
+                    Tải miễn phí
+                </button>
+            `;
+        }
+    }
+    
+    initScreenshotScroll() {
+        const wrapper = document.getElementById('screenshotsWrapper');
+        const prevBtn = document.querySelector('.screenshot-nav.prev');
+        const nextBtn = document.querySelector('.screenshot-nav.next');
+        const counter = document.querySelector('#currentScreenshot');
+        
+        if (!wrapper) return;
+        
+        const totalItems = wrapper.querySelectorAll('.screenshot-item').length;
+        if (totalItems > 1) {
+            if (prevBtn) prevBtn.style.display = 'flex';
+            if (nextBtn) nextBtn.style.display = 'flex';
+        }
+        
+        wrapper.addEventListener('scroll', function() {
+            const scrollLeft = wrapper.scrollLeft;
+            const itemWidth = 220;
+            const currentIndex = Math.round(scrollLeft / itemWidth) + 1;
+            
+            if (counter) {
+                counter.textContent = Math.min(currentIndex, totalItems);
+            }
+            
+            if (prevBtn) {
+                prevBtn.style.display = scrollLeft > 0 ? 'flex' : 'none';
+            }
+            if (nextBtn) {
+                nextBtn.style.display = scrollLeft < (wrapper.scrollWidth - wrapper.clientWidth - 10) ? 'flex' : 'none';
+            }
+        });
+        
+        wrapper.dispatchEvent(new Event('scroll'));
+    }
+    
+    // ==================== LOAD APP DETAIL ====================
+    
+    async loadAppDetail() {
+        if (!this.appId) {
+            this.showError('Không tìm thấy ID ứng dụng', false);
+            return;
+        }
+        
+        console.log(`🚀 Loading app detail for ID: ${this.appId}`);
+        console.log(`📌 Tên từ URL: ${this.appNameFromUrl || 'Không có'}`);
+        
+        this.clearCache();
+        this.showLoading();
+        
+        try {
+            const timestamp = Date.now();
+            const url = `${this.GOOGLE_SCRIPT_URL}?action=getApps&t=${timestamp}&nocache=true`;
+            
+            console.log(`📡 Fetching from: ${url}`);
+            
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            console.log('📦 Server response:', result);
+            
+            if (result.success && result.data) {
+                const app = result.data.find(a => {
+                    return a.id == this.appId || a.id === this.appId || a.id.toString() === this.appId.toString();
+                });
+                
+                if (app) {
+                    console.log('✅ Found app:', app.name);
+                    const processedApp = this.processAppData(app);
+                    this.displayAppDetail(processedApp);
+                    this.retryCount = 0;
+                } else {
+                    console.error('❌ App not found with ID:', this.appId);
+                    this.showError(`Không tìm thấy ứng dụng với ID: ${this.appId}`, true);
+                }
+            } else {
+                throw new Error(result.message || 'Dữ liệu không hợp lệ từ server');
+            }
+        } catch (error) {
+            console.error('💥 Error loading app:', error);
+            
+            if (this.retryCount < this.MAX_RETRIES) {
+                this.showError(`Lỗi tải dữ liệu: ${error.message}. Thử lại?`, true);
+            } else {
+                this.showError(`Không thể tải thông tin ứng dụng sau ${this.MAX_RETRIES} lần thử. Vui lòng thử lại sau.`, false);
+            }
+        }
+    }
+    
+    // ==================== SHARE FUNCTION ====================
+    
+    shareApp() {
+        if (!this.currentAppData) return;
+        
+        const shareUrl = this.createSeoUrl(this.currentAppData.id, this.currentAppData.name);
+        const fullUrl = window.location.origin + '/' + shareUrl;
+        const shareText = `Xem ứng dụng ${this.currentAppData.name} trên XSpace Store`;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: this.currentAppData.name,
+                text: shareText,
+                url: fullUrl
+            })
+            .then(() => console.log('✅ Chia sẻ thành công'))
+            .catch((error) => {
+                console.log('❌ Lỗi chia sẻ:', error);
+                this.copyToClipboard(fullUrl);
+            });
+        } else {
+            this.copyToClipboard(fullUrl);
+        }
+    }
+    
+    copyToClipboard(text) {
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                this.showCustomAlert('success', 'Đã sao chép!', 
+                    'Đường dẫn đã được sao chép vào clipboard. Bạn có thể chia sẻ với bạn bè.', 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+            })
+            .catch(err => {
+                console.error('❌ Lỗi sao chép:', err);
+                this.showCustomAlert('error', 'Lỗi', 
+                    'Không thể sao chép đường dẫn. Vui lòng thử lại.', 
+                    [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+            });
+    }
+    
+    // ==================== USER FUNCTIONS ====================
+    
+    getCurrentUser() {
+        try {
+            const userStr = localStorage.getItem('currentUser');
+            return userStr ? JSON.parse(userStr) : null;
+        } catch (e) {
+            return null;
+        }
+    }
+    
+    isUserPremium() {
+        const user = this.getCurrentUser();
+        if (!user) return false;
+        
+        if (user.accountType === 'premium') {
+            if (user.vipExpiry) {
+                const expiryDate = new Date(user.vipExpiry);
+                const today = new Date();
+                return expiryDate >= today;
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    // ==================== DOWNLOAD FUNCTIONS ====================
+    
+    downloadApp(url, appName, isVIP = false) {
+        if (!url || url === '#' || url === '' || url === 'null' || url === 'undefined') {
+            this.showCustomAlert('warning', 'Thông báo', 
+                '⚠️ Link tải đang được cập nhật. Vui lòng thử lại sau.', 
+                [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+            return;
+        }
+        
+        const type = isVIP ? 'VIP' : 'miễn phí';
+        this.showCustomAlert('info', 'Xác nhận tải', 
+            `Bạn muốn tải xuống ứng dụng <strong>${appName}</strong> (${type})?<br><br>Chọn "Tải xuống" để tiếp tục.`, 
+            [
+                { 
+                    text: 'Hủy', 
+                    type: 'secondary', 
+                    icon: 'fas fa-times',
+                    onClick: () => {}
+                },
+                { 
+                    text: 'Tải xuống', 
+                    type: 'primary', 
+                    icon: 'fas fa-download',
+                    onClick: () => {
+                        window.open(url, '_blank');
+                        setTimeout(() => {
+                            this.showCustomAlert('success', 'Thành công!', 
+                                `✅ Đã bắt đầu tải xuống ${type}!`, 
+                                [{ text: 'OK', type: 'primary', icon: 'fas fa-check' }]);
+                        }, 500);
+                    }
+                }
+            ]);
+    }
+    
+    requireLogin(isVIP = false) {
+        const type = isVIP ? 'VIP' : 'miễn phí';
+        this.showCustomAlert('warning', 'Yêu cầu đăng nhập', 
+            `Bạn cần đăng nhập để tải ứng dụng ${type}.<br><br>Chuyển đến trang đăng nhập?`, 
+            [
+                { 
+                    text: 'Hủy', 
+                    type: 'secondary', 
+                    icon: 'fas fa-times',
+                    onClick: () => {}
+                },
+                { 
+                    text: 'Đăng nhập', 
+                    type: 'primary', 
+                    icon: 'fas fa-sign-in-alt',
+                    onClick: () => {
+                        window.location.href = 'account.html';
+                    }
+                }
+            ]);
+    }
+    
+    requirePremium() {
+        this.showCustomAlert('warning', 'Yêu cầu nâng cấp', 
+            'Tài khoản của bạn chưa được cấp phép VIP.<br><br>Nâng cấp tài khoản Premium ngay?', 
+            [
+                { 
+                    text: 'Hủy', 
+                    type: 'secondary', 
+                    icon: 'fas fa-times',
+                    onClick: () => {}
+                },
+                { 
+                    text: 'Nâng cấp', 
+                    type: 'warning', 
+                    icon: 'fas fa-crown',
+                    onClick: () => {
+                        window.location.href = 'payment.html';
+                    }
+                }
+            ]);
+    }
+    
+    showUpgradeRequiredAlert(requiredPackages) {
+        this.showCustomAlert('warning', 'Không đủ điều kiện', 
+            `Tài khoản của bạn hiện không đủ điều kiện tải ứng dụng này.<br><br>
+            <strong>Yêu cầu gói:</strong> ${requiredPackages}<br><br>
+            Vui lòng nâng cấp gói cao hơn để tiếp tục.`, 
+            [
+                { 
+                    text: 'Hủy', 
+                    type: 'secondary', 
+                    icon: 'fas fa-times',
+                    onClick: () => {}
+                },
+                { 
+                    text: 'Nâng cấp ngay', 
+                    type: 'warning', 
+                    icon: 'fas fa-crown',
+                    onClick: () => {
+                        window.location.href = 'payment.html';
+                    }
+                }
+            ]);
+    }
+    
+    contactSupport() {
+        window.open('https://t.me/m/inBUSKQ1N2E1', '_blank');
+    }
+    
+    // ==================== NAVIGATION HANDLERS ====================
+    
+    handleNavHover(item, isEnter) {
+        const icon = item.querySelector('.nav-icon');
+        const label = item.querySelector('.nav-label');
+        
+        if (isEnter) {
+            icon.style.transform = 'translateY(-4px) scale(1.1)';
+            label.style.transform = 'translateY(2px)';
+            if (!item.classList.contains('active')) {
+                item.style.color = 'var(--primary)';
+            }
+        } else {
+            icon.style.transform = 'translateY(0) scale(1)';
+            label.style.transform = 'translateY(0)';
+            if (!item.classList.contains('active')) {
+                item.style.color = '';
+            }
+        }
+    }
+    
+    handleNavClick(item) {
+        if (!item.href || item.href.includes('#')) {
+            return;
+        }
+        
+        this.navItems.forEach(navItem => {
+            navItem.classList.remove('active');
+            const navIcon = navItem.querySelector('.nav-icon');
+            navIcon.style.transform = 'translateY(0) scale(1)';
+        });
+        
+        item.classList.add('active');
+        const icon = item.querySelector('.nav-icon');
+        icon.style.transform = 'translateY(-4px) scale(1.1)';
+        
+        setTimeout(() => {
+            icon.style.transform = 'translateY(-2px) scale(1.05)';
+        }, 150);
+        
+        setTimeout(() => {
+            icon.style.transform = 'translateY(-4px) scale(1.1)';
+        }, 300);
+    }
+}
+
+// Khởi tạo AppDetailManager
+document.addEventListener('DOMContentLoaded', function() {
+    window.appDetail = new AppDetailManager();
+});
+
+// Clear cache khi trang load
+window.addEventListener('load', function() {
+    if (window.appDetail) {
+        window.appDetail.clearCache();
+    }
+});
