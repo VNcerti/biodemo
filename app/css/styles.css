@@ -72,7 +72,7 @@ body {
     padding: 0 12px;
 }
 
-/* Header - ĐÃ CHỈNH SỬA */
+/* Header - ĐÃ CHỈNH SỬA ĐỂ DỊCH LÊN TRÊN THÊM */
 .header {
     background: var(--background);
     border-bottom: 1px solid var(--border);
@@ -83,15 +83,15 @@ body {
     z-index: 100;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding-top: var(--safe-area-inset-top);
+    padding-top: calc(var(--safe-area-inset-top) - 3px); /* Dịch lên 3px */
 }
 
 .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0;
-    height: 50px;
+    padding: 6px 0; /* Giảm padding để dịch lên */
+    height: 48px; /* Giảm chiều cao */
 }
 
 .logo {
@@ -566,14 +566,14 @@ body {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    padding: 8px 4px 2px 4px; /* ĐÃ GIẢM PADDING DƯỚI ĐỂ DỊCH LÊN */
-    scrollbar-width: none; /* ẨN THANH TRƯỢT */
-    -ms-overflow-style: none; /* ẨN THANH TRƯỢT CHO IE */
+    padding: 8px 4px 2px 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
 }
 
 .categories-scroll::-webkit-scrollbar {
-    display: none; /* ẨN THANH TRƯỢT CHO WEBKIT */
+    display: none;
 }
 
 /* New Category Card Design - Chip Style */
@@ -659,7 +659,7 @@ body {
     animation: pulseActive 2s infinite;
 }
 
-/* ===== CATEGORIES HINT - ĐÃ CẬP NHẬT VỊ TRÍ ===== */
+/* ===== CATEGORIES HINT ===== */
 .categories-hint {
     display: flex;
     align-items: center;
@@ -667,10 +667,10 @@ body {
     gap: 6px;
     color: var(--text-muted);
     font-size: 11px;
-    margin-top: 5px; /* GIẢM MARGIN ĐỂ DỊCH LÊN TRÊN */
+    margin-top: 5px;
     opacity: 0.7;
     transition: opacity 0.3s ease;
-    padding: 2px 0; /* GIẢM PADDING */
+    padding: 2px 0;
 }
 
 .categories-hint i {
@@ -1036,7 +1036,7 @@ body {
     font-size: 10px;
 }
 
-/* ===== BOTTOM NAVIGATION - ĐÃ CHỈNH SỬA ===== */
+/* ===== BOTTOM NAVIGATION - ĐÃ CHỈNH SỬA HOÀN TOÀN ===== */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -1044,7 +1044,7 @@ body {
     right: 0;
     background: var(--background);
     border-top: 1px solid var(--border);
-    padding: 8px 0 var(--safe-area-inset-bottom);
+    padding: 4px 0 var(--safe-area-inset-bottom); /* Giảm padding trên để dịch lên */
     z-index: 1000;
     height: var(--nav-height);
 }
@@ -1064,23 +1064,28 @@ body {
     align-items: center;
     text-decoration: none;
     color: var(--text-secondary);
-    transition: color 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     flex: 1;
-    padding: 6px 0;
+    padding: 4px 0 6px 0; /* Điều chỉnh padding để dịch lên */
     border-radius: 8px;
     position: relative;
     height: 100%;
     justify-content: center;
 }
 
+/* ĐÃ SỬA: Chỉ active item mới có màu primary, các item khác màu gốc */
 .nav-item.active {
     color: var(--primary);
+}
+
+.nav-item:not(.active) {
+    color: var(--text-secondary);
 }
 
 .nav-item.active::after {
     content: '';
     position: absolute;
-    bottom: 4px;
+    bottom: 2px; /* Dịch lên trên hơn một chút */
     left: 50%;
     transform: translateX(-50%);
     width: 4px;
@@ -1091,8 +1096,8 @@ body {
 
 .nav-icon {
     font-size: 20px;
-    margin-bottom: 4px;
-    transition: color 0.2s ease;
+    margin-bottom: 2px; /* Giảm margin để dịch lên */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
@@ -1100,15 +1105,31 @@ body {
     color: var(--primary);
 }
 
+.nav-item:not(.active) .nav-icon {
+    color: var(--text-secondary);
+}
+
 .nav-label {
     font-size: 11px;
     font-weight: 500;
-    transition: color 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item.active .nav-label {
+    color: var(--primary);
+}
+
+.nav-item:not(.active) .nav-label {
+    color: var(--text-secondary);
 }
 
 /* Hiệu ứng hover đơn giản cho nav item */
 .nav-item:hover {
-    color: var(--primary);
+    background: var(--surface);
+}
+
+.nav-item.active:hover {
+    background: var(--primary-light);
 }
 
 /* Loading */
@@ -1307,6 +1328,16 @@ body {
         font-size: 14px;
     }
     
+    /* Header responsive */
+    .header {
+        padding-top: calc(var(--safe-area-inset-top) - 2px);
+    }
+    
+    .header-content {
+        padding: 5px 0;
+        height: 46px;
+    }
+    
     /* Categories responsive */
     .categories-section {
         margin-bottom: 16px;
@@ -1342,7 +1373,7 @@ body {
     .categories-hint {
         font-size: 10px;
         gap: 5px;
-        margin-top: 5px; /* GIẢM THÊM CHO MOBILE */
+        margin-top: 5px;
     }
     
     .categories-hint i {
@@ -1354,17 +1385,28 @@ body {
         gap: 15px;
     }
     
-    /* Bottom nav responsive */
+    /* Bottom nav responsive - ĐÃ CHỈNH SỬA */
     .nav-icon {
         font-size: 18px;
+        margin-bottom: 1px;
     }
     
     .nav-label {
         font-size: 10px;
     }
     
+    .nav-item.active::after {
+        bottom: 1px;
+        width: 3px;
+        height: 3px;
+    }
+    
     .bottom-nav {
-        padding: 6px 0 var(--safe-area-inset-bottom);
+        padding: 3px 0 var(--safe-area-inset-bottom);
+    }
+    
+    .nav-item {
+        padding: 3px 0 5px 0;
     }
 }
 
@@ -1448,10 +1490,20 @@ body {
         font-size: 10px;
     }
     
+    /* Header responsive */
+    .header {
+        padding-top: calc(var(--safe-area-inset-top) - 1px);
+    }
+    
+    .header-content {
+        padding: 4px 0;
+        height: 44px;
+    }
+    
     /* Categories responsive */
     .categories-scroll {
         gap: 6px;
-        padding: 6px 2px 0px 2px; /* GIẢM PADDING DƯỚI VỀ 0 */
+        padding: 6px 2px 0px 2px;
     }
     
     .category-card {
@@ -1479,16 +1531,17 @@ body {
     .categories-hint {
         font-size: 9px;
         gap: 4px;
-        margin-top: 5px; /* GIẢM VỀ 0 CHO MOBILE NHỎ */
+        margin-top: 4px;
     }
     
     .categories-hint i {
         font-size: 8px;
     }
     
-    /* Bottom nav responsive */
+    /* Bottom nav responsive - ĐÃ CHỈNH SỬA */
     .nav-icon {
         font-size: 16px;
+        margin-bottom: 1px;
     }
     
     .nav-label {
@@ -1496,13 +1549,17 @@ body {
     }
     
     .nav-item.active::after {
+        bottom: 1px;
         width: 3px;
         height: 3px;
-        bottom: 2px;
     }
     
     .bottom-nav {
-        padding: 4px 0 var(--safe-area-inset-bottom);
+        padding: 2px 0 var(--safe-area-inset-bottom);
+    }
+    
+    .nav-item {
+        padding: 2px 0 4px 0;
     }
     
     /* Footer responsive */
@@ -1539,13 +1596,34 @@ body {
         font-size: 8px;
     }
     
-    /* Bottom nav responsive */
+    /* Header responsive */
+    .header-content {
+        padding: 3px 0;
+        height: 42px;
+    }
+    
+    /* Bottom nav responsive - ĐÃ CHỈNH SỬA */
     .nav-icon {
         font-size: 15px;
+        margin-bottom: 0;
     }
     
     .nav-label {
         font-size: 8px;
+    }
+    
+    .nav-item.active::after {
+        bottom: 0;
+        width: 2px;
+        height: 2px;
+    }
+    
+    .bottom-nav {
+        padding: 1px 0 var(--safe-area-inset-bottom);
+    }
+    
+    .nav-item {
+        padding: 1px 0 3px 0;
     }
     
     .footer-links {
@@ -1562,7 +1640,7 @@ body {
 @media (min-width: 1024px) {
     .categories-scroll {
         gap: 10px;
-        padding: 10px 4px 5px 4px; /* GIẢM PADDING DƯỚI */
+        padding: 10px 4px 5px 4px;
     }
     
     .category-card {
@@ -1591,12 +1669,35 @@ body {
         display: none;
     }
     
+    /* Header desktop */
+    .header {
+        padding-top: calc(var(--safe-area-inset-top) - 4px);
+    }
+    
+    .header-content {
+        padding: 7px 0;
+        height: 50px;
+    }
+    
     /* Bottom nav desktop */
     .nav-icon {
         font-size: 22px;
+        margin-bottom: 3px;
     }
     
     .nav-label {
         font-size: 12px;
+    }
+    
+    .nav-item.active::after {
+        bottom: 3px;
+    }
+    
+    .bottom-nav {
+        padding: 5px 0 var(--safe-area-inset-bottom);
+    }
+    
+    .nav-item {
+        padding: 5px 0 7px 0;
     }
 }
