@@ -1067,7 +1067,7 @@ body {
     color: var(--text-secondary);
     transition: color 0.2s ease;
     flex: 1;
-    padding: 8px 0; /* TĂNG PADDING */
+    padding: -10px 0; /* TĂNG PADDING */
     border-radius: 8px;
     position: relative;
     height: 100%;
@@ -1361,6 +1361,7 @@ body {
     }
     
     .nav-label {
+        margin-top: -5px;
         font-size: 12px; /* GIẢM NHẸ TỪ 13px */
     }
     
@@ -1369,7 +1370,7 @@ body {
     }
     
     .nav-item.active::after {
-        bottom: 5px;
+        bottom: -15px;
         width: 4px;
         height: 4px;
     }
@@ -1499,13 +1500,14 @@ body {
     }
     
     .nav-label {
+        margin-top: -5px;
         font-size: 11px; /* GIẢM TỪ 12px XUỐNG 11px */
     }
     
     .nav-item.active::after {
         width: 4px;
         height: 4px;
-        bottom: 4px;
+        bottom: -6px;
     }
     
     .bottom-nav {
@@ -1553,6 +1555,7 @@ body {
     
     .nav-label {
         font-size: 10px;
+        margin-top: -5px;
     }
     
     .footer-links {
@@ -1604,6 +1607,7 @@ body {
     }
     
     .nav-label {
+        margin-top: -5px;
         font-size: 14px; /* TĂNG LÊN 14px CHO DESKTOP */
     }
     
