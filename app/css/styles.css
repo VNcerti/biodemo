@@ -722,6 +722,7 @@ body {
     box-shadow: var(--card-shadow-hover);
 }
 
+/* ẢNH ỨNG DỤNG CÓ THỂ CLICK */
 .app-logo {
     width: 90px;
     height: 90px;
@@ -730,6 +731,12 @@ body {
     flex-shrink: 0;
     padding: 4px;
     align-self: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.app-logo:hover {
+    transform: scale(1.05);
 }
 
 .app-content {
@@ -751,6 +758,7 @@ body {
     min-width: 0;
 }
 
+/* TÊN ỨNG DỤNG CÓ THỂ CLICK */
 .app-name {
     font-size: 15px;
     font-weight: 700;
@@ -760,6 +768,12 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     color: var(--text-primary);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.app-name:hover {
+    color: var(--primary);
 }
 
 .app-tags {
@@ -870,6 +884,7 @@ body {
     margin-top: 4px;
 }
 
+/* NÚT TẢI VỀ TRONG APP-DETAIL (KHÔNG ĐƯỢC CHỈNH SỬA) */
 .download-btn {
     background: var(--primary);
     color: white;
