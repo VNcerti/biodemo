@@ -83,7 +83,87 @@
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
         }
+        
+        /* ===== STYLE RIÊNG CHO NÚT "NHẬN" Ở TRANG CHỦ ===== */
+        /* CHỈ áp dụng cho nút trong index.html, KHÔNG ảnh hưởng app-detail.html */
+        
+        .index-download-btn {
+            border: none;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 11px;
+            height: 30px;
+            letter-spacing: 0.5px;
+            min-width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Dark Mode - Nút "NHẬN" */
+        [data-theme="dark"] .index-download-btn {
+            background: rgba(0, 122, 255, calc(1.33 * 0.06));
+            color: #148eff;
+            --keyColor-rgb: 0, 122, 255;
+            --alpha-multiplier: 1.33;
+        }
+        
+        /* Light Mode - Nút "NHẬN" */
+        [data-theme="light"] .index-download-btn {
+            background: #EEEEEF;
+            color: #007AFF;
+        }
+        
+        /* Hover effects */
+        .index-download-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        [data-theme="dark"] .index-download-btn:hover {
+            background: rgba(0, 122, 255, calc(1.33 * 0.1));
+        }
+        
+        [data-theme="light"] .index-download-btn:hover {
+            background: #E0E0E0;
+        }
+        
+        .index-download-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* ===== CẬP NHẬT STYLE CHO TÊN VÀ ẢNH ỨNG DỤNG CÓ THỂ CLICK ===== */
+        .app-name.clickable {
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .app-name.clickable:hover {
+            color: var(--primary);
+        }
+        
+        .app-logo.clickable {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .app-logo.clickable:hover {
+            transform: scale(1.05);
+        }
     </style>
+    
+    <!-- Dark Theme mặc định -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('theme')) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
 </head>
 <body>
     <!-- Header -->
