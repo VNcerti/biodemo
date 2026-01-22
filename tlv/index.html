@@ -2270,7 +2270,7 @@
                         const seoUrl = createSeoUrl(actualAppId, appData.name);
                         console.log('🌐 URL SEO-friendly mới:', seoUrl);
                         
-                        // Gửi Telegram async
+                        // Gửi Telegram async với inline buttons mới
                         sendTelegramNotification(appData, actualAppId)
                             .then(telegramSent => {
                                 if (telegramSent) {
@@ -2334,8 +2334,8 @@
                     const appUrl = createSeoUrl(appId, appData.name);
                     console.log(`🌐 URL mới: ${appUrl}`);
                     
-                    // Thử phương pháp chính: gửi ảnh với caption đầy đủ
-                    const success = await sendPhotoWithCompleteCaption(appData, appId, appUrl);
+                    // Thử phương pháp chính: gửi ảnh với caption đầy đủ và inline buttons
+                    const success = await sendPhotoWithCompleteCaptionAndButtons(appData, appId, appUrl);
                     
                     if (success) {
                         console.log(`✅ Thông báo Telegram thành công sau ${attempt} lần thử!`);
@@ -2363,8 +2363,8 @@
             return await sendFallbackTelegramMessage(appData, appId, appUrl);
         }
 
-        async function sendPhotoWithCompleteCaption(appData, appId, appUrl) {
-            console.log('📝 Gửi Telegram với URL:', appUrl);
+        async function sendPhotoWithCompleteCaptionAndButtons(appData, appId, appUrl) {
+            console.log('📝 Gửi Telegram với URL và inline buttons:', appUrl);
             
             // Xử lý version
             let version = appData.version;
@@ -2372,7 +2372,7 @@
                 version = version.substring(1);
             }
             
-            // Tạo caption với định dạng đúng và URL mới
+            // Tạo caption với định dạng đúng và URL mới (GIỮ NGUYÊN CẤU TRÚC HIỆN TẠI)
             const caption = formatTelegramMessage(appData.name, version, appData.description, appUrl);
             
             console.log('📝 Độ dài caption:', caption.length);
@@ -2383,31 +2383,32 @@
                 console.warn('⚠️ Caption quá dài, cắt bớt mô tả...');
                 // Tạo caption ngắn hơn bằng cách cắt bớt mô tả
                 const shortCaption = formatTelegramMessageShort(appData.name, version, appData.description, appUrl);
-                return await sendTelegramPhoto(appData.image, shortCaption);
+                return await sendTelegramPhotoWithButtons(appData.image, shortCaption);
             }
             
-            return await sendTelegramPhoto(appData.image, caption);
+            return await sendTelegramPhotoWithButtons(appData.image, caption);
         }
 
+        // Hàm định dạng tin nhắn Telegram - GIỮ NGUYÊN CẤU TRÚC HIỆN TẠI
         function formatTelegramMessage(appName, version, description, appUrl) {
             // Escape HTML entities
             const escapedName = escapeHtml(appName);
             const escapedVersion = escapeHtml(version);
             
-            // Format description thành blockquote với dấu "•"
+            // Format description thành blockquote với dấu "•" (GIỮ NGUYÊN)
             let formattedDescription = '';
             if (description && description.trim()) {
                 // Escape và giữ nguyên các dòng
                 const escapedDesc = escapeHtml(description);
                 const lines = escapedDesc.split('\n').map(line => line.trim()).filter(line => line);
-                // THÊM DẤU "•" VÀO ĐẦU MỖI DÒNG
+                // THÊM DẤU "•" VÀO ĐẦU MỖI DÒNG (GIỮ NGUYÊN)
                 const linesWithBullet = lines.map(line => `• ${line}`);
                 formattedDescription = `<blockquote>${linesWithBullet.join('\n')}</blockquote>`;
             } else {
                 formattedDescription = '<blockquote>Không có mô tả</blockquote>';
             }
             
-            // Tạo caption với định dạng HTML và URL mới
+            // Tạo caption với định dạng HTML và URL mới (GIỮ NGUYÊN THỨ TỰ)
             return `Ứng dụng : ${escapedName}
 
 Phiên bản : ${escapedVersion}
@@ -2415,24 +2416,20 @@ Phiên bản : ${escapedVersion}
 Chức năng :
 ${formattedDescription}
 
-Cài đặt ngay : ${appUrl}
-
-Cài đặt kho ứng dụng : https://modos.site/download
-
-Tham gia Group Chat : @modos_chat`;
+Cài đặt ngay : ${appUrl}`;
         }
 
         function formatTelegramMessageShort(appName, version, description, appUrl) {
             const escapedName = escapeHtml(appName);
             const escapedVersion = escapeHtml(version);
             
-            // Lấy 3 dòng đầu của description và thêm dấu "•"
+            // Lấy 3 dòng đầu của description và thêm dấu "•" (GIỮ NGUYÊN)
             let shortDesc = '';
             if (description && description.trim()) {
                 const escapedDesc = escapeHtml(description);
                 const lines = escapedDesc.split('\n').map(line => line.trim()).filter(line => line);
                 if (lines.length > 0) {
-                    // THÊM DẤU "•" VÀO ĐẦU MỖI DÒNG
+                    // THÊM DẤU "•" VÀO ĐẦU MỖI DÒNG (GIỮ NGUYÊN)
                     const linesWithBullet = lines.slice(0, 3).map(line => `• ${line}`);
                     shortDesc = linesWithBullet.join('\n');
                     if (lines.length > 3) {
@@ -2450,14 +2447,66 @@ Phiên bản : ${escapedVersion}
 Chức năng :
 ${formattedDescription}
 
-Cài đặt ngay : ${appUrl}
-
-Cài đặt kho ứng dụng : https://modos.site/download
-
-Tham gia Group Chat : @modos_chat`;
+Cài đặt ngay : ${appUrl}`;
         }
 
-        async function sendTelegramPhoto(photoUrl, caption) {
+        // Hàm gửi ảnh với caption và inline buttons mới
+        async function sendTelegramPhotoWithButtons(photoUrl, caption) {
+            const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
+            
+            try {
+                // Tạo inline keyboard với 2 button URL
+                const replyMarkup = {
+                    inline_keyboard: [
+                        [
+                            {
+                                text: "KHO ỨNG DỤNG CHÍNH THỨC",
+                                url: "https://modos.site"
+                            }
+                        ],
+                        [
+                            {
+                                text: "NHÓM CHAT GIAO LƯU",
+                                url: "https://t.me/modos_chat"
+                            }
+                        ]
+                    ]
+                };
+                
+                const response = await fetch(telegramUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        photo: photoUrl,
+                        caption: caption,
+                        parse_mode: 'HTML',
+                        disable_web_page_preview: false,
+                        reply_markup: replyMarkup
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.ok) {
+                    console.log('✅ Telegram response OK với inline buttons');
+                    return true;
+                } else {
+                    console.error('❌ Telegram API error với inline buttons:', result);
+                    // Thử lại mà không có buttons nếu bị lỗi
+                    return await sendTelegramPhotoWithoutButtons(photoUrl, caption);
+                }
+            } catch (error) {
+                console.error('💥 Lỗi khi gửi đến Telegram với inline buttons:', error);
+                // Thử lại mà không có buttons nếu bị lỗi
+                return await sendTelegramPhotoWithoutButtons(photoUrl, caption);
+            }
+        }
+
+        // Hàm fallback gửi ảnh không có buttons (giữ nguyên logic cũ)
+        async function sendTelegramPhotoWithoutButtons(photoUrl, caption) {
             const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
             
             try {
@@ -2478,14 +2527,14 @@ Tham gia Group Chat : @modos_chat`;
                 const result = await response.json();
                 
                 if (result.ok) {
-                    console.log('✅ Telegram response OK');
+                    console.log('✅ Telegram response OK (không có buttons)');
                     return true;
                 } else {
-                    console.error('❌ Telegram API error:', result);
+                    console.error('❌ Telegram API error (không có buttons):', result);
                     return false;
                 }
             } catch (error) {
-                console.error('💥 Lỗi khi gửi đến Telegram:', error);
+                console.error('💥 Lỗi khi gửi đến Telegram (không có buttons):', error);
                 return false;
             }
         }
@@ -2499,68 +2548,21 @@ Tham gia Group Chat : @modos_chat`;
                     version = version.substring(1);
                 }
                 
-                // Bước 1: Gửi ảnh
-                const photoSent = await sendTelegramPhotoOnly(appData.image);
+                // Bước 1: Gửi ảnh với buttons
+                const photoSent = await sendTelegramPhotoWithButtons(appData.image, 
+                    formatTelegramMessage(appData.name, version, appData.description, appUrl));
                 
-                // Chờ 1 giây
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                // Nếu không thành công, thử gửi không có buttons
+                if (!photoSent) {
+                    console.log('🔄 Thử gửi ảnh không có buttons...');
+                    return await sendTelegramPhotoWithoutButtons(appData.image, 
+                        formatTelegramMessage(appData.name, version, appData.description, appUrl));
+                }
                 
-                // Bước 2: Gửi tin nhắn text với đầy đủ thông tin và URL mới
-                const textMessage = formatTelegramMessage(appData.name, version, appData.description, appUrl);
-                const textSent = await sendTelegramText(textMessage);
-                
-                return photoSent && textSent;
+                return photoSent;
                 
             } catch (error) {
                 console.error('💥 Lỗi trong fallback method:', error);
-                return false;
-            }
-        }
-
-        async function sendTelegramPhotoOnly(photoUrl) {
-            const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
-            
-            try {
-                const response = await fetch(telegramUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        photo: photoUrl
-                    })
-                });
-                
-                const result = await response.json();
-                return result.ok;
-            } catch (error) {
-                console.error('Lỗi khi gửi ảnh:', error);
-                return false;
-            }
-        }
-
-        async function sendTelegramText(message) {
-            const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-            
-            try {
-                const response = await fetch(telegramUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        text: message,
-                        parse_mode: 'HTML',
-                        disable_web_page_preview: false
-                    })
-                });
-                
-                const result = await response.json();
-                return result.ok;
-            } catch (error) {
-                console.error('Lỗi khi gửi tin nhắn text:', error);
                 return false;
             }
         }
@@ -3340,6 +3342,7 @@ Tham gia Group Chat : @modos_chat`;
             });
             
             console.log('Dashboard initialized successfully');
+            console.log('✅ Tính năng inline buttons đã được tích hợp vào Telegram bot');
         });
     </script>
 </body>
